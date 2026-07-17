@@ -1,0 +1,58 @@
+<svg viewBox="0 0 1000 620" width="1000" height="620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ブラウザ枠 -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#e8eaed"/>
+  <rect x="10" y="6" width="180" height="28" rx="8" fill="#ffffff"/>
+  <text x="24" y="25" font-size="13" fill="#444">Asset Store</text>
+  <g font-size="16" fill="#555">
+    <text x="920" y="24">—</text>
+    <text x="950" y="24">□</text>
+    <text x="978" y="24">✕</text>
+  </g>
+  <rect x="90" y="40" width="620" height="26" rx="13" fill="#ffffff" stroke="#d0d3d8"/>
+  <text x="106" y="58" font-size="14" fill="#444">🔒 assetstore.unity.com</text>
+  <!-- ストアヘッダー -->
+  <rect x="0" y="74" width="1000" height="56" fill="#000000"/>
+  <text x="36" y="108" font-size="17" font-weight="bold" fill="#ffffff">Unity Asset Store</text>
+  <rect x="300" y="86" width="400" height="32" rx="16" fill="#ffffff"/>
+  <text x="316" y="107" font-size="14" fill="#444">🔍</text>
+  <text x="344" y="107" font-size="14" fill="#111">2D Game Kit</text>
+  <g stroke="#ffffff" stroke-width="2" fill="none">
+    <circle cx="940" cy="97" r="6"/>
+    <path d="M929 116 C929 106,951 106,951 116"/>
+  </g>
+  <!-- 検索結果 -->
+  <rect x="0" y="130" width="1000" height="490" fill="#f5f6f8"/>
+  <text x="60" y="172" font-size="14" fill="#333">「2D Game Kit」の検索結果</text>
+  <!-- メインカード -->
+  <rect x="60" y="190" width="300" height="290" rx="8" fill="#ffffff" stroke="#e2e5ea"/>
+  <rect x="60" y="190" width="300" height="170" rx="8" fill="#1b2430"/>
+  <rect x="60" y="330" width="300" height="30" fill="#1b2430"/>
+  <rect x="76" y="320" width="268" height="26" rx="4" fill="#3f7a4e"/>
+  <circle cx="140" cy="292" r="11" fill="#f2a65a"/>
+  <rect x="131" y="302" width="18" height="20" rx="4" fill="#f2a65a"/>
+  <rect x="250" y="300" width="34" height="20" rx="4" fill="#55606e"/>
+  <text x="76" y="392" font-size="16" font-weight="bold" fill="#111">2D Game Kit</text>
+  <text x="76" y="414" font-size="12" fill="#667">Unity Technologies</text>
+  <text x="76" y="438" font-size="13" fill="#f5a623">★★★★★</text>
+  <text x="76" y="464" font-size="14" font-weight="bold" fill="#111">無料（FREE）</text>
+  <!-- 他の検索結果（薄く） -->
+  <g opacity="0.45">
+    <rect x="400" y="190" width="300" height="290" rx="8" fill="#ffffff" stroke="#e2e5ea"/>
+    <rect x="400" y="190" width="300" height="170" rx="8" fill="#8b95a5"/>
+    <rect x="416" y="386" width="180" height="12" rx="4" fill="#c8ccd4"/>
+    <rect x="416" y="408" width="130" height="10" rx="4" fill="#dde1e7"/>
+    <rect x="416" y="448" width="80" height="12" rx="4" fill="#c8ccd4"/>
+  </g>
+  <!-- 注釈 -->
+  <rect x="295" y="81" width="410" height="42" rx="8" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="291" cy="79" r="13" fill="#ff3b30"/>
+  <text x="291" y="84" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="55" y="185" width="310" height="300" rx="10" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="55" cy="185" r="13" fill="#ff3b30"/>
+  <text x="55" y="190" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <rect x="730" y="240" width="250" height="140" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="748" y="272" font-size="13" fill="#c0392b">Unity Technologies製の</text>
+  <text x="748" y="296" font-size="13" fill="#c0392b">「2D Game Kit」（無料）を</text>
+  <text x="748" y="320" font-size="13" fill="#c0392b">クリックしよう</text>
+  <text x="748" y="352" font-size="12" fill="#c0392b">サインインも忘れずに！</text>
+</svg>

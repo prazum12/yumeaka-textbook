@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1000 490" width="1000" height="490" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <rect width="1000" height="490" rx="12" fill="#252526"/>
+  <rect width="1000" height="42" rx="12" fill="#1e1e1e"/><text x="22" y="27" font-size="15" fill="#e5e7eb">Unity Editor — 自分のシーンを保存してからZoneを開く</text>
+  <rect x="18" y="64" width="272" height="360" rx="6" fill="#1e1e1e"/><text x="34" y="93" font-size="16" font-weight="bold" fill="#f3f4f6">Project</text>
+  <rect x="34" y="111" width="240" height="38" rx="4" fill="#3b3b3b" stroke="#f97316" stroke-width="3"/><text x="49" y="136" font-size="16" fill="#fff">🔍 Zone1</text>
+  <rect x="34" y="168" width="240" height="48" rx="5" fill="#334155" stroke="#60a5fa" stroke-width="2"/><text x="52" y="198" font-size="17" font-weight="bold" fill="#fff">Zone1</text><text x="178" y="198" font-size="14" fill="#cbd5e1">Scene</text>
+  <rect x="34" y="228" width="240" height="36" rx="5" fill="#303030"/><text x="52" y="252" font-size="15" fill="#d1d5db">Zone2</text><text x="178" y="252" font-size="13" fill="#9ca3af">Scene</text>
+  <rect x="34" y="276" width="240" height="36" rx="5" fill="#303030"/><text x="52" y="300" font-size="15" fill="#d1d5db">Zone3</text><text x="178" y="300" font-size="13" fill="#9ca3af">Scene</text>
+  <rect x="34" y="324" width="240" height="36" rx="5" fill="#303030"/><text x="52" y="348" font-size="15" fill="#d1d5db">Zone4 / Zone5 も同じ</text>
+  <rect x="326" y="64" width="656" height="360" rx="6" fill="#2f2f2f"/>
+  <text x="654" y="103" text-anchor="middle" font-size="19" font-weight="bold" fill="#f8fafc">開く前に、自分のシーンを保存！</text>
+  <rect x="390" y="131" width="530" height="76" rx="9" fill="#3f3f46"/><text x="423" y="163" font-size="17" fill="#e5e7eb">Windows:</text><text x="530" y="163" font-size="20" font-weight="bold" fill="#fde68a">Ctrl + S</text><text x="687" y="163" font-size="17" fill="#e5e7eb">Mac:</text><text x="755" y="163" font-size="20" font-weight="bold" fill="#fde68a">⌘ + S</text><text x="655" y="191" text-anchor="middle" font-size="14" fill="#d1d5db">保存できたら、左の Zone1 をダブルクリック</text>
+  <path d="M274 192 C338 192 338 250 405 250" fill="none" stroke="#f97316" stroke-width="4" stroke-dasharray="8 7" marker-end="url(#a)"/>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#f97316"/></marker></defs>
+  <rect x="390" y="244" width="530" height="119" rx="9" fill="#ecfdf5" stroke="#34d399" stroke-width="2"/><circle cx="428" cy="285" r="21" fill="#059669"/><text x="428" y="292" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">✓</text><text x="466" y="282" font-size="18" font-weight="bold" fill="#065f46">Zoneを開いても、自分のステージは消えません</text><text x="466" y="314" font-size="15" fill="#065f46">開いているシーンが切り替わるだけです。</text><text x="466" y="340" font-size="15" fill="#065f46">戻るときは、自分のシーン名で同じように検索します。</text>
+  <circle cx="31" cy="108" r="16" fill="#f97316"/><text x="31" y="114" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">1</text><circle cx="286" cy="161" r="16" fill="#f97316"/><text x="286" y="167" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">2</text>
+  <rect x="18" y="441" width="964" height="31" rx="6" fill="#172554"/><text x="500" y="463" text-anchor="middle" font-size="14" fill="#dbeafe">① 検索欄に Zone1　→　② 出てきたSceneをダブルクリック　→　▶で遊んで観察</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg viewBox="0 0 1000 520" width="1000" height="520" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ウィンドウ -->
+  <rect x="0" y="0" width="1000" height="520" rx="8" fill="#2d2d2d"/>
+  <rect x="0" y="0" width="1000" height="30" rx="8" fill="#1f1f1f"/>
+  <rect x="10" y="4" width="110" height="26" rx="4" fill="#383838"/>
+  <text x="34" y="22" font-size="13" fill="#f3f4f6">Project</text>
+  <text x="150" y="22" font-size="13" fill="#9ca3af">Console</text>
+  <!-- ツールバー -->
+  <rect x="0" y="30" width="1000" height="34" fill="#383838"/>
+  <text x="16" y="52" font-size="13" fill="#9ca3af">+ ∨</text>
+  <rect x="200" y="36" width="340" height="24" rx="12" fill="#1f1f1f" stroke="#5a5a5a"/>
+  <text x="212" y="53" font-size="13" fill="#9ca3af">🔍</text>
+  <text x="238" y="53" font-size="14" fill="#ffffff">Zone1</text>
+  <!-- 左ツリー -->
+  <rect x="0" y="64" width="230" height="456" fill="#333333"/>
+  <text x="16" y="94" font-size="13" fill="#e5e7eb">Assets</text>
+  <text x="34" y="120" font-size="13" fill="#9ca3af">2DGamekit</text>
+  <text x="52" y="146" font-size="13" fill="#9ca3af">Scenes</text>
+  <!-- 検索結果 -->
+  <text x="250" y="94" font-size="12" fill="#9ca3af">Search: In Assets</text>
+  <rect x="260" y="120" width="58" height="72" rx="4" fill="#d1d5db"/>
+  <polygon points="302,120 318,136 302,136" fill="#aab2bd"/>
+  <polygon points="278,142 278,170 300,156" fill="#5a6b7c"/>
+  <text x="289" y="212" font-size="12" fill="#e5e7eb" text-anchor="middle">Zone1</text>
+  <!-- 注釈 -->
+  <rect x="195" y="31" width="350" height="34" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="191" cy="31" r="13" fill="#ff3b30"/>
+  <text x="191" y="36" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="248" y="110" width="84" height="114" rx="8" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="246" cy="108" r="13" fill="#ff3b30"/>
+  <text x="246" y="113" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <line x1="332" y1="166" x2="420" y2="166" stroke="#ff3b30" stroke-width="3"/>
+  <rect x="420" y="120" width="470" height="130" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="438" y="152" font-size="13" fill="#c0392b">検索ボックスに「Zone1」と入力すると、シーンが出てくるよ。</text>
+  <text x="438" y="176" font-size="13" fill="#c0392b">ダブルクリックで開こう！</text>
+  <text x="438" y="200" font-size="12" fill="#c0392b">（Assets &gt; 2DGamekit &gt; Scenes からたどってもOK）</text>
+</svg>

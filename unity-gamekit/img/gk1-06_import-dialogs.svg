@@ -1,0 +1,55 @@
+<svg viewBox="0 0 1000 560" width="1000" height="560" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- 左: インポートダイアログ -->
+  <rect x="20" y="10" width="200" height="26" rx="13" fill="#dbeafe"/>
+  <text x="120" y="28" font-size="13" font-weight="bold" fill="#1d4ed8" text-anchor="middle">インポート中に出る画面</text>
+  <rect x="20" y="48" width="460" height="350" rx="8" fill="#2d2d2d" stroke="#4a4a4a"/>
+  <text x="40" y="82" font-size="14" fill="#f3f4f6">Import Unity Package</text>
+  <text x="40" y="104" font-size="12" fill="#9ca3af">2D Game Kit</text>
+  <g>
+    <rect x="40" y="124" width="16" height="16" rx="3" fill="#2196f3"/>
+    <path d="M43.5 132 l4 4 l7 -8" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <rect x="66" y="127" width="300" height="10" rx="3" fill="#4a4a4a"/>
+    <rect x="40" y="158" width="16" height="16" rx="3" fill="#2196f3"/>
+    <path d="M43.5 166 l4 4 l7 -8" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <rect x="66" y="161" width="260" height="10" rx="3" fill="#4a4a4a"/>
+    <rect x="40" y="192" width="16" height="16" rx="3" fill="#2196f3"/>
+    <path d="M43.5 200 l4 4 l7 -8" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <rect x="66" y="195" width="320" height="10" rx="3" fill="#4a4a4a"/>
+    <rect x="40" y="226" width="16" height="16" rx="3" fill="#2196f3"/>
+    <path d="M43.5 234 l4 4 l7 -8" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <rect x="66" y="229" width="280" height="10" rx="3" fill="#4a4a4a"/>
+    <rect x="40" y="260" width="16" height="16" rx="3" fill="#2196f3"/>
+    <path d="M43.5 268 l4 4 l7 -8" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <rect x="66" y="263" width="240" height="10" rx="3" fill="#4a4a4a"/>
+  </g>
+  <rect x="230" y="344" width="90" height="30" rx="4" fill="none" stroke="#6b7280"/>
+  <text x="275" y="364" font-size="13" fill="#d1d5db" text-anchor="middle">Cancel</text>
+  <rect x="340" y="344" width="110" height="30" rx="4" fill="#3b82f6"/>
+  <text x="395" y="364" font-size="13" fill="#ffffff" text-anchor="middle">Import</text>
+  <rect x="335" y="339" width="120" height="40" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="331" cy="337" r="13" fill="#ff3b30"/>
+  <text x="331" y="342" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <!-- 右: 完了後のProjectウィンドウ -->
+  <rect x="520" y="10" width="210" height="26" rx="13" fill="#dbeafe"/>
+  <text x="625" y="28" font-size="13" font-weight="bold" fill="#1d4ed8" text-anchor="middle">終わったらここをチェック</text>
+  <rect x="520" y="48" width="460" height="350" rx="8" fill="#2d2d2d" stroke="#4a4a4a"/>
+  <rect x="520" y="48" width="460" height="28" rx="8" fill="#3c3c3c"/>
+  <text x="536" y="67" font-size="12" fill="#f3f4f6">Project</text>
+  <text x="536" y="102" font-size="12" fill="#d1d5db">Assets</text>
+  <rect x="560" y="130" width="26" height="10" rx="3" fill="#d8b05c"/>
+  <rect x="560" y="136" width="64" height="46" rx="6" fill="#e0b96a"/>
+  <text x="592" y="202" font-size="12" fill="#e5e7eb" text-anchor="middle">2DGamekit</text>
+  <rect x="700" y="130" width="26" height="10" rx="3" fill="#d8b05c"/>
+  <rect x="700" y="136" width="64" height="46" rx="6" fill="#e0b96a"/>
+  <text x="732" y="202" font-size="12" fill="#e5e7eb" text-anchor="middle">Scenes</text>
+  <rect x="548" y="118" width="92" height="98" rx="8" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="546" cy="116" r="13" fill="#ff3b30"/>
+  <text x="546" y="121" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <text x="560" y="260" font-size="13" fill="#ff6b60">2DGamekitフォルダが</text>
+  <text x="560" y="282" font-size="13" fill="#ff6b60">増えていたら成功！</text>
+  <!-- 注意 -->
+  <rect x="20" y="430" width="960" height="104" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="38" y="462" font-size="13" fill="#c0392b">「設定が上書きされます」→ Import ／「依存関係があります」→ Install/Upgrade ／</text>
+  <text x="38" y="486" font-size="13" fill="#c0392b">「再読み込みしますか？」→ Reload。どれもそのまま進めてOK。</text>
+  <text x="38" y="510" font-size="13" fill="#c0392b">終わったらPackage Managerのウィンドウは ✕ で閉じよう。</text>
+</svg>

@@ -1,0 +1,48 @@
+<svg viewBox="0 0 1000 620" width="1000" height="620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ウィンドウ -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#2d2d2d"/>
+  <rect x="0" y="0" width="1000" height="36" rx="8" fill="#1f1f1f"/>
+  <text x="16" y="24" font-size="13" fill="#f3f4f6">Package Manager</text>
+  <text x="972" y="24" font-size="14" fill="#9ca3af">✕</text>
+  <!-- ツールバー -->
+  <rect x="0" y="36" width="1000" height="36" fill="#383838"/>
+  <text x="16" y="59" font-size="13" fill="#9ca3af">+ ∨</text>
+  <rect x="60" y="42" width="230" height="24" rx="4" fill="#4a4a4a" stroke="#5a5a5a"/>
+  <text x="72" y="59" font-size="13" fill="#f3f4f6">Packages: My Assets</text>
+  <text x="272" y="59" font-size="12" fill="#9ca3af">∨</text>
+  <rect x="760" y="42" width="220" height="24" rx="12" fill="#1f1f1f" stroke="#5a5a5a"/>
+  <text x="772" y="59" font-size="13" fill="#9ca3af">🔍</text>
+  <!-- 左リスト -->
+  <rect x="0" y="72" width="340" height="500" fill="#333333"/>
+  <rect x="0" y="80" width="340" height="36" fill="#2C5D87"/>
+  <text x="16" y="103" font-size="14" fill="#ffffff">2D Game Kit</text>
+  <text x="324" y="103" font-size="12" fill="#cbd5e1" text-anchor="end">2.2.x</text>
+  <rect x="16" y="132" width="200" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="16" y="168" width="160" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="16" y="204" width="220" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="16" y="240" width="180" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="16" y="276" width="140" height="10" rx="3" fill="#4a4a4a"/>
+  <!-- 右詳細 -->
+  <rect x="340" y="72" width="660" height="500" fill="#383838"/>
+  <text x="368" y="122" font-size="22" font-weight="bold" fill="#ffffff">2D Game Kit</text>
+  <text x="368" y="148" font-size="13" fill="#9ca3af">Unity Technologies</text>
+  <text x="368" y="170" font-size="12" fill="#9ca3af">Version 2.x</text>
+  <rect x="368" y="200" width="560" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="368" y="220" width="520" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="368" y="240" width="480" height="10" rx="3" fill="#4a4a4a"/>
+  <!-- 下部バー -->
+  <rect x="0" y="572" width="1000" height="48" rx="8" fill="#333333"/>
+  <rect x="856" y="581" width="120" height="30" rx="4" fill="#3b82f6"/>
+  <text x="916" y="601" font-size="13" fill="#ffffff" text-anchor="middle">Download</text>
+  <!-- 注釈 -->
+  <rect x="56" y="38" width="240" height="32" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="52" cy="36" r="13" fill="#ff3b30"/>
+  <text x="52" y="41" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="4" y="78" width="332" height="40" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="352" cy="98" r="13" fill="#ff3b30"/>
+  <text x="352" y="103" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <rect x="368" y="300" width="560" height="110" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="386" y="332" font-size="13" fill="#c0392b">開き方: 上のメニュー「Window」→「Package Manager」。</text>
+  <text x="386" y="356" font-size="13" fill="#c0392b">左上のドロップダウンを「My Assets」に切り替えると、</text>
+  <text x="386" y="380" font-size="13" fill="#c0392b">入手したアセットの一覧が出るよ。</text>
+</svg>

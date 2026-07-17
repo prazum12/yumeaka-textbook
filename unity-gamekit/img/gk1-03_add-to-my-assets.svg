@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1000 620" width="1000" height="620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ブラウザ枠 -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#e8eaed"/>
+  <rect x="10" y="6" width="180" height="28" rx="8" fill="#ffffff"/>
+  <text x="24" y="25" font-size="13" fill="#444">2D Game Kit</text>
+  <g font-size="16" fill="#555">
+    <text x="920" y="24">—</text>
+    <text x="950" y="24">□</text>
+    <text x="978" y="24">✕</text>
+  </g>
+  <rect x="90" y="40" width="620" height="26" rx="13" fill="#ffffff" stroke="#d0d3d8"/>
+  <text x="106" y="58" font-size="14" fill="#444">🔒 assetstore.unity.com/packages/…/2d-game-kit</text>
+  <!-- ページ -->
+  <rect x="0" y="74" width="1000" height="546" fill="#ffffff"/>
+  <!-- サムネイル -->
+  <rect x="60" y="130" width="440" height="300" rx="8" fill="#1b2430"/>
+  <rect x="80" y="380" width="400" height="32" rx="4" fill="#3f7a4e"/>
+  <circle cx="170" cy="336" r="14" fill="#f2a65a"/>
+  <rect x="158" y="349" width="24" height="28" rx="5" fill="#f2a65a"/>
+  <rect x="320" y="356" width="46" height="24" rx="5" fill="#55606e"/>
+  <rect x="410" y="330" width="30" height="50" rx="4" fill="#6d5a8c"/>
+  <!-- 商品情報 -->
+  <text x="560" y="186" font-size="24" font-weight="bold" fill="#111">2D Game Kit</text>
+  <text x="560" y="214" font-size="14" fill="#2563eb">Unity Technologies</text>
+  <text x="560" y="242" font-size="14" fill="#f5a623">★★★★★</text>
+  <text x="560" y="278" font-size="18" font-weight="bold" fill="#111">無料</text>
+  <rect x="560" y="300" width="380" height="48" rx="6" fill="#2196f3"/>
+  <text x="750" y="330" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">マイアセットに追加する</text>
+  <!-- 追加後の状態 -->
+  <rect x="560" y="390" width="380" height="120" rx="8" fill="#f5f6f8" stroke="#e2e5ea"/>
+  <text x="576" y="420" font-size="13" fill="#444">追加が終わると、ボタンはこう変わるよ</text>
+  <rect x="576" y="436" width="260" height="40" rx="6" fill="#ffffff" stroke="#2196f3" stroke-width="2"/>
+  <text x="706" y="461" font-size="13" fill="#2196f3" text-anchor="middle">Unityで開く（Open in Unity）</text>
+  <!-- 注釈 -->
+  <rect x="555" y="295" width="390" height="58" rx="8" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="551" cy="293" r="13" fill="#ff3b30"/>
+  <text x="551" y="298" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="60" y="470" width="440" height="90" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="78" y="502" font-size="13" fill="#c0392b">利用規約の同意画面が出たら、</text>
+  <text x="78" y="526" font-size="13" fill="#c0392b">内容を確認して同意しよう。</text>
+</svg>

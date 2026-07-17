@@ -1,0 +1,69 @@
+<svg viewBox="0 0 1000 620" width="1000" height="620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ウィンドウ -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#2d2d2d"/>
+  <rect x="0" y="0" width="1000" height="40" rx="8" fill="#1f1f1f"/>
+  <text x="20" y="26" font-size="14" fill="#f3f4f6">New project</text>
+  <text x="968" y="26" font-size="14" fill="#9ca3af">✕</text>
+  <!-- エディターバージョン -->
+  <rect x="640" y="52" width="340" height="30" rx="4" fill="#383838" stroke="#4a4a4a"/>
+  <text x="654" y="72" font-size="13" fill="#e5e7eb">Editor Version: 2022.3.XXf1 LTS</text>
+  <text x="960" y="72" font-size="12" fill="#9ca3af">∨</text>
+  <rect x="636" y="48" width="348" height="38" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <text x="624" y="72" font-size="13" fill="#ff6b60" text-anchor="end">2022.3系（LTS）か確認</text>
+  <!-- テンプレート一覧 -->
+  <text x="24" y="106" font-size="12" fill="#9ca3af">All templates</text>
+  <rect x="20" y="116" width="440" height="60" rx="6" fill="#37455a" stroke="#2196f3" stroke-width="2"/>
+  <rect x="36" y="128" width="36" height="36" rx="6" fill="#4a4a4a"/>
+  <text x="54" y="152" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">2D</text>
+  <text x="88" y="144" font-size="15" font-weight="bold" fill="#ffffff">2D</text>
+  <text x="88" y="164" font-size="11" fill="#9ca3af">Core</text>
+  <rect x="20" y="188" width="440" height="60" rx="6" fill="#383838"/>
+  <rect x="36" y="200" width="36" height="36" rx="6" fill="#4a4a4a"/>
+  <text x="54" y="224" font-size="13" font-weight="bold" fill="#d1d5db" text-anchor="middle">3D</text>
+  <text x="88" y="216" font-size="15" fill="#e5e7eb">3D</text>
+  <text x="88" y="236" font-size="11" fill="#9ca3af">Core</text>
+  <rect x="20" y="260" width="440" height="60" rx="6" fill="#383838"/>
+  <rect x="36" y="272" width="36" height="36" rx="6" fill="#4a4a4a"/>
+  <text x="54" y="296" font-size="13" font-weight="bold" fill="#d1d5db" text-anchor="middle">2D</text>
+  <text x="88" y="288" font-size="15" fill="#e5e7eb">2D (URP)</text>
+  <text x="88" y="308" font-size="11" fill="#9ca3af">Core</text>
+  <rect x="20" y="332" width="440" height="60" rx="6" fill="#383838"/>
+  <rect x="36" y="344" width="36" height="36" rx="6" fill="#4a4a4a"/>
+  <text x="54" y="368" font-size="13" font-weight="bold" fill="#d1d5db" text-anchor="middle">3D</text>
+  <text x="88" y="360" font-size="15" fill="#e5e7eb">3D (URP)</text>
+  <text x="88" y="380" font-size="11" fill="#9ca3af">Core</text>
+  <!-- 右ペイン -->
+  <rect x="500" y="96" width="480" height="140" rx="6" fill="#1f2937"/>
+  <text x="740" y="172" font-size="14" fill="#6b7280" text-anchor="middle">2D テンプレートのプレビュー</text>
+  <rect x="500" y="252" width="480" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="500" y="272" width="420" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="500" y="292" width="380" height="10" rx="3" fill="#4a4a4a"/>
+  <text x="516" y="338" font-size="12" fill="#9ca3af">Project name</text>
+  <rect x="500" y="350" width="480" height="34" rx="4" fill="#1f1f1f" stroke="#4a4a4a"/>
+  <text x="514" y="372" font-size="14" fill="#ffffff">my-gamekit</text>
+  <text x="516" y="414" font-size="12" fill="#9ca3af">Location</text>
+  <rect x="500" y="426" width="480" height="34" rx="4" fill="#1f1f1f" stroke="#4a4a4a"/>
+  <text x="514" y="448" font-size="14" fill="#ffffff">…/Desktop/yumeaka-unity</text>
+  <!-- ボタン -->
+  <rect x="680" y="560" width="110" height="40" rx="4" fill="none" stroke="#6b7280"/>
+  <text x="735" y="585" font-size="13" fill="#d1d5db" text-anchor="middle">Cancel</text>
+  <rect x="810" y="560" width="170" height="40" rx="4" fill="#3b82f6"/>
+  <text x="895" y="585" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">Create project</text>
+  <!-- 注釈 -->
+  <rect x="16" y="112" width="448" height="68" rx="8" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="16" cy="112" r="13" fill="#ff3b30"/>
+  <text x="16" y="117" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="496" y="346" width="488" height="42" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="493" cy="344" r="13" fill="#ff3b30"/>
+  <text x="493" y="349" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <rect x="496" y="422" width="488" height="42" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="493" cy="420" r="13" fill="#ff3b30"/>
+  <text x="493" y="425" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">3</text>
+  <rect x="805" y="555" width="180" height="50" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="802" cy="553" r="13" fill="#ff3b30"/>
+  <text x="802" y="558" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">4</text>
+  <rect x="20" y="470" width="440" height="110" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="38" y="502" font-size="13" fill="#c0392b">プロジェクト名と保存場所は半角英数字だけ！</text>
+  <text x="38" y="526" font-size="13" fill="#c0392b">日本語が混ざるとエラーや文字化けの</text>
+  <text x="38" y="550" font-size="13" fill="#c0392b">原因になるよ。</text>
+</svg>
