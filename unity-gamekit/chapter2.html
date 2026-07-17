@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第2章 自分のステージを作ろう 〜タイルでペイント〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第2章</span>
+      <h1>自分のステージを作ろう 〜タイルでペイント〜</h1>
+      <div class="date">📅 第2回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>Kit Toolsで自分専用の新しいシーン（ステージ）を作れる</li>
+        <li>Tile Palette（タイルパレット）を開いて、使うタイルを選べる</li>
+        <li>タイルをペイントして、地面や足場を自由に描ける（消し方もわかる）</li>
+        <li>▶で再生して、自分のステージをEllenで歩き回れる</li>
+      </ul>
+    </div>
+
+    <p>
+      前回はThe Explorerで「遊ぶ側」だったキミ。<br>
+      今日からは「作る側」です。<br>
+      まっさらな世界に、<strong>絵を描くみたいにステージをペイント</strong>していくよ。
+    </p>
+
+    <h2>2-1. Kit Toolsで新しいシーンを作ろう</h2>
+    <p>
+      2D Game Kitには、ステージ作りをすぐ始められる<strong>専用メニュー「Kit Tools」</strong>が付いています。<br>
+      これで作った新しいシーンには、<strong>Ellen（主人公）・小さな地面・体力UI・カメラ</strong>など、動き回ったり敵を攻撃したりするのに必要なものが最初からセットされているんだ。<br>
+      「ゲームが動く最小セット付きの白紙」がもらえる、と思えばOK。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Kit Tools &gt; Create New Scene... を選ぶ</span>
+      <p><code>my-gamekit</code> プロジェクトを開いて、上部メニューの「<strong>Kit Tools</strong>」をクリック →「<strong>Create New Scene...</strong>」を選びます。<br>
+        （Kit Toolsメニューは、2D Game Kitをインポートすると現れる特別メニューだよ）</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/165cb27c-58f0-4e68-ac25-3a61a8c1dcfe_2d_gk_getting_started_0_0.png" alt="上部メニューのKit ToolsからCreate New Sceneを選ぶ" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-1: 「Kit Tools」→「Create New Scene...」の順にクリック</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">シーンに名前を付けてCreate</span>
+      <p>小さなウィンドウが開くので、「<strong>New Scene Name</strong>」の欄に好きなシーン名を入力して「<strong>Create</strong>」をクリック。</p>
+      <p>⚠️ シーン名は <code>MyStage1</code> のような<strong>半角英数字</strong>にしよう。<br>
+        日本語やスペース入りの名前は、あとでエラーの原因になることがあります。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/e75f8510-210d-4423-86f3-cc4016940073_2d_gk_getting_started_1_0.png" alt="New Sceneウィンドウでシーン名を入力してCreate" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-2: New Scene Nameに半角英数字で名前を入れて「Create」</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">できあがったシーンを確認する</span>
+      <p>新しいシーンがプロジェクト内に作られて、そのままエディタで開きます。<br>
+        シーンビューを見てみよう。<strong>Ellenと小さな地面</strong>がもう置いてあるはず。<br>
+        （このシーンは、ゲームに含めるシーンのリスト「Build Settings」にも自動で登録されます。今は「へえ」でOK）</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/efa72899-99aa-4176-bb35-dac168753105_2d_gk_getting_started_2_1.png" alt="プロジェクト内に新規シーンが作成された状態" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-3: プロジェクトのルートに新しいシーンができる</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/b0ece6fb-1b99-4abc-a0b9-c659af154429_2d_gk_getting_started_3_1.png" alt="新規シーンがエディタで開いた状態。Ellenと小さな地面がある" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-4: 開いた直後のシーン。<br>
+          Ellenと最小限の地面だけの「白紙のステージ」だ</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-2. Tile Paletteを開こう</h2>
+    <p>
+      ステージの地面や足場は、<strong>タイル</strong>という四角いブロックを並べて作ります。<br>
+      Unityの<strong>タイルマップ</strong>という機能で、方眼紙のマス目にスタンプを押していくイメージ。<br>
+      そのスタンプ（タイル）を選ぶ道具箱が「<strong>Tile Palette（タイルパレット）</strong>」です。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Window &gt; Tile Palette を開く</span>
+      <p>上部メニューから「<strong>Window</strong>」→「<strong>Tile Palette</strong>」の順に選びます。<br>
+        （メニューの場所がバージョンによって <code>Window &gt; 2D &gt; Tile Palette</code> の場合もあるよ）</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/8c4788ee-5b50-4194-b992-2694c9ced1df_2d_gk_getting_started_4_1.png" alt="WindowメニューからTile Paletteを開く" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-5: 「Window」→「Tile Palette」の順にクリック</figcaption>
+      </figure>
+      <p>こんなウィンドウが開けば成功。<br>
+        シーンビューの横など、見やすい場所にドラッグして置いておこう。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/746375ed-d668-4451-b742-3b27b413590b_2d_gk_getting_started_5_1.png" alt="Tile Paletteウィンドウ" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-6: Tile Paletteウィンドウ。<br>
+          上に道具（筆・消しゴムなど）、下にタイルが並ぶ</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">タイルセット「Tileset_Gamekit」を選ぶ</span>
+      <p>Tile Paletteの上のほうにある<strong>タイルセットメニュー</strong>（ドロップダウン）をクリックして、「<strong>Tileset_Gamekit</strong>」を選びます。<br>
+        すると、使えるタイルがずらっと表示されるよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/e4823dff-ebb8-42e3-9192-76cfe9122950_2d_gk_getting_started_6_1.png" alt="タイルセットメニューからTileset_Gamekitを選択" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-7: タイルセットメニューで「Tileset_Gamekit」を選ぶ</figcaption>
+      </figure>
+      <p>タイルは大きく2種類。<br>
+        気分やステージの雰囲気で使い分けよう。</p>
+      <table>
+        <tr><th>タイルセット</th><th>雰囲気</th></tr>
+        <tr><td><strong>Grassy Rocks</strong>（草が生い茂る岩）</td><td>緑ゆたかな自然のステージ。The Explorerの序盤の雰囲気</td></tr>
+        <tr><td><strong>Alien Structure</strong>（異惑星文明の建造物）</td><td>なぞの遺跡・SFっぽいステージ。終盤のダンジョン向き</td></tr>
+      </table>
+    </div>
+
+    <div class="term">
+      <span class="word">スクリプタブルタイル</span> … このキットのタイルはちょっとかしこくて、<strong>置いた場所に合わせて絵が自動で変わる</strong>仕組み（地面のはし、角、内側などを勝手に判断）。<br>
+      だから適当に塗っても、それっぽい地形になるんだ。
+    </div>
+
+    <h2>2-3. ステージをペイントしよう</h2>
+    <p>
+      準備完了！<br>
+      ここからは、お絵かきの時間です。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">タイルを選んで、シーンに塗る</span>
+      <ul>
+        <li>Tile Paletteの中で、使いたい<strong>タイルをクリック</strong>して選ぶ</li>
+        <li>Tile Palette上部の道具から<strong>筆（Paint Brush）</strong>が選ばれていることを確認</li>
+        <li>シーンビューの上で<strong>左クリック＋ドラッグ</strong>すると、タイルがペイントされる！</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/222ace49-cf18-47e8-9ee1-8d22fbd6b003_2d_gk_getting_started_7_1.png" alt="シーンビューにタイルをペイントしているところ" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-8: 左クリック＋ドラッグでどんどん塗れる</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">まちがえたら Shift＋クリックで消す</span>
+      <p>塗りすぎた？ 大丈夫。<br>
+        <strong>Shiftキーを押しながら左クリック（またはドラッグ）</strong>すると、タイルを消せます。<br>
+        「Shift＝消しゴム」と覚えよう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">ステージの形を作る</span>
+      <p>Ellenがスタートする地面から、右に向かってコースを作ってみよう。</p>
+      <ul>
+        <li>歩く地面を横にのばす</li>
+        <li>ジャンプで乗る<strong>足場</strong>を、少し高い位置に浮かせて置く</li>
+        <li>落ちたらこわい<strong>谷</strong>や、のぼっていく<strong>階段</strong>も作れる</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/bc9ef265-0e23-4cf3-8c16-0b25037012e7_2d_gk_getting_started_8_1.png" alt="タイルで作ったステージの例" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-9: こんなふうに足場や段差のあるステージが作れる</figcaption>
+      </figure>
+      <p>💡 できたら忘れずに保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）！</p>
+    </div>
+
+    <h2>2-4. 再生してテストしよう</h2>
+    <p>
+      ステージができたら、Ellenを歩かせてみよう。<br>
+      作っては遊び、遊んでは直す。<br>
+      この<strong>くり返しがゲーム作りの心臓部</strong>です。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">▶（再生ボタン）を押す</span>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/dd72ae45-013f-4b31-881e-0d966539bc94_2d_gk_getting_started_9_1.png" alt="エディタ上部の再生ボタン" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-10: エディタ上部の再生ボタンでテストスタート</figcaption>
+      </figure>
+      <p>操作は前回と同じ。<br>
+        <code>A</code>/<code>D</code> で移動、<code>スペース</code> でジャンプ、<code>O</code>/<code>K</code> で攻撃、<code>F12</code> で武器切り替えだよ。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">開発者の目でチェックする</span>
+      <ul>
+        <li>ジャンプで届かない足場はない？（届かない＝そこから先に進めない）</li>
+        <li>歩いていて、ひっかかる場所はない？</li>
+        <li>落ちたら戻れない穴はない？</li>
+      </ul>
+      <p>気になったところは、▶を<strong>停止してから</strong>タイルを塗り直そう。<br>
+        再生中に直しても、停止すると元に戻っちゃうんだったね。</p>
+    </div>
+
+    <h2>2-5. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: ジャンプで渡れる自分のステージを1画面分作ろう</h3>
+      <p>スタート地点からゴール（自分で決めた右はしの地点）まで、<strong>ジャンプを3回以上使わないとたどり着けない</strong>ステージを1画面分作ろう。<br>
+      作ったら必ず自分でテストプレイして、最後まで行けることを確認してね。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>Ellenのジャンプ力は「横に2〜3マス、上に2マスくらい」が目安。<br>
+          まず1つ足場を置いて再生→届くか確認→次を置く、と少しずつ作ると失敗しないよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 2種類のタイルで雰囲気チェンジ</h3>
+      <p>ステージの前半を <strong>Grassy Rocks</strong>、後半を <strong>Alien Structure</strong> で塗って、「自然エリアから遺跡エリアに入っていく」ような景色の変化を作ってみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>境目は、段差や谷にすると「エリアが変わった感」が出るよ。<br>
+          タイルはTile Paletteでクリックして選び直すだけで切り替えられる。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: わざと「ちょうどいい難しさ」を作ろう</h3>
+      <p>「ギリギリ届くジャンプ」を1か所だけ入れて、となりの人（や講師）にテストプレイしてもらおう。<br>
+      「難しいけどクリアできた！」と言ってもらえたら大成功。<br>
+      むずかしすぎたら、足場を半マスずつ近づけて調整しよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>プロのゲームデザイナーも、こうやって他の人に遊んでもらって難しさを調整しています。<br>
+          「自分はクリアできるけど、初見の人は？」という目線が大事。</p>
+      </details>
+    </div>
+
+    <h2>2-6. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>メニューに「Kit Tools」がない</h4>
+      <p><strong>原因:</strong> 2D Game Kitがまだインポートされていないプロジェクトを開いている。<br>
+      または、インポートが途中で失敗している。</p>
+      <p><strong>直し方:</strong> 開いているのが <code>my-gamekit</code> か確認。<br>
+      合っているのに出ないときは、第1章の手順でPackage Managerからもう一度Importしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>シーンを作ろうとしたらエラーが出た（名前が原因かも）</h4>
+      <p><strong>原因:</strong> シーン名に日本語・スペース・記号が入っている。</p>
+      <p><strong>直し方:</strong> <code>MyStage1</code> のような<strong>半角英数字だけの名前</strong>で作り直そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>クリックしてもタイルが塗れない</h4>
+      <p><strong>原因1:</strong> Tile Paletteでタイルを選んでいない。<br>
+      → 塗りたいタイルをクリックして選んでから塗る。</p>
+      <p><strong>原因2:</strong> 道具が筆（Paint Brush）になっていない。<br>
+      → Tile Palette上部の筆アイコンをクリック。<br>
+      キーボードの <code>B</code> でも筆に切り替えられるよ。</p>
+      <p><strong>原因3:</strong> タイルセットメニューが「Tileset_Gamekit」になっていない。<br>
+      → 2-2の手順で選び直す。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>タイルを消したいのに消せない</h4>
+      <p><strong>直し方:</strong> <strong>Shiftを押しながら</strong>左クリック（またはドラッグ）。<br>
+      Shiftを先に押してからクリックするのがコツ。<br>
+      広い範囲をまとめて消したいときは、Shiftを押したままドラッグしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ペイントは終わったのに、クリックするたびタイルが塗られちゃう</h4>
+      <p><strong>原因:</strong> まだペイントモード（筆）のまま。</p>
+      <p><strong>直し方:</strong> Tile Paletteを閉じるか、エディタ左上の<strong>移動ツール</strong>（キーボードの <code>W</code>）に切り替えよう。<br>
+      「塗り終わったらW」と覚えておくと安全。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>再生したらEllenが落ちて消えていく</h4>
+      <p><strong>原因:</strong> Ellenのスタート位置の下に地面がない。<br>
+      （最初からある小さな地面を消してしまった場合もこうなるよ）</p>
+      <p><strong>直し方:</strong> ▶を停止して、Ellenの真下にタイルを塗ろう。<br>
+      Ellenがどこにいるかわからなくなったら、ヒエラルキーで <code>Ellen</code> をダブルクリックすると画面がズームするよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ジャンプしても足場に届かない</h4>
+      <p><strong>原因:</strong> 足場が高すぎ・遠すぎ。</p>
+      <p><strong>直し方:</strong> Shift＋クリックで足場を消して、1〜2マス低い（近い）位置に塗り直す。<br>
+      「上に2マス・横に2〜3マス」を目安に調整しよう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>2-7. 🤖 AIを味方につけよう</h2>
+    <p>
+      今日から「作る側」の質問ができるようになったね。<br>
+      AIに聞くときは、<strong>「何を使って」「何をしようとして」「どうなったか」</strong>の3点セットで伝えると、答えの正確さがぐっと上がるよ。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>操作のトラブル:</strong> タイルが塗れない・消せないなどの症状を具体的に伝える</li>
+        <li><strong>レベルデザインの考え方:</strong> 「面白いステージって何が違うの？」のような設計の質問はAIの得意分野</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3の2D Game Kitでステージを作っている中学生です。<br>
+        Tile Paletteでタイルを選んでいるのに、シーンビューをクリックしてもタイルが塗れません。<br>
+        確認すべきことを、順番に1つずつ教えてください。
+      </div>
+      <div class="prompt-example">
+        2Dアクションゲームのステージを初めて作っています。<br>
+        「最初はやさしく、だんだん難しく」なるステージにしたいです。<br>
+        1画面分のステージでできる工夫を、初心者向けに3つ提案してください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>ステージの形を丸ごとAIに決めてもらう（キミのステージはキミのアイデアで！ 相談はOK、丸投げはNG）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（必ず自分の画面でテストプレイして確認）</li>
+      </ul>
+    </div>
+
+    <h2>2-8. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Kit Tools &gt; Create New Scene... で、半角英数字の名前のシーンを作れた</label>
+      <label><input type="checkbox"> Window &gt; Tile Palette でタイルパレットを開けた</label>
+      <label><input type="checkbox"> タイルセットメニューから「Tileset_Gamekit」を選べた</label>
+      <label><input type="checkbox"> 左クリック＋ドラッグでタイルをペイントできた</label>
+      <label><input type="checkbox"> Shift＋クリックでタイルを消せた</label>
+      <label><input type="checkbox"> ▶で再生して、自分のステージをEllenで歩けた</label>
+      <label><input type="checkbox"> 課題1の「ジャンプ3回以上のステージ」を最後までクリアできた</label>
+    </div>
+    <p>全部チェックできたら第2章クリア！<br>
+      🎉 次回は、このステージに<strong>動く仕掛け</strong>を追加していくよ。<br>
+      ただの地形だったステージが、一気に「ゲーム」らしくなっていく回だ。お楽しみに！</p>
+
+    <h2>2-9. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-walkthrough-jp" target="_blank">Unity Learn「2Dゲームキットウォークスルー」</a> — この章の元になっている公式ガイド。<br>
+      続きの手順ものっているよ</li>
+      <li><a href="https://docs.unity3d.com/ja/2022.3/Manual/class-Tilemap.html" target="_blank">Unity公式マニュアル「タイルマップ」（日本語）</a> — タイルマップ機能をもっと深く知りたい人へ</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter1.html">← 第1章 ゲームキットを手に入れて遊ぼう</a>
+      <a href="chapter3.html">第3章へすすむ →</a>
+    </nav>
+
+    <p style="font-size:12px;color:#64748b;margin-top:24px;">画像出典: Unity Learn『2Dゲームキットウォークスルー』（Unity Technologies）／画像の表示にはインターネット接続が必要です</p>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

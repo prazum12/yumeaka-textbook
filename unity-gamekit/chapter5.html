@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第5章 世界を飾ってワープさせよう 〜装飾とテレポート〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第5章</span>
+      <h1>世界を飾ってワープさせよう 〜装飾とテレポート〜</h1>
+      <div class="date">📅 第5回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>Art &gt; Sprites &gt; Environment の装飾スプライトで、ステージを自由に飾れる</li>
+        <li>サンプルゲームで見つけた「あれ何？」を、Projectウィンドウの名前検索で探せる</li>
+        <li>TransitionStartとTransitionEndで、同じシーン内のワープ（テレポート）を作れる</li>
+        <li>「触れたらワープ」と「Eキーでワープ」を使い分けられる</li>
+      </ul>
+    </div>
+
+    <p>
+      動くしかけも敵もそろったキミのステージ。<br>
+      でも、ちょっと殺風景じゃない？<br>
+      今日は世界を<strong>飾りつけて</strong>、仕上げに<strong>ワープ装置</strong>で空間をつなげます。<br>
+      ステージが一気に「冒険の世界」に化ける回だよ。
+    </p>
+
+    <h2>5-1. 装飾でステージを「映え」させよう</h2>
+    <p>
+      2D Game Kitには、<strong>装飾用のスプライト（絵の素材）</strong>がたっぷり入っています。<br>
+      しかもぜんぶ、サンプルゲーム『The Explorer』の中で実際に使われているものだ。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Art &gt; Sprites &gt; Environment を開く</span>
+      <p><strong>Projectウィンドウ</strong>で「<strong>Art</strong>」→「<strong>Sprites</strong>」→「<strong>Environment</strong>」の順にクリック。<br>
+        草、木、岩、遺跡のかけら…装飾アイテムがずらり。<br>
+        <strong>サブフォルダーの小さな矢印</strong>も展開して、各カテゴリーの中のスプライトもぜひ見てみよう。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/594c0429-0f16-45de-aefc-c70c3af799d8_2d_gk_getting_started_32.png" alt="ProjectウィンドウのArt>Sprites>Environmentに並ぶ装飾スプライト" style="max-width:100%;border-radius:8px">
+        <figcaption>図5-1: Art &gt; Sprites &gt; Environment の中は装飾の宝庫</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">好きなスプライトをシーンへドラッグ</span>
+      <p>気に入ったスプライトを<strong>シーンビューへドラッグ</strong>するだけで配置完了。<br>
+        位置の調整は、おなじみの<strong>移動ツール</strong>（<code>W</code>キー）でどうぞ。<br>
+        地面に草を生やす、背景に木を立てる、ゴール前に目立つ像を置く…<br>
+        置くだけでステージの雰囲気がガラッと変わるよ。</p>
+      <p>⚠️ 装飾はあくまで「絵」。<strong>当たり判定（コライダー）はない</strong>ので、乗ったりぶつかったりはできません。<br>
+        足場にしたい場所は、今まで通りタイルで作ろう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">小ワザ: 「あれ何？」は名前で検索</span>
+      <p>サンプルゲームの中で<strong>目を引くもの</strong>を見つけたら、それをシーンビューでクリックして、<strong>ヒエラルキーで名前を確認</strong>。<br>
+        その名前を<strong>Projectウィンドウ上部の検索ボックス</strong>に入力すれば、同じ部品がすぐ見つかる！<br>
+        「見つけて、調べて、自分のステージで使う」——プロもやっている探し方だよ。</p>
+    </div>
+
+    <h2>5-2. 同じシーン内でワープ装置を作ろう</h2>
+    <p>
+      次はこの章のメインイベント、<strong>プレイヤーのテレポート</strong>です。<br>
+      プレイヤーをワープさせるには、<strong>遷移（Transition）</strong>という設定を作ります。<br>
+      同じシーン内のワープに使うのは、この2つ。
+    </p>
+    <table>
+      <tr><th>ゲームオブジェクト</th><th>役割</th></tr>
+      <tr><td><strong>TransitionStart</strong></td><td>ワープの<strong>入口</strong>。プレハブをそのまま置く</td></tr>
+      <tr><td><strong>TransitionEnd</strong></td><td>ワープの<strong>出口</strong>。同じプレハブをもう1つ置いて、名前を変えたもの</td></tr>
+    </table>
+
+    <div class="term">
+      <span class="word">遷移（Transition）</span> … 場面やプレイヤーの位置が<strong>「切り替わる」</strong>こと。<br>
+      同じシーン内のワープも、別のステージへの移動も、Unity的にはぜんぶ「遷移」。<br>
+      入口と出口をセットで用意するのが基本だよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">TransitionStart（入口）を置く</span>
+      <p><strong>Projectウィンドウ</strong>で「<strong>Prefabs</strong>」→「<strong>SceneControl</strong>」の順にクリックして、<strong>TransitionStart</strong> プレハブをシーンビューへドラッグ。<br>
+        Ellenが歩いたときに<strong>緑のボックス（コライダー）に触れる位置</strong>に置くのがポイントだよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/eb171605-f1ce-4eb9-8d48-6303c67df0cf_2d_gk_getting_started_33.png" alt="TransitionStartをシーンに配置。緑のコライダーが見える" style="max-width:100%;border-radius:8px">
+        <figcaption>図5-2: TransitionStartを配置。緑のボックスが「入口」の範囲</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">もう1つ置いて「TransitionEnd」に改名</span>
+      <p>同じ <strong>SceneControl</strong> フォルダーから、<strong>TransitionStart</strong> をもう1つシーンビューへドラッグ。<br>
+        そして、<strong>インスペクター上部の名前欄</strong>で名前を「<strong>TransitionEnd</strong>」に変更しよう。<br>
+        これがワープの<strong>出口</strong>になります。ワープして出てきたい場所に置いてね。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/07faa138-0c2e-4e86-82b5-5761bbbcb5a5_2d_gk_getting_started_34.png" alt="インスペクターで名前をTransitionEndに変更" style="max-width:100%;border-radius:8px">
+        <figcaption>図5-3: インスペクターの一番上の欄で「TransitionEnd」に改名</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">入口の設定①: 「誰を」「どんなワープで」</span>
+      <p><strong>ヒエラルキー</strong>で <strong>TransitionStart</strong> を選択して、インスペクターの <strong>TransitionPoint</strong> コンポーネントを見つけよう。</p>
+      <ul>
+        <li>ヒエラルキーから <strong>Ellen</strong> を、「<strong>Transitioning Game Object</strong>」のスロットへドラッグ（＝ワープするのはEllenだけ、という意味）</li>
+        <li>「<strong>Transition Type</strong>」を「<strong>Same Scene</strong>」に設定（＝同じシーン内でのワープ）</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/a2dbd07f-4883-42ea-890b-61b0b8258139_2d_gk_getting_started_35.png" alt="TransitionPointコンポーネントの設定。Transitioning Game ObjectにEllen、Transition TypeにSame Scene" style="max-width:100%;border-radius:8px">
+        <figcaption>図5-4: Transitioning Game ObjectにEllen、Transition TypeはSame Scene</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">入口の設定②: 「どこへ」「いつ」</span>
+      <p>同じ <strong>TransitionPoint</strong> コンポーネントで、続けて設定します。</p>
+      <ul>
+        <li>ヒエラルキーから <strong>TransitionEnd</strong> を、「<strong>Destination Transform</strong>」のスロットへドラッグ（＝出口はここ）</li>
+        <li>「<strong>Transition When</strong>」を「<strong>On Trigger Enter</strong>」に設定</li>
+      </ul>
+      <p>「Transition When」は<strong>ワープが発動するタイミング</strong>。2種類から選べるよ。</p>
+      <table>
+        <tr><th>設定</th><th>発動のしかた</th></tr>
+        <tr><td><strong>On Trigger Enter</strong></td><td>緑のボックスに<strong>触れた瞬間</strong>にワープ。自動ドア型。キー操作では発動しない</td></tr>
+        <tr><td><strong>Interact Pressed</strong></td><td>緑のボックスに触れた状態で<strong>インタラクトキー（<code>E</code>）を押したとき</strong>だけワープ。エレベーターのボタン型</td></tr>
+      </table>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">再生してワープ！</span>
+      <p><strong>▶（再生）</strong>を押して、Ellenを入口まで歩かせよう。<br>
+        緑のボックスに触れたら…<strong>シュンッ！</strong> TransitionEndの位置に瞬間移動！<br>
+        うまくいったら停止して保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）。<br>
+        余裕があったら「Transition When」を「Interact Pressed」に変えて、<code>E</code>キーで発動するちがいも体験してみて。</p>
+    </div>
+
+    <h2>5-3. 🚀 発展: 別のシーンへワープしよう</h2>
+    <p>
+      ワープは同じシーン内だけじゃなく、<strong>別のシーン（別のステージ）へ飛ぶ</strong>こともできます。<br>
+      ここは早く終わった人向けの発展コーナー。挑戦したい人は開いてみよう。
+    </p>
+    <details class="hint">
+      <summary>🚀 発展: 自分のステージからZone1へワープさせてみたい人はここを開こう</summary>
+      <p>別のシーンへ飛ぶときは、<strong>出口側のプレハブが変わります</strong>。</p>
+      <ul>
+        <li><strong>TransitionStart</strong> … 入口。5-2と同じプレハブ。プレイヤーを目的地へ「転送」する側</li>
+        <li><strong>TransitionDestination</strong> … 別のシーン側でプレイヤーを<strong>「受け取る」</strong>専用プレハブ（Prefabs &gt; SceneControl の中）</li>
+      </ul>
+      <p><strong>手順A: 出口（別のシーン側）を設定する</strong></p>
+      <ul>
+        <li>行き先のシーンを開いて、<strong>Prefabs &gt; SceneControl &gt; TransitionDestination</strong> をワープ先にしたい位置に配置</li>
+        <li>その <strong>Scene Transition Destination</strong> コンポーネントで、「<strong>Destination Tag</strong>」に好きなアルファベットを選ぶ（同じシーン内でかぶっていなければどの文字でもOK）</li>
+        <li>ヒエラルキーから <strong>Ellen</strong> を「<strong>Transitioning Game Object</strong>」のスロットへドラッグ</li>
+        <li>メニューの <strong>File &gt; Build Settings</strong> を開いて「<strong>Add Open Scenes</strong>」をクリック（行き先のシーンをゲームに登録する大事な一手）</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/821e692d-97ee-4154-9b7d-6bcaff6e3b28_2d_gk_getting_started_37.png" alt="Scene Transition DestinationコンポーネントでDestination Tagなどを設定" style="max-width:100%;border-radius:8px">
+        <figcaption>図5-5: 受け取り側。Destination Tagにアルファベットを設定する</figcaption>
+      </figure>
+      <p><strong>手順B: 入口（TransitionStart側）を設定する</strong><br>
+        設定は5-2とほぼ同じで、次の3点だけ変わります。</p>
+      <ul>
+        <li>「<strong>Transition Type</strong>」を「<strong>Different Zone</strong>」に設定</li>
+        <li>「<strong>New Scene Name</strong>」を行き先のシーン名に設定</li>
+        <li>「<strong>Transition Destination</strong> Tag」を、手順Aで選んだアルファベットに合わせる</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/4b4f415b-7c15-4086-8fb8-6afe8c1bd673_2d_gk_getting_started_36.png" alt="Transition TypeをDifferent Zoneにした設定例" style="max-width:100%;border-radius:8px">
+        <figcaption>図5-6: 入口側の設定例。Different Zoneで別のシーンへ飛べる</figcaption>
+      </figure>
+      <p><strong>例: サンプルゲームの最初のステージへ飛んでみよう</strong><br>
+        自分のステージのTransitionStartを、こう設定してみて。</p>
+      <ul>
+        <li>「Transition Type」＝「<strong>Different Zone</strong>」</li>
+        <li>「New Scene Name」＝「<strong>Zone1</strong>」</li>
+        <li>「Transition Destination」＝「<strong>A</strong>」</li>
+      </ul>
+      <p>▶で再生して入口まで歩けば、<strong>Zone1の冒頭にテレポート</strong>されるはず！<br>
+        自分のステージとサンプルゲームの世界がつながる、ちょっと感動の瞬間だよ。</p>
+    </details>
+
+    <h2>5-4. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 隠し部屋ワープを作ろう</h3>
+      <p>ステージのすみにタイルで<strong>小さな宝部屋</strong>を作り、本編からは行けない場所に置こう。<br>
+      そして、<strong>見つけにくい場所</strong>（装飾の陰、行き止まりの奥など）にTransitionStartを置いて、宝部屋へワープできるようにしよう。<br>
+      <strong>部屋から戻ってくるワープ</strong>も作れたら満点！</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>戻りのワープは、逆向きのTransitionStart／End をもう1組作ればOK。<br>
+          2組に増えると混乱しやすいので、名前を <code>ToRoom</code>・<code>ToField</code> のようにわかりやすく変えておこう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 「Eキーで乗るエレベーター」風ワープを作ろう</h3>
+      <p>「Transition When」を「<strong>Interact Pressed</strong>」にしたワープを1つ作って、<strong>触れただけでは飛ばず、<code>E</code>キーを押したときだけ</strong>上の階（高い足場）へ移動できるようにしよう。<br>
+      ワープ地点のまわりを装飾スプライトで飾って、「乗り物っぽさ」を演出できたらすばらしい。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>On Trigger Enterだと、通りかかっただけで飛んでしまう。<br>
+          Interact Pressedなら「ワープしたい人だけがワープ」できるので、通路の途中に置いても事故らないよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 装飾で「物語」を演出しよう</h3>
+      <p>装飾スプライトを使って、ステージに<strong>雰囲気の変化</strong>を作ろう。<br>
+      例:「草原からスタートして、奥へ進むと遺跡の入口が見えてくる」。<br>
+      できたら、となりの人に自分のステージを見てもらって、「どんな場所の冒険か」を当ててもらおう。伝わったら大成功！</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>迷ったらサンプルゲームを歩いて研究。<br>
+          「いいな」と思った飾りは、5-1の小ワザ（名前を確認してProjectウィンドウで検索）ですぐ見つけられるよ。</p>
+      </details>
+    </div>
+
+    <h2>5-5. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>入口に触れてもワープしない</h4>
+      <p><strong>原因1:</strong> 「Transitioning Game Object」が空のまま。<br>
+      → ヒエラルキーから <code>Ellen</code> をスロットへドラッグ。</p>
+      <p><strong>原因2:</strong> 「Destination Transform」が空のまま。<br>
+      → <code>TransitionEnd</code> をスロットへドラッグ。</p>
+      <p><strong>原因3:</strong> 「Transition When」が「Interact Pressed」になっている。<br>
+      → 入口の上で <code>E</code> キーを押すか、「On Trigger Enter」に変えよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ワープはするけど、変な場所に飛ばされる</h4>
+      <p><strong>原因:</strong> TransitionEnd（出口）がその場所にある。</p>
+      <p><strong>直し方:</strong> ヒエラルキーで <code>TransitionEnd</code> を選び、移動ツール（<code>W</code>）で出てきてほしい場所に置き直そう。<br>
+      地面の中に置くと埋まっちゃうので、地面より少し上に置くのがコツ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>どっちが入口でどっちが出口か、わからなくなった</h4>
+      <p><strong>原因:</strong> 2つとも見た目がそっくり（元は同じプレハブだからね）。</p>
+      <p><strong>直し方:</strong> ヒエラルキーで名前を確認しよう。改名し忘れていたら、インスペクター上部の名前欄で「TransitionEnd」に変更。<br>
+      ワープが増えてきたら <code>Warp1_Start</code>／<code>Warp1_End</code> のようにセットで名前を付けると迷子にならないよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>装飾スプライトに乗ろうとしたら、すり抜けた</h4>
+      <p><strong>原因:</strong> 装飾はあくまで「絵」で、当たり判定（コライダー）を持っていない。</p>
+      <p><strong>直し方:</strong> それで正常！ 乗れる足場が欲しい場所は、タイルで作ろう。<br>
+      「見た目は装飾、足場はタイル」と役割分担するときれいに作れる。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>（発展）別のシーンへのワープで、何も起きない・エラーが出る</h4>
+      <p><strong>原因1:</strong> 行き先のシーンがBuild Settingsに登録されていない。<br>
+      → 行き先のシーンを開いた状態で <strong>File &gt; Build Settings</strong> →「<strong>Add Open Scenes</strong>」。</p>
+      <p><strong>原因2:</strong> 「New Scene Name」のつづりがシーン名と一致していない。<br>
+      → 大文字小文字まで<strong>完全一致</strong>させよう（例: <code>Zone1</code>）。</p>
+      <p><strong>原因3:</strong> 「Transition Destination」のタグが、出口側の「Destination Tag」と合っていない。<br>
+      → 両方を同じアルファベットにそろえる。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>5-6. 🤖 AIを味方につけよう</h2>
+    <p>
+      今日の「遷移」は設定する項目が多いぶん、<strong>どれか1つ抜けているだけで動かない</strong>のが特徴。<br>
+      「自分が何をどう設定したか」を整理して伝える練習に、ぴったりの題材だよ。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>ワープが動かない:</strong> 「Transition Type」「Transition When」「各スロットに何を入れたか」を書いて聞くと、答えが正確になる</li>
+        <li><strong>アイデア相談:</strong> 「ワープの面白い使い方」のようなレベルデザインの相談はAIの得意分野</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3の2D Game Kitで、同じシーン内のテレポートを作っている中学生です。<br>
+        TransitionStartのTransitionPointコンポーネントに、Transitioning Game Object＝Ellen、Transition Type＝Same Scene、Destination Transform＝TransitionEnd、Transition When＝On Trigger Enter を設定しました。<br>
+        でも入口に触れてもワープしません。確認すべきことを、順番に1つずつ教えてください。
+      </div>
+      <div class="prompt-example">
+        2Dアクションゲームで「ワープ」を使った面白いステージのアイデアを、初心者が作れる範囲で3つ提案してください。<br>
+        隠し部屋やショートカットなど、遊ぶ人がワクワクする使い方がいいです。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>設定を自分で見直さずに、AIの言う通り全部作り直す（まず自分の設定と答えを見比べるのが上達の近道）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（必ず自分の画面で再生して確認）</li>
+      </ul>
+    </div>
+
+    <h2>5-7. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Art &gt; Sprites &gt; Environment から装飾スプライトをシーンに置けた</label>
+      <label><input type="checkbox"> 気になる物の名前をProjectウィンドウの検索ボックスで探せた</label>
+      <label><input type="checkbox"> Prefabs &gt; SceneControl から TransitionStart を置けた</label>
+      <label><input type="checkbox"> もう1つ置いて、名前を TransitionEnd に変えられた</label>
+      <label><input type="checkbox"> Transitioning Game Object に Ellen、Transition Type を Same Scene にできた</label>
+      <label><input type="checkbox"> Destination Transform に TransitionEnd を入れて、Transition When を設定できた</label>
+      <label><input type="checkbox"> 再生して、入口から出口へワープできた</label>
+      <label><input type="checkbox"> 課題1の「隠し部屋ワープ」を作れた</label>
+    </div>
+    <p>全部チェックできたら第5章クリア！<br>
+      🎉 飾りとワープが加わって、キミのステージはもう「世界」だ。<br>
+      次回はいよいよ最終回。ステージを仕上げて、みんなの前で発表するよ。<br>
+      とっておきのアイデア、あたためておいてね。</p>
+
+    <h2>5-8. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-walkthrough-jp" target="_blank">Unity Learn「2Dゲームキットウォークスルー」</a> — この章の元になっている公式ガイド。<br>
+      手順8〜9がこの章の範囲だよ</li>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-reference-guide-jp" target="_blank">2Dゲームキットリファレンスガイド</a> — Transition PointやTransition Destinationの全パラメーターの説明がのっている</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter4.html">← 第4章 敵とダメージのしくみ</a>
+      <a href="chapter6.html">第6章へすすむ →</a>
+    </nav>
+
+    <p style="font-size:12px;color:#64748b;margin-top:24px;">画像出典: Unity Learn『2Dゲームキットウォークスルー』（Unity Technologies）／画像の表示にはインターネット接続が必要です</p>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

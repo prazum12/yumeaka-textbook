@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第3章 動くしかけを作ろう 〜動く床とイベントで開く扉〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第3章</span>
+      <h1>動くしかけを作ろう 〜動く床とイベントで開く扉〜</h1>
+      <div class="date">📅 第3回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>ペイントモードを抜けて、移動ツール（<code>W</code>）でゲームオブジェクトを動かせる</li>
+        <li>MovingPlatform（動く床）を置いて、動く方向と経路を自分で決められる</li>
+        <li>Add NodeとLoopで、四角くグルグル回る床を作れる</li>
+        <li>PressurePad（感圧パッド）を踏むとDoor（扉）が開く「イベント」を組める</li>
+      </ul>
+    </div>
+
+    <p>
+      前回作ったステージ、まだ「地形」だけだったよね。<br>
+      今日はそこに<strong>動く床</strong>と<strong>踏むと開く扉</strong>を追加します。<br>
+      プログラムを1行も書かずに「しかけ」が動き出す、ゲーム作りがいちばん楽しくなる回だよ。
+    </p>
+
+    <h2>3-1. まずはペイントモードを抜けよう</h2>
+    <p>
+      前回のタイルペイント、楽しかったけどひとつ注意。<br>
+      <strong>筆を持ったままだと、クリックするたびタイルが塗られてしまう</strong>んだ。<br>
+      今日はゲームオブジェクトを置いたり動かしたりするので、まず道具を持ちかえよう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">移動ツールに切り替える（キーボードの W）</span>
+      <p><code>my-gamekit</code> プロジェクトで前回のシーンを開いたら、<strong>Tile Paletteを閉じる</strong>か、エディタ左上の<strong>移動ツール</strong>を選びます。<br>
+        キーボードの <code>W</code> キーを押すだけでも切り替えられるよ。<br>
+        前回の合言葉「塗り終わったらW」の出番だ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/bb04f3fe-0049-4157-b0bb-c378525c9b89_2d_gk_getting_started_10_1.png" alt="エディタ左上のツールバーで移動ツールを選択" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-1: エディタ左上の移動ツール。<code>W</code>キーでも選べる</figcaption>
+      </figure>
+    </div>
+
+    <h2>3-2. MovingPlatform（動く床）を置こう</h2>
+    <p>
+      2D Game Kitには、<strong>できあいの部品（プレハブ）</strong>がたくさん入っています。<br>
+      動く床・扉・スイッチ…ぜんぶ「置くだけ」で動く優れもの。<br>
+      まずは動く床から使ってみよう。
+    </p>
+
+    <div class="term">
+      <span class="word">プレハブ（Prefab）</span> … ゲームオブジェクトの<strong>設計図</strong>のこと。<br>
+      Projectウィンドウにある設計図をシーンにドラッグすると、その<strong>分身</strong>が置かれる。<br>
+      分身は何個でも置けて、それぞれ別々に設定を変えられるよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Prefabs &gt; Interactables を開く</span>
+      <p><strong>Projectウィンドウ</strong>で「<strong>Prefabs</strong>」→「<strong>Interactables</strong>」の順にクリック。<br>
+        Interactables（インタラクタブル）は「さわると反応するもの」を集めたフォルダーだよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/62c06446-56fa-4d61-aac7-2a379b004d59_2d_gk_getting_started_11_1.png" alt="ProjectウィンドウのPrefabs>Interactablesフォルダー" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-2: Prefabs &gt; Interactables の中に、しかけの部品がずらり</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">MovingPlatformをシーンにドラッグする</span>
+      <p><strong>MovingPlatform</strong> を見つけたら、左クリック＋ドラッグで<strong>シーンビュー</strong>に追加。<br>
+        ヒエラルキーで <strong>MovingPlatform</strong> が選ばれていることを確認して、移動ツール（<code>W</code>）でステージ内の好きな場所に置こう。</p>
+      <p>MovingPlatformを選ぶと、先端に赤い矢印ギズモの付いた<strong>赤い点線</strong>が表示されます。<br>
+        これが「床がこの方向に動くよ」という印だ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/86cf22ad-aa9e-4a97-8289-8c97715eeb75_2d_gk_getting_started_12_1.png" alt="MovingPlatformを選択すると赤い点線が表示される" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-3: 赤い点線＝床の移動経路。先端のギズモで方向を変えられる</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">赤い点線の先端をつかんで、動く方向を決める</span>
+      <p>赤い点線の<strong>先端にある移動ツールギズモ</strong>をドラッグして、床の移動方向と距離を設定しよう。<br>
+        「右に動く床」「上に運んでくれるエレベーター」など、向きしだいで役割が変わるよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/99fba4ff-072c-4ad2-b6d1-18c82d9bb156_2d_gk_getting_started_13_1.png" alt="赤い点線の先端のギズモで移動方向を設定" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-4: 先端のギズモをドラッグして移動方向をセット</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">Preview positionスライダーで動きを確かめる</span>
+      <p>MovingPlatformを選んだまま<strong>インスペクター</strong>を見て、<strong>Moving Platformコンポーネント</strong>の中の「<strong>Preview position</strong>」スライダーを探そう。<br>
+        スライダーを左右に動かすと、<strong>再生しなくても</strong>床が経路のどこを通るかプレビューできるよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/4e1d0217-ad79-42c3-a29a-f17a15838562_2d_gk_getting_started_14_1.png" alt="インスペクターのMoving PlatformコンポーネントとPreview positionスライダー" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-5: Moving Platformコンポーネント。<br>
+          Preview positionスライダーで動きを事前チェック</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">Add Nodeを2回押して、経路を四角にする</span>
+      <p>今は「行って戻る」だけの直線コース。<br>
+        もっと複雑にしてみよう。経路の通過ポイントを<strong>Node（ノード）</strong>と呼びます。</p>
+      <ul>
+        <li>インスペクターの <strong>Moving Platformコンポーネント</strong>で「<strong>Add Node</strong>」ボタンを<strong>2回</strong>クリック</li>
+        <li>赤い点線がギズモ付きで2本増える</li>
+        <li>増えたギズモをドラッグして、経路が<strong>四角形</strong>になるように配置しよう</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/fd61a914-5db5-4d87-ab01-d666b932ec35_2d_gk_getting_started_15.png" alt="Add Nodeでノードを追加した状態" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-6: Add Nodeで通過ポイントが増える。四角形に並べてみよう</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">LoopingをLoopにして、グルグル回す</span>
+      <p>よく見ると、最後のノードから最初のノードへ戻る線がないよね。<br>
+        このまま再生すると、床は終点で折り返して<strong>同じ道を逆走して戻る</strong>動きになります。<br>
+        一周グルグル回したいときは、設定を変えよう。</p>
+      <ul>
+        <li>Moving Platformコンポーネントの「<strong>Looping</strong>」を探す</li>
+        <li>「<strong>BACK_FORTH</strong>」と表示されたドロップダウンをクリック</li>
+        <li>「<strong>Loop</strong>」を選ぶ</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/07ecbcdb-c12d-4cda-be3e-2f5f35b8900d_2d_gk_getting_started_16.png" alt="LoopingドロップダウンでLoopを選択" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-7: Looping を BACK_FORTH から Loop に変更</figcaption>
+      </figure>
+      <p>ギズモがループ形状（ひとつながりの輪）になれば成功。<br>
+        ⚠️ Preview positionスライダーはループ全体まではプレビューしてくれないので、最後は▶で再生して確かめよう。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/354dc819-ceaa-4f42-b403-b0d750504db1_2d_gk_getting_started_17.png" alt="ループ形状になったギズモ" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-8: 経路が輪になった。床がこの四角に沿って回り続ける</figcaption>
+      </figure>
+      <p>💡 ▶で再生して、動く床にEllenで飛び乗ってみよう。<br>
+        確認できたら停止して保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）！</p>
+    </div>
+
+    <h2>3-3. 踏むと扉が開く「イベント」を作ろう</h2>
+    <p>
+      次はこの章のメインイベント。<br>
+      <strong>PressurePad（感圧パッド）を踏むと、Door（扉）が開く</strong>しかけを作ります。<br>
+      「何かが起きたら（踏んだら）→ 何かをする（扉を開ける）」というつながりを<strong>イベント</strong>と呼ぶよ。
+    </p>
+
+    <div class="term">
+      <span class="word">イベント</span> … 「〜したら、〜する」という<strong>合図と反応のつながり</strong>のこと。<br>
+      今回は「パッドが踏まれたら（On Pressed）→ 扉の開くアニメーションを再生する」というイベントを組む。<br>
+      プログラムを書かなくても、インスペクターの操作だけで作れるんだ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Doorを道をふさぐように置く</span>
+      <p><strong>Projectウィンドウ</strong>の <strong>Prefabs &gt; Interactables</strong> から <strong>Door</strong> プレハブを見つけて、シーンビューにドラッグ。<br>
+        <strong>プレイヤーの行く道をふさぐような位置</strong>に置くのがポイント。<br>
+        「この扉、どうやって開けるんだ？」という場面を作るわけだ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/5d595345-5053-4294-84cc-22ce8e4eaf9d_2d_gk_getting_started_18.png" alt="Doorをシーンに配置した状態" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-9: Doorは通せんぼの位置に置く</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">PressurePadを扉の手前の地面に置く</span>
+      <p>同じ <strong>Prefabs &gt; Interactables</strong> から <strong>PressurePad</strong> を見つけて、<strong>Doorの手前の地面</strong>にドラッグして置こう。</p>
+      <p>⚠️ 再生したとき、Ellenがパッドの上に乗れずに<strong>横からぶつかって進めなくなる</strong>ことがあります。<br>
+        そのときはパッドの位置を<strong>少し下げて</strong>、地面に埋めぎみにしてみよう。<br>
+        見えない「コライダー（当たり判定の箱）」にぶつかるのは、ゲーム作りあるあるだよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/b38bca53-134b-40fc-82da-85fe11e33bba_2d_gk_getting_started_19.png" alt="PressurePadをDoorの前の地面に配置" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-10: PressurePadは扉の手前の地面に。<br>
+          ぶつかるようなら少し下げる</figcaption>
+      </figure>
+      <p>ちなみにPressurePadには、<strong>上に乗ると音が鳴って光る</strong>イベントが最初から設定済み。<br>
+        ここに「扉を開ける」仕事を追加していくよ。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">On Pressedに新しいイベントを追加する</span>
+      <ul>
+        <li><strong>ヒエラルキー</strong>で <strong>PressurePad</strong> を選ぶ</li>
+        <li><strong>インスペクター</strong>で <strong>Pressure Padコンポーネント</strong>を見つける</li>
+        <li>「<strong>On Pressed</strong>」（踏まれたとき）というリストの下にある「<strong>＋</strong>」をクリック → 新しいイベントの枠が追加される</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">Doorをドラッグして、やることを選ぶ</span>
+      <ul>
+        <li><strong>ヒエラルキー</strong>から <strong>Door</strong> を、いま追加した枠の「<strong>None (Object)</strong>」フィールドへドラッグする（＝「相手はこの扉！」の指定）</li>
+        <li>「<strong>No Function</strong>」のドロップダウンをクリック →「<strong>Animator</strong>」→「<strong>Play (string)</strong>」の順に選ぶ（＝「アニメーションを再生して！」の指定）</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/2eaaa859-9946-4864-aedf-26e98ca4818e_2d_gk_getting_started_21.png" alt="On PressedイベントにDoorを設定しAnimator>Play(string)を選ぶ" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-11: 「＋」で枠を追加 → DoorをNone (Object)へ →<br>
+          No FunctionからAnimator &gt; Play (string)を選ぶ</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">「DoorOpening」と入力する</span>
+      <p>ドロップダウンの下に出てきたテキストボックスに「<strong>DoorOpening</strong>」と入力します。<br>
+        これが「再生するアニメーションの名前」。<br>
+        ⚠️ 大文字・小文字まで<strong>完全に一致</strong>しないと動かないので、つづりに注意！</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/6f15b142-ac1a-4a9d-85f9-8dfb4f8da284_2d_gk_getting_started_20.png" alt="テキストボックスにDoorOpeningと入力" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-12: テキストボックスに「DoorOpening」と入力</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">再生して、パッドを踏んでみる</span>
+      <p><strong>▶（再生）</strong>を押して、<code>A</code>/<code>D</code> キーでEllenをパッドの上まで歩かせよう。<br>
+        パッドが光って…<strong>扉が開いたら大成功！</strong><br>
+        キミは今、はじめての「イベント」を組んだことになる。<br>
+        確認したら停止して保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）を忘れずに。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span><span class="step-title">（豆知識）アニメーション名はどこで見られる？</span>
+      <p>「DoorOpening」のようなアニメーションクリップの名前は、<strong>Projectウィンドウ</strong>の <strong>Art &gt; Animations &gt; Animation Clips</strong> の中でぜんぶ見られます。<br>
+        別のアニメーションを再生したいときは、ここで正確な名前を確認して入力しよう。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/33b10075-c1cf-4de7-9200-c0b1100f4d53_2d_gk_getting_started_22.png" alt="Art>Animations>Animation Clipsフォルダーの場所" style="max-width:100%;border-radius:8px">
+        <figcaption>図3-13: アニメーションクリップは Art &gt; Animations &gt; Animation Clips に集合</figcaption>
+      </figure>
+    </div>
+
+    <h2>3-4. 🔭 発展: 「撃つと開くスイッチ」もある</h2>
+    <p>
+      「踏む」のではなく「<strong>撃つ</strong>」と反応するスイッチも用意されています。<br>
+      その名も <strong>ReusableSwitch</strong>（何度でも使えるスイッチ）。<br>
+      Prefabs &gt; Interactables フォルダーの中にあって、使い方はPressurePadとほぼ同じ。<br>
+      配置して、イベントの枠にDoorをドラッグして、Animator &gt; Play (string) →「DoorOpening」——と、さっき覚えた手順がそのまま通用するよ。<br>
+      「遠くの扉を、スイッチを撃って開ける」なんて、かっこいいしかけが作れる。余裕があったら試してみよう。
+    </p>
+
+    <h2>3-5. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 動く床がないと渡れない谷を作ろう</h3>
+      <p>ジャンプだけでは絶対に届かない広い谷を作って、<strong>MovingPlatformに乗らないと渡れない</strong>コースにしよう。<br>
+      再生して、自分で最後まで渡れることを確認してね。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>谷の幅は「Ellenのジャンプで届く距離（横2〜3マス）」より広くすればOK。<br>
+          床の経路は、谷のこちら側とあちら側を往復するように赤い点線を設定しよう。<br>
+          床を待つ「待ち時間」も、ゲームの緊張感のうちだよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 踏むと扉が開くしかけを、自分のステージに組みこもう</h3>
+      <p>Door と PressurePad を自分のステージの好きな場所に置いて、<strong>「パッドを探して踏まないと先へ進めない」</strong>流れを作ろう。<br>
+      パッドを扉から少し離れた場所に置くと、「探す楽しさ」が生まれるよ。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>手順は3-3の通り: On Pressedの「＋」→ DoorをNone (Object)へドラッグ → Animator &gt; Play (string) →「DoorOpening」。<br>
+          動かないときは、つづりの大文字・小文字をまず疑おう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 1つのパッドで2枚の扉を同時に開けよう</h3>
+      <p>Doorをもう1枚置いて、<strong>1つのPressurePadを踏むと2枚の扉が同時に開く</strong>ようにしてみよう。<br>
+      ヒントなしでできたら、イベントマスターの称号をあげます。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>On Pressedの「＋」は<strong>何回でも押せる</strong>。<br>
+          枠を2つ作って、それぞれに別のDoorをドラッグすればいい。<br>
+          関数（Animator &gt; Play (string)）と「DoorOpening」の入力は、枠ごとに必要だよ。</p>
+      </details>
+    </div>
+
+    <h2>3-6. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>クリックするたびタイルが塗られてしまう</h4>
+      <p><strong>原因:</strong> まだペイントモード（筆）のまま。</p>
+      <p><strong>直し方:</strong> Tile Paletteを閉じるか、<code>W</code> キーで移動ツールに切り替えよう。<br>
+      この章の操作は、ぜんぶ移動ツールでやるのが基本。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>MovingPlatformの赤い点線が出ない</h4>
+      <p><strong>原因:</strong> MovingPlatformが選択されていない。<br>
+      または、シーンビューではなくゲームビューを見ている。</p>
+      <p><strong>直し方:</strong> ヒエラルキーで <code>MovingPlatform</code> をクリックして選択し、シーンビューを表示しよう。<br>
+      見つからないときはヒエラルキーでダブルクリックするとズームできるよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>床がループしないで、同じ道を往復してしまう</h4>
+      <p><strong>原因:</strong> Loopingが「BACK_FORTH」（往復）のまま。</p>
+      <p><strong>直し方:</strong> Moving Platformコンポーネントの <strong>Looping</strong> を「<strong>Loop</strong>」に変えよう。<br>
+      Preview positionスライダーではループ全体は確認できないので、▶で再生してチェック。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>EllenがPressurePadにぶつかって、上に乗れない</h4>
+      <p><strong>原因:</strong> パッドが地面より高い位置にあって、横からコライダー（当たり判定）にぶつかっている。</p>
+      <p><strong>直し方:</strong> 移動ツールでパッドを<strong>少し下</strong>に動かして、地面に埋めぎみにしよう。<br>
+      再生→確認→停止→微調整、を数回くり返せば必ず乗れる位置が見つかるよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>パッドを踏んでも扉が開かない</h4>
+      <p><strong>原因1:</strong> 入力した文字が「DoorOpening」と完全一致していない（小文字・スペース・打ちまちがい）。<br>
+      → もう一度正確に入力し直す。</p>
+      <p><strong>原因2:</strong> None (Object)にDoorが入っていない、または関数がNo Functionのまま。<br>
+      → 3-3の手順4をもう一度。Doorは<strong>ヒエラルキーから</strong>ドラッグするんだったね。<br>
+      Projectウィンドウの設計図ではなく、<strong>シーンに置いたDoor</strong>を入れるのがポイント。</p>
+      <p><strong>原因3:</strong> 再生中に設定した。<br>
+      → 再生中の変更は停止すると消える。停止してから設定し直そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>扉は開いたけど、そもそも扉の意味がない場所に置いていた</h4>
+      <p><strong>原因:</strong> 扉の上や横をジャンプで素通りできてしまう配置。</p>
+      <p><strong>直し方:</strong> 扉のまわりをタイルでかこって、「扉を開ける以外に道がない」形にしよう。<br>
+      しかけは「通らざるをえない場所」に置くと生きてくるよ。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>3-7. 🤖 AIを味方につけよう</h2>
+    <p>
+      イベントの設定は、細かい手順が多くてまちがえやすいところ。<br>
+      AIに聞くときは、<strong>「どのコンポーネントの」「どの欄に」「何を設定したか」</strong>まで伝えると、原因をピタリと当ててくれるよ。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>イベントが動かない:</strong> 設定した内容（相手のオブジェクト・関数・入力した文字）を全部伝える</li>
+        <li><strong>しかけのアイデア相談:</strong> 「動く床と扉を組み合わせた面白いしかけ」のような発想の壁打ちはAIの得意分野</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3の2D Game Kitで、PressurePadを踏むとDoorが開くしかけを作っている中学生です。<br>
+        On Pressedに「+」でイベントを追加し、DoorをNone(Object)に入れて、Animator &gt; Play(string)を選び、テキストボックスに「DoorOpening」と入力しました。<br>
+        でも再生してパッドを踏んでも扉が開きません。確認すべきことを順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        2Dアクションゲームで「動く床」を使ったステージを作っています。<br>
+        ただ乗って渡るだけではない、動く床の面白い使い方を初心者向けに3つ提案してください。<br>
+        使えるのは、経路のノード追加・往復かループの切り替え・速度調整です。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>手順を読まずに最初からAIに全部聞く（まず自分の目で3-3の手順と見比べるほうが速い）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（必ず自分の画面で再生して確認）</li>
+      </ul>
+    </div>
+
+    <h2>3-8. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> <code>W</code> キーで移動ツールに切り替えられた</label>
+      <label><input type="checkbox"> Prefabs &gt; Interactables から MovingPlatform をシーンに置けた</label>
+      <label><input type="checkbox"> 赤い点線のギズモで、床の移動方向を設定できた</label>
+      <label><input type="checkbox"> Add Node×2 と Looping=Loop で、四角く回る床を作れた</label>
+      <label><input type="checkbox"> Door と PressurePad を配置できた（Ellenがパッドに乗れる）</label>
+      <label><input type="checkbox"> On Pressed のイベントで、パッドを踏むと扉が開いた</label>
+      <label><input type="checkbox"> 課題1の「動く床がないと渡れない谷」をクリアできた</label>
+    </div>
+    <p>全部チェックできたら第3章クリア！<br>
+      🎉 次回はいよいよ<strong>敵</strong>の登場。<br>
+      ChomperとSpitterという2匹のモンスターをステージに放って、ダメージのしくみまで作るよ。お楽しみに！</p>
+
+    <h2>3-9. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-walkthrough-jp" target="_blank">Unity Learn「2Dゲームキットウォークスルー」</a> — この章の元になっている公式ガイド。<br>
+      手順4〜5がこの章の範囲だよ</li>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-reference-guide-jp" target="_blank">2Dゲームキットリファレンスガイド</a> — Moving PlatformやPressure Padの全オプションの説明がのっている</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter2.html">← 第2章 自分のステージを作ろう</a>
+      <a href="chapter4.html">第4章へすすむ →</a>
+    </nav>
+
+    <p style="font-size:12px;color:#64748b;margin-top:24px;">画像出典: Unity Learn『2Dゲームキットウォークスルー』（Unity Technologies）／画像の表示にはインターネット接続が必要です</p>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

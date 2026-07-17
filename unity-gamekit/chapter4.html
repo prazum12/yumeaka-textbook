@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第4章 敵とダメージのしくみ 〜ChomperとSpitterを攻略せよ〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第4章</span>
+      <h1>敵とダメージのしくみ 〜ChomperとSpitterを攻略せよ〜</h1>
+      <div class="date">📅 第4回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>2種類の敵（ChomperとSpitter）をステージに配置できる</li>
+        <li>Enemy Behaviourコンポーネントで、敵の速さや視野（View FOV）を調整できる</li>
+        <li>数値をドラッグで変える「プロのちょい技」が使える</li>
+        <li>PushableBoxにDamagerコンポーネントを追加して、「箱を落として敵を倒す」しかけを作れる</li>
+      </ul>
+    </div>
+
+    <p>
+      動く床と扉ができた前回のステージ。<br>
+      でも、まだ何かが足りない…そう、<strong>敵</strong>だ。<br>
+      今日はステージにモンスターを放って、さらに「ダメージのしくみ」を自分の手で組み立てます。<br>
+      最後には、<strong>箱を頭上から落として敵を倒す</strong>トラップが完成するよ。
+    </p>
+
+    <h2>4-1. 敵を配置して、動きを調整しよう</h2>
+    <p>
+      2D Game Kitには、作成済みの敵が2種類入っています。<br>
+      置き場所は <strong>Prefabs &gt; Enemies</strong>。前回のしかけと同じ「プレハブ」だから、ドラッグするだけで動き出すよ。
+    </p>
+    <table>
+      <tr><th>敵</th><th>特徴</th></tr>
+      <tr><td><strong>Chomper</strong>（チョンパー）</td><td>地面を歩き回って、近づくとかみついてくる。接近戦タイプ</td></tr>
+      <tr><td><strong>Spitter</strong>（スピッター）</td><td>プレイヤーを見つけると、酸のたまを吐いて撃ってくる。遠距離タイプ</td></tr>
+    </table>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Prefabs &gt; Enemies からChomperをドラッグ</span>
+      <p><strong>Projectウィンドウ</strong>で「<strong>Prefabs</strong>」→「<strong>Enemies</strong>」の順にクリックして、<strong>Chomper</strong> をシーンビューへドラッグしよう。<br>
+        置いたら▶で再生してみて。もう歩き回ってるはず。<br>
+        武器が出ないときは <code>F12</code> で有効化、<code>O</code> や <code>K</code> で攻撃できるよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/3dcede23-1fe6-4dd6-9d89-e3b361d93e86_2d_gk_getting_started_38.png" alt="ProjectウィンドウのPrefabs>Enemiesフォルダー" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-1: 敵プレハブは Prefabs &gt; Enemies の中にいる</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/aa1c08c5-9c59-4ee9-a9fd-dfd5d9047c87_2d_gk_getting_started_23.png" alt="Chomperをシーンに配置した状態" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-2: シーンに置かれたChomper。選択すると視野の扇形が見える</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">コンポーネント</span> … ゲームオブジェクトに取り付ける<strong>「機能の部品」</strong>のこと。<br>
+      Chomperが歩いたり噛みついたりするのは「Enemy Behaviour」というコンポーネントのおかげ。<br>
+      インスペクターに並んでいる1つ1つの箱が、ぜんぶコンポーネントだよ。<br>
+      部品を付けたり外したりして機能を組み立てるのが、Unityの基本スタイルなんだ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Enemy Behaviourで速さと視野を調整する</span>
+      <p>Chomperを選択して、インスペクターの <strong>Enemy Behaviour</strong> コンポーネントを見てみよう。<br>
+        ここが敵の「性格」を決める調整パネルだ。</p>
+      <ul>
+        <li><strong>Speed</strong> … 動きの速さ。上げるとおそろしい敵になる</li>
+        <li><strong>View FOV</strong> … 視野の広さ（FOV＝Field Of View、視野角）。シーンビューに扇形で表示される</li>
+        <li><strong>View Direction</strong> … 視野の向き。どっちを見張っているか</li>
+      </ul>
+      <p>いろいろ変えて再生し、動きのちがいを確かめよう。<br>
+        ちなみにChomperとSpitterは<strong>同じEnemy Behaviourコンポーネント</strong>を持っていて、設定値がちがうだけなんだ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/e15ccee4-0d18-4fc1-a2fb-73f99a434e82_2d_gk_getting_started_24.png" alt="Enemy BehaviourコンポーネントでView FOVとView Directionを調整" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-3: View FOVとView Directionを調整した例。<br>
+          この設定だと、Chomperは振り向くまでEllenに気づかない</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">プロのちょい技: プロパティは「ドラッグ」で変えられる</span>
+      <p>数値はキーボードで打ちこんでもいいけど、もっと速い方法があります。<br>
+        <strong>プロパティの名前（SpeedやView FOVの文字）の上で左クリックしたまま左右にドラッグ</strong>してみて。<br>
+        数値がスルスル変わる！<br>
+        微調整しながら結果を見たいときに最強のテクニックなので、今日から使っていこう。</p>
+    </div>
+
+    <h2>4-2. 箱を落としてSpitterを倒そう</h2>
+    <p>
+      ここからがこの章のメインイベント、<strong>ダメージのしくみ作り</strong>です。<br>
+      ちょっとかわいそうだけど…Spitterの頭上に箱を落として倒します。<br>
+      完成するとこんな感じ。
+    </p>
+    <figure class="figure">
+      <img src="https://connect-mediagw.unity.com/h1/20190130/0ee3a102-437c-4167-b291-4a11e8f751cd_spitterdeath.gif" alt="箱を崖から落としてSpitterを倒す完成イメージの動画" style="max-width:100%;border-radius:8px">
+      <figcaption>図4-4: 完成イメージ。崖の上から箱を押して落とし、Spitterに命中！</figcaption>
+    </figure>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">高低差のあるステージを作る</span>
+      <p>まず、<strong>Ellenが高い所、敵が低い所</strong>という配置になるよう、タイルで崖のある地形を作ろう。<br>
+        （タイルを塗るときはTile Palette、塗り終わったら <code>W</code> で移動ツール。もう手なれたもんだね）</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/5f70b853-2c3c-407a-8285-57e2fa8d5024_2d_gk_getting_started_26.png" alt="Ellenが高所、下段に地面がある高低差ステージ" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-5: 上の段にEllen、下の段に敵、という高低差を作る</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Spitterを崖の下に置いて、View Distanceを下げる</span>
+      <ul>
+        <li><strong>Prefabs &gt; Enemies</strong> から <strong>Spitter</strong> を1体シーンビューへドラッグ</li>
+        <li>ステージの下の段、<strong>崖の面の横</strong>に配置する</li>
+        <li>Spitterを選択したまま、インスペクターで <strong>Enemy Behaviour (Script)</strong> を表示</li>
+        <li><strong>View Distance</strong>（見える距離）の数値を<strong>下げる</strong></li>
+      </ul>
+      <p>View Distanceを下げるのは、テスト中にSpitterがこちらを見つけて<strong>すぐ撃ってこないようにする</strong>ため。<br>
+        さっき覚えた「文字の上をドラッグ」で下げてみよう。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/de9b3fca-baa0-40c6-a3f1-4e5c4802cfa0_2d_gk_getting_started_27.png" alt="Enemy BehaviourのView Distanceを下げる" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-6: View Distanceを下げて、テスト中に撃たれないようにする</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">PushableBoxを置いて、Damagerを追加する</span>
+      <ul>
+        <li><strong>Prefabs &gt; Interactables</strong> から <strong>PushableBox</strong>（押せる箱）を崖の上へドラッグ</li>
+        <li><strong>ヒエラルキー</strong>で <strong>PushableBox</strong> を選び、インスペクターの一番下にある「<strong>Add Component</strong>」ボタンをクリック</li>
+        <li>検索ボックスに「<strong>Damage</strong>」と入力</li>
+        <li>出てきた「<strong>Damager</strong>」をクリックして追加</li>
+      </ul>
+      <p><strong>Damager</strong>は「さわった相手にダメージを与える」コンポーネント。<br>
+        ダメージを受けられる側（SpitterやChomper）は「Damageable」というコンポーネントを持っていて、<strong>DamagerとDamageableが出会うとダメージが発生する</strong>——これがこのキットのダメージのしくみだ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/a42449dc-e87f-4f66-b23f-ff963ea65a7e_2d_gk_getting_started_28.png" alt="PushableBoxにDamagerを追加すると緑のコリジョンボックスが表示される" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-7: Damagerを付けると緑の「コリジョンボックス」が現れる。<br>
+          この緑の範囲が「ダメージを与えるゾーン」</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">緑のボックスを、箱にピッタリ重ねる</span>
+      <p>図4-7を見ると、緑のボックスが<strong>箱からズレている</strong>のがわかるかな？<br>
+        このままだと箱を落としても、緑ゾーンが当たらないのでダメージゼロ。<br>
+        緑のボックスをPushableBoxとだいたい同じ位置・サイズに合わせよう。方法は2つ。</p>
+      <p><strong>方法1: シーンビューで直接ドラッグ</strong><br>
+        緑の輪郭線上にある<strong>緑の点</strong>をドラッグして、箱に重なるようにサイズと位置を調整。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/3990c891-58ff-4744-bca8-d55e631f58aa_2d_gk_getting_started_29.png" alt="緑の点をドラッグしてコリジョンボックスを調整" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-8: 方法1。輪郭の緑の点をつかんで直接調整</figcaption>
+      </figure>
+      <p><strong>方法2: インスペクターのOffsetとSizeで調整</strong><br>
+        <strong>Damagerコンポーネント</strong>の <strong>Offset</strong>（位置のズレ）と <strong>Size</strong>（大きさ）を変える。<br>
+        ここでも「<strong>X・Yの文字の上を左右にドラッグ</strong>」が最速だよ。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/fe0f3bc4-bc11-4d12-a4a7-eb05efdae42b_2d_gk_getting_started_30.png" alt="DamagerのOffsetとSizeで調整" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-9: 方法2。OffsetとSizeの数値で合わせる</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">HittableLayersを「Enemy」にする</span>
+      <p>最後に「<strong>誰に</strong>ダメージを与えるか」を決めます。<br>
+        Unityでは、オブジェクトを<strong>レイヤー</strong>というグループで分類しているんだ。</p>
+      <ul>
+        <li><strong>PushableBox</strong> を選択</li>
+        <li>インスペクターで <strong>Damager</strong> コンポーネントを表示</li>
+        <li>「<strong>HittableLayers</strong>」のドロップダウンで「<strong>Enemy</strong>」を選ぶ</li>
+      </ul>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/f0a41317-9739-4d0f-be45-24288c17b8be_2d_gk_getting_started_31.png" alt="HittableLayersドロップダウンでEnemyレイヤーを選択" style="max-width:100%;border-radius:8px">
+        <figcaption>図4-10: HittableLayersを「Enemy」に。<br>
+          これで敵グループだけにダメージが入る</figcaption>
+      </figure>
+      <p>これで、この箱は「<strong>Enemy</strong>」レイヤーのオブジェクト（SpitterもChomperも）にダメージを与えるようになった。</p>
+    </div>
+
+    <div class="term">
+      <span class="word">レイヤー（Layer）</span> … オブジェクトを分類する<strong>「グループ分けのラベル」</strong>。<br>
+      「Enemy（敵チーム）」「Player（プレイヤーチーム）」のように分けておくと、「敵チームだけにダメージ」「プレイヤーチームだけに反応」といった<strong>チーム単位の指定</strong>ができる。<br>
+      出席番号じゃなくて「クラス全員に配る」と言えるのが便利なところ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">再生して、箱を押して落とす！</span>
+      <p><strong>▶（再生）</strong>を押したら、Ellenで箱をグイグイ押して崖から落とそう。<br>
+        Spitterの頭上に命中したら…<strong>撃破！</strong> 図4-4の完成イメージ通りになったかな？<br>
+        うまくいったら停止して保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）。</p>
+      <p>💡 余裕があったら、他の敵にも箱をぶつけてみよう。<br>
+        なんならEllenに当てるとどうなるかも実験してみて（HittableLayersを変えると…？）。</p>
+    </div>
+
+    <h2>4-3. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 背後からしのび寄れるChomperを作ろう</h3>
+      <p>Chomperを1体置いて、<strong>View FOVとView Directionを調整</strong>し、「正面から行くと見つかるけど、<strong>背後からなら気づかれずに近づける</strong>」見張り役にしよう。<br>
+      再生して、実際に背後から近づいて攻撃できることを確認してね。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>シーンビューに表示される扇形が「敵の見えている範囲」。<br>
+          View FOVをせまくして、View Directionを片側（正面方向）に向ければ、背中側は死角になる。<br>
+          図4-3の設定例が大ヒントだよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 「箱落としトラップ」を自分のステージに組みこもう</h3>
+      <p>4-2で作った箱落としを、<strong>自分のステージの一部</strong>として組みこもう。<br>
+      「下にSpitterがいて通れない → 崖の上の箱に気づく → 落として道を開く」という<strong>謎解きの流れ</strong>になっていたら満点。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>Spitterを「通り道のド真ん中」に置くと、倒さないと進めない状況が作れる。<br>
+          Damagerの緑ボックス合わせとHittableLayers=Enemyを忘れずに。<br>
+          箱が押しにくいときは、崖のふちを平らにしてあげよう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 敵の性格をデザインして「ボス地帯」を作ろう</h3>
+      <p>Enemy Behaviourの数値だけで、性格のちがう敵を2体作ってみよう。<br>
+      例:「足はおそいが視野がとても広い見張り番」＋「視野はせまいが超高速のアタッカー」。<br>
+      2体を同じ部屋に置いて、となりの人にクリアしてもらえたら大成功。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>SpeedとView FOV・View Distanceの組み合わせで性格が決まる。<br>
+          「文字の上をドラッグ」で数値をいじりながら、再生→調整をくり返そう。<br>
+          強すぎたら数値を下げる勇気も、ゲームデザイナーの実力のうち。</p>
+      </details>
+    </div>
+
+    <h2>4-4. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>敵を置いたのに動かない・攻撃してこない</h4>
+      <p><strong>原因:</strong> 再生していない。またはEllenが敵の視野（扇形）の外にいる。</p>
+      <p><strong>直し方:</strong> ▶で再生してから確認しよう。<br>
+      敵はView FOVとView Distanceの範囲にEllenが入ってはじめて反応するよ。<br>
+      シーンビューで敵を選択すると視野の扇形が見える。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>攻撃したいのに武器が出ない</h4>
+      <p><strong>原因:</strong> 武器が無効になっている。</p>
+      <p><strong>直し方:</strong> 再生中に <code>F12</code> キーを押すと武器の有効・無効を切り替えられる。<br>
+      攻撃は <code>O</code> か <code>K</code> キーだよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>テスト中、Spitterにすぐ撃たれてしまう</h4>
+      <p><strong>原因:</strong> SpitterのView Distance（見える距離）が長いまま。</p>
+      <p><strong>直し方:</strong> Spitterを選んで、Enemy Behaviour (Script) の <strong>View Distance</strong> を下げよう。<br>
+      しかけが完成したら、好みの強さに戻せばOK。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>箱をSpitterに落としたのにダメージが入らない</h4>
+      <p><strong>原因1:</strong> Damagerの緑のコリジョンボックスが箱とズレている。<br>
+      → 4-2の手順4で、緑ボックスを箱にピッタリ重ねる。</p>
+      <p><strong>原因2:</strong> HittableLayersが設定されていない（Nothingのまま）。<br>
+      → Damagerの <strong>HittableLayers</strong> を「<strong>Enemy</strong>」にする。</p>
+      <p><strong>原因3:</strong> DamagerをPushableBoxではなく別のオブジェクトに追加してしまった。<br>
+      → ヒエラルキーで <code>PushableBox</code> を選んでからAdd Componentしたか確認。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Add Componentで「Damager」が見つからない</h4>
+      <p><strong>原因:</strong> 検索ボックスの入力ミス。</p>
+      <p><strong>直し方:</strong> 検索ボックスに半角で「<strong>Damage</strong>」と入力すると候補に出てくる。<br>
+      日本語入力モードになっていないかもチェックしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>箱が押せない・崖から落ちてくれない</h4>
+      <p><strong>原因:</strong> 崖のふちに段差やタイルの出っぱりがあって、箱がひっかかっている。</p>
+      <p><strong>直し方:</strong> 箱の通り道を平らにタイルを塗り直そう。<br>
+      それでもダメなら、箱の初期位置を崖のふちギリギリに移動しておくと楽に落とせるよ。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>4-5. 🤖 AIを味方につけよう</h2>
+    <p>
+      今日は「コンポーネント」と「レイヤー」という、Unityのド真ん中の概念が出てきたね。<br>
+      しくみの「なぜ？」を深掘りする質問は、AIがいちばん力を発揮するところだよ。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>ダメージが入らない:</strong> 「何に」「どのコンポーネントを付けて」「どう設定したか」を具体的に伝える</li>
+        <li><strong>しくみの理解:</strong> 「DamagerとDamageableはどう協力してるの？」のような概念の質問はAIの得意分野</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3の2D Game Kitで、PushableBoxにDamagerコンポーネントを追加して、箱を落としてSpitterを倒すしかけを作っている中学生です。<br>
+        HittableLayersはEnemyにしました。でも箱がSpitterに当たってもダメージが入りません。<br>
+        確認すべきことを、順番に1つずつ教えてください。
+      </div>
+      <div class="prompt-example">
+        Unityの「レイヤー」という仕組みを、中学生にわかるようにたとえ話で説明してください。<br>
+        「ダメージを与える相手をレイヤーで指定する」のが、なぜ1体ずつ指定するより便利なのかも教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>敵の強さの数値を丸ごとAIに決めてもらう（テストプレイして決めるのはキミの仕事。相談はOK、丸投げはNG）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（必ず自分の画面で再生して確認）</li>
+      </ul>
+    </div>
+
+    <h2>4-6. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Prefabs &gt; Enemies から Chomper をシーンに置けた</label>
+      <label><input type="checkbox"> Enemy Behaviour で Speed・View FOV・View Direction を調整できた</label>
+      <label><input type="checkbox"> プロパティの文字の上をドラッグして、数値を変えられた</label>
+      <label><input type="checkbox"> 高低差ステージに Spitter を置いて、View Distance を下げられた</label>
+      <label><input type="checkbox"> PushableBox に Add Component で Damager を追加できた</label>
+      <label><input type="checkbox"> 緑のコリジョンボックスを箱に合わせ、HittableLayers を Enemy にできた</label>
+      <label><input type="checkbox"> 箱を落として Spitter を倒せた</label>
+      <label><input type="checkbox"> 課題1の「背後からしのび寄れるChomper」を作れた</label>
+    </div>
+    <p>全部チェックできたら第4章クリア！<br>
+      🎉 キミのステージには、動くしかけも敵もそろった。<br>
+      もう立派な「ゲーム」だ。<br>
+      次回はステージを飾りつけて、テレポートで世界をつなげていくよ。お楽しみに！</p>
+
+    <h2>4-7. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-walkthrough-jp" target="_blank">Unity Learn「2Dゲームキットウォークスルー」</a> — この章の元になっている公式ガイド。<br>
+      手順6〜7がこの章の範囲だよ</li>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-reference-guide-jp" target="_blank">2Dゲームキットリファレンスガイド</a> — Enemy BehaviourやDamager・Damageableの全パラメーターの説明がのっている</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter3.html">← 第3章 動くしかけを作ろう</a>
+      <a href="chapter5.html">第5章へすすむ →</a>
+    </nav>
+
+    <p style="font-size:12px;color:#64748b;margin-top:24px;">画像出典: Unity Learn『2Dゲームキットウォークスルー』（Unity Technologies）／画像の表示にはインターネット接続が必要です</p>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

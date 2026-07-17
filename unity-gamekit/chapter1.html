@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第1章 ゲームキットを手に入れて遊ぼう 〜2D Game Kitをはじめる〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第1章</span>
+      <h1>ゲームキットを手に入れて遊ぼう 〜2D Game Kitをはじめる〜</h1>
+      <div class="date">📅 第1回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>「2D Game Kit」がどんなものか説明できる</li>
+        <li>Asset Store（Unityの素材ストア）から2D Game Kitを自分のPCに入れられる</li>
+        <li>▶（再生）でサンプルゲーム「The Explorer」を実行して、実際に遊べる</li>
+        <li>Unityエディタの5つの画面の名前と役割がわかる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 講習の最初に、第0章の準備がうまくいったか全員で確認します。<br>
+      できなかった人も大丈夫、ここで一緒に解決するよ。
+    </p>
+
+    <h2>1-1. 2D Game Kitってなに？</h2>
+    <p>
+      この講座で使うのは、Unity公式の「<strong>2D Game Kit（2Dゲームキット）</strong>」。<br>
+      2Dアクションゲームを作るための素材と仕組みがぜんぶ詰まった、<strong>ゲーム作りのスターターキット</strong>です。<br>
+      キャラクター、敵、地面のタイル、扉やスイッチなどの仕掛け、音、エフェクト……全部入り。<br>
+      しかもプログラムを1行も書かずに、部品を置くだけでゲームが作れるようになっています。
+    </p>
+    <figure class="figure">
+      <img src="https://connect-mediagw.unity.com/h1/20190130/7502f16c-4d30-4f1b-8c14-4c56aad155bb_gettingstartedbanner.png" alt="2D Game Kitのバナー画像。主人公Ellenと2Dアクションゲームの世界" style="max-width:100%;border-radius:8px">
+      <figcaption>図1-1: 2D Game Kitの世界。<br>
+        主人公の探検家<strong>Ellen（エレン）</strong>を操作して冒険するよ</figcaption>
+    </figure>
+    <p>
+      さらにこのキットには、キットの部品だけで作られた<strong>完成ゲーム「The Explorer（ジ・エクスプローラー）」</strong>が丸ごと入っています。<br>
+      この講座の進め方はシンプル。<br>
+      <strong>完成ゲームで遊んで仕組みを知る → 同じ部品で自分のステージを作る → どんどん改造する</strong>。<br>
+      最終回には、キミだけのオリジナル2Dアクションゲームが完成しているはず！
+    </p>
+
+    <div class="term">
+      <span class="word">2D Game Kit（2Dゲームキット）</span> … Unity公式が無料で配っている「2Dアクションゲーム一式」。<br>
+      完成ゲームThe Explorerと、ステージ作りに使える部品（タイル・敵・仕掛け）が入った改造キットだよ。
+    </div>
+
+    <p>
+      💡 この講座で使うUnityは「<strong>Unity 2022.3 LTS</strong>」（第0章でインストールしたもの）。<br>
+      2D Game Kitはサイズが<strong>約287MB</strong>と大きめなので、この章ではダウンロード待ちの時間も出てきます。<br>
+      あせらずのんびりいこう。
+    </p>
+
+    <h2>1-2. 入れ物になる2Dプロジェクトを作ろう</h2>
+    <p>
+      まずは、2D Game Kitを入れるための<strong>空のプロジェクト</strong>を作ります。<br>
+      プロジェクトは「ゲーム1本分のデータをまとめた入れ物」だったね（第0章でも1回作ったよ）。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Unity Hubで「New project」を押す</span>
+      <p>Unity Hubを起動して、左メニューの「<strong>Projects</strong>」→ 右上の「<strong>New project</strong>」（新しいプロジェクト）をクリック。<br>
+        画面上部のエディターバージョンが <strong>2022.3系（LTS）</strong>になっていることも確認しよう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「2D」テンプレートを選んで、名前を付ける</span>
+      <p>テンプレートの一覧から「<strong>2D</strong>」（2D Core）を選びます。<br>
+        右側の設定はこうしよう。</p>
+      <ul>
+        <li><strong>Project name:</strong> <code>my-gamekit</code></li>
+        <li><strong>Location（保存場所）:</strong> 第0章で作ったデスクトップの <code>yumeaka-unity</code> フォルダ</li>
+      </ul>
+      <p>⚠️ プロジェクト名と保存場所は<strong>半角英数字だけ</strong>にすること。<br>
+        通り道（パス）に日本語が入ると、エラーや文字化けの原因になります。</p>
+      <p>設定できたら「<strong>Create project</strong>」をクリック。<br>
+        Unityエディタが開くまで数分待ちます。</p>
+      <figure class="figure">
+        <img src="img/gk1-01_hub-new-project.svg" alt="Unity HubのNew project画面イメージ。2Dテンプレートを選びmy-gamekitと入力">
+        <figcaption>New project画面。2Dテンプレート・my-gamekit・保存先を設定して「Create project」<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <h2>1-3. Asset Storeで「2D Game Kit」を手に入れよう</h2>
+    <p>
+      2D Game Kitは、Unityの<strong>Asset Store（アセットストア）</strong>という公式のオンラインストアで配布されています。<br>
+      ゲームの素材（アセット）を売り買いできるお店で、無料のものもたくさんあるよ。<br>
+      お店での買い物と同じで、「ストアのサイトで入手 → Unityに取り込む」の2段階で進みます。
+    </p>
+
+    <div class="term">
+      <span class="word">アセット（Asset）</span> … ゲームの素材のこと。<br>
+      画像・音・3Dモデル・プログラムなど、ゲームを作る材料ぜんぶをまとめてこう呼ぶよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ブラウザでAsset Storeを開いてサインインする</span>
+      <p>ブラウザ（ChromeやEdgeなど）で <code>assetstore.unity.com</code> を開きます。<br>
+        画面右上の人型アイコンから、<strong>第0章で作ったUnity IDでサインイン</strong>しよう。<br>
+        （サインインを忘れると、あとの「入手」ボタンが押せません）</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「2D Game Kit」を検索する</span>
+      <p>ページ上部の検索バーに「<strong>2D Game Kit</strong>」と入力して検索します。<br>
+        Unity Technologies製の「2D Game Kit」（無料）が見つかるので、クリックしてページを開こう。</p>
+      <figure class="figure">
+        <img src="img/gk1-02_assetstore-search.svg" alt="Asset Storeの検索バーに2D Game Kitと入力して検索した画面イメージ">
+        <figcaption>Asset Storeで「2D Game Kit」を検索して、Unity Technologies製のものを開く<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">「マイアセットに追加する」を押す</span>
+      <p>「<strong>マイアセットに追加する</strong>」（英語表示なら <strong>Add to My Assets</strong>）ボタンをクリック。<br>
+        利用規約の同意画面が出たら、内容を確認して同意します。<br>
+        ボタンの表示が「<strong>Unityで開く（Open in Unity）</strong>」に変われば、キミのアカウントの<strong>My Assets（入手済みリスト）</strong>に追加された合図。<br>
+        お店で「無料で購入」した状態だよ。ダウンロードはまだ先。</p>
+      <figure class="figure">
+        <img src="img/gk1-03_add-to-my-assets.svg" alt="2D Game Kitのページでマイアセットに追加するボタンを押す画面イメージ">
+        <figcaption>「マイアセットに追加する」を押す。終わるとボタンが「Unityで開く」に変わる<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <h2>1-4. UnityにDownload / Importしよう</h2>
+    <p>
+      ストアで入手したアセットは、Unityの<strong>Package Manager（パッケージマネージャー）</strong>という窓口から受け取ります。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Package ManagerでMy Assetsを開く</span>
+      <p>Unityエディタ（<code>my-gamekit</code>）に戻って、上部メニューの「<strong>Window</strong>」→「<strong>Package Manager</strong>」を選びます。<br>
+        開いたウィンドウの左上にあるドロップダウン（<code>Packages: In Project</code> などと表示されている場所）をクリックして、「<strong>My Assets</strong>」に切り替えよう。<br>
+        さっき入手した「<strong>2D Game Kit</strong>」が一覧に出てくるので、クリックして選択します。</p>
+      <figure class="figure">
+        <img src="img/gk1-04_package-manager-my-assets.svg" alt="Package ManagerをMy Assetsに切り替えて2D Game Kitを選択した画面イメージ">
+        <figcaption>Package Managerを「My Assets」に切り替えて2D Game Kitを選択<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「Download」→「Import」の順に押す</span>
+      <p>右下（または右上）の「<strong>Download</strong>」を押してダウンロード開始。<br>
+        終わるとボタンが「<strong>Import</strong>」に変わるので、続けてクリックします。<br>
+        インポートするファイルの一覧が出たら、そのまま「<strong>Import</strong>」でOK。</p>
+      <p>⏳ <strong>2D Game Kitは約287MBあるので、ダウンロードもインポートも数分〜10分以上かかることがあります。</strong><br>
+        進捗バーが止まって見えても壊れていないので、あわてず気長に待とう。<br>
+        待ち時間に、この章の1-6（エディタ画面の見方）を先に読んでおくのもアリ。</p>
+      <figure class="figure">
+        <img src="img/gk1-05_download-import.svg" alt="Package ManagerでDownloadボタンを押し、続けてImportボタンを押す画面イメージ">
+        <figcaption>「Download」→ 終わったら「Import」の順にクリック<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">警告ダイアログはそのまま進めてOK</span>
+      <p>インポートの途中で、こんなダイアログが出ることがあります。</p>
+      <ul>
+        <li>「プロジェクト設定が上書きされます」という警告 → 今回は空のプロジェクトなので「<strong>Import</strong>」で進めてOK</li>
+        <li>「パッケージの依存関係があります」→「<strong>Install/Upgrade</strong>」を押して進める</li>
+        <li>「シーンを再読み込みしますか？」→「<strong>Reload</strong>」を押す</li>
+      </ul>
+      <p>ぜんぶ「キットが正しく動くように設定するね」という確認なので、こわがらなくて大丈夫。<br>
+        終わったらPackage Managerのウィンドウは×で閉じよう。<br>
+        Projectウィンドウ（画面下の倉庫）に <code>2DGamekit</code> フォルダが増えていたら成功！</p>
+      <figure class="figure">
+        <img src="img/gk1-06_import-dialogs.svg" alt="インポート中に出るダイアログと、完了後にProjectウィンドウへ2DGamekitフォルダが追加された画面イメージ">
+        <figcaption>インポート中のダイアログはそのまま進めてOK。完了後は2DGamekitフォルダを確認<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <h2>1-5. サンプルゲーム「The Explorer」を遊ぼう！</h2>
+    <p>
+      インポートが終わったら、いきなりだけど<strong>ゲームで遊びます</strong>。<br>
+      どんなゲームなのかを知らないと、作りようも改造のしようもないからね。<br>
+      これも立派な開発の仕事で、「テストプレイ」と言います。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Zone1のシーンを開く</span>
+      <p>The Explorerのステージは「<strong>Zone1</strong>〜<strong>Zone5</strong>」という5つのシーン（場面）でできています。<br>
+        Projectウィンドウ（画面下）の検索ボックスに「<strong>Zone1</strong>」と入力して、出てきた<strong>Zone1のシーン</strong>を<strong>ダブルクリック</strong>で開こう。<br>
+        （<code>Assets &gt; 2DGamekit &gt; Scenes</code> フォルダの中からたどってもOK）</p>
+      <figure class="figure">
+        <img src="img/gk1-07_open-zone1.svg" alt="Projectウィンドウの検索ボックスでZone1を検索してダブルクリックする画面イメージ">
+        <figcaption>Projectウィンドウの検索ボックスで「Zone1」を検索してダブルクリック<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">▶（再生ボタン）を押す</span>
+      <p>画面上部中央の<strong>▶（再生ボタン）</strong>を押すと、ゲームが始まります。<br>
+        もう一度▶を押すと停止します。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/dd72ae45-013f-4b31-881e-0d966539bc94_2d_gk_getting_started_9_1.png" alt="エディタ上部の再生ボタン" style="max-width:100%;border-radius:8px">
+        <figcaption>図1-2: エディタ上部の再生ボタン。<br>
+          ここを押すとゲームスタート、もう一度押すと停止</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20190130/7502f16c-4d30-4f1b-8c14-4c56aad155bb_gettingstartedbanner.png" alt="再生中のThe Explorerのゲーム画面。主人公Ellenが遺跡のステージにいる" style="max-width:100%;border-radius:8px">
+        <figcaption>再生中のThe Explorer。Ellenを操作して遺跡のステージを探検しよう<br>画像出典: Unity Learn（Unity Technologies）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">操作方法を覚える</span>
+      <table>
+        <tr><th>操作</th><th>キー</th></tr>
+        <tr><td>左右に移動</td><td><code>A</code>（左） <code>D</code>（右）</td></tr>
+        <tr><td>ジャンプ</td><td><code>スペース</code></td></tr>
+        <tr><td>攻撃</td><td><code>O</code> または <code>K</code></td></tr>
+        <tr><td>調べる・スイッチを押す（インタラクト）</td><td><code>E</code></td></tr>
+        <tr><td>武器の有効・無効を切り替え（デバッグ用）</td><td><code>F12</code></td></tr>
+      </table>
+      <p>キーを押しても動かないときは、まず<strong>ゲーム画面を1回クリック</strong>してから操作してみよう。<br>
+        攻撃が出ないときは <code>F12</code> を押して武器を有効にしてみてね（開発者用の隠しコマンドみたいなものだよ）。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">ゲームのルールを知る</span>
+      <ul>
+        <li>探検家<strong>Ellen</strong>を操作して、遺跡のステージを進んでいく</li>
+        <li>かみつき虫の<strong>Chomper</strong>や、弾を吐く<strong>Spitter</strong>などの敵は、攻撃（<code>O</code>/<code>K</code>）で倒せる</li>
+        <li>スイッチや感圧パッドを使うと、扉が開くなどの<strong>仕掛け</strong>が動く（<code>E</code>で調べる）</li>
+        <li>体力がなくなっても少し前から復活するので、どんどん挑戦してOK</li>
+      </ul>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 超重要ルール: 再生中（▶が青いとき）の変更は保存されない！</h4>
+      <p>再生中にゲームの中身をさわって変更しても、停止すると元に戻ります。<br>
+        編集は<strong>必ず▶を押して停止してから</strong>。<br>
+        Unityあるあるナンバーワンのミスなので、今のうちに覚えておこう。</p>
+    </div>
+
+    <h2>1-6. エディタ画面の見方 〜5つのエリアを覚えよう〜</h2>
+    <p>
+      遊んだところで、開発者としてUnityの画面を見てみよう。<br>
+      最初はゴチャゴチャして見えるけど、大事なのは<strong>5つのエリア</strong>だけ。<br>
+      これから毎回使うので、名前と役割をセットで覚えよう。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Unityエディタの5つのエリア">
+        <rect x="10" y="10" width="680" height="410" rx="8" fill="#1e293b"/>
+        <rect x="10" y="10" width="680" height="34" rx="8" fill="#334155"/>
+        <polygon points="343,20 343,34 355,27" fill="#e2e8f0"/>
+        <text x="368" y="31" font-size="11" fill="#94a3b8">← 再生ボタン（ゲームを実行）</text>
+        <rect x="18" y="52" width="150" height="240" rx="6" fill="#475569"/>
+        <text x="93" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">ヒエラルキー</text>
+        <text x="93" y="98" text-anchor="middle" font-size="11" fill="#cbd5e1">Hierarchy</text>
+        <text x="93" y="130" text-anchor="middle" font-size="12" fill="#e2e8f0">世界にあるモノの</text>
+        <text x="93" y="148" text-anchor="middle" font-size="12" fill="#e2e8f0">「名簿」</text>
+        <rect x="176" y="52" width="330" height="240" rx="6" fill="#0ea5e9" opacity="0.85"/>
+        <text x="341" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">シーンビュー</text>
+        <text x="341" y="98" text-anchor="middle" font-size="11" fill="#e0f2fe">Scene</text>
+        <text x="341" y="130" text-anchor="middle" font-size="12" fill="#fff">ゲームの世界を組み立てる</text>
+        <text x="341" y="148" text-anchor="middle" font-size="12" fill="#fff">「作業机」</text>
+        <text x="341" y="180" text-anchor="middle" font-size="11" fill="#e0f2fe">※タブで「ゲームビュー(Game)」に</text>
+        <text x="341" y="196" text-anchor="middle" font-size="11" fill="#e0f2fe">切り替え＝プレイヤーから見た画面</text>
+        <rect x="514" y="52" width="168" height="240" rx="6" fill="#475569"/>
+        <text x="598" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">インスペクター</text>
+        <text x="598" y="98" text-anchor="middle" font-size="11" fill="#cbd5e1">Inspector</text>
+        <text x="598" y="130" text-anchor="middle" font-size="12" fill="#e2e8f0">選んだモノの</text>
+        <text x="598" y="148" text-anchor="middle" font-size="12" fill="#e2e8f0">「くわしい情報」</text>
+        <text x="598" y="166" text-anchor="middle" font-size="12" fill="#e2e8f0">（位置・大きさなど）</text>
+        <rect x="18" y="300" width="664" height="112" rx="6" fill="#64748b"/>
+        <text x="350" y="330" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">プロジェクトウィンドウ（Project）</text>
+        <text x="350" y="355" text-anchor="middle" font-size="12" fill="#e2e8f0">画像・音・プログラムなど、素材の「倉庫」。ここからシーンに置いていく</text>
+      </svg>
+      <figcaption>図1-3: Unityエディタの5つのエリア。<br>
+        「名簿・作業机・情報・倉庫・再生ボタン」と覚えよう</figcaption>
+    </div>
+
+    <table>
+      <tr><th>エリア</th><th>たとえ</th><th>役割</th></tr>
+      <tr><td><strong>シーンビュー</strong>（Scene）</td><td>作業机</td><td>ゲームの世界を目で見て組み立てる場所</td></tr>
+      <tr><td><strong>ゲームビュー</strong>（Game）</td><td>テレビ画面</td><td>プレイする人から見えるゲーム画面</td></tr>
+      <tr><td><strong>ヒエラルキー</strong>（Hierarchy）</td><td>名簿</td><td>世界に置いたモノの一覧リスト</td></tr>
+      <tr><td><strong>インスペクター</strong>（Inspector）</td><td>プロフィール帳</td><td>選んだモノの位置・大きさなどの詳細設定</td></tr>
+      <tr><td><strong>プロジェクト</strong>（Project）</td><td>倉庫</td><td>画像・音・プログラムなどの素材置き場</td></tr>
+    </table>
+
+    <p>
+      ヒエラルキー（名簿）を見てみると、<code>Ellen</code>（主人公）やステージの地面など、Zone1の登場人物がもう並んでいるのがわかるよ。<br>
+      プロジェクトウィンドウ（倉庫）の <code>2DGamekit</code> フォルダには、これから使う部品がぜんぶ入っている。<br>
+      この「倉庫から部品を出して、作業机に並べる」のがゲーム作りの基本の動きだ。
+    </p>
+
+    <div class="term">
+      <span class="word">ゲームオブジェクト</span> … ゲームの世界に置くモノすべての呼び名。<br>
+      キャラも地面もカメラも、ぜんぶ「ゲームオブジェクト」。<br>
+      ヒエラルキーに並ぶのはこれ。
+    </div>
+
+    <div class="term">
+      <span class="word">シーン</span> … ゲームの「場面」のこと。<br>
+      タイトル画面で1シーン、ステージ1で1シーン、のように使う。<br>
+      The ExplorerはZone1〜Zone5の5つのシーンでできているよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">＋</span><span class="step-title">シーンビューの操作も覚えておこう</span>
+      <ul>
+        <li><strong>ズーム:</strong> マウスホイールを回す（トラックパッドは2本指で上下）</li>
+        <li><strong>視点の移動:</strong> マウスホイールを押し込んだままドラッグ（または手のひらツール）</li>
+        <li><strong>保存:</strong> <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>。<strong>作業の区切りごとに保存するクセ</strong>をつけよう</li>
+      </ul>
+    </div>
+
+    <h2>1-7. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: The Explorerをすみずみまで探検しよう</h3>
+      <p>▶で再生して、Zone1をできるだけ先まで進んでみよう。<br>
+      そのあと、「これどうやって動いてるんだろう？」と思った<strong>仕掛けを3つ</strong>見つけてメモしよう。<br>
+      この講座では、その仕掛けを自分で置けるようになっていくよ。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>扉、スイッチ、動く足場、上から落ちてくる箱、テレポートする場所……。<br>
+          <code>E</code> キーで調べられるものも探してみよう。<br>
+          時間があったらZone2以降のシーンも開いて遊んでみてOK。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: F12の武器切り替えを試そう</h3>
+      <p>再生中に <code>F12</code> を押すと、Ellenの武器の有効・無効が切り替わります。<br>
+      武器を有効にして、<code>O</code> または <code>K</code> で敵（Chomper）を倒してみよう。<br>
+      逆に武器なしで敵の横を通り抜けられるかも挑戦！</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>F12が効かないときは、ゲーム画面を1回クリックしてから押してみよう。<br>
+          ノートPCでは <code>Fn</code> キーを押しながら <code>F12</code> の場合もあるよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 名簿と世界の対応を調べよう</h3>
+      <p>▶を<strong>停止した状態</strong>で、ヒエラルキーに並んでいる名前を上からいくつかクリックして、シーンビューのどこが光る（選択される）か調べよう。<br>
+      「この名前はゲームのアレか！」というのを<strong>5つ</strong>言えたら合格。<code>Ellen</code> はどこにいるかな？</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>名前の左に「&gt;」マークがあるものは、中に子どものオブジェクトが入っている（フォルダみたいなもの）。<br>
+          クリックして開いてみよう。<br>
+          見つからないときは、名前を<strong>ダブルクリック</strong>すると画面がそこにズームするよ。</p>
+      </details>
+    </div>
+
+    <h2>1-8. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>ダウンロード／インポートが全然終わらない</h4>
+      <p><strong>原因:</strong> 2D Game Kitは約287MBあるので、回線によっては10分以上かかります。<br>
+      止まっているように見えても、たいてい裏でがんばっています。</p>
+      <p><strong>直し方:</strong> まずは気長に待つ。<br>
+      30分待っても進まないときは、Package Managerを閉じてもう一度「Download」からやり直してみよう。<br>
+      講習会場のWi-Fiが混んでいるときは、講師に相談してね。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>シーンを開いたら画面がまっピンク！</h4>
+      <p><strong>原因:</strong> 画像の表示設定（マテリアル）がうまく読み込めていないときに出る、Unityの「困ってます」のサイン。<br>
+      インポート直後によく起きる、有名な現象です。</p>
+      <p><strong>直し方:</strong> まずUnityをいったん閉じて、Unity Hubから開き直す。<br>
+      それでも直らないときは、Package Managerから2D Game Kitをもう一度「Import」しよう。<br>
+      壊れたわけではないので安心して。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Package ManagerのMy Assetsに2D Game Kitが出てこない</h4>
+      <p><strong>原因1:</strong> Asset Storeで「マイアセットに追加する」を押したアカウントと、Unityエディタでサインインしているアカウントが違う。<br>
+      → エディタ右上のアカウントアイコンで、同じUnity IDかを確認しよう。</p>
+      <p><strong>原因2:</strong> 追加した直後で一覧が古いまま。<br>
+      → Package Manager左上の更新ボタン（ぐるっと矢印のアイコン）を押すか、開き直す。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>キーを押してもEllenが動かない</h4>
+      <p><strong>原因1:</strong> ゲーム画面が選ばれていない。<br>
+      → ゲーム画面を1回クリックしてから操作する。</p>
+      <p><strong>原因2:</strong> 日本語入力がオンになっている。<br>
+      → <span class="os-win">「半角/全角」キーで日本語入力をオフにする。</span><span class="os-mac">「英数」キーを押して英字入力にする。</span></p>
+      <p><strong>原因3:</strong> そもそも▶で再生していない。<br>
+      → 再生ボタンが青くなっているか確認！</p>
+    </div>
+
+    <div class="trouble">
+      <h4>せっかく変更したのに、停止したら元に戻った</h4>
+      <p><strong>原因:</strong> 再生中（▶が青いとき）に変更していた。<br>
+      再生中の変更は保存されないルールだったね。</p>
+      <p><strong>直し方:</strong> ▶で停止してから、もう一度同じ変更をしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>画面のレイアウトがぐちゃぐちゃになった／ウィンドウが消えた</h4>
+      <p><strong>直し方:</strong> 画面右上のレイアウトメニュー（またはメニューの <code>Window → Layouts</code>）から <code>Default</code> を選ぶと元どおり。<br>
+      こわれたわけじゃないので安心して。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>まちがって何かを消してしまった</h4>
+      <p><strong>直し方:</strong> あわてず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span>（元に戻す）。<br>
+      ほとんどの操作は取り消せるよ。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>1-9. 🤖 AIを味方につけよう</h2>
+    <p>
+      ChatGPTやClaudeなどのAIは、Unity学習の強力な味方です（13歳以上なら保護者の同意のもとで使えます）。<br>
+      Unityは画面操作が多いので、<strong>「今どういう状態で、何をしたら、どうなったか」</strong>を言葉で伝えるのがコツです。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>操作で迷子になったら:</strong> 「〇〇したいけどボタンが見つからない」を具体的に聞く</li>
+        <li><strong>用語の解説:</strong> アセット、シーン、インポートなど、わからない言葉を自分のレベルで説明してもらう</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3で、Asset Storeの「2D Game Kit」をインポートしたばかりの中学生です。<br>
+        Zone1のシーンを開いたら画面全体がピンク色になってしまいました。<br>
+        原因として考えられることを、確認する順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        Unityの「アセット」と「パッケージ」と「プロジェクト」の関係がこんがらがってきました。<br>
+        料理や工作にたとえて、中学生にわかるように説明してください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>課題の「気になる仕掛けメモ」をAIに考えてもらう（自分が作りたいものを見つけるのが今日の練習！）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（AIは古いバージョンのUnityの話をすることもある。<br>
+          必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>1-10. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> 2D Game Kitがどんなものか、ひとことで説明できる</label>
+      <label><input type="checkbox"> <code>my-gamekit</code> プロジェクトを2Dテンプレートで作れた</label>
+      <label><input type="checkbox"> Asset Storeで2D Game KitをMy Assetsに追加できた</label>
+      <label><input type="checkbox"> Package Managerから2D Game KitをDownload / Importできた</label>
+      <label><input type="checkbox"> Zone1を開いて▶で遊べた（移動・ジャンプ・攻撃ができる）</label>
+      <label><input type="checkbox"> 「再生中の変更は保存されない」ルールを覚えた</label>
+      <label><input type="checkbox"> 5つのエリア（シーン・ゲーム・ヒエラルキー・インスペクター・プロジェクト）の役割が言える</label>
+    </div>
+    <p>全部チェックできたら第1章クリア！<br>
+      🎉 次回はいよいよ、まっさらなシーンに<strong>自分のステージ</strong>を作るよ。<br>
+      The Explorerで見つけた「気になる仕掛け」も、少しずつ自分で置けるようになっていく。</p>
+
+    <h2>1-11. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-walkthrough-jp" target="_blank">Unity Learn「2Dゲームキットウォークスルー」</a> — この教科書の元になっている公式ガイド。<br>
+      先取りしたい人はここを見てみよう</li>
+      <li><a href="https://docs.unity3d.com/ja/2022.3/Manual/UnityManual.html" target="_blank">Unity 2022.3 公式マニュアル（日本語）</a> — 困ったときの辞書として使おう</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter0.html">← 第0章 事前準備</a>
+      <a href="chapter2.html">第2章 自分のステージを作ろう →</a>
+    </nav>
+
+    <p style="font-size:12px;color:#64748b;margin-top:24px;">画像出典: Unity Learn『2Dゲームキットウォークスルー』（Unity Technologies）／画像の表示にはインターネット接続が必要です</p>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

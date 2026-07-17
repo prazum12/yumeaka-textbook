@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第6章 仕上げて発表しよう 〜自分だけのゲームを完成させる〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第6章</span>
+      <h1>仕上げて発表しよう 〜自分だけのゲームを完成させる〜</h1>
+      <div class="date">📅 第6回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>サンプルゲーム（Zone1〜5）を「開発者の目」で遊んで、しかけの使い方のアイデアを盗める</li>
+        <li>この教科書で学んだ部品を組み合わせて、自分のステージを完成させられる</li>
+        <li>作品を発表して、工夫したポイントを一言で伝えられる</li>
+      </ul>
+    </div>
+
+    <p>
+      ついに最終回。<br>
+      新しい操作は、今日はもう出てきません。<br>
+      今日やることはひとつ——<strong>今まで覚えたぜんぶを使って、キミだけのステージを完成させて、発表する</strong>。<br>
+      ゲーム開発者としての、最初の「作品発表の日」だ。
+    </p>
+    <figure class="figure">
+      <img src="https://connect-mediagw.unity.com/h1/20190207/learn/images/7fcb8d31-f7d0-4b5c-ac75-f40391d61776_2DGamekit.jpg" alt="2D Game Kitの世界を冒険するエレン（公式キーアート）" style="max-width:100%;border-radius:8px">
+      <figcaption>図6-1: キットの部品を組み合わせれば、こんな世界が作れる（The Explorerの世界／画像出典: Unity Learn）</figcaption>
+    </figure>
+
+    <h2>6-1. プロの技を観察しよう 〜Zone1〜5探検〜</h2>
+    <p>
+      このキットに入っているオブジェクトのほとんどは、PressurePadで使った<strong>「イベント」のしくみ</strong>に対応しています。<br>
+      そして、サンプルゲームのステージ<strong>Zone1〜5</strong>には、その使い方のお手本がぎっしりつまっている。<br>
+      自由制作の前に、まずはプロの仕事を「観察」しに行こう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">自分のシーンを保存してから、Zoneを開く</span>
+      <p>⚠️ まず自分のステージを保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）！<br>
+        それから、<strong>Projectウィンドウの検索ボックス</strong>に「<strong>Zone1</strong>」と入力して、出てきたシーンをダブルクリックで開こう。<br>
+        Zone2〜5も同じ方法で開けるよ。</p>
+      <figure class="figure">
+        <img src="img/ch6-02_zone-search.svg" alt="UnityのProjectウィンドウでZone1を検索して開く画面イメージ。保存してから開けば自分のステージは消えないことを示している">
+        <figcaption>Zoneを開く流れ。検索 → ダブルクリックの順です。自分のシーンは保存されていれば消えません。</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「開発者の目」で遊ぶ</span>
+      <p>▶で再生して遊びながら、こんなところに注目してみよう。</p>
+      <ul>
+        <li>この扉は<strong>何で開いた？</strong>（感圧パッド？ スイッチを攻撃？）</li>
+        <li>敵は<strong>どこに置かれている？</strong>（せまい足場の上、箱の近く、扉の前…）</li>
+        <li>動く床やワープは、<strong>どんな場面で使われている？</strong></li>
+        <li>「難しいけど楽しい」場所は、<strong>何がそう感じさせている？</strong></li>
+      </ul>
+      <p>「いいな」と思った物があったら、停止してシーンビューでクリック→名前を確認→Projectウィンドウで検索。<br>
+        第5章で覚えた小ワザが、ここで大活躍するよ。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">取り入れたいアイデアを3つメモする</span>
+      <p>観察して見つけたアイデアを<strong>3つ</strong>、メモしておこう。<br>
+        「まね」はずるじゃない。<strong>プロのゲーム開発者も、必ず他のゲームの研究から始める</strong>んだ。<br>
+        まねして、自分なりに変える——それがオリジナルへの近道。</p>
+    </div>
+
+    <h2>6-2. 道具はぜんぶそろってる 〜部品カタログ〜</h2>
+    <p>
+      この教科書で学んだ部品を、一覧にまとめました。<br>
+      自由制作の「メニュー表」として使ってね。
+    </p>
+    <table>
+      <tr><th>部品</th><th>できること</th><th>学んだ章</th></tr>
+      <tr><td><strong>タイル</strong>（Tile Palette）</td><td>地面・足場・崖を描く。ステージの土台</td><td>第2章</td></tr>
+      <tr><td><strong>MovingPlatform</strong></td><td>動く床。ノード追加とLoopで経路も自由自在</td><td>第3章</td></tr>
+      <tr><td><strong>Door ＋ PressurePad</strong></td><td>乗ると扉が開く。イベントのしくみ</td><td>第3章</td></tr>
+      <tr><td><strong>ReusableSwitch</strong></td><td>攻撃すると反応するスイッチ。パッドの代わりに使える</td><td>第3章</td></tr>
+      <tr><td><strong>Chomper</strong></td><td>接近戦の敵。速さ・視野を調整できる</td><td>第4章</td></tr>
+      <tr><td><strong>Spitter</strong></td><td>酸のたまを撃つ遠距離の敵</td><td>第4章</td></tr>
+      <tr><td><strong>PushableBox ＋ Damager</strong></td><td>押せる箱で敵にダメージ。トラップ作りに</td><td>第4章</td></tr>
+      <tr><td><strong>装飾スプライト</strong></td><td>世界の雰囲気づくり（Art &gt; Sprites &gt; Environment）</td><td>第5章</td></tr>
+      <tr><td><strong>TransitionStart／End</strong></td><td>ワープ（テレポート）。隠し部屋やショートカットに</td><td>第5章</td></tr>
+    </table>
+
+    <h2>6-3. 自由制作タイム 〜ステージを完成させよう〜</h2>
+    <p>
+      ここからは、キミが監督でありデザイナーであり、テストプレイヤー。<br>
+      進め方のコツを3つだけ置いておきます。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">「クリア条件」を自分で決める</span>
+      <p>まず、<strong>スタート地点とゴール地点</strong>を決めよう。<br>
+        「左はしから出発して、右おくの遺跡にたどり着いたらクリア」みたいに、<strong>自分で宣言する</strong>のが大事。<br>
+        ゴールが決まると、途中に置くべきしかけも自然と見えてくるよ。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">しかけは「組み合わせ」で輝く</span>
+      <p>部品は単品で置くより、組み合わせると何倍も面白くなる。</p>
+      <ul>
+        <li>動く床で渡った先に<strong>スイッチ</strong>があり、撃つと遠くの扉が開く</li>
+        <li>Chomperの見張る通路の頭上に<strong>箱</strong>をスタンバイしておく</li>
+        <li>ワープの出口を<strong>敵のド真ん中</strong>にして、ビックリ演出</li>
+        <li>6-1でメモした<strong>Zoneのアイデア</strong>を自分流にアレンジ</li>
+      </ul>
+      <figure class="figure">
+        <img src="img/ch6-03_stage-combination.svg" alt="動く床、スイッチ、扉、敵を組み合わせ、スタートからゴールへ進むステージの構成例">
+        <figcaption>組み合わせの例。まずゴールまでの道を作り、しかけを3種類以上加えて、▶で何度も通しテストしよう。</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">作って→遊んで→直す、をくり返す</span>
+      <p>5〜10分作ったら▶で再生、が黄金ペース。<br>
+        「最初はやさしく、だんだん難しく」を意識すると、遊ぶ人が最後まで楽しめるステージになる。<br>
+        そして保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）はこまめに！ 発表直前のデータ消失ほど悲しいものはない。</p>
+    </div>
+
+    <h2>6-4. 発表会をしよう</h2>
+    <p>
+      完成したら、お待ちかねの<strong>発表会</strong>。<br>
+      ゲームは「遊んでもらって完成する」ものだから、これも開発の大事な一部だよ。
+    </p>
+    <table>
+      <tr><th>見せる人の心得</th><th>見る人の心得</th></tr>
+      <tr>
+        <td>
+          ・<strong>工夫ポイントを一言</strong>で伝えてから遊んでもらう（例:「箱落としトラップが自信作！」）<br>
+          ・操作方法を先に説明する（<code>A</code>/<code>D</code>移動、<code>スペース</code>ジャンプ、<code>O</code>/<code>K</code>攻撃、<code>E</code>インタラクト）<br>
+          ・クリアできなくてもOK。つまった場所は<strong>難易度調整のヒント</strong>としてメモ
+        </td>
+        <td>
+          ・まず<strong>良いところを1つ</strong>言葉にして伝える<br>
+          ・「ここどうやって作ったの？」と聞くと、お互い勉強になる<br>
+          ・つまったら正直に伝える。それが作者への<strong>一番のプレゼント</strong>
+        </td>
+      </tr>
+    </table>
+
+    <h2>6-5. 💪 やってみよう（最終課題）</h2>
+
+    <div class="challenge">
+      <h3>最終課題: しかけを3種類以上使った自分のステージを完成させよう</h3>
+      <p>6-2の部品カタログから、<strong>タイル以外のしかけを3種類以上</strong>使って、スタートからゴールまで通しでクリアできるステージを完成させよう。<br>
+      条件はこの3つ。</p>
+      <ul>
+        <li>タイル以外の部品を<strong>3種類以上</strong>使っている</li>
+        <li><strong>自分で通しでクリア</strong>できることを確認した</li>
+        <li>発表会で<strong>工夫ポイントを一言</strong>で紹介した</li>
+      </ul>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>3種類は「Door＋PressurePad」「Chomper」「テレポート」のように、<strong>系統のちがう部品</strong>を選ぶと遊びが豊かになるよ。<br>
+          迷ったら6-1の観察メモに戻ろう。Zoneのまねから始めて、自分流に変えれば立派なオリジナルだ。</p>
+      </details>
+    </div>
+
+    <h2>6-6. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>Zoneのシーンを開いたら、自分のステージが消えた!?</h4>
+      <p><strong>原因:</strong> 消えていません。開いているシーンが切り替わっただけ。</p>
+      <p><strong>直し方:</strong> Projectウィンドウの検索ボックスに<strong>自分のシーン名</strong>を入力して、ダブルクリックすれば戻れるよ。<br>
+      Zoneを開く前に保存していれば、何も失われていないから安心して。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>どんなステージにすればいいか、思いつかない</h4>
+      <p><strong>直し方:</strong> ゼロから考えなくていい。<br>
+      6-1の観察メモから1つ選んで、まず<strong>そっくりまねて</strong>作る→動いたら<strong>1か所だけ自分流に変える</strong>。<br>
+      「まねて、変える」が創作の王道。部品カタログを眺めて「これとこれを組み合わせたら？」と考えるのも効くよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>しかけが増えすぎて、どれが何だかわからなくなった</h4>
+      <p><strong>直し方:</strong> ヒエラルキーの名前を整理しよう。<br>
+      <code>Door_1</code>、<code>PadForDoor_1</code>、<code>Warp_ToRoom</code> のように「役割がわかる名前」に変えるだけで、頭の中もスッキリする。<br>
+      新しいしかけは<strong>1つ置くごとに再生して確認</strong>すると、原因探しがラクだよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>「難しすぎてクリアできない」と言われた</h4>
+      <p><strong>直し方:</strong> それは貴重なテスト結果！<br>
+      敵のSpeedを下げる、足場を1マス近づける、敵の数を減らす——少しずつ調整して、また遊んでもらおう。<br>
+      <strong>難易度調整も立派なゲームデザイン</strong>。プロも同じことをしています。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>発表の直前に、しかけが動かなくなった</h4>
+      <p><strong>直し方:</strong> あわてない。まず<strong>最後にさわった物</strong>を思い出して確認。<br>
+      <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span> で直前の操作を取り消せる。<br>
+      保存してあれば、シーンを開き直して保存時点に戻るのも手だよ。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>6-7. 🤖 AIを味方につけよう</h2>
+    <p>
+      最終回のAIは「デザイン相談役」。<br>
+      手が止まったときの壁打ち相手として使うと、アイデアがどんどん転がり出すよ。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>アイデアの壁打ち:</strong> 「持っている部品」を伝えて、組み合わせのアイデアを出してもらう</li>
+        <li><strong>発表の準備:</strong> 工夫ポイントの伝え方を相談する（読むのは自分の言葉で！）</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3の2D Game Kitでステージを作っている中学生です。<br>
+        使える部品は、動く床・感圧パッドで開く扉・攻撃で反応するスイッチ・Chomper・Spitter・押せる箱（Damager付き）・テレポートです。<br>
+        これらを2つ以上組み合わせた「あっと驚くしかけ」のアイデアを、初心者が30分で作れる範囲で3つ提案してください。
+      </div>
+      <div class="prompt-example">
+        自分で作った2Dアクションゲームのステージを、クラスのみんなの前で30秒で紹介します。<br>
+        自信作は「崖の上から箱を落として敵を倒すトラップ」です。<br>
+        聞いている人が遊びたくなる紹介のしかたの例を、2つ教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>ステージの全体像を丸ごとAIに決めてもらう（最終作品はキミのアイデアで！ 相談はOK、丸投げはNG）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（必ず自分の画面で再生して確認）</li>
+      </ul>
+    </div>
+
+    <h2>6-8. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Zone1〜5のどれかを遊んで、しかけの使われ方を3つメモできた</label>
+      <label><input type="checkbox"> メモしたアイデアを1つ以上、自分のステージに取り入れた</label>
+      <label><input type="checkbox"> タイル以外のしかけを3種類以上使った</label>
+      <label><input type="checkbox"> スタートからゴールまで、自分で通しクリアできた</label>
+      <label><input type="checkbox"> 発表会で、工夫ポイントを一言で伝えられた</label>
+      <label><input type="checkbox"> 友だちの作品の良いところを1つ、言葉にして伝えられた</label>
+    </div>
+
+    <p>
+      全部チェックできたら——<strong>全6章、修了おめでとう！！</strong> 🎉🎉🎉<br>
+      ふり返ってみて。まっさらなシーンから始めて、キミは<strong>地形を描き、しかけを組み、敵を配置し、世界を飾り、ワープでつなぎ、作品として発表</strong>した。<br>
+      これはもう、まぎれもなくゲーム開発者の仕事そのものだ。
+    </p>
+    <p>
+      そして、ここがゴールじゃない。<br>
+      2D Game Kitにはまだまだ触れていない部品がたくさんあるし、その先には「自分でキャラクターや敵を作る」世界も待っている。<br>
+      下の「もっと知りたい人へ」が、次の冒険の地図だよ。<br>
+      <strong>作りたいものがある限り、キミの開発は続く。</strong>またどこかのステージで会おう！
+    </p>
+
+    <h2>6-9. 📚 もっと知りたい人へ 〜次の冒険の地図〜</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-walkthrough-jp" target="_blank">Unity Learn「2Dゲームキットウォークスルー」</a> — この教科書全体の元になっている公式ガイド。手順10がこの章の範囲だよ</li>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/2d-game-kit-reference-guide-jp" target="_blank">2Dゲームキットリファレンスガイド</a> — キットの全部品・全パラメーターの辞典。「このしかけ、もっと細かく調整したい」と思ったらまずここ</li>
+      <li><a href="https://learn.unity.com/course/beginning-2d-game-development-jp/unit/2d-game-kit-jp/tutorial/gao-du-natopitsuku" target="_blank">高度なトピック</a> — キットを改造して、新しい要素を追加したくなった人への上級ガイド</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter5.html">← 第5章 世界を飾ってワープさせよう</a>
+      <a href="index.html">目次にもどる →</a>
+    </nav>
+
+    <p style="font-size:12px;color:#64748b;margin-top:24px;">画像出典: Unity Learn『2Dゲームキットウォークスルー』（Unity Technologies）／画像の表示にはインターネット接続が必要です</p>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>
