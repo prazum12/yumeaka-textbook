@@ -1,0 +1,130 @@
+/* 土台（4-3）+ 課題1: 配色を「レモン」セットに変更 */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #fefce8;
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.hero {
+  background-color: #f59e0b;
+  color: #ffffff;
+  text-align: center;
+  padding: 48px 16px;
+}
+
+.hero p {
+  color: #fef3c7;
+}
+
+.site-foot {
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  padding: 24px;
+}
+
+/* 部品1: プロフィールカード */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 部品2: 好きなものカード */
+.cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 180px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #a16207;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* 課題2: カードに「動き」（hover） */
+.card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 部品3: マイベスト3 */
+.best3 li {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 8px 0;
+}
+
+/* 部品4: リンク集（ボタン風） */
+.links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #a16207;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 999px;
+}
+
+.btn:hover {
+  background-color: #f59e0b;
+}
+
+/* 部品5: 将来の夢・メッセージ */
+.message {
+  background-color: #ffffff;
+  border-left: 6px solid #f59e0b;
+  border-radius: 0 12px 12px 0;
+  padding: 16px 20px;
+}
+
+/* 課題3: 第2章から引っ越してきた favorite.html 用のナビバー */
+.navbar {
+  display: flex;
+  gap: 24px;
+  background-color: #a16207;
+  padding: 14px 20px;
+}
+
+.navbar a {
+  color: white;
+  font-weight: bold;
+}
