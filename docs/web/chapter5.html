@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第5章 JavaScript入門 | 夢アカWeb教科書</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">本文へスキップ</a>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">Webコース教科書</a></h1>
+  </header>
+
+  <main class="container" id="main-content">
+    <div class="chapter-title">
+      <span class="chapter-num">第5章</span>
+      <h1>JavaScript入門 〜コンピュータに命令しよう〜</h1>
+      <div class="date">📅 第5回の講習で使います</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>プログラムが「上から順に1行ずつ実行される」ことを説明できる</li>
+        <li>開発者ツールのコンソールを開いて、<code>console.log</code> の結果を確かめられる</li>
+        <li>変数とif文を使って「年齢でメッセージが変わる」プログラムを書ける</li>
+      </ul>
+    </div>
+
+    <p>
+      第4章では、HTMLとCSSを使いこなして自己紹介サイトを完成させたね。<br>
+      骨組み（HTML）と見た目（CSS）ときたら、残るは3つ目の言語 —— ページに<strong>動き</strong>をつける <strong>JavaScript（ジャバスクリプト）</strong>です。<br>
+      この章ではその第一歩として、「コンピュータに命令する」という<strong>プログラミングの基本</strong>を体験しよう。
+    </p>
+
+    <aside class="mentor-dialogue" aria-label="アオイとレンの会話">
+      <div class="mentor-line aoi"><img src="img/guide-aoi.svg" alt=""><p><span class="mentor-name">アオイ</span>JavaScriptは今までのHTMLと何が違うの？</p></div>
+      <div class="mentor-line ren"><img src="img/guide-ren.svg" alt=""><p><span class="mentor-name">レン</span>HTMLは部品、JavaScriptは命令。実行前に結果を予想してから動かすと、考え方が身につくよ。</p></div>
+    </aside>
+
+    <h2>5-1. プログラミングとは？<br>
+    〜コンピュータへの指示書〜</h2>
+    <p>
+      プログラムとは、コンピュータにやってほしいことを<strong>順番に書いた指示書</strong>です。<br>
+      料理のレシピとそっくりで、コンピュータは書かれた命令を<strong>上から順に、1行ずつ</strong>実行していきます。<br>
+      これを<strong>順次実行（じゅんじじっこう）</strong>と呼びます。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="レシピとプログラムの比較。どちらも上から順に1行ずつ実行される">
+        <rect x="30" y="20" width="280" height="290" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="170" y="52" text-anchor="middle" font-size="17" font-weight="bold" fill="#b45309">🍛 カレーのレシピ</text>
+        <rect x="55" y="70" width="230" height="40" rx="8" fill="#fff" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="70" y="96" font-size="14" fill="#78350f">1. 材料を切る</text>
+        <rect x="55" y="140" width="230" height="40" rx="8" fill="#fff" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="70" y="166" font-size="14" fill="#78350f">2. いためる</text>
+        <rect x="55" y="210" width="230" height="40" rx="8" fill="#fff" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="70" y="236" font-size="14" fill="#78350f">3. 煮こむ</text>
+        <path d="M170 112 L170 136" stroke="#b45309" stroke-width="3" fill="none"/>
+        <polygon points="170,140 164,130 176,130" fill="#b45309"/>
+        <path d="M170 182 L170 206" stroke="#b45309" stroke-width="3" fill="none"/>
+        <polygon points="170,210 164,200 176,200" fill="#b45309"/>
+        <text x="170" y="288" text-anchor="middle" font-size="13" fill="#78350f">上から順に作業する</text>
+        <text x="350" y="172" text-anchor="middle" font-size="20" font-weight="bold" fill="#64748b">同じ！</text>
+        <rect x="390" y="20" width="280" height="290" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="530" y="52" text-anchor="middle" font-size="17" font-weight="bold" fill="#0369a1">💻 プログラム</text>
+        <rect x="415" y="70" width="230" height="40" rx="8" fill="#fff" stroke="#0ea5e9" stroke-width="1.5"/>
+        <text x="428" y="95" font-size="12" font-family="monospace" fill="#0c4a6e">console.log("おはよう");</text>
+        <rect x="415" y="140" width="230" height="40" rx="8" fill="#fff" stroke="#0ea5e9" stroke-width="1.5"/>
+        <text x="428" y="165" font-size="12" font-family="monospace" fill="#0c4a6e">console.log("こんにちは");</text>
+        <rect x="415" y="210" width="230" height="40" rx="8" fill="#fff" stroke="#0ea5e9" stroke-width="1.5"/>
+        <text x="428" y="235" font-size="12" font-family="monospace" fill="#0c4a6e">console.log("こんばんは");</text>
+        <path d="M530 112 L530 136" stroke="#0369a1" stroke-width="3" fill="none"/>
+        <polygon points="530,140 524,130 536,130" fill="#0369a1"/>
+        <path d="M530 182 L530 206" stroke="#0369a1" stroke-width="3" fill="none"/>
+        <polygon points="530,210 524,200 536,200" fill="#0369a1"/>
+        <text x="530" y="288" text-anchor="middle" font-size="13" fill="#0c4a6e">上から順に1行ずつ実行</text>
+      </svg>
+      <figcaption>図5-1: プログラムは料理のレシピと同じ。<br>
+        書いた順番どおりに実行される</figcaption>
+    </div>
+
+    <p>
+      「順番どおりに実行される」——当たり前に聞こえるけど、これがプログラミングのいちばん大事なルール。<br>
+      あとで出てくる<strong>if文</strong>は、この流れを「条件によって枝分かれ」させる仕組みだよ。
+    </p>
+
+    <div class="term">
+      <span class="word">JavaScript</span> … ブラウザの中で動くプログラミング言語。<br>
+      ページに動きをつけたり、計算や判断をさせたりできる。<br>
+      名前が似ている「Java」はまったく別の言語なので注意！
+    </div>
+
+    <h2>5-2. はじめてのJavaScript</h2>
+    <p>
+      JavaScriptのコードは <code>.js</code> で終わるファイルに書き、HTMLから <code>&lt;script&gt;</code> タグで読み込みます。<br>
+      さっそく練習用のファイルを2つ作ってみよう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">js.html を作る</span>
+      <p><code>yumeaka-web</code> フォルダに新しいファイル <code>js.html</code> を作って、次のコードを書こう。</p>
+      <div class="code-block">
+        <span class="code-label">js.html</span>
+        <button class="copy-btn">コピー</button>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;JavaScriptの練習&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;JavaScriptの練習&lt;/h1&gt;
+    &lt;p&gt;結果はコンソールに表示されます。&lt;/p&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <p>
+        最後の行の <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> が、JavaScriptファイルを読み込む命令。<br>
+        画像の <code>src</code> と同じ「相対パス」だね。<br><strong><code>&lt;/body&gt;</code> の直前</strong>に書くのがお約束です（ページの内容を先に読み込んでから動かすため）。
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">script.js を作る</span>
+      <p>同じフォルダに <code>script.js</code> を作って、はじめてのプログラムを書こう。</p>
+      <div class="code-block">
+        <span class="code-label">script.js</span>
+        <button class="copy-btn">コピー</button>
+        <pre><code>console.log("こんにちは！");
+console.log("JavaScriptの世界へようこそ");</code></pre>
+      </div>
+      <p>
+        <code>console.log(〜)</code> は「カッコの中身を<strong>コンソール</strong>に表示して」という命令。<br>
+        保存して <code>js.html</code> を右クリック →「Open with Live Server」で開いてみよう。<br>
+        ……あれ、画面には何も増えていない？<br>
+        それで正解！<br>
+        結果は<strong>コンソール</strong>という秘密の画面に出ています。<br>
+        次で開き方を覚えよう。
+      </p>
+    </div>
+
+    <div class="term">
+      <span class="word">セミコロン（ ; ）</span> … 命令の終わりにつける記号。<br>
+      日本語の「。」<br>
+      にあたる。<br>
+      なくても動くことが多いけど、「1つの命令を書いたら ; 」のクセをつけておくとエラーに強くなるよ。
+    </div>
+
+    <h2>5-3. コンソールを開こう 〜開発者ツール〜</h2>
+    <p>
+      ブラウザには、プログラマー向けの隠し機能<strong>開発者ツール（デベロッパーツール）</strong>が入っています。<br>
+      その中の<strong>コンソール</strong>は、<code>console.log</code> の結果やエラーメッセージが表示される場所。<br>
+      JavaScriptを書くときの<strong>相棒</strong>になるので、開き方をしっかり覚えよう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">開発者ツールを開く</span>
+      <p>
+        ページのどこかを<strong>右クリック</strong>して、メニューのいちばん下にある「<strong>検証</strong>」をクリック。<br>
+        <span class="os-win">キーボード派は <code>F12</code> キー（または <code>Ctrl + Shift + I</code>）でもOK。</span>
+        <span class="os-mac">キーボード派は <code>⌘ + option + I</code> でもOK。</span>
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「コンソール」タブに切りかえる</span>
+      <p>
+        開発者ツールの上部に並ぶタブから「<strong>コンソール</strong>」（Console）をクリック。<br>
+        <code>こんにちは！</code> と <code>JavaScriptの世界へようこそ</code> が表示されていたら大成功！<br>
+        君のプログラムがちゃんと実行された証拠です。
+      </p>
+      <figure class="figure os-win">
+        <img src="img/ch5-01_devtools-console_win.svg" alt="ページを右クリックして検証を選び、コンソールタブに切りかえるとconsole.logの結果が表示される（Windows。F12キーでも開ける）">
+      </figure>
+      <figure class="figure os-mac">
+        <img src="img/ch5-01_devtools-console.svg" alt="ページを右クリックして検証を選び、コンソールタブに切りかえるとconsole.logの結果が表示される（Mac。command+option+Iでも開ける）">
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 つまずきポイント: 開発者ツールが英語で表示される</h4>
+      <p>タブが「Console」「Elements」のように英語でも中身は同じ。<br>
+        「Console」を押せばOK。<br>
+        （日本語にしたい人は、開発者ツール右上の歯車 → Language → Japanese）</p>
+    </div>
+
+    <h2>5-4. 変数 〜データに名前をつける箱〜</h2>
+    <p>
+      プログラムでは、数字や文字などのデータに<strong>名前をつけて保存</strong>しておけます。<br>
+      この仕組みが<strong>変数（へんすう）</strong>。<br>
+      「名前つきの箱」をイメージすると分かりやすいよ。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="変数は名前つきの箱。let age = 14 は age という箱に 14 を入れるという意味">
+        <text x="90" y="50" font-size="24" font-family="monospace" font-weight="bold" fill="#7c3aed">let</text>
+        <text x="148" y="50" font-size="24" font-family="monospace" fill="#1e293b">age</text>
+        <text x="210" y="50" font-size="24" font-family="monospace" font-weight="bold" fill="#dc2626">=</text>
+        <text x="238" y="50" font-size="24" font-family="monospace" fill="#1e293b">14;</text>
+        <path d="M111 62 L111 92" stroke="#7c3aed" stroke-width="2"/>
+        <text x="111" y="112" text-anchor="middle" font-size="13" fill="#7c3aed">「箱を作るよ」の合図</text>
+        <path d="M170 62 L170 130" stroke="#0369a1" stroke-width="2"/>
+        <text x="170" y="150" text-anchor="middle" font-size="13" fill="#0369a1">箱の名前</text>
+        <path d="M217 62 L217 168" stroke="#dc2626" stroke-width="2"/>
+        <text x="217" y="188" text-anchor="middle" font-size="13" fill="#dc2626">「入れる」の意味</text>
+        <rect x="430" y="80" width="170" height="130" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+        <rect x="455" y="60" width="120" height="36" rx="8" fill="#0369a1"/>
+        <text x="515" y="84" text-anchor="middle" font-size="16" font-family="monospace" fill="#ffffff" font-weight="bold">age</text>
+        <text x="515" y="170" text-anchor="middle" font-size="34" font-weight="bold" fill="#b45309">14</text>
+        <path d="M310 160 L410 160" stroke="#64748b" stroke-width="3" fill="none"/>
+        <polygon points="418,160 406,153 406,167" fill="#64748b"/>
+        <text x="360" y="146" text-anchor="middle" font-size="13" fill="#64748b">つまり…</text>
+        <text x="515" y="240" text-anchor="middle" font-size="14" fill="#78350f">「age」という名前の箱に 14 が入る</text>
+      </svg>
+      <figcaption>図5-2: <code>let age = 14;</code> は「age という箱を作って 14 を入れる」という意味。<br><code>=</code> は「等しい」ではなく「入れる」！</figcaption>
+    </div>
+
+    <p>変数の作り方は2種類。<br><strong>あとで中身を入れかえられる <code>let</code></strong> と、<strong>入れかえ禁止の <code>const</code>（コンスト）</strong>です。</p>
+
+    <div class="code-block">
+      <span class="code-label">script.js（書きかえて試そう）</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>let score = 0;          // let は中身を入れかえOK
+console.log(score);     // → 0
+score = 100;            // 2回目からは let を書かない
+console.log(score);     // → 100
+
+const school = "夢アカデミー";  // const は入れかえ禁止
+console.log(school);    // → 夢アカデミー</code></pre>
+    </div>
+
+    <div class="term">
+      <span class="word">let / const</span> … 変数を作る（宣言する）キーワード。<br>
+      迷ったら<strong>まず <code>const</code></strong>、あとで入れかえたくなったら <code>let</code> に変えるのがプロの流儀。<br>
+      同じ名前の箱は2回作れないよ。
+    </div>
+
+    <div class="term">
+      <span class="word">コメント</span> … <code>//</code> から行末までは実行されないメモ。<br>
+      HTMLの <code>&lt;!-- --&gt;</code> のJavaScript版だね。
+    </div>
+
+    <h2>5-5. 計算と文字列</h2>
+    <p>JavaScriptは超高性能な電卓でもあります。<br>
+      算数の記号とちょっと違うところに注意。</p>
+
+    <table>
+      <tr><th>記号</th><th>意味</th><th>例</th><th>結果</th></tr>
+      <tr><td><code>+</code></td><td>たし算</td><td><code>10 + 3</code></td><td><code>13</code></td></tr>
+      <tr><td><code>-</code></td><td>ひき算</td><td><code>10 - 3</code></td><td><code>7</code></td></tr>
+      <tr><td><code>*</code></td><td>かけ算（×ではない！）</td><td><code>10 * 3</code></td><td><code>30</code></td></tr>
+      <tr><td><code>/</code></td><td>わり算（÷ではない！）</td><td><code>10 / 4</code></td><td><code>2.5</code></td></tr>
+      <tr><td><code>%</code></td><td>わり算の余り</td><td><code>10 % 3</code></td><td><code>1</code></td></tr>
+    </table>
+
+    <div class="code-block">
+      <span class="code-label">計算の例</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>const price = 120;   // 1本の値段
+const count = 3;     // 本数
+console.log(price * count);         // → 360
+console.log(price * count + 500);   // → 860（計算の順番も算数と同じ）</code></pre>
+    </div>
+
+    <p>
+      <code>"こんにちは！"</code> のように <code>"</code>（ダブルクォート）で囲んだデータは<strong>文字列（もじれつ）</strong>と呼びます。<br>
+      文字列どうしは <code>+</code> で<strong>つなげる</strong>ことができて、変数と組み合わせると便利！
+    </p>
+
+    <div class="code-block">
+      <span class="code-label">文字列をつなげる</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>const name = "ゆめこ";
+const age = 14;
+console.log("わたしは" + name + "、" + age + "歳です");
+// → わたしはゆめこ、14歳です</code></pre>
+    </div>
+
+    <div class="term">
+      <span class="word">文字列</span> … <code>"〜"</code> で囲んだ文字のデータ。<br>
+      囲み忘れると、JavaScriptはそれを変数の名前だと思ってエラーになる。<br><code>14</code>（数値）と <code>"14"</code>（文字列）は別モノなのも大事なポイント。
+    </div>
+
+    <h2>5-6. if文 〜条件で枝分かれさせる〜</h2>
+    <p>
+      ここからが今日のメインイベント。<br><strong>if文（イフぶん）</strong>を使うと、
+      「もし〜なら A、そうでなければ B」という<strong>判断</strong>をプログラムにさせられます。<br>
+      順次実行の一本道が、条件によって枝分かれするイメージだよ。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="if文のフローチャート。ageは13以上かの条件でYESとNOに枝分かれし、それぞれ違うメッセージを表示して合流する">
+        <rect x="270" y="15" width="160" height="40" rx="20" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+        <text x="350" y="41" text-anchor="middle" font-size="14" fill="#334155">プログラム開始</text>
+        <path d="M350 55 L350 85" stroke="#64748b" stroke-width="3" fill="none"/>
+        <polygon points="350,90 344,80 356,80" fill="#64748b"/>
+        <polygon points="350,95 480,145 350,195 220,145" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+        <text x="350" y="140" text-anchor="middle" font-size="15" font-weight="bold" fill="#854d0e">age は 13 以上？</text>
+        <text x="350" y="162" text-anchor="middle" font-size="12" font-family="monospace" fill="#854d0e">age &gt;= 13</text>
+        <path d="M220 145 L120 145 L120 205" stroke="#16a34a" stroke-width="3" fill="none"/>
+        <polygon points="120,210 114,200 126,200" fill="#16a34a"/>
+        <text x="158" y="132" text-anchor="middle" font-size="14" font-weight="bold" fill="#16a34a">YES</text>
+        <path d="M480 145 L580 145 L580 205" stroke="#dc2626" stroke-width="3" fill="none"/>
+        <polygon points="580,210 574,200 586,200" fill="#dc2626"/>
+        <text x="540" y="132" text-anchor="middle" font-size="14" font-weight="bold" fill="#dc2626">NO</text>
+        <rect x="20" y="215" width="200" height="55" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="120" y="238" text-anchor="middle" font-size="13" fill="#166534">「13歳以上だね！」</text>
+        <text x="120" y="258" text-anchor="middle" font-size="12" fill="#166534">と表示（ifの中）</text>
+        <rect x="480" y="215" width="200" height="55" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+        <text x="580" y="238" text-anchor="middle" font-size="13" fill="#991b1b">「12歳以下だね！」</text>
+        <text x="580" y="258" text-anchor="middle" font-size="12" fill="#991b1b">と表示（elseの中）</text>
+        <path d="M120 270 L120 320 L282 320" stroke="#64748b" stroke-width="3" fill="none"/>
+        <path d="M580 270 L580 320 L418 320" stroke="#64748b" stroke-width="3" fill="none"/>
+        <text x="350" y="326" text-anchor="middle" font-size="14" fill="#334155">合流して次の行へ</text>
+      </svg>
+      <figcaption>図5-3: if文は分かれ道。<br>
+        条件が YES なら if の中、NO なら else の中だけが実行される</figcaption>
+    </div>
+
+    <div class="code-block">
+      <span class="code-label">if文の基本形</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>const age = 14;
+
+if (age &gt;= 13) {
+  console.log("13歳以上だね！");
+} else {
+  console.log("12歳以下だね！");
+}</code></pre>
+    </div>
+
+    <p>
+      <code>if (条件) { 〜 }</code> の <code>{ }</code>（波カッコ）の中が「条件がYESのときだけ」実行され、
+      <code>else { 〜 }</code> の中は「NOのとき」だけ実行されます。<br><code>age</code> の値をいろいろ変えて、結果が変わるのを確かめてみよう。
+    </p>
+
+    <p>条件に使える<strong>比較の記号</strong>はこちら。</p>
+
+    <table>
+      <tr><th>書き方</th><th>意味</th><th>例（age が 14 のとき）</th></tr>
+      <tr><td><code>&gt;=</code></td><td>〜以上</td><td><code>age &gt;= 13</code> → YES</td></tr>
+      <tr><td><code>&lt;=</code></td><td>〜以下</td><td><code>age &lt;= 12</code> → NO</td></tr>
+      <tr><td><code>&gt;</code></td><td>〜より大きい</td><td><code>age &gt; 14</code> → NO</td></tr>
+      <tr><td><code>&lt;</code></td><td>〜より小さい</td><td><code>age &lt; 15</code> → YES</td></tr>
+      <tr><td><code>===</code></td><td>等しい（=を3つ！）</td><td><code>age === 14</code> → YES</td></tr>
+      <tr><td><code>!==</code></td><td>等しくない</td><td><code>age !== 14</code> → NO</td></tr>
+    </table>
+
+    <div class="term">
+      <span class="word">= と === のちがい</span> … <code>=</code> は「箱に入れる」、<code>===</code> は「等しいか比べる」。<br>
+      役割がまったく違う！<br>
+      if の条件に <code>=</code> を1つだけ書くのは定番ミスなので要注意。
+    </div>
+
+    <p>分かれ道を3つ以上にしたいときは、<code>else if</code> を間にはさみます。<br><strong>上から順に</strong>チェックされて、最初にYESになったところだけが実行されるよ。</p>
+
+    <div class="code-block">
+      <span class="code-label">else if で3分岐</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>const score = 85;
+
+if (score &gt;= 80) {
+  console.log("すごい！");
+} else if (score &gt;= 50) {
+  console.log("合格！");
+} else {
+  console.log("もうひといき！");
+}</code></pre>
+    </div>
+
+    <h2>5-7. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 自己紹介プログラム</h3>
+      <p>
+        変数 <code>name</code>（名前）と <code>age</code>（年齢）を作って、
+        コンソールに「わたしは〇〇、△△歳です」と表示するプログラムを <code>script.js</code> に書こう。
+      </p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>5-5の「文字列をつなげる」の例がほぼそのまま使えるよ。<br>
+          名前は文字列だから <code>"〜"</code> で囲む、年齢は数値だからそのまま書く。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 年齢でメッセージを変えよう（この章のメイン課題！）</h3>
+      <p>変数 <code>age</code> の値によって、表示されるメッセージが変わるプログラムを作ろう。</p>
+      <ul>
+        <li>12以下 →「小学生かな？」</li>
+        <li>13〜15 →「中学生だね！」</li>
+        <li>16以上 →「高校生以上だね！」</li>
+      </ul>
+      <p>できたら <code>age</code> を 10、14、17 に変えて、3パターンとも正しく出るかテストしよう。<br>
+        メッセージの言葉は自由にアレンジしてOK！</p>
+      <details class="hint">
+        <summary>ヒント1: 形を見る</summary>
+        <p>5-6の「else if で3分岐」の例と同じ形。<br><code>score</code> を <code>age</code> に置きかえて考えよう。</p>
+      </details>
+      <details class="hint">
+        <summary>ヒント2: 条件の順番</summary>
+        <p><strong>大きい数字から順に</strong>チェックするのがコツ。<br><code>if (age &gt;= 16)</code> → <code>else if (age &gt;= 13)</code> → <code>else</code> の順なら、14歳は最初の条件でNO、次でYESになる。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 「かつ」の条件</h3>
+      <p>
+        「13歳以上、<strong>かつ</strong>18歳以下」のときだけ「夢アカデミーの対象年齢だね！」<br>
+        と表示するには？<br>
+        条件を2つ組み合わせる書き方 <code>&amp;&amp;</code>（アンド）を調べて挑戦してみよう。
+      </p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p><code>if (age &gt;= 13 &amp;&amp; age &lt;= 18) { 〜 }</code> のように、<code>&amp;&amp;</code> で条件をつなぐと「両方YESのときだけYES」になる。<br>
+        ちなみに <code>||</code>（オア）は「どちらかがYESならYES」だよ。</p>
+      </details>
+    </div>
+
+    <div class="answer-link">
+      <p>✅ <strong>お手本を見る</strong> — まずは自分でやってみて、できたら答え合わせに使おう。<br>
+        開いたら開発者ツールのコンソール（5-3参照）を見てね。課題1〜3の結果が表示されているよ。</p>
+      <a href="answers/chapter5/js.html" target="_blank" rel="noopener">お手本ページを別タブで開く →</a>
+    </div>
+
+    <h2>5-8. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>コンソールに何も表示されない</h4>
+      <p><strong>原因1:</strong> <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> の書き忘れ・ファイル名の打ち間違い。</p>
+      <p><strong>原因2:</strong> <code>script.js</code> を保存していない（タブの「●」をチェック）。</p>
+      <p><strong>直し方:</strong> scriptタグのつづりと <code>src</code> のファイル名を確認 → 両方のファイルを保存 → ブラウザを再読み込み。<br>
+      コンソールに赤いエラーが出ていないかも見よう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>赤い文字で「Uncaught SyntaxError: Invalid or unexpected token」</h4>
+      <p><strong>原因:</strong> <strong>全角文字</strong>がまぎれこんでいる（日本語入力のまま打った <code>（）</code> <code>”</code> や全角スペースなど）。<br>
+      日本語ユーザーの定番エラー！</p>
+      <p><strong>直し方:</strong> エラーメッセージの右端に出る <code>script.js:2</code> は「script.jsの2行目」という意味。<br>
+      その行の記号を半角で打ち直そう。<br>
+      記号を打つときは入力を半角英数（<span class="os-win">半角/全角キー</span><span class="os-mac">英数キー</span>）に切りかえるクセをつけると防げるよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>赤い文字で「Uncaught ReferenceError: 〜 is not defined」</h4>
+      <p><strong>原因:</strong> スペルミス。<br><code>consol.log</code>（eが足りない）や、変数名の打ち間違い（<code>Age</code> と <code>age</code> は別モノ！）。<br>
+      文字列の <code>"〜"</code> の囲み忘れでも出る。</p>
+      <p><strong>直し方:</strong> 「〜 is not defined（〜なんて知らないよ）」の「〜」の部分に、間違えたつづりがそのまま表示されている。<br>
+      正しいつづりと見比べよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>if文がいつも同じ結果になる</h4>
+      <p><strong>原因:</strong> 条件のところに <code>=</code> を1つだけ書いている（<code>if (age = 13)</code>）。<br>
+      これは「比較」ではなく「代入」になってしまう。</p>
+      <p><strong>直し方:</strong> 等しいかどうかは <code>===</code>（3つ）。<br>
+      「以上・以下」は <code>&gt;=</code> <code>&lt;=</code> を使おう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>計算のはずが「105」のように文字がくっついて出る</h4>
+      <p><strong>原因:</strong> <code>"10" + 5</code> のように、数値のつもりが<strong>文字列</strong>になっている。<br>
+      文字列の <code>+</code> は「つなげる」だったね。</p>
+      <p><strong>直し方:</strong> 計算したい数字は <code>"</code> で囲まない。<br><code>const age = "14";</code> ではなく <code>const age = 14;</code> と書こう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>5-9. 🤖 AIを味方につけよう</h2>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — まず15分自分で考えてから</p>
+      <ul>
+        <li><strong>エラーメッセージの翻訳:</strong> コンソールの赤い英語をコピーして「どういう意味？」<br>
+        と聞く（JavaScript学習の最強の使い方！）</li>
+        <li><strong>条件の書き方相談:</strong> 「〜のときだけ、はどう書く？」<br>
+        と考え方から聞く</li>
+        <li><strong>コードの音読:</strong> 自分のコードを貼って「1行ずつ何をしているか説明して」と頼むと理解が深まる</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        JavaScriptを勉強中の中学生です。<br>
+        コンソールに「Uncaught SyntaxError: Invalid or unexpected token script.js:3」と赤いエラーが出ました。<br>
+        コードはこれです:（script.jsの中身を貼る）。<br>
+        エラーの意味と、どこを直せばいいかを、答えのコードをいきなり書かずにヒントから教えてください。
+      </div>
+      <div class="prompt-example">
+        JavaScriptのif文を習ったばかりの中学生です。<br>
+        「13歳以上15歳以下のときだけメッセージを出す」条件の考え方を、数直線のイメージで説明してください。<br>
+        答えのコードは最後にお願いします。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>課題2のプログラムを丸ごと書かせる（if文は今後ずっと使う基本。<br>
+          ここで自分の頭で書いた人が最後に勝つ！）</li>
+        <li>AIのコードを<strong>動かして確かめずに</strong>使う（必ずコンソールで結果を確認。<br>
+          AIも全角スペースの見落としはあるよ）</li>
+      </ul>
+    </div>
+
+    <h2>5-10. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> プログラムが上から順に実行されることを説明できる</label>
+      <label><input type="checkbox"> <code>&lt;script&gt;</code> タグでJSファイルを読み込めた</label>
+      <label><input type="checkbox"> 開発者ツールのコンソールを自力で開ける（右クリック →「検証」）</label>
+      <label><input type="checkbox"> <code>let</code> と <code>const</code> の違いを説明できる</label>
+      <label><input type="checkbox"> <code>=</code>（入れる）と <code>===</code>（比べる）の違いを説明できる</label>
+      <label><input type="checkbox"> 課題1〜2ができた（課題3もできたらすごい！）</label>
+    </div>
+    <p>全部チェックできたら第5章クリア！<br>
+      🎉 次回はいよいよ最終回。<br>
+      JavaScriptでボタンやページを動かして、ミニ作品を完成させるよ。</p>
+
+    <h2>5-11. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://developer.mozilla.org/ja/docs/Learn_web_development/Core/Scripting" target="_blank">JavaScriptの第一歩（MDN）</a> — この章の内容をもっと深く</li>
+      <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/if...else" target="_blank">if...else の解説（MDN）</a> — 条件分岐のくわしい使い方</li>
+      <li><a href="https://developer.mozilla.org/ja/docs/Learn_web_development/Core/Scripting/Variables" target="_blank">変数の解説（MDN）</a> — let と const をさらにくわしく</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter4.html">← 第4章 自己紹介サイト制作</a>
+      <a href="index.html">目次にもどる</a>
+      <a href="chapter6.html">第6章 JSでページを動かす →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Webコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+  <script type="module" src="js/learning-ui.js"></script>
+  <script>
+    // コードブロックのコピーボタン
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.parentElement.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(function () {
+          btn.textContent = 'コピーした！';
+          setTimeout(function () { btn.textContent = 'コピー'; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
