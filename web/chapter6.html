@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第6章 JSでページを動かす＋ミニ作品制作 | 夢アカWeb教科書</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">本文へスキップ</a>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Webコース教科書</a></h1>
+  </header>
+
+  <main class="container" id="main-content">
+    <div class="chapter-title">
+      <span class="chapter-num">第6章</span>
+      <h1>JSでページを動かす＋ミニ作品制作</h1>
+      <div class="date">📅 10/25(日) の講習で使います</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>JavaScriptがHTMLを書き換える仕組み「DOM」を説明できる</li>
+        <li>ボタンをクリックしたら文字や色が変わるページを作れる</li>
+        <li>ミニ作品「3択クイズ」を完成させて、自己紹介サイトから遊べるようにできる</li>
+      </ul>
+    </div>
+
+    <p>
+      第5章では、変数・計算・if文を使って、コンソール（開発者ツールの黒い画面）の中でプログラムを動かしたね。<br>
+      でも本当にやりたいのは、<strong>自分のWebページを動かすこと</strong>のはず。<br>
+      いよいよ最終回。<br>
+      今日はJavaScriptとHTMLをつないで「ボタンを押したら画面が変わる」を作り、
+      ミニ作品<strong>「3択クイズ」</strong>を完成させます。<br>
+      問題のテーマはキミの自由だよ。できあがったら、先生やメンターに見せに行こう。
+    </p>
+
+    <aside class="mentor-dialogue" aria-label="アオイとレンの会話">
+      <div class="mentor-line aoi"><img src="img/guide-aoi.svg" alt=""><p><span class="mentor-name">アオイ</span>クイズ全部を一気に作るのは大変そう。</p></div>
+      <div class="mentor-line ren"><img src="img/guide-ren.svg" alt=""><p><span class="mentor-name">レン</span>まず1問だけ動かそう。動いた仕組みをコピーして増やせば、作品になる。</p></div>
+    </aside>
+
+    <h2>6-1. DOMとは 〜HTMLとJavaScriptの橋渡し〜</h2>
+    <p>
+      ブラウザはHTMLファイルを読みこむと、ページの部品（見出し・段落・ボタンなど）を
+      <strong>ツリー（木）の形の一覧表</strong>にして持っています。<br>
+      これを <strong>DOM（ドム）</strong>と呼びます。<br>
+      JavaScriptはこのDOMを通して部品をつかまえて、「文字を変えて」「色を変えて」と命令できるんです。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ブラウザがHTMLを読みこんでDOMツリーを作り、JavaScriptがDOMの部品をつかまえて変える図">
+        <text x="112" y="45" text-anchor="middle" font-size="15" font-weight="bold" fill="#b45309">HTML（コード）</text>
+        <rect x="20" y="60" width="185" height="200" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="36" y="98" font-size="12" font-family="monospace" fill="#78350f">&lt;body&gt;</text>
+        <text x="48" y="128" font-size="12" font-family="monospace" fill="#78350f">&lt;h1&gt;…&lt;/h1&gt;</text>
+        <text x="48" y="158" font-size="12" font-family="monospace" fill="#78350f">&lt;p&gt;…&lt;/p&gt;</text>
+        <text x="48" y="188" font-size="12" font-family="monospace" fill="#78350f">&lt;button&gt;…&lt;/button&gt;</text>
+        <text x="36" y="228" font-size="12" font-family="monospace" fill="#78350f">&lt;/body&gt;</text>
+        <line x1="215" y1="160" x2="282" y2="160" stroke="#64748b" stroke-width="2.5"/>
+        <polygon points="292,160 278,153 278,167" fill="#64748b"/>
+        <text x="252" y="126" text-anchor="middle" font-size="12" fill="#475569">ブラウザが</text>
+        <text x="252" y="144" text-anchor="middle" font-size="12" fill="#475569">読みこむ</text>
+        <text x="490" y="45" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">DOM（部品のツリー）</text>
+        <line x1="490" y1="106" x2="355" y2="160" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="490" y1="106" x2="485" y2="160" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="490" y1="106" x2="620" y2="160" stroke="#94a3b8" stroke-width="2"/>
+        <rect x="440" y="70" width="100" height="36" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="490" y="94" text-anchor="middle" font-size="14" font-family="monospace" font-weight="bold" fill="#0369a1">body</text>
+        <rect x="315" y="160" width="80" height="36" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="355" y="184" text-anchor="middle" font-size="14" font-family="monospace" fill="#0369a1">h1</text>
+        <rect x="455" y="160" width="60" height="36" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="485" y="184" text-anchor="middle" font-size="14" font-family="monospace" fill="#0369a1">p</text>
+        <rect x="565" y="160" width="110" height="36" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="620" y="184" text-anchor="middle" font-size="14" font-family="monospace" fill="#0369a1">button</text>
+        <rect x="280" y="270" width="180" height="50" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+        <text x="370" y="302" text-anchor="middle" font-size="17" font-weight="bold" fill="#be185d">JavaScript</text>
+        <path d="M462 285 C560 275, 610 250, 620 204" fill="none" stroke="#ec4899" stroke-width="2.5"/>
+        <polygon points="620,198 613,212 628,210" fill="#ec4899"/>
+        <text x="574" y="250" text-anchor="middle" font-size="13" font-weight="bold" fill="#be185d">つかまえて変える！</text>
+      </svg>
+      <figcaption>図6-1: ブラウザはHTMLからDOM（部品のツリー）を作る。<br>
+        JavaScriptはDOM経由で部品を操作する</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">DOM（ドム）</span> … Document Object Model の略。<br>
+      ブラウザが持っている「ページの部品一覧表」。<br>
+      JavaScriptからHTMLをさわるときの窓口になる。
+    </div>
+
+    <h2>6-2. 部品を「つかまえて」変えてみよう</h2>
+    <p>
+      DOMから部品をつかまえるいちばん簡単な方法が <code>document.getElementById()</code> です。<br>
+      第2章で学んだ「属性」を使って、HTML側の部品に <code>id</code>（名前）をつけておき、その名前で呼び出します。
+    </p>
+    <p>新しいファイル <code>dom-test.html</code> を作って、ためしてみよう。</p>
+
+    <div class="code-block">
+      <span class="code-label">dom-test.html</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;DOMの練習&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 id="aisatsu"&gt;こんにちは！&lt;/h1&gt;
+
+    &lt;script&gt;
+      let aisatsu = document.getElementById("aisatsu");
+      aisatsu.textContent = "こんばんは！";
+      aisatsu.style.color = "orange";
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <p>
+      ブラウザで開くと、HTMLには「こんにちは！」<br>
+      と書いたのに、画面には<strong>オレンジ色の「こんばんは！」</strong>が表示されます。<br>
+      JavaScriptがあとから部品をつかまえて書き換えたからです。<br>
+      これがDOM操作！
+    </p>
+
+    <table>
+      <tr><th>書き方</th><th>意味</th></tr>
+      <tr><td><code>document.getElementById("名前")</code></td><td>「ページ（document）の中から、このidの部品を取ってきて」という命令</td></tr>
+      <tr><td><code>部品.textContent = "文字"</code></td><td>部品の中の文字を書き換える</td></tr>
+      <tr><td><code>部品.style.color = "色"</code></td><td>部品の文字色を変える（CSSの <code>color</code> と同じ）</td></tr>
+      <tr><td><code>部品.style.backgroundColor = "色"</code></td><td>背景色を変える。<br>
+        CSSの <code>background-color</code> はJSでは<strong>ハイフンなしで次を大文字</strong>にする</td></tr>
+    </table>
+
+    <div class="term">
+      <span class="word">id属性</span> … 部品につける「自分だけの名前」。<br>
+      同じidはページに1回しか使えない。<br>
+      JSからつかまえたい部品に付けよう。<br>
+      つづりはHTML側とJS側で<strong>1文字も違わず</strong>一致させること！
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 先に知っておこう: &lt;script&gt; は body の最後に書く</h4>
+      <p>ブラウザはHTMLを上から順に読みます。<br>
+        部品より先にJSを書くと「そんな部品はまだ無いよ（null）」というエラーに。<br><strong><code>&lt;/body&gt;</code> の直前</strong>に書くのが安全です。</p>
+    </div>
+
+    <h2>6-3. ボタンをクリックしたら動かす 〜イベント〜</h2>
+    <p>
+      6-2のコードは、ページを開いた瞬間に1回動いて終わりでした。<br>
+      「<strong>ボタンを押したときに</strong>動く」ようにするには、<strong>イベント</strong>という仕組みを使います。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="クリックから画面が変わるまでのイベントの流れ4ステップ">
+        <rect x="20" y="40" width="150" height="110" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <rect x="60" y="62" width="56" height="24" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/>
+        <polygon points="105,74 105,98 112,92 116,102 120,100 116,91 122,91" fill="#1e293b" stroke="#ffffff" stroke-width="1"/>
+        <text x="95" y="118" text-anchor="middle" font-size="14" fill="#0c4a6e">ボタンを</text>
+        <text x="95" y="138" text-anchor="middle" font-size="14" fill="#0c4a6e">クリック</text>
+        <line x1="174" y1="95" x2="186" y2="95" stroke="#64748b" stroke-width="2.5"/>
+        <polygon points="194,95 182,89 182,101" fill="#64748b"/>
+        <rect x="196" y="40" width="150" height="110" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="271" y="78" text-anchor="middle" font-size="14" fill="#78350f">ブラウザが</text>
+        <text x="271" y="101" text-anchor="middle" font-size="13" fill="#78350f">「clickが起きた!」</text>
+        <text x="271" y="124" text-anchor="middle" font-size="14" fill="#78350f">と気づく</text>
+        <line x1="350" y1="95" x2="362" y2="95" stroke="#64748b" stroke-width="2.5"/>
+        <polygon points="370,95 358,89 358,101" fill="#64748b"/>
+        <rect x="372" y="40" width="150" height="110" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+        <text x="447" y="78" text-anchor="middle" font-size="14" fill="#831843">登録しておいた</text>
+        <text x="447" y="101" text-anchor="middle" font-size="14" fill="#831843">関数（命令の束）</text>
+        <text x="447" y="124" text-anchor="middle" font-size="14" fill="#831843">が実行される</text>
+        <line x1="526" y1="95" x2="538" y2="95" stroke="#64748b" stroke-width="2.5"/>
+        <polygon points="546,95 534,89 534,101" fill="#64748b"/>
+        <rect x="548" y="40" width="132" height="110" rx="12" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="614" y="90" text-anchor="middle" font-size="14" fill="#166534">文字や色が</text>
+        <text x="614" y="113" text-anchor="middle" font-size="14" fill="#166534">変わる！</text>
+        <circle cx="24" cy="42" r="13" fill="#0ea5e9"/>
+        <text x="24" y="47" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">1</text>
+        <circle cx="200" cy="42" r="13" fill="#f59e0b"/>
+        <text x="200" y="47" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">2</text>
+        <circle cx="376" cy="42" r="13" fill="#ec4899"/>
+        <text x="376" y="47" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">3</text>
+        <circle cx="552" cy="42" r="13" fill="#16a34a"/>
+        <text x="552" y="47" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">4</text>
+        <text x="350" y="188" text-anchor="middle" font-size="13" fill="#64748b">addEventListener は「clickが起きたら、この関数を実行してね」という予約</text>
+      </svg>
+      <figcaption>図6-2: イベントの流れ。<br>
+        予約しておいた関数が、クリックの瞬間に呼び出される</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">イベント</span> … ページの上で起きる「できごと」のこと。<br>
+      クリック（click）のほかに、マウスが乗った（mouseover）、キーを押した（keydown）などがある。
+    </div>
+
+    <div class="term">
+      <span class="word">関数（かんすう）</span> … 命令をひとまとめにした「実行の予約セット」。<br><code>function () { ... }</code> の <code>{ }</code> の中に、やってほしい命令を書く。
+    </div>
+
+    <p><code>dom-test.html</code> の <code>&lt;body&gt;</code> の中身を、次のように書き換えてためそう。</p>
+
+    <div class="code-block">
+      <span class="code-label">dom-test.html（bodyの中身）</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>&lt;button id="botan"&gt;押してみて&lt;/button&gt;
+&lt;p id="message"&gt;まだ押されていない&lt;/p&gt;
+
+&lt;script&gt;
+  let botan = document.getElementById("botan");
+  let message = document.getElementById("message");
+
+  botan.addEventListener("click", function () {
+    message.textContent = "押してくれてありがとう！";
+    message.style.color = "deeppink";
+  });
+&lt;/script&gt;</code></pre>
+    </div>
+
+    <p>
+      ボタンを押した瞬間、文字が変わったら成功！<br>
+      実はこの教科書の「コピー」ボタンも、まったく同じ <code>addEventListener</code> で動いています。<br>
+      キミはもう、この教科書と同じ技術を使えるようになったってこと。
+    </p>
+
+    <h2>6-4. 配列 〜クイズの材料箱〜</h2>
+    <p>
+      クイズに必要な残りの材料は「問題や選択肢をまとめて覚えておく箱」。<br>
+      第5章の変数 <code>let</code> は値を1つしか覚えられなかったけど、<strong>配列</strong>を使うとまとめて覚えられます。
+    </p>
+
+    <h3>配列: 値をまとめて入れる箱</h3>
+    <div class="code-block">
+      <span class="code-label">配列の例（コンソールでためせる）</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>let sentakushi = ["富士山", "高尾山", "エベレスト"];
+
+console.log(sentakushi[0]);      // → 富士山（番号は0から始まる！）
+console.log(sentakushi[2]);      // → エベレスト
+console.log(sentakushi.length);  // → 3（入っている個数）</code></pre>
+    </div>
+
+    <div class="term">
+      <span class="word">配列（はいれつ）</span> … <code>[ ]</code> にカンマ区切りで値を並べた「まとめ箱」。<br><code>箱[番号]</code> で取り出す。<br><strong>番号は1ではなく0から</strong>始まるのがプログラミングの伝統なので注意！
+    </div>
+
+    <h3>配列の中に配列 〜クイズ1問をパックする〜</h3>
+    <p>
+      配列には文字だけでなく、数も、そして<strong>配列そのもの</strong>も入れられます。<br>
+      「問題文・選択肢3つ・正解の番号」を1つの配列にパックすれば、クイズ1問が1行で書ける！
+    </p>
+
+    <div class="code-block">
+      <span class="code-label">1問パックの例（コンソールでためせる）</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>let quiz = ["日本でいちばん高い山は？", "富士山", "高尾山", "エベレスト", 1];
+
+console.log(quiz[0]);   // → 日本でいちばん高い山は？（問題文）
+console.log(quiz[1]);   // → 富士山（選択肢その1）
+console.log(quiz[4]);   // → 1（正解の番号）</code></pre>
+    </div>
+
+    <p>そして「1問パック」をさらに配列に並べれば、問題集のできあがり。<br>
+      これがクイズの心臓部だよ。</p>
+
+    <div class="code-block">
+      <span class="code-label">問題集（クイズの心臓部）</span>
+      <button class="copy-btn">コピー</button>
+      <pre><code>let quizList = [
+  ["日本でいちばん高い山は？", "富士山", "高尾山", "エベレスト", 1],
+  ["1週間は全部で何日？", "5日", "6日", "7日", 3],
+];
+
+console.log(quizList.length);   // → 2（問題の数）
+console.log(quizList[1][0]);    // → 1週間は全部で何日？（2問目の問題文）</code></pre>
+    </div>
+
+    <div class="term">
+      <span class="word">配列の中の配列</span> … <code>quizList[1][0]</code> は「quizListの1番のパックの中の、0番」という意味。<br>
+      番号を2回重ねて、奥の値を取り出せる。
+    </div>
+
+    <p>
+      問題の数を数えるのに <code>quizList.length</code> を使っているのがポイント。<br>
+      問題を増やしても、<strong>プログラムの他の部分は直さなくていい</strong>んです。
+    </p>
+
+    <h2>6-5. ミニ作品「3択クイズ」を完成させよう</h2>
+    <p>ここまでの材料を全部合体させて、3択クイズを作ります。<br>
+      まずは完成イメージから。</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3択クイズの完成イメージ。問題文と選択肢ボタン3つがあり、押すと正解の判定が出て次の問題に進む">
+        <text x="170" y="24" text-anchor="middle" font-size="13" fill="#64748b">開いたとき（1問目が出る）</text>
+        <rect x="30" y="36" width="280" height="268" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+        <path d="M30 64 L310 64" stroke="#94a3b8" stroke-width="1.5"/>
+        <circle cx="52" cy="50" r="5" fill="#cbd5e1"/>
+        <circle cx="68" cy="50" r="5" fill="#cbd5e1"/>
+        <circle cx="84" cy="50" r="5" fill="#cbd5e1"/>
+        <text x="170" y="94" text-anchor="middle" font-size="15" font-weight="bold" fill="#1d4ed8">なんでも3択クイズ</text>
+        <text x="170" y="122" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">Q1. 日本でいちばん高い山は？</text>
+        <rect x="80" y="136" width="180" height="27" rx="13.5" fill="#2563eb"/>
+        <text x="170" y="154" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">富士山</text>
+        <rect x="80" y="172" width="180" height="27" rx="13.5" fill="#2563eb"/>
+        <text x="170" y="190" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">高尾山</text>
+        <rect x="80" y="208" width="180" height="27" rx="13.5" fill="#2563eb"/>
+        <text x="170" y="226" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">エベレスト</text>
+        <text x="350" y="150" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">クリック！</text>
+        <line x1="320" y1="170" x2="372" y2="170" stroke="#dc2626" stroke-width="2.5"/>
+        <polygon points="380,170 368,164 368,176" fill="#dc2626"/>
+        <text x="530" y="24" text-anchor="middle" font-size="13" fill="#64748b">判定が出て、次の問題へ</text>
+        <rect x="390" y="36" width="280" height="268" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+        <path d="M390 64 L670 64" stroke="#94a3b8" stroke-width="1.5"/>
+        <circle cx="412" cy="50" r="5" fill="#cbd5e1"/>
+        <circle cx="428" cy="50" r="5" fill="#cbd5e1"/>
+        <circle cx="444" cy="50" r="5" fill="#cbd5e1"/>
+        <text x="530" y="94" text-anchor="middle" font-size="15" font-weight="bold" fill="#1d4ed8">なんでも3択クイズ</text>
+        <text x="530" y="122" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">Q2. 1週間は全部で何日？</text>
+        <rect x="440" y="136" width="180" height="27" rx="13.5" fill="#2563eb"/>
+        <text x="530" y="154" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">5日</text>
+        <rect x="440" y="172" width="180" height="27" rx="13.5" fill="#2563eb"/>
+        <text x="530" y="190" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">6日</text>
+        <rect x="440" y="208" width="180" height="27" rx="13.5" fill="#2563eb"/>
+        <text x="530" y="226" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">7日</text>
+        <text x="530" y="274" text-anchor="middle" font-size="20" font-weight="bold" fill="#16a34a">○ 正解！</text>
+      </svg>
+      <figcaption>図6-3: 3択クイズの完成イメージ。<br>
+        ここから自分の問題に差しかえていく</figcaption>
+    </div>
+
+    <p>
+      今日は<strong>制作と発表の時間をたっぷり取りたい</strong>ので、土台のコードはテンプレートとして用意しました。<br>
+      まずはコピペで動かしてOK！<br>
+      そのあと問題を入れかえて「自分の作品」に育てるのが今日のメインイベントです。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">quiz.html を作る</span>
+      <p>VSCodeで<strong>自己紹介サイトのフォルダ</strong>を開き、新しいファイル <code>quiz.html</code> を作ります（あとで組み込むのが楽になるよ）。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">テンプレートを貼りつける</span>
+      <p>下のコードをコピーして貼りつけ、<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。</p>
+      <div class="code-block">
+        <span class="code-label">quiz.html（テンプレート）</span>
+        <button class="copy-btn">コピー</button>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;3択クイズ&lt;/title&gt;
+    &lt;style&gt;
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        background-color: #eff6ff;   /* ★カスタム1: 背景の色 */
+      }
+      h1 {
+        color: #1d4ed8;              /* ★カスタム2: タイトルの色 */
+      }
+      #mondai {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 30px 10px;
+      }
+      button {
+        display: block;
+        margin: 12px auto;
+        width: 280px;
+        font-size: 18px;
+        padding: 12px;
+        border: none;
+        border-radius: 999px;
+        background-color: #2563eb;   /* ★カスタム3: ボタンの色 */
+        color: #ffffff;
+        cursor: pointer;
+      }
+      #handan {
+        font-size: 28px;
+        font-weight: bold;
+        height: 42px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;なんでも3択クイズ&lt;/h1&gt;  &lt;!-- ★カスタム4: クイズのタイトル --&gt;
+    &lt;p id="mondai"&gt;&lt;/p&gt;
+    &lt;button id="botan1"&gt;&lt;/button&gt;
+    &lt;button id="botan2"&gt;&lt;/button&gt;
+    &lt;button id="botan3"&gt;&lt;/button&gt;
+    &lt;p id="handan"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+      // ★カスタム5: 問題リスト。[問題文, 選択肢1, 選択肢2, 選択肢3, 正解の番号] で1問
+      let quizList = [
+        ["日本でいちばん高い山は？", "富士山", "高尾山", "エベレスト", 1],
+        ["1週間は全部で何日？", "5日", "6日", "7日", 3],
+        ["大きな見出しを作るHTMLタグは？", "&lt;p&gt;", "&lt;h1&gt;", "&lt;a&gt;", 2],
+      ];
+
+      let bango = 0;      // いま何問目か（0から数える）
+      let seikaisu = 0;   // 正解した数
+
+      let mondai = document.getElementById("mondai");
+      let handan = document.getElementById("handan");
+      let botan1 = document.getElementById("botan1");
+      let botan2 = document.getElementById("botan2");
+      let botan3 = document.getElementById("botan3");
+
+      // いまの問題をボタンに表示する
+      function hyoji() {
+        mondai.textContent = "Q" + (bango + 1) + ". " + quizList[bango][0];
+        botan1.textContent = quizList[bango][1];
+        botan2.textContent = quizList[bango][2];
+        botan3.textContent = quizList[bango][3];
+      }
+
+      // 答え合わせをして、次へ進む
+      function kotaeru(erabinda) {
+        if (erabinda === quizList[bango][4]) {
+          handan.textContent = "⭕ 正解！";
+          handan.style.color = "green";
+          seikaisu = seikaisu + 1;
+        } else {
+          handan.textContent = "❌ ざんねん…";
+          handan.style.color = "red";
+        }
+        bango = bango + 1;
+        if (bango &lt; quizList.length) {
+          hyoji();
+        } else {
+          mondai.textContent = "おわり！ " + quizList.length + "問中 " + seikaisu + "問正解！";
+          botan1.style.display = "none";
+          botan2.style.display = "none";
+          botan3.style.display = "none";
+        }
+      }
+
+      botan1.addEventListener("click", function () { kotaeru(1); });
+      botan2.addEventListener("click", function () { kotaeru(2); });
+      botan3.addEventListener("click", function () { kotaeru(3); });
+
+      hyoji();   // 最初の問題を表示してスタート
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">動かして、コードを読む</span>
+      <p>右クリック →「Open with Live Server」で開いて、全問答えてみよう。<br>
+        最後にスコアが出たら成功。<br>
+        動いたら、<strong>コードを上から読んで「ほとんど知ってる文法だ」と確認</strong>してみて。<br>
+        魔法は1行もないよ。</p>
+    </div>
+
+    <p>このテンプレートは、実はこれまで学んだことの総まとめでできています。</p>
+
+    <table>
+      <tr><th>テンプレートの部分</th><th>学んだ場所</th></tr>
+      <tr><td>HTMLの骨組み・タグ・id属性</td><td>第1〜2章</td></tr>
+      <tr><td><code>&lt;style&gt;</code> の中の色や形の指定</td><td>第3〜4章</td></tr>
+      <tr><td>変数 <code>let</code>・if文・<code>===</code></td><td>第5章</td></tr>
+      <tr><td>DOM・イベント・配列</td><td>この章</td></tr>
+    </table>
+
+    <p>
+      プログラムの流れはこう。<br><code>hyoji()</code> がいまの問題をボタンに表示 → ボタンが押されたら <code>kotaeru()</code> が答え合わせをして <code>bango</code> を1進める → 問題が残っていればまた <code>hyoji()</code>、なくなったらスコア発表。<br>
+      初登場の書き方は2つだけです。
+    </p>
+
+    <div class="term">
+      <span class="word">名前つき関数</span> … <code>function hyoji() { ... }</code> と書くと、命令の束に「hyoji」という名前がつく。<br><code>hyoji();</code> と呼ぶたびに束が実行される。<br>
+      「何度も使う処理」をまとめるのに便利。
+    </div>
+
+    <div class="term">
+      <span class="word">引数（ひきすう）</span> … 関数にわたす「メモ」。<br><code>kotaeru(1)</code> と呼ぶと、<code>function kotaeru(erabinda)</code> の <code>erabinda</code> に 1 が入る。<br>
+      このメモで「どのボタンが押されたか」を関数に伝えている。
+    </div>
+
+    <h2>6-6. 💪 やってみよう 〜クイズを「自分の作品」にする〜</h2>
+    <p>ここからが本番。<br>
+      テンプレートのままでは、まだ「キミの作品」じゃない。<br>
+      ★カスタム1〜5を目印に、どんどん改造しよう。</p>
+
+    <div class="challenge">
+      <h3>課題1: 問題を自分のテーマで作る</h3>
+      <p>テンプレートの問題を全部消して、<strong>自分の好きなテーマ</strong>の問題に入れかえよう。<br>
+        推し・部活・ゲーム・マンガ・生き物、なんでもOK。<br><strong>5問以上</strong>作ると、遊びごたえのあるクイズになるよ。<br>
+        友だちが「えっ、どっち！<br>
+        ?」と迷う選択肢を作れたら勝ち。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>★カスタム5の配列に、<code>["問題文", "選択肢1", "選択肢2", "選択肢3", 正解の番号],</code> の行を追加するだけ。<br>
+          判定は <code>quizList.length</code> を使っているから、<strong>増やしても他の行は直さなくていい</strong>。<br>
+          正解の番号（1〜3）の書き忘れに注意！</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 見た目を自分のテーマに変える</h3>
+      <p>★カスタム1〜4を変えて、クイズのテーマに合う見た目にしよう。<br>
+        タイトル・背景色・ボタンの色がそろうと作品らしくなる。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>色の名前（<code>pink</code> など）でも、第3章で使ったカラーコード（<code>#f59e0b</code> など）でもOK。<br>
+          タイトルの文字（<code>なんでも3択クイズ</code>）を自分のテーマ名に変えるのも忘れずに。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 全問正解のときだけ特別なメッセージ</h3>
+      <p>第5章のif文の出番！<br>
+        全問正解したときだけ「全問正解！<br>
+        キミは天才！」<br>
+        のような特別なメッセージが出るようにしてみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>「全問正解」は、<code>seikaisu</code> と <code>quizList.length</code> が同じ数になったとき。<br>
+          テンプレートの「おわり！<br>
+          …」の行を、このif文にまるごと置きかえよう。</p>
+        <div class="code-block">
+          <span class="code-label">考え方の例</span>
+          <button class="copy-btn">コピー</button>
+          <pre><code>if (seikaisu === quizList.length) {
+  mondai.textContent = "全問正解！ キミは天才！";
+} else {
+  mondai.textContent = "おわり！ " + quizList.length + "問中 " + seikaisu + "問正解！";
+}</code></pre>
+        </div>
+        <p>余裕があれば、全問正解のときに <code>mondai.style.color</code> で文字色も変えてみよう。</p>
+      </details>
+    </div>
+
+    <h2>6-7. 自己紹介サイトに組み込もう</h2>
+    <p>第4章で作った自己紹介サイトに、クイズへの入り口を作ります。<br>
+      作品どうしをリンクでつなぐと、いっきに「サイトらしく」なるよ。</p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">同じフォルダにあるか確認</span>
+      <p><code>quiz.html</code> が自己紹介サイトの <code>index.html</code> と同じフォルダにあるか確認。<br>
+      別の場所に作った場合は、ファイルをドラッグして引っ越しさせよう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">自己紹介サイトからリンクを張る</span>
+      <p>自己紹介サイトのHTMLの好きな場所（メニューや最後など）に、第2章で学んだ <code>a</code> タグでリンクを足します。</p>
+      <div class="code-block">
+        <span class="code-label">自己紹介サイト側に追加</span>
+        <button class="copy-btn">コピー</button>
+        <pre><code>&lt;p&gt;&lt;a href="quiz.html"&gt;🧠 3択クイズに挑戦する&lt;/a&gt;&lt;/p&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">もどるリンクも付ける</span>
+      <p>クイズ側の <code>&lt;/body&gt;</code> の近くに、自己紹介サイトへもどるリンクを付けると親切。</p>
+      <div class="code-block">
+        <span class="code-label">quiz.html 側に追加</span>
+        <button class="copy-btn">コピー</button>
+        <pre><code>&lt;p&gt;&lt;a href="index.html"&gt;← 自己紹介ページにもどる&lt;/a&gt;&lt;/p&gt;</code></pre>
+      </div>
+      <p>行き来できたら完成！<br>
+        自分だけの「動くWebサイト」の誕生です。</p>
+    </div>
+
+    <h2>6-8. できあがったら、先生・メンターに発表しよう</h2>
+    <p>
+      この講座はみんな進み具合がバラバラ。<br>
+      だから最後にまとめて発表会はやりません。<br>
+      <strong>その代わり、自分の3択クイズができあがったタイミングで、先生かメンターを呼んで発表しよう。</strong><br>
+      うまく話すことより、「自分が何を作ったか」を自分の言葉で伝えることが目的です。<br>
+      1〜2分、この3つを話せば十分。
+    </p>
+
+    <table>
+      <tr><th>話すこと</th><th>例</th></tr>
+      <tr><td>① 何を作ったか</td><td>「サッカーの3択クイズを作りました」</td></tr>
+      <tr><td>② 工夫したところ・苦労したところ</td><td>「問題を10問に増やした」「正解番号のズレで30分悩んだ」</td></tr>
+      <tr><td>③ 次にやってみたいこと</td><td>「まちがえた問題をもう一度出したい」</td></tr>
+    </table>
+
+    <p>そして大事な心得を3つ。</p>
+    <ul>
+      <li><strong>完成していなくてもOK。</strong>「ここまで動いて、ここで詰まっている」も立派な発表。<br>
+      プロの現場でも途中経過の共有は毎日やっている</li>
+      <li><strong>苦労した話こそおもしろい。</strong>エラーと戦った話は、聞いている先生・メンターも興味しんしん</li>
+      <li><strong>質問されたら喜んで答えよう。</strong>「それどうやったの？」は最高のほめ言葉。<br>
+      時間が余ったら、近くの友だちに見せ合うのもOK（発表会ではなく気軽に）</li>
+    </ul>
+
+    <h2>6-9. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>ボタンを押しても何も起こらない</h4>
+      <p><strong>原因:</strong> HTML側の <code>id="..."</code> とJS側の <code>getElementById("...")</code> のつづりが一致していない（この章で一番多いエラー！）。</p>
+      <p><strong>直し方:</strong> 開発者ツール（<span class="os-win"><code>F12</code></span><span class="os-mac"><code>⌘ + option + I</code></span>）のコンソールを開こう。<br><code>Cannot set properties of null</code> のような赤いエラーが出ていたら、id不一致のサイン。<br>
+      大文字・小文字の違いもアウトだよ。<br>
+      idが合っているのに出るときは、6-2の「&lt;script&gt; は body の最後に書く」も確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>「... is not a function」というエラーが出る</h4>
+      <p><strong>原因:</strong> 命令の大文字・小文字ミス。<br><code>getElementByID</code>（最後が大文字）や <code>addeventlistener</code> は別物あつかいになる。</p>
+      <p><strong>直し方:</strong> <code>getElementById</code>・<code>addEventListener</code> と1文字ずつ見比べる。<br>
+      VSCodeの補完（途中まで打つと出る候補）を使うとミスが減るよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>問題文やボタンに「undefined」と表示される</h4>
+      <p><strong>原因:</strong> 問題の配列が「5個セット」になっていない。<br>
+      選択肢のあいだのカンマを忘れたり、最後の正解番号を書き忘れたりすると、配列に「ない番号」を取りに行って undefined になる。</p>
+      <p><strong>直し方:</strong> <code>quizList</code> の各行が <code>[問題文, 選択肢, 選択肢, 選択肢, 正解の番号]</code> の5個そろっているか、カンマの位置と一緒に確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>正解のボタンを押したのに「❌」になる</h4>
+      <p><strong>原因:</strong> 正解番号のズレ。<br>
+      番号を0から数えてしまった、または選択肢の順番を入れかえたのに正解番号を直し忘れた、が定番。</p>
+      <p><strong>直し方:</strong> 正解の番号は<strong>上のボタンから1・2・3</strong>（ここは0からじゃない）。<br>
+      問題を編集したら、その行の正解番号もセットで見直すクセをつけよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>「Unexpected token」エラー／とにかく動かない</h4>
+      <p><strong>原因:</strong> 全角文字の混入が定番。<br>
+      日本語入力のままコードを打つと、全角スペースや全角の <code>"</code>・<code>（）</code> が入りやすい。<br>
+      問題文を日本語で入力したあとは特に起きやすい！</p>
+      <p><strong>直し方:</strong> エラーに出ている行番号のあたりを、半角で打ち直す。<br><code>"</code> や <code>,</code> や <code>[ ]</code> などの記号は半角、<code>" "</code> の中の問題文は日本語でOK。<br>
+      VSCodeの色分けがそこだけ変なら、それがヒント。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>6-10. 🤖 AIを味方につけよう</h2>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — まず15分自分で考えてから</p>
+      <ul>
+        <li><strong>エラーメッセージの翻訳:</strong> コンソールの赤い英語を貼って「どういう意味？」<br>
+        と聞く</li>
+        <li><strong>改造の相談:</strong> 「こう変えたい。<br>
+        今のコードはこれ。<br>
+        どこを変えればいい？」<br>
+        と<strong>自分のコードを添えて</strong>聞く</li>
+        <li><strong>コードの意味の確認:</strong> テンプレートの中で意味があいまいな行を説明してもらう</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        JavaScriptを勉強中の中学生です。<br>
+        3択クイズのボタンを押しても何も起きません。<br>
+        コンソールには「Uncaught TypeError: Cannot set properties of null」と出ています。<br>
+        コードはこれです:（自分のコードを貼る）。<br>
+        いきなり答えではなく、原因の見つけ方を順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        この3択クイズを「問題がランダムな順番で出る」ように改造したいです。<br>
+        今のコードはこれです:（自分のコードを貼る）。<br>
+        変更する行だけを示して、なぜそれで動くのかも説明してください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>作品まるごとAIに作らせて発表する（発表で「どうやって作ったの？」<br>
+          に答えられず、一番つらいのは自分）</li>
+        <li>AIが書いたコードを<strong>動かして確かめずに</strong>組み込む（必ず全問答えて確認！）</li>
+      </ul>
+    </div>
+
+    <h2>6-11. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> DOMが「ページの部品一覧表」だと説明できる</label>
+      <label><input type="checkbox"> <code>getElementById</code> で部品をつかまえられる</label>
+      <label><input type="checkbox"> <code>addEventListener</code> で「クリックしたら動く」を作れる</label>
+      <label><input type="checkbox"> 配列で「問題・選択肢・正解」をひとまとめに管理できる</label>
+      <label><input type="checkbox"> 3択クイズを自分の問題にカスタムして、自己紹介サイトとつなげた</label>
+      <label><input type="checkbox"> 先生・メンターに「作ったもの・工夫・次にやりたいこと」を話せた</label>
+    </div>
+
+    <h2>6-12. 🎓 Web編クリア、おめでとう！</h2>
+    <p>
+      ちょっとだけ、第1回を思い出してみて。<br>
+      あの日のキミは、VSCodeをインストールするところからのスタートだったよね。<br>
+      それが今日は、<strong>HTMLで骨組みを作り、CSSで飾り、JavaScriptで動かした「自分の作品」</strong>を先生やメンターに見せて発表した。<br>
+      「何もない空っぽのフォルダから、動くWebサイトを作れる人」に、この6回でなったんだ。<br>
+      これは本当にすごいことだよ。
+    </p>
+    <p>そして、ここがゴールじゃなくてスタート。<br>
+      プログラミングが上達する方法は、実はもう知っているはず。</p>
+    <ul>
+      <li><strong>作り続けること。</strong>「あったらいいな」を小さく作ろう。<br>
+      クイズの改造（問題をランダムな順番で出す、まちがえた問題をもう一度出す）から始めてもいいし、占いゲームや時計にも今日の知識で挑戦できる</li>
+      <li><strong>調べるクセ。</strong>困ったら <a href="https://developer.mozilla.org/ja/" target="_blank">MDN</a>。<br>
+      世界中のプロと同じ辞書をキミはもう使える</li>
+      <li><strong>AIは相談役に。</strong>3つの約束（まず15分考える・動かして確かめる・丸投げしない）はこの先もずっと有効</li>
+      <li><strong>エラーはこわくない。</strong>この6回でたくさんのエラーを直してきたよね。<br>
+      エラーは「敵」じゃなくて「ヒントをくれる味方」だって、もう知っているはず</li>
+    </ul>
+    <p>この教科書はいつでも読み返せます。<br>
+      またどこかで、キミの作品に出会えるのを楽しみにしています。<br>
+      それでは、よいWeb制作ライフを！<br>
+      🎉</p>
+
+    <h2>6-13. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://developer.mozilla.org/ja/docs/Learn_web_development/Core/Scripting" target="_blank">JavaScriptの学習エリア（MDN）</a> — この先の独学はここが本流。<br>
+      今日のDOMやイベントの続きがたっぷり</li>
+      <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction" target="_blank">DOM入門（MDN）</a> — DOMの仕組みをもっと深く</li>
+      <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">配列の解説（MDN）</a> — 配列には便利な命令がまだまだある</li>
+      <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random" target="_blank">Math.random の解説（MDN）</a> — 「問題をランダムな順番で出す」改造に挑戦したい人へ</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter5.html">← 第5章 JavaScript入門</a>
+      <a href="index.html">← 目次にもどる</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Webコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+  <script type="module" src="js/learning-ui.js"></script>
+  <script>
+    // コードブロックのコピーボタン
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.parentElement.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(function () {
+          btn.textContent = 'コピーした！';
+          setTimeout(function () { btn.textContent = 'コピー'; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
