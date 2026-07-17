@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Web雑学3択クイズ</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        background-color: #f0fdf4;   /* ★カスタム1: 背景の色（ミント） */
+      }
+      h1 {
+        color: #15803d;              /* ★カスタム2: タイトルの色 */
+      }
+      #mondai {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 30px 10px;
+      }
+      button {
+        display: block;
+        margin: 12px auto;
+        width: 280px;
+        font-size: 18px;
+        padding: 12px;
+        border: none;
+        border-radius: 999px;
+        background-color: #16a34a;   /* ★カスタム3: ボタンの色 */
+        color: #ffffff;
+        cursor: pointer;
+      }
+      #handan {
+        font-size: 28px;
+        font-weight: bold;
+        height: 42px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Webとプログラミング雑学クイズ</h1>  <!-- ★カスタム4: クイズのタイトル -->
+    <p id="mondai"></p>
+    <button id="botan1"></button>
+    <button id="botan2"></button>
+    <button id="botan3"></button>
+    <p id="handan"></p>
+
+    <p><a href="index.html">← 自己紹介ページにもどる</a></p>
+
+    <script>
+      // ★カスタム5: 問題リスト。[問題文, 選択肢1, 選択肢2, 選択肢3, 正解の番号] で1問
+      let quizList = [
+        ["Webページの骨組みを作る言語は？", "CSS", "HTML", "JavaScript", 2],
+        ["文字の色を変えるCSSプロパティは？", "color", "font-size", "background-color", 1],
+        ["JavaScriptで「等しいか」を比べる記号は？", "=", "==", "===", 3],
+        ["配列の番号（何番目か）は、いくつから始まる？", "0", "1", "10", 1],
+        ["リンクを作るHTMLタグは？", "<img>", "<a>", "<p>", 2],
+      ];
+
+      let bango = 0;      // いま何問目か（0から数える）
+      let seikaisu = 0;   // 正解した数
+
+      let mondai = document.getElementById("mondai");
+      let handan = document.getElementById("handan");
+      let botan1 = document.getElementById("botan1");
+      let botan2 = document.getElementById("botan2");
+      let botan3 = document.getElementById("botan3");
+
+      // いまの問題をボタンに表示する
+      function hyoji() {
+        mondai.textContent = "Q" + (bango + 1) + ". " + quizList[bango][0];
+        botan1.textContent = quizList[bango][1];
+        botan2.textContent = quizList[bango][2];
+        botan3.textContent = quizList[bango][3];
+      }
+
+      // 答え合わせをして、次へ進む
+      function kotaeru(erabinda) {
+        if (erabinda === quizList[bango][4]) {
+          handan.textContent = "⭕ 正解！";
+          handan.style.color = "green";
+          seikaisu = seikaisu + 1;
+        } else {
+          handan.textContent = "❌ ざんねん…";
+          handan.style.color = "red";
+        }
+        bango = bango + 1;
+        if (bango < quizList.length) {
+          hyoji();
+        } else {
+          // 課題3（チャレンジ）: 全問正解のときだけ特別なメッセージ
+          if (seikaisu === quizList.length) {
+            mondai.textContent = "全問正解！ キミはWeb博士だ！";
+            mondai.style.color = "#15803d";
+          } else {
+            mondai.textContent = "おわり！ " + quizList.length + "問中 " + seikaisu + "問正解！";
+          }
+          botan1.style.display = "none";
+          botan2.style.display = "none";
+          botan3.style.display = "none";
+        }
+      }
+
+      botan1.addEventListener("click", function () { kotaeru(1); });
+      botan2.addEventListener("click", function () { kotaeru(2); });
+      botan3.addEventListener("click", function () { kotaeru(3); });
+
+      hyoji();   // 最初の問題を表示してスタート
+    </script>
+  </body>
+</html>
