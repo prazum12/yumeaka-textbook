@@ -1,0 +1,109 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- Unityエディタ（画面イメージ図） -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#383838"/>
+  <rect x="0" y="0" width="1000" height="30" rx="8" fill="#2a2a2e"/>
+  <rect x="0" y="15" width="1000" height="15" fill="#2a2a2e"/>
+  <text x="14" y="20" font-size="12" fill="#b8b8bb">2d-action-game - SampleScene - Unity 2022.3 (LTS)</text>
+  <g font-size="14" fill="#9a9a9a">
+    <text x="906" y="21">—</text>
+    <text x="936" y="21">□</text>
+    <text x="966" y="21">✕</text>
+  </g>
+  <!-- ツールバー -->
+  <rect x="0" y="30" width="1000" height="40" fill="#2e2e32"/>
+  <!-- 再生コントロール（中央） -->
+  <rect x="446" y="36" width="36" height="28" rx="4" fill="#3b6ea5"/>
+  <polygon points="458,42 458,58 472,50" fill="#ffffff"/>
+  <rect x="484" y="36" width="36" height="28" rx="4" fill="#3a3a3e"/>
+  <rect x="496" y="43" width="4" height="14" fill="#cfcfd2"/>
+  <rect x="504" y="43" width="4" height="14" fill="#cfcfd2"/>
+  <rect x="522" y="36" width="36" height="28" rx="4" fill="#3a3a3e"/>
+  <polygon points="532,43 532,57 542,50" fill="#cfcfd2"/>
+  <rect x="544" y="43" width="3" height="14" fill="#cfcfd2"/>
+  <!-- タブ -->
+  <rect x="0" y="70" width="1000" height="26" fill="#2a2a2e"/>
+  <rect x="8" y="70" width="70" height="26" fill="#333336"/>
+  <text x="43" y="88" font-size="13" fill="#9d9da1" text-anchor="middle">Scene</text>
+  <rect x="78" y="70" width="70" height="26" fill="#4a4a50"/>
+  <text x="113" y="88" font-size="13" fill="#ffffff" text-anchor="middle">Game</text>
+  <!-- ゲームビュー（再生中の画面） -->
+  <rect x="0" y="96" width="1000" height="524" fill="#b7d1e3"/>
+  <!-- 山（背景） -->
+  <polygon points="0,430 170,270 350,430" fill="#9dbdd2"/>
+  <polygon points="270,440 440,300 630,440" fill="#a8c5d8"/>
+  <polygon points="760,435 900,310 1000,420 1000,440" fill="#9dbdd2"/>
+  <!-- 雲 -->
+  <g fill="#e3eef5">
+    <ellipse cx="190" cy="165" rx="60" ry="22"/>
+    <ellipse cx="245" cy="152" rx="42" ry="17"/>
+    <ellipse cx="710" cy="195" rx="55" ry="20"/>
+    <ellipse cx="760" cy="184" rx="38" ry="15"/>
+  </g>
+  <!-- 建物 -->
+  <rect x="620" y="280" width="120" height="172" fill="#557d99"/>
+  <g fill="#7fa3bb">
+    <rect x="636" y="296" width="20" height="24"/>
+    <rect x="670" y="296" width="20" height="24"/>
+    <rect x="704" y="296" width="20" height="24"/>
+    <rect x="636" y="340" width="20" height="24"/>
+    <rect x="670" y="340" width="20" height="24"/>
+    <rect x="704" y="340" width="20" height="24"/>
+    <rect x="636" y="384" width="20" height="24"/>
+    <rect x="670" y="384" width="20" height="24"/>
+  </g>
+  <rect x="770" y="330" width="90" height="122" fill="#618aa5"/>
+  <g fill="#87abc1">
+    <rect x="784" y="346" width="16" height="20"/>
+    <rect x="812" y="346" width="16" height="20"/>
+    <rect x="784" y="382" width="16" height="20"/>
+    <rect x="812" y="382" width="16" height="20"/>
+  </g>
+  <!-- フェンス -->
+  <rect x="50" y="432" width="260" height="6" fill="#d8e6ee"/>
+  <g fill="#d8e6ee">
+    <rect x="60" y="420" width="8" height="32"/>
+    <rect x="100" y="420" width="8" height="32"/>
+    <rect x="140" y="420" width="8" height="32"/>
+    <rect x="180" y="420" width="8" height="32"/>
+    <rect x="220" y="420" width="8" height="32"/>
+    <rect x="260" y="420" width="8" height="32"/>
+  </g>
+  <!-- 地面 -->
+  <rect x="0" y="452" width="1000" height="14" fill="#8fb6cc"/>
+  <rect x="0" y="466" width="1000" height="60" fill="#6d9cb8"/>
+  <g stroke="#5d8ba6" stroke-width="2">
+    <line x1="50" y1="466" x2="50" y2="526"/>
+    <line x1="150" y1="466" x2="150" y2="526"/>
+    <line x1="250" y1="466" x2="250" y2="526"/>
+    <line x1="350" y1="466" x2="350" y2="526"/>
+    <line x1="450" y1="466" x2="450" y2="526"/>
+    <line x1="550" y1="466" x2="550" y2="526"/>
+    <line x1="650" y1="466" x2="650" y2="526"/>
+    <line x1="750" y1="466" x2="750" y2="526"/>
+    <line x1="850" y1="466" x2="850" y2="526"/>
+    <line x1="950" y1="466" x2="950" y2="526"/>
+  </g>
+  <rect x="0" y="526" width="1000" height="94" fill="#55809c"/>
+  <!-- トークン -->
+  <g fill="#f2c94c" stroke="#d9a72e" stroke-width="3">
+    <circle cx="500" cy="385" r="11"/>
+    <circle cx="545" cy="362" r="11"/>
+    <circle cx="590" cy="385" r="11"/>
+  </g>
+  <!-- 敵 -->
+  <ellipse cx="710" cy="442" rx="17" ry="12" fill="#d95d4e"/>
+  <circle cx="704" cy="439" r="2.5" fill="#ffffff"/>
+  <circle cx="716" cy="439" r="2.5" fill="#ffffff"/>
+  <!-- プレイヤー -->
+  <circle cx="380" cy="404" r="14" fill="#33c1c9"/>
+  <rect x="368" y="416" width="24" height="36" rx="10" fill="#33c1c9"/>
+  <circle cx="385" cy="401" r="2.5" fill="#1c4e52"/>
+  <!-- 注釈（最後に描く） -->
+  <rect x="442" y="32" width="44" height="36" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="428" cy="50" r="13" fill="#ff3b30"/>
+  <text x="428" y="55" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">1</text>
+  <text x="576" y="55" font-size="13" fill="#ff6b60">← 再生ボタン。青く光っているあいだは「再生中」</text>
+  <rect x="24" y="540" width="560" height="64" rx="10" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="44" y="566" font-size="15" fill="#c0392b" font-weight="bold">① 画面上部中央の再生ボタンを押すとゲームスタート</text>
+  <text x="44" y="592" font-size="13" fill="#c0392b">もう一度押すと停止。再生中の変更は保存されないので注意！</text>
+</svg>

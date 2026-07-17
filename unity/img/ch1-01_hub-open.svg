@@ -1,0 +1,86 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- Unity Hubウィンドウ（画面イメージ図） -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#141517"/>
+  <rect x="0" y="0" width="1000" height="32" rx="8" fill="#0c0c0d"/>
+  <rect x="0" y="16" width="1000" height="16" fill="#0c0c0d"/>
+  <text x="16" y="21" font-size="12" fill="#8b8b8e">Unity Hub</text>
+  <g font-size="14" fill="#9a9a9a">
+    <text x="906" y="22">—</text>
+    <text x="936" y="22">□</text>
+    <text x="966" y="22">✕</text>
+  </g>
+  <!-- サイドバー -->
+  <rect x="0" y="32" width="230" height="588" fill="#1e1f22"/>
+  <circle cx="36" cy="64" r="10" fill="none" stroke="#d6d6d6" stroke-width="2"/>
+  <circle cx="36" cy="64" r="3.5" fill="#d6d6d6"/>
+  <text x="56" y="71" font-size="19" font-weight="bold" fill="#ffffff">Hub</text>
+  <!-- Projects（選択中） -->
+  <rect x="12" y="104" width="206" height="36" rx="6" fill="#34363a"/>
+  <g fill="none" stroke="#e2e2e5" stroke-width="2">
+    <path d="M26 117 h6 l3 3 h9 v10 h-18 z"/>
+  </g>
+  <text x="54" y="127" font-size="14" fill="#ffffff">Projects</text>
+  <!-- Installs -->
+  <g fill="#aeafb3">
+    <rect x="26" y="158" width="18" height="5" rx="1.5"/>
+    <rect x="26" y="166" width="18" height="5" rx="1.5"/>
+  </g>
+  <text x="54" y="170" font-size="14" fill="#b9babd">Installs</text>
+  <!-- Learn -->
+  <circle cx="35" cy="205" r="8" fill="none" stroke="#aeafb3" stroke-width="2"/>
+  <text x="54" y="211" font-size="14" fill="#b9babd">Learn</text>
+  <!-- Community -->
+  <g fill="none" stroke="#aeafb3" stroke-width="2">
+    <circle cx="31" cy="246" r="6"/>
+    <circle cx="41" cy="246" r="6"/>
+  </g>
+  <text x="54" y="251" font-size="14" fill="#b9babd">Community</text>
+  <!-- メイン領域 -->
+  <rect x="230" y="32" width="770" height="588" fill="#101113"/>
+  <text x="262" y="92" font-size="26" font-weight="bold" fill="#ffffff">Projects</text>
+  <rect x="470" y="66" width="220" height="34" rx="17" fill="#1c1d1f" stroke="#333438"/>
+  <g fill="none" stroke="#77787b" stroke-width="2">
+    <circle cx="492" cy="82" r="5"/>
+    <line x1="496" y1="86" x2="501" y2="91"/>
+  </g>
+  <text x="508" y="88" font-size="13" fill="#77787b">Search</text>
+  <!-- Openボタン -->
+  <rect x="710" y="66" width="100" height="34" rx="6" fill="#26272a" stroke="#6a6b6e"/>
+  <text x="760" y="88" font-size="14" fill="#e8e8ea" text-anchor="middle">Open ∨</text>
+  <!-- New projectボタン -->
+  <rect x="822" y="66" width="150" height="34" rx="6" fill="#2563eb"/>
+  <text x="897" y="88" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">New project</text>
+  <!-- フォルダ選択ダイアログ -->
+  <rect x="300" y="160" width="560" height="330" rx="10" fill="#f5f6f8" stroke="#c9ccd1" stroke-width="2"/>
+  <path d="M300 170 a10 10 0 0 1 10 -10 h540 a10 10 0 0 1 10 10 v26 h-560 z" fill="#e8eaee"/>
+  <text x="320" y="184" font-size="14" fill="#333333">フォルダーの選択</text>
+  <text x="838" y="184" font-size="13" fill="#666666">✕</text>
+  <path d="M324 212 h7 l3 3 h10 v11 h-20 z" fill="#f2c14e" stroke="#d9a72e"/>
+  <text x="352" y="224" font-size="13" fill="#555555">デスクトップ → yumeaka-unity</text>
+  <rect x="320" y="238" width="520" height="176" fill="#ffffff" stroke="#d9dce1"/>
+  <rect x="322" y="246" width="516" height="32" fill="#cfe4fb"/>
+  <path d="M336 255 h8 l3 3 h11 v12 h-22 z" fill="#f2c14e" stroke="#d9a72e"/>
+  <text x="366" y="268" font-size="14" fill="#1f2937">2d-action-game</text>
+  <path d="M366 290 h7 l3 3 h10 v11 h-20 z" fill="#f2c14e" stroke="#d9a72e"/>
+  <text x="394" y="302" font-size="13" fill="#6b7280">Assets</text>
+  <text x="470" y="302" font-size="13" fill="#c0392b">← 中に「Assets」があれば正解！</text>
+  <path d="M366 318 h7 l3 3 h10 v11 h-20 z" fill="#e5e7eb" stroke="#c4c8cd"/>
+  <text x="394" y="330" font-size="13" fill="#9ca3af">その他のフォルダ・ファイル…</text>
+  <rect x="500" y="432" width="90" height="36" rx="6" fill="#ffffff" stroke="#c9ccd1"/>
+  <text x="545" y="455" font-size="13" fill="#444444" text-anchor="middle">キャンセル</text>
+  <rect x="600" y="432" width="180" height="36" rx="6" fill="#2563eb"/>
+  <text x="690" y="455" font-size="14" fill="#ffffff" text-anchor="middle">フォルダーの選択</text>
+  <!-- 注釈（最後に描く） -->
+  <rect x="10" y="102" width="210" height="40" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="198" cy="122" r="13" fill="#ff3b30"/>
+  <text x="198" y="127" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="706" y="62" width="108" height="42" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="692" cy="83" r="13" fill="#ff3b30"/>
+  <text x="692" y="88" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">2</text>
+  <rect x="318" y="242" width="524" height="40" rx="4" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="870" cy="262" r="13" fill="#ff3b30"/>
+  <text x="870" y="267" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">3</text>
+  <rect x="250" y="516" width="700" height="84" rx="10" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="270" y="548" font-size="15" fill="#c0392b" font-weight="bold">① 左の「Projects」 → ②右上の「Open」を押す</text>
+  <text x="270" y="578" font-size="14" fill="#c0392b">③ 展開してできた 2d-action-game フォルダを選んで「フォルダーの選択」</text>
+</svg>

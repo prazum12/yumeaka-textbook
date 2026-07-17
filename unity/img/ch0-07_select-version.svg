@@ -1,0 +1,50 @@
+<svg viewBox="0 0 1000 540" width="1000" height="540" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ダイアログ -->
+  <rect x="0" y="0" width="1000" height="540" rx="8" fill="#2d2d2d"/>
+  <rect x="0" y="0" width="1000" height="40" rx="8" fill="#1f1f1f"/>
+  <text x="20" y="26" font-size="15" fill="#f3f4f6">Unity エディターをインストール</text>
+  <text x="968" y="26" font-size="14" fill="#9ca3af">✕</text>
+  <!-- タブ -->
+  <text x="24" y="68" font-size="14" fill="#9ca3af">正式リリース</text>
+  <text x="140" y="68" font-size="14" fill="#9ca3af">プレリリース</text>
+  <text x="260" y="68" font-size="14" font-weight="bold" fill="#ffffff">アーカイブ</text>
+  <rect x="260" y="76" width="56" height="3" fill="#2196f3"/>
+  <!-- アーカイブ内のLTS系列 -->
+  <text x="24" y="108" font-size="12" fill="#9ca3af">アーカイブを開くと、過去のLTSも選べます</text>
+  <rect x="20" y="118" width="960" height="60" rx="6" fill="#383838"/>
+  <text x="40" y="154" font-size="15" fill="#e5e7eb">2022 LTS</text>
+  <rect x="250" y="136" width="44" height="22" rx="4" fill="#4b5563"/>
+  <text x="272" y="151" font-size="11" fill="#d1d5db" text-anchor="middle">LTS</text>
+  <text x="372" y="154" font-size="13" fill="#d1d5db">この中から「2022.3.62f3」を探そう</text>
+  <!-- アーカイブのバージョン（2022.3 LTS = これを選ぶ） -->
+  <text x="24" y="210" font-size="12" fill="#9ca3af">アーカイブ内のバージョン</text>
+  <rect x="20" y="220" width="960" height="60" rx="6" fill="#383838"/>
+  <text x="40" y="256" font-size="16" font-weight="bold" fill="#ffffff">2022.3.62f3</text>
+  <rect x="210" y="238" width="44" height="22" rx="4" fill="#0e7490"/>
+  <text x="232" y="253" font-size="11" fill="#e0f2fe" text-anchor="middle">LTS</text>
+  <rect x="850" y="234" width="110" height="32" rx="4" fill="#3b82f6"/>
+  <text x="905" y="255" font-size="13" fill="#ffffff" text-anchor="middle">インストール</text>
+  <!-- 古いバージョン（薄く） -->
+  <g opacity="0.5">
+    <rect x="20" y="300" width="960" height="60" rx="6" fill="#383838"/>
+    <text x="40" y="336" font-size="15" fill="#e5e7eb">2021.3.XXf1</text>
+    <rect x="210" y="318" width="44" height="22" rx="4" fill="#4b5563"/>
+    <text x="232" y="333" font-size="11" fill="#d1d5db" text-anchor="middle">LTS</text>
+    <rect x="850" y="314" width="110" height="32" rx="4" fill="none" stroke="#6b7280"/>
+    <text x="905" y="335" font-size="13" fill="#9ca3af" text-anchor="middle">インストール</text>
+  </g>
+  <!-- 注釈 -->
+  <rect x="252" y="48" width="72" height="38" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="250" cy="48" r="13" fill="#ff3b30"/>
+  <text x="250" y="53" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="16" y="216" width="968" height="68" rx="8" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="20" cy="216" r="13" fill="#ff3b30"/>
+  <text x="20" y="221" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <rect x="845" y="229" width="120" height="42" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="843" cy="227" r="13" fill="#ff3b30"/>
+  <text x="843" y="232" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">3</text>
+  <rect x="20" y="390" width="640" height="110" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="38" y="420" font-size="13" fill="#c0392b">1. まず「アーカイブ」を押そう。</text>
+  <text x="38" y="444" font-size="13" fill="#c0392b">2. 「2022.3.62f3」の「LTS」を選ぼう。</text>
+  <text x="38" y="468" font-size="13" fill="#c0392b">3. 「インストール」を押す。Extended LTSは選ばないよ。</text>
+</svg>

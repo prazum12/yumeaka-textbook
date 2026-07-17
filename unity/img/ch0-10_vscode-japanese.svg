@@ -1,0 +1,79 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- VSCodeウィンドウ（Windows） -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#1e1e1e"/>
+  <rect x="0" y="0" width="1000" height="34" rx="8" fill="#323233"/>
+  <polygon points="29.0,17.0 25.5,23.1 18.5,23.1 15.0,17.0 18.5,10.9 25.5,10.9" fill="none" stroke="#0098ff" stroke-width="2"/>
+  <g font-size="12" fill="#cccccc">
+    <text x="40" y="22">File</text>
+    <text x="72" y="22">Edit</text>
+    <text x="106" y="22">Selection</text>
+    <text x="168" y="22">View</text>
+    <text x="204" y="22">Go</text>
+    <text x="228" y="22">Run</text>
+    <text x="260" y="22">Terminal</text>
+    <text x="316" y="22">Help</text>
+  </g>
+  <g font-size="14" fill="#cccccc">
+    <text x="906" y="23">—</text>
+    <text x="936" y="23">□</text>
+    <text x="966" y="23">✕</text>
+  </g>
+  <!-- アクティビティバー -->
+  <rect x="0" y="34" width="52" height="556" fill="#333333"/>
+  <g fill="#858585" font-size="20" text-anchor="middle">
+    <g><rect x="17" y="57" width="11" height="14" rx="2" fill="none" stroke="#858585" stroke-width="2"/><rect x="22" y="61" width="11" height="14" rx="2" fill="#333333" stroke="#858585" stroke-width="2"/></g>
+    <text x="26" y="120">🔍</text>
+    <g stroke="#858585" fill="none" stroke-width="2"><circle cx="21" cy="155" r="3"/><circle cx="21" cy="169" r="3"/><circle cx="32" cy="155" r="3"/><path d="M21 158 L21 166 M32 158 C32 163,21 163,21 166"/></g>
+    <text x="26" y="216">▷</text>
+  </g>
+  <!-- 拡張機能アイコン（選択中） -->
+  <rect x="0" y="238" width="3" height="40" fill="#ffffff"/>
+  <text x="26" y="266" font-size="20" fill="#ffffff" text-anchor="middle">▤</text>
+  <!-- 注釈1 -->
+  <rect x="4" y="238" width="44" height="40" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="70" cy="230" r="13" fill="#ff3b30"/>
+  <text x="70" y="235" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <!-- サイドバー -->
+  <rect x="52" y="34" width="300" height="556" fill="#252526"/>
+  <!-- エディタ領域 -->
+  <rect x="352" y="34" width="648" height="556" fill="#1e1e1e"/>
+  <polygon points="716.5,288.5 696.2,323.6 655.8,323.6 635.5,288.5 655.8,253.4 696.2,253.4" fill="none" stroke="#2d2d30" stroke-width="6"/>
+  <text x="68" y="60" font-size="12" fill="#bbbbbb">EXTENSIONS（拡張機能）</text>
+  <!-- 検索ボックス -->
+  <rect x="64" y="72" width="276" height="28" rx="3" fill="#3c3c3c" stroke="#007acc"/>
+  <text x="74" y="91" font-size="13" fill="#ffffff">japanese</text>
+  <!-- 注釈2 -->
+  <rect x="60" y="68" width="284" height="36" rx="5" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="362" cy="86" r="13" fill="#ff3b30"/>
+  <text x="362" y="91" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <!-- 検索結果1 -->
+  <rect x="52" y="112" width="300" height="72" fill="#37373d"/>
+  <rect x="64" y="122" width="44" height="44" rx="4" fill="#c8102e"/>
+  <text x="86" y="152" font-size="20" fill="#fff" text-anchor="middle">あ</text>
+  <text x="118" y="134" font-size="12" fill="#ffffff">Japanese Language Pack for V…</text>
+  <text x="118" y="151" font-size="11" fill="#9d9d9d">VS Code用の日本語パック</text>
+  <text x="118" y="168" font-size="11" fill="#9d9d9d">Microsoft ・ ★4.9 ・ 4,000万+ DL</text>
+  <rect x="288" y="158" width="52" height="18" rx="3" fill="#007acc"/>
+  <text x="314" y="171" font-size="11" fill="#fff" text-anchor="middle">Install</text>
+  <!-- 注釈3 -->
+  <rect x="283" y="153" width="62" height="28" rx="5" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="362" cy="167" r="13" fill="#ff3b30"/>
+  <text x="362" y="172" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">3</text>
+  <!-- 検索結果2（ダミー） -->
+  <g opacity="0.55">
+    <rect x="64" y="196" width="44" height="44" rx="4" fill="#475569"/>
+    <text x="118" y="210" font-size="12" fill="#cccccc">Japanese Word Handler</text>
+    <text x="118" y="227" font-size="11" fill="#9d9d9d">日本語の単語区切りをサポート</text>
+  </g>
+  <!-- 右下トースト -->
+  <rect x="600" y="510" width="380" height="64" rx="6" fill="#252526" stroke="#454545"/>
+  <text x="616" y="536" font-size="12" fill="#cccccc">インストールが終わったら、このボタンを押して再起動</text>
+  <rect x="616" y="544" width="220" height="22" rx="3" fill="#007acc"/>
+  <text x="726" y="559" font-size="11" fill="#fff" text-anchor="middle">Change Language and Restart</text>
+  <rect x="611" y="539" width="230" height="32" rx="5" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="592" cy="555" r="13" fill="#ff3b30"/>
+  <text x="592" y="560" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">4</text>
+  <!-- ステータスバー -->
+  <rect x="0" y="590" width="1000" height="30" fill="#007acc"/>
+  <text x="20" y="610" font-size="12" fill="#fff">main</text>
+</svg>

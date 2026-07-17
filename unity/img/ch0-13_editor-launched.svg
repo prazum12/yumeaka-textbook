@@ -1,0 +1,66 @@
+<svg viewBox="0 0 1000 620" width="1000" height="620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ウィンドウ -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#2d2d2d"/>
+  <!-- メニューバー -->
+  <rect x="0" y="0" width="1000" height="26" fill="#383838"/>
+  <g font-size="12" fill="#d1d5db">
+    <text x="16" y="18">File</text>
+    <text x="52" y="18">Edit</text>
+    <text x="90" y="18">Assets</text>
+    <text x="140" y="18">GameObject</text>
+    <text x="226" y="18">Component</text>
+    <text x="308" y="18">Window</text>
+    <text x="368" y="18">Help</text>
+  </g>
+  <!-- ツールバー -->
+  <rect x="0" y="26" width="1000" height="34" fill="#303030"/>
+  <rect x="455" y="31" width="30" height="24" rx="3" fill="#4a4a4a"/>
+  <polygon points="465,37 465,49 476,43" fill="#e5e7eb"/>
+  <rect x="487" y="31" width="30" height="24" rx="3" fill="#4a4a4a"/>
+  <rect x="497" y="37" width="4" height="12" fill="#e5e7eb"/>
+  <rect x="504" y="37" width="4" height="12" fill="#e5e7eb"/>
+  <rect x="519" y="31" width="30" height="24" rx="3" fill="#4a4a4a"/>
+  <rect x="528" y="37" width="3" height="12" fill="#e5e7eb"/>
+  <polygon points="534,37 534,49 543,43" fill="#e5e7eb"/>
+  <!-- Hierarchy -->
+  <rect x="0" y="60" width="200" height="370" fill="#383838" stroke="#262626"/>
+  <rect x="0" y="60" width="200" height="24" fill="#3c3c3c"/>
+  <text x="10" y="77" font-size="12" fill="#d1d5db">Hierarchy</text>
+  <text x="14" y="106" font-size="12" fill="#e5e7eb">SampleScene</text>
+  <text x="28" y="128" font-size="12" fill="#9ca3af">Main Camera</text>
+  <text x="100" y="412" font-size="12" fill="#9ca3af" text-anchor="middle">ヒエラルキー</text>
+  <!-- Scene -->
+  <rect x="200" y="60" width="560" height="370" fill="#3a4250" stroke="#262626"/>
+  <rect x="200" y="60" width="560" height="24" fill="#303030"/>
+  <rect x="204" y="60" width="70" height="24" fill="#3a4250"/>
+  <text x="214" y="77" font-size="12" fill="#f3f4f6">Scene</text>
+  <text x="290" y="77" font-size="12" fill="#9ca3af">Game</text>
+  <rect x="330" y="200" width="300" height="170" fill="none" stroke="#9ca3af"/>
+  <text x="480" y="412" font-size="12" fill="#cbd5e1" text-anchor="middle">シーンビュー（ゲームの舞台）</text>
+  <!-- Inspector -->
+  <rect x="760" y="60" width="240" height="370" fill="#383838" stroke="#262626"/>
+  <rect x="760" y="60" width="240" height="24" fill="#3c3c3c"/>
+  <text x="770" y="77" font-size="12" fill="#d1d5db">Inspector</text>
+  <rect x="776" y="100" width="200" height="10" rx="3" fill="#4a4a4a"/>
+  <rect x="776" y="120" width="170" height="10" rx="3" fill="#4a4a4a"/>
+  <text x="880" y="412" font-size="12" fill="#9ca3af" text-anchor="middle">インスペクター</text>
+  <!-- Project -->
+  <rect x="0" y="430" width="1000" height="160" fill="#383838" stroke="#262626"/>
+  <rect x="0" y="430" width="1000" height="24" fill="#3c3c3c"/>
+  <text x="10" y="447" font-size="12" fill="#f3f4f6">Project</text>
+  <text x="70" y="447" font-size="12" fill="#9ca3af">Console</text>
+  <rect x="0" y="454" width="200" height="136" fill="#333333"/>
+  <text x="14" y="480" font-size="12" fill="#e5e7eb">Assets</text>
+  <rect x="230" y="474" width="26" height="10" rx="3" fill="#d8b05c"/>
+  <rect x="230" y="480" width="64" height="46" rx="6" fill="#e0b96a"/>
+  <text x="262" y="546" font-size="11" fill="#d1d5db" text-anchor="middle">Scenes</text>
+  <text x="600" y="520" font-size="12" fill="#9ca3af" text-anchor="middle">プロジェクト（素材の倉庫）</text>
+  <!-- ステータスバー -->
+  <rect x="0" y="590" width="1000" height="30" rx="8" fill="#1f1f1f"/>
+  <!-- 注釈 -->
+  <rect x="451" y="27" width="38" height="32" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <line x1="470" y1="59" x2="470" y2="100" stroke="#ff3b30" stroke-width="3"/>
+  <rect x="290" y="100" width="380" height="76" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="308" y="130" font-size="13" fill="#c0392b">これが再生ボタン。押すとゲームスタート、</text>
+  <text x="308" y="154" font-size="13" fill="#c0392b">もう一度押すと停止するよ。</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg viewBox="0 0 1000 560" width="1000" height="560" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ダイアログ -->
+  <rect x="0" y="0" width="1000" height="560" rx="8" fill="#2d2d2d"/>
+  <rect x="0" y="0" width="1000" height="40" rx="8" fill="#1f1f1f"/>
+  <text x="20" y="26" font-size="15" fill="#f3f4f6">Unity 2022.3.62f3 をインストール</text>
+  <text x="968" y="26" font-size="14" fill="#9ca3af">✕</text>
+  <text x="24" y="72" font-size="15" font-weight="bold" fill="#ffffff">モジュールを加える</text>
+  <!-- 開発ツール -->
+  <text x="24" y="104" font-size="12" fill="#9ca3af">開発ツール</text>
+  <rect x="20" y="112" width="960" height="44" rx="6" fill="#383838"/>
+  <rect x="36" y="125" width="18" height="18" rx="3" fill="none" stroke="#6b7280" stroke-width="2"/>
+  <text x="70" y="140" font-size="14" fill="#e5e7eb">Microsoft Visual Studio Community 2022（今回はチェックを外す）</text>
+  <!-- プラットフォーム -->
+  <text x="24" y="188" font-size="12" fill="#9ca3af">プラットフォーム</text>
+  <rect x="20" y="196" width="960" height="40" rx="6" fill="#383838"/>
+  <rect x="36" y="207" width="18" height="18" rx="3" fill="none" stroke="#6b7280" stroke-width="2"/>
+  <text x="70" y="222" font-size="14" fill="#e5e7eb">Android Build Support</text>
+  <rect x="20" y="240" width="960" height="40" rx="6" fill="#383838"/>
+  <rect x="36" y="251" width="18" height="18" rx="3" fill="none" stroke="#6b7280" stroke-width="2"/>
+  <text x="70" y="266" font-size="14" fill="#e5e7eb">iOS Build Support</text>
+  <rect x="20" y="284" width="960" height="40" rx="6" fill="#383838"/>
+  <rect x="36" y="295" width="18" height="18" rx="3" fill="none" stroke="#6b7280" stroke-width="2"/>
+  <text x="70" y="310" font-size="14" fill="#e5e7eb">WebGL Build Support</text>
+  <!-- ドキュメント -->
+  <text x="24" y="356" font-size="12" fill="#9ca3af">ドキュメント</text>
+  <rect x="20" y="364" width="960" height="44" rx="6" fill="#383838"/>
+  <rect x="36" y="377" width="18" height="18" rx="3" fill="#2196f3"/>
+  <path d="M40 386 l4.5 4.5 l8 -9" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+  <text x="70" y="392" font-size="14" fill="#e5e7eb">ドキュメント</text>
+  <!-- ボタン -->
+  <rect x="700" y="486" width="110" height="36" rx="4" fill="none" stroke="#6b7280"/>
+  <text x="755" y="509" font-size="13" fill="#d1d5db" text-anchor="middle">戻る</text>
+  <rect x="830" y="486" width="130" height="36" rx="4" fill="#3b82f6"/>
+  <text x="895" y="509" font-size="13" fill="#ffffff" text-anchor="middle">インストール</text>
+  <!-- 注釈 -->
+  <rect x="31" y="120" width="28" height="28" rx="5" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="30" cy="119" r="13" fill="#ff3b30"/>
+  <text x="30" y="124" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <rect x="825" y="481" width="140" height="46" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="822" cy="479" r="13" fill="#ff3b30"/>
+  <text x="822" y="484" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <rect x="20" y="452" width="560" height="80" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="38" y="484" font-size="13" fill="#c0392b">1. Visual Studioのチェックだけ外そう。</text>
+  <text x="38" y="508" font-size="13" fill="#c0392b">2. ほかは変えずに「インストール」を押そう。</text>
+</svg>
