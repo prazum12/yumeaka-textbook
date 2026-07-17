@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="150" height="125" role="img" aria-label="上から見たカレーライスのイラスト">
+  <rect x="0" y="0" width="240" height="200" rx="16" fill="#ffedd5"/>
+  <!-- ランチョンマット -->
+  <rect x="26" y="26" width="188" height="148" rx="12" fill="#fde68a"/>
+  <!-- お皿（真上から＝楕円） -->
+  <ellipse cx="114" cy="100" rx="86" ry="66" fill="#ffffff" stroke="#d1d5db" stroke-width="3"/>
+  <ellipse cx="114" cy="100" rx="74" ry="55" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+  <!-- ごはん（左半分） -->
+  <path d="M52 100 C50 72, 74 52, 102 54 C118 56, 126 72, 124 100 C126 126, 116 144, 98 146 C72 148, 54 128, 52 100 Z" fill="#fefce8" stroke="#e7e5e4" stroke-width="3"/>
+  <!-- カレールー（右半分・とろっとした縁） -->
+  <path d="M124 58 C142 50, 168 56, 180 72 C192 86, 194 108, 184 124 C174 142, 150 150, 132 144 C120 140, 118 128, 122 116 C126 106, 118 100, 122 88 C125 78, 118 64, 124 58 Z" fill="#b45309" stroke="#7c2d12" stroke-width="3"/>
+  <!-- 具（にんじん・じゃがいも・グリンピース） -->
+  <rect x="146" y="76" width="18" height="14" rx="4" fill="#fb923c"/>
+  <rect x="160" y="112" width="16" height="13" rx="4" fill="#fcd34d"/>
+  <circle cx="138" cy="100" r="5" fill="#4ade80"/>
+  <circle cx="172" cy="96" r="5" fill="#4ade80"/>
+  <!-- 湯気（真上らしく小さく） -->
+  <circle cx="150" cy="66" r="3" fill="#fdba74" opacity="0.7"/>
+  <!-- スプーン（皿の横） -->
+  <ellipse cx="222" cy="76" rx="9" ry="14" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="218" y="90" width="8" height="60" rx="4" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2"/>
+</svg>

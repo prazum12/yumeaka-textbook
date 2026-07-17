@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="自分で描いたアカリのアイコンイラスト">
+  <rect x="0" y="0" width="200" height="200" rx="16" fill="#fef3c7"/>
+  <circle cx="100" cy="105" r="58" fill="#fde0c0" stroke="#b45309" stroke-width="3"/>
+  <path d="M42 105 C38 50, 78 32, 100 32 C122 32, 162 50, 158 105 C158 78, 140 62, 100 62 C60 62, 42 78, 42 105 Z" fill="#7c4a21" stroke="#5c3616" stroke-width="2"/>
+  <circle cx="47" cy="112" r="12" fill="#7c4a21"/>
+  <circle cx="153" cy="112" r="12" fill="#7c4a21"/>
+  <circle cx="80" cy="105" r="6" fill="#334155"/>
+  <circle cx="120" cy="105" r="6" fill="#334155"/>
+  <path d="M86 132 C94 140, 106 140, 114 132" fill="none" stroke="#b45309" stroke-width="3"/>
+  <circle cx="68" cy="122" r="7" fill="#fbcfe8"/>
+  <circle cx="132" cy="122" r="7" fill="#fbcfe8"/>
+  <polygon points="140,44 146,58 161,60 150,70 153,85 140,77 127,85 130,70 119,60 134,58" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+</svg>
