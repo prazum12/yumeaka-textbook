@@ -1,0 +1,59 @@
+/* 課題1: ページ全体・見出し・本文の色と大きさ */
+body {
+  background-color: #fefce8;   /* うすいレモン色 */
+}
+
+h1 {
+  color: #b45309;
+  font-size: 40px;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+}
+
+/* 課題2: h2を「箱」として飾る（padding・border・border-radius） */
+h2 {
+  background-color: #f59e0b;
+  color: white;
+  padding: 12px;
+  border: 3px solid #b45309;
+  border-radius: 10px;
+  margin: 30px 0;
+}
+
+/* 3-6 作ってみよう(1): ナビバー */
+.navbar {
+  display: flex;
+  gap: 24px;
+  background-color: #a16207;
+  padding: 14px 20px;
+}
+
+.navbar a {
+  color: white;
+  font-weight: bold;
+}
+
+/* 課題3(チャレンジ): ベスト3をカードで横に並べる */
+.cards {
+  display: flex;
+  gap: 16px;
+}
+
+.card {
+  flex: 1;
+  background-color: white;
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.card h3 {
+  color: #b45309;
+}
+
+.card img {
+  width: 100%;
+}
