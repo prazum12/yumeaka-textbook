@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第5章 ステージを作りかえよう 〜タイルパレットとパワーアップ〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第5章</span>
+      <h1>ステージを作りかえよう 〜タイルパレットとパワーアップ〜</h1>
+      <div class="date">📅 第5回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>タイルパレットを使って、ステージのブロックを自由にぬったり消したりできる</li>
+        <li>プレイヤーが着地したときに火花などのパーティクル（エフェクト）を出せる</li>
+        <li>Speed Pad・Bounce Padをステージに置いて、スピード感のあるコースを作れる</li>
+        <li>プレハブのパラメータを調整して、ゲームの手ざわりを変えられる</li>
+      </ul>
+    </div>
+
+    <p>
+      今日は<strong>コードを1行も書かない回</strong>。エディタの操作だけで、いつものステージが「自分のステージ」に生まれ変わります。<br>
+      まずはUnity Hubから、前回まで改造してきたPlatformer Microgameのプロジェクトを開こう。
+    </p>
+
+    <h2>5-1. タイルパレットってなに？</h2>
+    <p>
+      Platformer Microgameのステージは、じつは<strong>四角いブロック（タイル）を方眼紙のようなマス目に並べたもの</strong>でできています。<br>
+      このマス目が<strong>タイルマップ（Tilemap）</strong>、ブロックの見本がずらっと並んだ「絵の具のパレット」が<strong>タイルパレット（Tile Palette）</strong>です。<br>
+      パレットから好きなブロックを選んで、スタンプのようにポンポンぬっていくだけでステージが作れるよ。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="タイルパレットからブロックを選んで、方眼紙のようなタイルマップにスタンプのようにぬるイメージ図">
+        <rect x="30" y="50" width="240" height="230" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+        <text x="150" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#b45309">Tile Palette（見本帳）</text>
+        <rect x="60" y="100" width="40" height="40" fill="#a16207"/>
+        <rect x="105" y="100" width="40" height="40" fill="#ca8a04"/>
+        <rect x="150" y="100" width="40" height="40" fill="#65a30d"/>
+        <rect x="195" y="100" width="40" height="40" fill="#0ea5e9"/>
+        <rect x="60" y="145" width="40" height="40" fill="#94a3b8"/>
+        <rect x="105" y="145" width="40" height="40" fill="#e2e8f0"/>
+        <rect x="150" y="145" width="40" height="40" fill="#f472b6"/>
+        <rect x="195" y="145" width="40" height="40" fill="#c084fc"/>
+        <rect x="105" y="100" width="40" height="40" fill="none" stroke="#dc2626" stroke-width="4"/>
+        <text x="150" y="225" text-anchor="middle" font-size="12" fill="#78350f">ぬりたいブロックを</text>
+        <text x="150" y="243" text-anchor="middle" font-size="12" fill="#78350f">クリックして選ぶ</text>
+
+        <path d="M280 165 L360 165" stroke="#64748b" stroke-width="3" marker-end="url(#arrow5tile)"/>
+        <text x="320" y="152" text-anchor="middle" font-size="12" fill="#334155">えらんで</text>
+
+        <rect x="370" y="50" width="360" height="230" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+        <text x="550" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">Tilemap（方眼紙のマス目）</text>
+        <g stroke="#bae6fd" stroke-width="1">
+          <line x1="400" y1="100" x2="700" y2="100"/>
+          <line x1="400" y1="140" x2="700" y2="140"/>
+          <line x1="400" y1="180" x2="700" y2="180"/>
+          <line x1="400" y1="220" x2="700" y2="220"/>
+          <line x1="400" y1="100" x2="400" y2="260"/>
+          <line x1="440" y1="100" x2="440" y2="260"/>
+          <line x1="480" y1="100" x2="480" y2="260"/>
+          <line x1="520" y1="100" x2="520" y2="260"/>
+          <line x1="560" y1="100" x2="560" y2="260"/>
+          <line x1="600" y1="100" x2="600" y2="260"/>
+          <line x1="640" y1="100" x2="640" y2="260"/>
+          <line x1="700" y1="100" x2="700" y2="260"/>
+        </g>
+        <rect x="400" y="220" width="300" height="40" fill="#ca8a04"/>
+        <rect x="520" y="180" width="40" height="40" fill="#ca8a04"/>
+        <rect x="560" y="180" width="40" height="40" fill="#ca8a04"/>
+        <rect x="640" y="140" width="40" height="40" fill="#ca8a04"/>
+        <circle cx="430" cy="200" r="14" fill="#f59e0b"/>
+        <text x="550" y="305" text-anchor="middle" font-size="12" fill="#0c4a6e">クリック＆ドラッグでスタンプのようにぬれる</text>
+        <defs>
+          <marker id="arrow5tile" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図5-1: タイルパレットで選んだブロックを、タイルマップのマス目にぬってステージを作る</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">タイルマップ（Tilemap）</span> … 四角いマス目にブロック（タイル）を並べてステージを作るしくみ。<br>
+      Platformer Microgameの地面や足場は、ぜんぶこのタイルマップでできている。
+    </div>
+
+    <div class="term">
+      <span class="word">タイルパレット（Tile Palette）</span> … ぬれるブロックの見本がならんだウィンドウ。<br>
+      絵の具のパレットのように、ここからブロックを選んでステージにぬっていく。
+    </div>
+
+    <h2>5-2. タイルパレットを開こう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Tile Paletteウィンドウを開く</span>
+      <p>上部メニューの <code>Window → 2D → Tile Palette</code> の順に選ぶと、Tile Paletteウィンドウが開きます。</p>
+      <figure class="figure">
+        <img src="img/shots/image119.png" alt="Window→2D→Tile Paletteのメニューを開いている画面" style="max-width:100%;border-radius:8px">
+        <figcaption>Window → 2D → Tile Palette でタイルパレットを開く</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">パレットの中を探検する</span>
+      <p>パレットをスクロールして、足場になるプラットフォームや雲のブロックを見つけよう。</p>
+      <ul>
+        <li><span class="os-win"><code>Alt</code></span><span class="os-mac"><code>Option</code></span> を押しながらパレットをクリックしてドラッグすると、パレットの中をスクロールできる</li>
+        <li>マウスホイールを回すと、パレットをズームイン・ズームアウトできる</li>
+      </ul>
+      <figure class="figure">
+        <img src="img/shots/image99.png" alt="Tile Paletteウィンドウにプラットフォームや雲のブロックが並んでいる画面" style="max-width:100%;border-radius:8px">
+        <figcaption>パレットの中にはプラットフォームや雲などのブロックがずらり。<br>
+          ここからぬりたいブロックをクリックして選ぶ</figcaption>
+      </figure>
+    </div>
+
+    <h2>5-3. ブロックをぬってステージを作りかえよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">筆（Paintbrush）を持って、ぬる先を「Level」にする</span>
+      <p>Tile Paletteのツールバーで <strong>Paintbrush（筆）ツール</strong>を選択。<br>
+        さらに <code>Active Tilemap</code> のドロップダウンで「<strong>Level</strong>」を選ぼう。<br>
+        「どの筆で、どの方眼紙にぬるか」を決める操作だよ。</p>
+      <figure class="figure">
+        <img src="img/shots/image128.png" alt="Tile PaletteツールバーでPaintbrushツールを選び、Active TilemapをLevelにしている画面" style="max-width:100%;border-radius:8px">
+        <figcaption>Paintbrushツールを選び、Active Tilemapを「Level」にする</figcaption>
+      </figure>
+      <div class="trouble">
+        <h4>🚨 重要: Active Tilemapは必ず「Level」に！</h4>
+        <p>Levelはあたり判定つきのタイルマップ。<br>
+          ほかのタイルマップ（背景など）にぬると、見えてもプレイヤーがすり抜けてしまう。</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">シーンビューでぬる</span>
+      <p>パレットでぬりたいブロックをクリックして選んだら、Sceneウィンドウに戻ろう。<br>
+        Sceneビューの中でクリック＆ドラッグすると、選んだブロックがどんどんぬられていくよ。</p>
+      <figure class="figure"><video src="img/shots/image8.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>Sceneビューでクリック＆ドラッグしてブロックをぬる様子</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">まちがえたら消しゴム（Eraser）で消す</span>
+      <p>ぬりすぎたときは、Tile Paletteツールバーの <strong>Eraser（消しゴム）ツール</strong>を選択。<br>
+        そのままSceneビューのブロックをクリック（またはドラッグ）すると消せる。</p>
+      <figure class="figure">
+        <img src="img/shots/image98.png" alt="Tile PaletteツールバーのEraserツールを選択している画面" style="max-width:100%;border-radius:8px">
+        <figcaption>ツールバーからEraser（消しゴム）ツールを選ぶ</figcaption>
+      </figure>
+      <figure class="figure"><video src="img/shots/image31.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>消しゴムツールでブロックを消す様子</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">あそんで確認しよう</span>
+      <p>▶（Play）を押して、作りかえたステージを実際に走ってみよう。<br>
+        ちゃんと新しい足場に乗れるかな？ 確認できたら、Playを止めて <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> でシーンを保存するのを忘れずに。</p>
+      <figure class="figure"><video src="img/shots/image69.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>作りかえたステージをPlayモードでテストする様子</figcaption></figure>
+    </div>
+
+    <div class="term">
+      <span class="word">コラム: レベルデザインは「ちょうどいい難しさ」さがし</span> … ステージ作りは<strong>難しすぎても、簡単すぎてもつまらない</strong>。「あと少しでクリアできそう！」と思えるくらいが、いちばん夢中になれるバランスだよ。作ったら自分で何度もあそんで、ジャンプがギリギリ届く距離・落ちたらくやしい場所を調整していこう。これがゲームデザイナーの仕事「レベルデザイン」だ。
+    </div>
+
+    <h2>5-4. 着地で火花を散らそう 〜パーティクルの追加〜</h2>
+    <p>
+      次は、プレイヤーのアクションに<strong>目に見える手ごたえ</strong>をつけます。<br>
+      ジャンプして何かに着地した瞬間、火花のようなエフェクトが飛び散るようにしてみよう。<br>
+      使うのは<strong>パーティクルシステム</strong>という、小さな粒をたくさん飛ばすしくみです。
+    </p>
+
+    <div class="term">
+      <span class="word">パーティクルシステム（Particle System）</span> … 火花・けむり・紙吹雪のような「小さな粒がたくさん飛ぶ演出」を作るしくみ。<br>
+      今回は着地したときに自動で再生されるよう、設定済みのものを使うよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Bounce Effectのプレハブを探す</span>
+      <p>Projectビューで <code>Mod Assets → Bounce Effect Prefabs</code> フォルダの順に開く。<br>
+        中に入っているパーティクルは、<strong>プレイヤーが何かに着地したときに再生されるよう事前に設定済み</strong>。好きなものを1つ選ぼう。</p>
+      <figure class="figure">
+        <img src="img/shots/image126.png" alt="ProjectビューでMod Assets内のBounce Effect Prefabsフォルダを開いている画面" style="max-width:100%;border-radius:8px">
+        <figcaption>Mod Assets → Bounce Effect Prefabs の中からエフェクトを選ぶ</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Playerの子オブジェクトにする</span>
+      <p>選んだBounce Effectを、<strong>ヒエラルキーの <code>Player</code> にドラッグ</strong>する。<br>
+        Playerの子オブジェクト（Playerの中）としてシーンにコピーが作られる。<br>
+        プレイヤーにくっついて一緒に動くから、いつでも足元でエフェクトが出せるんだ。</p>
+      <figure class="figure"><video src="img/shots/image10.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>Bounce EffectをヒエラルキーのPlayerにドラッグして子オブジェクトにする様子</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">あそんで確認しよう</span>
+      <p>▶（Play）を押して、ジャンプ→着地してみよう。<br>
+        着地のたびにエフェクトが飛び散れば成功！</p>
+      <figure class="figure"><video src="img/shots/image121.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>着地するたびにパーティクルが飛び散る様子</figcaption></figure>
+    </div>
+
+    <h2>5-5. Speed PadとBounce Padを置こう</h2>
+    <p>
+      仕上げは<strong>パワーアップ床</strong>。踏むとダッシュする「Speed Pad」と、踏むと大ジャンプする「Bounce Pad」をステージに置いて、コースにスピード感とアクション性を足そう。<br>
+      どちらも<strong>プレハブ</strong>として用意されているから、ドラッグするだけでOK。
+    </p>
+
+    <div class="term">
+      <span class="word">プレハブ（Prefab）</span> … よく使うゲームオブジェクトを「型」として保存したもの。<br>
+      シーンにドラッグするだけで、同じものを何個でも置ける。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Powerup Prefabsフォルダを開く</span>
+      <p>Projectビューで <code>Mod Assets → Powerup Prefabs</code> の順に選ぶ。<br>
+        中に <code>Speedpad</code> と <code>Bouncepad</code> のプレハブが入っているよ。</p>
+      <figure class="figure">
+        <img src="img/shots/image85.png" alt="ProjectビューでMod Assets内のPowerup Prefabsフォルダを開いている画面" style="max-width:100%;border-radius:8px">
+        <figcaption>Mod Assets → Powerup Prefabs の中にSpeedpadとBouncepadがある</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Speedpadをシーンに置く</span>
+      <p><code>Speedpad</code> のプレハブを選び、シーンにドラッグ。<br>
+        プレイヤーがその上を歩ける場所なら、どこに置いてもOKだよ。</p>
+      <figure class="figure"><video src="img/shots/image5.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>Speedpadプレハブをシーンにドラッグして置く様子</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">Bouncepadをシーンに置く</span>
+      <p>同じフォルダから <code>Bouncepad</code> のプレハブを選び、こちらもシーンにドラッグして置こう。</p>
+      <figure class="figure"><video src="img/shots/image50.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>Bouncepadプレハブをシーンにドラッグして置く様子</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">Bounce Padのジャンプ力を調整する</span>
+      <p>置いた <code>Bouncepad</code> を選ぶと、インスペクターに<strong>上方向に跳ね上げる強さ（Vertical Velocity）</strong>のパラメータがある。<br>
+        ためしに <code>3</code> と入力してみよう。数字が大きいほど高く跳ぶよ。</p>
+      <figure class="figure">
+        <img src="img/shots/image108.png" alt="BouncepadのインスペクターでVertical Velocityに3と入力している画面" style="max-width:100%;border-radius:8px">
+        <figcaption>インスペクターでVertical Velocityを3に設定する</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">あそんで確認しよう</span>
+      <p>▶（Play）を押して、Speed PadとBounce Padの上を歩いてみよう。<br>
+        ビュンと加速して、ポーンと跳ね上がれば成功！<br>
+        確認できたら <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。</p>
+      <figure class="figure"><video src="img/shots/image16.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>Speed PadとBounce Padの上を歩いて動きを確かめる様子</figcaption></figure>
+    </div>
+
+    <h2>5-6. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 自分だけのショートカットルートを作ろう</h3>
+      <p>タイルパレットで足場を足して、うまくジャンプできた人だけが通れる「近道ルート」を作ってみよう。ふつうに進むより速いけど、ちょっとむずかしい……そんなルートが理想だよ。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>雲のブロックを高いところに並べて空中ルートにしたり、Bounce Padを入口にして「大ジャンプしないと届かない足場」を作ったりできる。何度も自分であそんで、ギリギリ届く距離に調整しよう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: いちばん気持ちいいジャンプ力を探そう</h3>
+      <p>Bounce Padの <code>Vertical Velocity</code> をいろいろな数字に変えて、あそびくらべてみよう。低すぎるとつまらない、高すぎると画面の外まで飛んでいっちゃう。「これだ！」という数字を見つけよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>1 → 3 → 5 → 10 のように大きく変えてためすと、違いがわかりやすい。ちょうどいい範囲が見つかったら、そこから細かく調整しよう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: パワーアップコンボゾーンを作ろう</h3>
+      <p>Speed PadとBounce Padを組み合わせて、「加速→大ジャンプ→着地で火花」が連続で決まる爽快ゾーンを作ってみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>Speed Padで加速した直後にBounce Padを踏むと、勢いのついた大ジャンプになる。ジャンプの着地点に次の足場を用意すると、リズムよく進めるコースになるよ。</p>
+      </details>
+    </div>
+
+    <h2>5-7. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>Tile Paletteウィンドウが見つからない／閉じてしまった</h4>
+      <p><strong>直し方:</strong> <code>Window → 2D → Tile Palette</code> でいつでも開き直せる。ウィンドウはドラッグして好きな場所にドッキングできるよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ぬったはずのブロックが見えない／プレイヤーがすり抜ける</h4>
+      <p><strong>原因:</strong> Active Tilemapが「Level」以外になっていて、別のタイルマップにぬっている。</p>
+      <p><strong>直し方:</strong> Tile Paletteの <code>Active Tilemap</code> を「Level」にしてぬり直そう。まちがえてぬった分は、同じタイルマップを選んだまま消しゴムツールで消せる。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>消しゴムでこすっても消えない</h4>
+      <p><strong>原因:</strong> 消したいブロックがあるタイルマップと、Active Tilemapが一致していない。</p>
+      <p><strong>直し方:</strong> <code>Active Tilemap</code> を、消したいブロックをぬったタイルマップ（ふつうはLevel）に切りかえてから消そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>着地してもパーティクルが出ない</h4>
+      <p><strong>原因:</strong> Bounce EffectがPlayerの子オブジェクトになっていない（シーンの床などにドラッグしてしまった）。</p>
+      <p><strong>直し方:</strong> ヒエラルキーを確認して、Bounce Effectが <code>Player</code> の中（子）に入っているかチェック。外にある場合は、ヒエラルキー内でドラッグしてPlayerの中に入れよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Bounce Padを踏んでも跳ねない／Speed Padで加速しない</h4>
+      <p><strong>原因:</strong> パッドが地面にめり込んでいる、または宙に浮いていて踏めていない。</p>
+      <p><strong>直し方:</strong> Moveツールでパッドの位置を調整して、床の上にちょうど乗るように置き直そう。Bounce Padは <code>Vertical Velocity</code> が0や小さすぎる値になっていないかも確認。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Playを止めたら、置いたはずのパッドが消えた！？</h4>
+      <p><strong>原因:</strong> Playモード中にシーンをいじると、<strong>Playを止めたときに変更がぜんぶ元に戻る</strong>というUnityのルールがある。</p>
+      <p><strong>直し方:</strong> ステージの編集は必ずPlayを止めてから。編集したら <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存する習慣をつけよう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>5-8. 🤖 AIを味方につけよう</h2>
+    <p>
+      今日の作業は「どこに・どうぬるか」「どこに置くか」の連続。<br>
+      うまくいかないときは、「何をしようとして」「今どうなっているか」をセットで伝えると、AIが的確に助けてくれます。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>操作のつまずき:</strong> タイルがぬれない・消せない・パッドが反応しない、といった症状の相談</li>
+        <li><strong>レベルデザインの相談:</strong> 「むずかしすぎる」と言われたステージを、どう直せばいいかのアイデア出し</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        UnityのPlatformer Microgameを改造している中学生です。Tile Paletteでブロックをぬったのに、プレイヤーがすり抜けてしまいます。Active Tilemapの設定を含めて、確認する順番に原因を教えてください。
+      </div>
+      <div class="prompt-example">
+        Unityの2DアクションゲームでBounce Padのプレハブを置きましたが、上を歩いても跳ねません。初心者でもできる確認方法を順番に教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>「おもしろいステージの形を考えて」と丸投げする（自分で作って自分でテストするのが今日の練習！）</li>
+        <li>AIの答えをそのまま信じて、動かして確かめない（必ず自分の画面でPlayして確認しよう）</li>
+      </ul>
+    </div>
+
+    <h2>5-9. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Tile Paletteウィンドウを開けた</label>
+      <label><input type="checkbox"> Active Tilemapを「Level」にして、ブロックをぬれた</label>
+      <label><input type="checkbox"> 消しゴムツールでブロックを消せた</label>
+      <label><input type="checkbox"> 着地したときにパーティクルのエフェクトが出る</label>
+      <label><input type="checkbox"> Speed PadとBounce Padをステージに置けた</label>
+      <label><input type="checkbox"> Bounce PadのVertical Velocityを調整して、跳ね方の違いを確かめた</label>
+      <label><input type="checkbox"> 課題1の自分だけのショートカットルートを作った</label>
+    </div>
+    <p>全部チェックできたら第5章クリア！ 🎉 ステージの形もあそび心地も、もう「自分のゲーム」になってきたね。次は最終回、ワールドを飾りつけて発表に向けて仕上げよう。</p>
+
+    <h2>5-10. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/" target="_blank">Unity Learn</a> — Unity公式の学習サイト。2Dゲーム制作のコースもあるよ</li>
+      <li><a href="https://docs.unity3d.com/ja/current/Manual/UnityManual.html" target="_blank">Unity 公式マニュアル（日本語）</a> — Tilemapやパーティクルシステムの詳しい仕様はここで調べられる</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter4.html">← 第4章 世界に命を吹き込もう</a>
+      <a href="chapter6.html">第6章 仕上げて発表しよう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+  <script>
+    // コードブロックのコピーボタン
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.parentElement.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(function () {
+          btn.textContent = 'コピーした！';
+          setTimeout(function () { btn.textContent = 'コピー'; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第1章 ゲームを手に入れて遊ぼう 〜Platformer Microgameをはじめる〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第1章</span>
+      <h1>ゲームを手に入れて遊ぼう 〜Platformer Microgameをはじめる〜</h1>
+      <div class="date">📅 第1回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>ゲームエンジンが何をしてくれるのか説明できる</li>
+        <li>これから改造していくゲーム「Platformer Microgame」を自分のPCに用意できる</li>
+        <li>▶（再生）でゲームを実行して、実際に遊べる</li>
+        <li>Unityエディタの5つの画面の名前と役割がわかる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 講習の最初に、第0章の準備がうまくいったか全員で確認します。<br>
+      できなかった人も大丈夫、ここで一緒に解決するよ。
+    </p>
+
+    <h2>1-1. ゲームエンジンってなに？</h2>
+    <p>
+      マリオもスプラトゥーンも原神も、ゲームには共通して必要なものがあります。<br>
+      絵を画面に表示する、音を鳴らす、重力で落ちる、ボタン入力に反応する……。<br>
+      これを毎回ゼロから作るのは大変すぎる！<br>
+      そこで、<strong>ゲームに必要な機能をぜんぶ詰め込んだ道具箱</strong>が生まれました。<br>
+      それが<strong>ゲームエンジン</strong>です。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ゲームエンジンの役割">
+        <rect x="230" y="30" width="240" height="200" rx="16" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+        <text x="350" y="65" text-anchor="middle" font-size="20" font-weight="bold" fill="#0369a1">ゲームエンジン</text>
+        <text x="350" y="88" text-anchor="middle" font-size="13" fill="#0c4a6e">（Unity）</text>
+        <rect x="250" y="105" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="297" y="127" text-anchor="middle" font-size="13" fill="#0c4a6e">絵の表示</text>
+        <rect x="355" y="105" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="402" y="127" text-anchor="middle" font-size="13" fill="#0c4a6e">音を鳴らす</text>
+        <rect x="250" y="147" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="297" y="169" text-anchor="middle" font-size="13" fill="#0c4a6e">重力・衝突</text>
+        <rect x="355" y="147" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="402" y="169" text-anchor="middle" font-size="13" fill="#0c4a6e">ボタン入力</text>
+        <text x="350" y="212" text-anchor="middle" font-size="13" fill="#0c4a6e">めんどうな部分は全部おまかせ！</text>
+        <rect x="20" y="80" width="170" height="100" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="105" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#b45309">キミ（開発者）</text>
+        <text x="105" y="140" text-anchor="middle" font-size="12" fill="#78350f">「どんなゲームにするか」</text>
+        <text x="105" y="160" text-anchor="middle" font-size="12" fill="#78350f">を考えて指示を出す</text>
+        <path d="M 195 130 L 225 130" stroke="#64748b" stroke-width="3" marker-end="url(#arrow1)"/>
+        <rect x="510" y="80" width="170" height="100" rx="12" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="595" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">完成したゲーム</text>
+        <text x="595" y="140" text-anchor="middle" font-size="12" fill="#166534">PC・スマホ・Switchなど</text>
+        <text x="595" y="160" text-anchor="middle" font-size="12" fill="#166534">いろんな機械で動く</text>
+        <path d="M 475 130 L 505 130" stroke="#64748b" stroke-width="3" marker-end="url(#arrow1)"/>
+        <defs>
+          <marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図1-1: ゲームエンジンは「ゲーム作りの道具箱」。<br>
+        作り手はアイデアとルール作りに集中できる</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">Unity（ユニティ）</span> … 世界でいちばん使われているゲームエンジンのひとつ。<br>
+      ポケモンGO、原神、Among Usなど、有名なゲームもUnityで作られているよ。
+    </div>
+
+    <h2>1-2. この講座で作るもの 〜完成品を「改造」する〜</h2>
+    <p>
+      この講座では、Unity公式の2Dアクションゲーム「<strong>Platformer Microgame（プラットフォーマー マイクロゲーム）</strong>」を改造していきます。<br>
+      最初から「遊べる状態」のゲームを手に入れて、色・エフェクト・仕掛け・ステージをどんどん自分好みに作りかえていく、という進め方です。<br>
+      プロのゲーム開発でも「動くものを少しずつ良くしていく」のは基本のやり方。<br>
+      最終回には、キミだけの世界観のオリジナルゲームになっているはず！
+    </p>
+
+    <figure class="figure"><video src="img/shots/image16.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>改造の例: 仕掛け（Speed PadとBounce Pad）を追加したゲームで遊んでいるところ。<br>
+      こういう改造をひとつずつ覚えていくよ</figcaption></figure>
+
+    <div class="term">
+      <span class="word">プラットフォーマー</span> … 足場（プラットフォーム）を走ってジャンプして進むタイプのゲームのこと。<br>
+      横スクロールアクションの定番スタイルで、マリオもこの仲間だよ。
+    </div>
+
+    <p>
+      💡 この講座で使うUnityは「<strong>Unity 2022.3 LTS</strong>」（2022.3系の最新）。<br>
+      Platformer Microgameが最新のUnity 6ではうまく動かないという報告があるため、安定して動くこのバージョンを使います（くわしくは第0章）。
+    </p>
+
+    <h2>1-3. ゲームのプロジェクトを手に入れよう</h2>
+    <p>
+      さっそくPlatformer Microgameを手に入れます。<br>
+      この講座では、<strong>講師が用意したゲーム一式（プロジェクト）を受け取って、自分のPCで開く</strong>方式です。<br>
+      ダウンロードやアカウント操作は不要なので、5ステップですぐ遊べる状態になるよ。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">講師のUSBをPCにつなぐ</span>
+      <p>講師からUSBを受け取ったら、PCのUSB差込口につなぎます。<br>
+        Windowsではエクスプローラー、MacではFinderが開くので、左側に表示された<strong>USBドライブ</strong>をクリックしよう。自動で開かないときも、エクスプローラー／Finderを自分で開けばOKです。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">ゲームのzipをデスクトップへコピーする</span>
+      <p>USBの <code>03_Platformer_Microgame</code> フォルダを開き、<code>2d-action-game.zip</code> を<strong>デスクトップへドラッグ＆ドロップ</strong>してコピーします。<br>
+        コピーが終わるまで待って、デスクトップに <code>2d-action-game.zip</code> が見えたことを確認しよう。</p>
+      <figure class="figure">
+        <img src="img/ch1-00_usb-copy.svg" alt="USB内の03_Platformer_Microgameフォルダにある2d-action-game.zipをデスクトップへコピーする画面イメージ">
+        <figcaption>USBの <code>03_Platformer_Microgame</code> → デスクトップへ <code>2d-action-game.zip</code> をコピーする</figcaption>
+      </figure>
+      <p><strong>コピーが終わったら、USBは安全に取り外して講師へ返そう。</strong><br>
+        ⚠️ USBの中にあるzipを直接開いたり、USBを差したままUnityを使ったりしません。途中でUSBが抜けると、データが壊れることがあります。</p>
+      <p class="os-win"><strong>Windows:</strong> 画面右下の <code>⌃</code> → USBのマーク →「取り出し」を押し、「安全に取り外すことができます」と出てから抜く。</p>
+      <p class="os-mac"><strong>Mac:</strong> Finderの左側にあるUSB名の右の <strong>⏏</strong> を押す。USB名が消えてから抜く。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">zipを展開（解凍）する</span>
+      <p>zipは「ファイルをぎゅっと固めた宅配便の箱」。<strong>展開（解凍）して箱から出さないと使えません</strong>。</p>
+      <p><strong>まず、デスクトップに <code>yumeaka-unity</code> フォルダを作ろう</strong>（右クリック → 新規フォルダ）。フォルダ名は半角英数字にします。</p>
+      <p class="os-win"><strong>Windows:</strong> <code>2d-action-game.zip</code> を右クリック → 「<strong>すべて展開</strong>」→ 展開先に今作ったデスクトップの <code>yumeaka-unity</code> フォルダを選んで「展開」。</p>
+      <p class="os-mac"><strong>Mac:</strong> <code>2d-action-game.zip</code> をダブルクリックすると展開されます。できた <code>2d-action-game</code> フォルダを、今作ったデスクトップの <code>yumeaka-unity</code> フォルダに移動しよう。</p>
+      <p>⚠️ 置き場所は <code>yumeaka-unity</code> のような<strong>半角英数字だけの場所</strong>にすること。<br>
+        「ドキュメント」の中の日本語名フォルダなど、<strong>通り道に日本語が入る場所はNG</strong>（エラーや文字化けの原因になります）。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">Unity Hubの「Open」で開く</span>
+      <p>Unity Hubを起動して、左メニューの「<strong>Projects</strong>」（プロジェクト）→ 右上の「<strong>Open</strong>」（開く）を押します。<br>
+        フォルダ選択画面で、さっき展開した <code>2d-action-game</code> フォルダ（zipではなく<strong>展開後のフォルダ</strong>）を選ぼう。<br>
+        中に <code>Assets</code> というフォルダが入っているのが正解の目印だよ。</p>
+      <figure class="figure">
+        <img src="img/ch1-01_hub-open.svg" alt="Unity HubのProjects画面で右上のOpenを押し、展開した2d-action-gameフォルダを選択する画面イメージ図">
+        <figcaption>Unity Hubの「Open」から、展開した2d-action-gameフォルダを選ぶ<br>
+          画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">エディタバージョンを確認して開く</span>
+      <p>プロジェクト一覧に <code>2d-action-game</code> が追加されます。<br>
+        <strong>Editor Version</strong>（エディターバージョン）が <strong>2022.3系（LTS）</strong>になっていることを確認して、プロジェクト名をクリック。<br>
+        <strong>初回は起動に数分かかります</strong>。画面が止まって見えても壊れていないので、あわてずお茶でも飲んで待とう。</p>
+      <figure class="figure">
+        <img src="img/ch1-02_open-project.svg" alt="プロジェクト一覧に追加された2d-action-gameと、Editor Versionが2022.3系になっている表示の画面イメージ図">
+        <figcaption>Editor Versionが2022.3系であることを確認して、プロジェクト名をクリック<br>
+          画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">プロジェクト</span> … ゲーム1本分のデータをまとめた入れ物。<br>
+      画像・音・プログラムなど、このゲームに関係するファイルが全部ここに入る。<br>
+      今回は「完成したゲーム入り」のプロジェクトを手に入れたことになるよ。
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 なぜ「講師から受け取る」の？ 〜自分でダウンロードしないワケ〜</h4>
+      <p>Platformer Microgameは、以前はUnityのAsset Store（素材のオンラインストア）で配布されていましたが、<strong>現在は配布終了（deprecated）</strong>になっています。<br>
+        Unity Hubの「Learning」タブから入手する方法もあるけど、この講座で使う<strong>Unity 2022.3ではテンプレートが表示されない</strong>という報告が多く、確実ではありません。<br>
+        そこでこの講座では、<strong>講師が用意したプロジェクトを配る方式</strong>にしています。<br>
+        ネットの古い記事にあるAsset Storeからの入手手順は、今はそのまま使えないので注意しよう。</p>
+    </div>
+
+    <details class="hint">
+      <summary>自分のアカウントで手に入れたい人へ（上級・任意）</summary>
+      <p>⚠️ <strong>Asset Storeでは配布終了のため、新しくMy Assets（自分の入手済みリスト）に追加することはできません</strong>。以下の方法が使えるのは、<strong>過去に追加済みのアカウントだけ</strong>です。<br>
+        また、Unity HubのLearningタブにこのテンプレートが表示されるのは<strong>2021.3系エディタのみ</strong>という報告があります（この講座で使う2022.3では出てこないことが多い）。<br>
+        講習ではこの手順は不要なので、あてはまらない人は読み飛ばしてOK。</p>
+      <p><strong>手順1: 2Dテンプレートで空のプロジェクトを作る</strong><br>
+        New project画面でテンプレートを「2D」にして、Project nameを <code>2d-action-game</code> にして作成します。</p>
+      <figure class="figure">
+        <img src="img/shots/image117.png" alt="2Dテンプレートを選び2d-action-gameと名前を付けて作成">
+        <figcaption>2Dテンプレートを選択 → 名前と保存場所を設定 → Create project</figcaption>
+      </figure>
+      <p><strong>手順2: Asset Storeを開く</strong><br>
+        Unityエディタ上部メニューの「Window」→「Asset Store」を選ぶと、ブラウザでAsset Storeが開きます。</p>
+      <figure class="figure">
+        <img src="img/shots/image88.png" alt="WindowメニューからAsset Storeを開く">
+        <figcaption>「Window」→「Asset Store」の順にクリック</figcaption>
+      </figure>
+      <p><strong>手順3: Platformer Microgameのページを開く</strong><br>
+        検索バーに「Platformer Microgame」と入力して検索し、一番最初に出てくるものを選びます。<br>
+        （配布終了のため検索で出てこない場合は、My Assetsの一覧から探そう）</p>
+      <figure class="figure">
+        <img src="img/shots/image120.png" alt="Asset StoreでPlatformer Microgameを検索">
+        <figcaption>「Platformer Microgame」と検索</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image124.png" alt="検索結果からPlatformer Microgameを選択">
+        <figcaption>一番最初に出てくる「Platformer Microgame」を選ぶ</figcaption>
+      </figure>
+      <p><strong>手順4: My Assetsに入っていることを確認する</strong><br>
+        当時は「Add to My Assets」を押して規約に同意（Accept）すると追加できました。<br>
+        すでに追加済みの人は、ボタンの表示が「Open in Unity」になっています。</p>
+      <figure class="figure">
+        <img src="img/shots/image112.png" alt="Add to My Assetsボタン">
+        <figcaption>（当時の画面）「Add to My Assets」をクリック</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image111.png" alt="利用規約への同意（Accept）">
+        <figcaption>（当時の画面）利用規約に同意する場合は「Accept」をクリック</figcaption>
+      </figure>
+      <p><strong>手順5: Unityで開く</strong><br>
+        「Open in Unity」を押し、『Unity Editorを開きますか？』と確認されたら開きます。</p>
+      <figure class="figure">
+        <img src="img/shots/image89.png" alt="Open in Unityボタン">
+        <figcaption>「Open in Unity」をクリック</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image110.png" alt="Unity Editorを開く確認ダイアログ">
+        <figcaption>確認が出たら「開く」をクリック</figcaption>
+      </figure>
+      <p><strong>手順6: ダウンロードしてインポートする</strong><br>
+        UnityのPackage Managerが開くので、「Download」→「Import」の順に押します。</p>
+      <figure class="figure">
+        <img src="img/shots/image91.png" alt="Package ManagerのDownloadボタン">
+        <figcaption>「Download」をクリック</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image109.png" alt="Package ManagerのImportボタン">
+        <figcaption>続けて「Import」をクリック</figcaption>
+      </figure>
+      <p>『プロジェクト設定が上書きされます』という警告が出ますが、今回は空のプロジェクトなのでそのまま「Import」でOK。</p>
+      <figure class="figure">
+        <img src="img/shots/image87.png" alt="プロジェクト設定上書きの警告でImportを選択">
+        <figcaption>警告が出ても「Import」をクリック</figcaption>
+      </figure>
+      <p>『パッケージマネージャーの依存関係があります』と出たら「Install/Upgrade」→「Next」→「Import」と進みます。</p>
+      <figure class="figure">
+        <img src="img/shots/image129.png" alt="依存関係のInstall/Upgrade">
+        <figcaption>「Install/Upgrade」をクリック</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image83.png" alt="Nextボタン">
+        <figcaption>「Next」をクリック</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image106.png" alt="Importボタン">
+        <figcaption>「Import」をクリック</figcaption>
+      </figure>
+      <p>『シーンを再読み込みしますか？』と聞かれたら「Reload」を押し、インポートが終わったらウィンドウを×で閉じます。</p>
+      <figure class="figure">
+        <img src="img/shots/image122.png" alt="シーンのReload確認">
+        <figcaption>「Reload」をクリック</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image130.png" alt="インポート完了後にウィンドウを閉じる">
+        <figcaption>終わったら × で閉じる</figcaption>
+      </figure>
+    </details>
+
+    <h2>1-4. まずは遊んでみよう！</h2>
+    <p>
+      エディタが開いたら、いきなりだけど<strong>ゲームで遊びます</strong>。<br>
+      どんなゲームなのかを知らないと、改造のしようがないからね。<br>
+      これも立派な開発の仕事で、「テストプレイ」と言います。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">サンプルシーンを開く</span>
+      <p>プロジェクトを開いた直後は、ゲームのステージ（シーン）が開かれていないことがあります。<br>
+        画面下の<strong>Project</strong>ウィンドウの検索欄に <code>SampleScene</code> と入力し、出てきた<strong>Scene</strong>ファイルをダブルクリックしよう。<br>
+        ヒエラルキーに <code>Player</code> や <code>Level</code> が表示されたら、ゲームのステージを開けています。</p>
+      <figure class="figure">
+        <img src="img/ch1-02_open-sample-scene.svg" alt="UnityのProjectウィンドウでSampleSceneを検索し、Sceneファイルをダブルクリックして開く画面イメージ">
+        <figcaption>まず <code>SampleScene</code> を開こう。これを開かないとゲームを再生できません。</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">▶（再生ボタン）を押す</span>
+      <p>画面上部中央の<strong>▶（再生ボタン）</strong>を押すと、ゲームが始まります。<br>
+        もう一度▶を押すと停止します。</p>
+      <figure class="figure">
+        <img src="img/ch1-03_play-game.svg" alt="画面上部中央の再生ボタンと、再生中のPlatformer Microgameのゲーム画面の画面イメージ図">
+        <figcaption>画面上部中央の再生ボタンを押すとゲームが始まる<br>
+          画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">操作方法を覚える</span>
+      <table>
+        <tr><th>操作</th><th>キー</th></tr>
+        <tr><td>左右に移動</td><td><code>←</code> <code>→</code>（または <code>A</code> <code>D</code>）</td></tr>
+        <tr><td>ジャンプ</td><td><code>スペース</code></td></tr>
+        <tr><td>一時停止（ポーズ）</td><td><code>Esc</code></td></tr>
+      </table>
+      <p>キーを押しても動かないときは、まず<strong>ゲーム画面を1回クリック</strong>してから操作してみよう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">ゲームのルールを知る</span>
+      <ul>
+        <li>丸い<strong>トークン</strong>を集めながら進む</li>
+        <li><strong>敵は上から踏む</strong>と倒せる。横からぶつかるとやられちゃう</li>
+        <li>やられてもすぐ復活するので、どんどん挑戦してOK</li>
+        <li>ステージの最後までたどり着けたらクリア！</li>
+      </ul>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 超重要ルール: 再生中（▶が青いとき）の変更は保存されない！</h4>
+      <p>再生中にゲームの中身をさわって変更しても、停止すると元に戻ります。<br>
+        編集は<strong>必ず▶を押して停止してから</strong>。<br>
+        Unityあるあるナンバーワンのミスなので、今のうちに覚えておこう。</p>
+    </div>
+
+    <div class="term">
+      <span class="word">Escのポーズ画面</span> … 再生中に <code>Esc</code> を押すとゲームが一時停止して、タイトル画面が表示されます。<br>
+      ポーズ中も「再生モードのまま」なので、編集を再開する前に必ず▶で停止しよう。
+    </div>
+
+    <h2>1-5. エディタ画面の見方 〜5つのエリアを覚えよう〜</h2>
+    <p>
+      遊んだところで、開発者としてUnityの画面を見てみよう。<br>
+      最初はゴチャゴチャして見えるけど、大事なのは<strong>5つのエリア</strong>だけ。<br>
+      これから毎回使うので、名前と役割をセットで覚えよう。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Unityエディタの5つのエリア">
+        <rect x="10" y="10" width="680" height="410" rx="8" fill="#1e293b"/>
+        <rect x="10" y="10" width="680" height="34" rx="8" fill="#334155"/>
+        <polygon points="343,20 343,34 355,27" fill="#e2e8f0"/>
+        <text x="368" y="31" font-size="11" fill="#94a3b8">← 再生ボタン（ゲームを実行）</text>
+        <rect x="18" y="52" width="150" height="240" rx="6" fill="#475569"/>
+        <text x="93" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">ヒエラルキー</text>
+        <text x="93" y="98" text-anchor="middle" font-size="11" fill="#cbd5e1">Hierarchy</text>
+        <text x="93" y="130" text-anchor="middle" font-size="12" fill="#e2e8f0">世界にあるモノの</text>
+        <text x="93" y="148" text-anchor="middle" font-size="12" fill="#e2e8f0">「名簿」</text>
+        <rect x="176" y="52" width="330" height="240" rx="6" fill="#0ea5e9" opacity="0.85"/>
+        <text x="341" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">シーンビュー</text>
+        <text x="341" y="98" text-anchor="middle" font-size="11" fill="#e0f2fe">Scene</text>
+        <text x="341" y="130" text-anchor="middle" font-size="12" fill="#fff">ゲームの世界を組み立てる</text>
+        <text x="341" y="148" text-anchor="middle" font-size="12" fill="#fff">「作業机」</text>
+        <text x="341" y="180" text-anchor="middle" font-size="11" fill="#e0f2fe">※タブで「ゲームビュー(Game)」に</text>
+        <text x="341" y="196" text-anchor="middle" font-size="11" fill="#e0f2fe">切り替え＝プレイヤーから見た画面</text>
+        <rect x="514" y="52" width="168" height="240" rx="6" fill="#475569"/>
+        <text x="598" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">インスペクター</text>
+        <text x="598" y="98" text-anchor="middle" font-size="11" fill="#cbd5e1">Inspector</text>
+        <text x="598" y="130" text-anchor="middle" font-size="12" fill="#e2e8f0">選んだモノの</text>
+        <text x="598" y="148" text-anchor="middle" font-size="12" fill="#e2e8f0">「くわしい情報」</text>
+        <text x="598" y="166" text-anchor="middle" font-size="12" fill="#e2e8f0">（位置・大きさなど）</text>
+        <rect x="18" y="300" width="664" height="112" rx="6" fill="#64748b"/>
+        <text x="350" y="330" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">プロジェクトウィンドウ（Project）</text>
+        <text x="350" y="355" text-anchor="middle" font-size="12" fill="#e2e8f0">画像・音・プログラムなど、素材の「倉庫」。ここからシーンに置いていく</text>
+      </svg>
+      <figcaption>図1-2: Unityエディタの5つのエリア。<br>
+        「名簿・作業机・情報・倉庫・再生ボタン」と覚えよう</figcaption>
+    </div>
+
+    <table>
+      <tr><th>エリア</th><th>たとえ</th><th>役割</th></tr>
+      <tr><td><strong>シーンビュー</strong>（Scene）</td><td>作業机</td><td>ゲームの世界を目で見て組み立てる場所</td></tr>
+      <tr><td><strong>ゲームビュー</strong>（Game）</td><td>テレビ画面</td><td>プレイする人から見えるゲーム画面</td></tr>
+      <tr><td><strong>ヒエラルキー</strong>（Hierarchy）</td><td>名簿</td><td>世界に置いたモノの一覧リスト</td></tr>
+      <tr><td><strong>インスペクター</strong>（Inspector）</td><td>プロフィール帳</td><td>選んだモノの位置・大きさなどの詳細設定</td></tr>
+      <tr><td><strong>プロジェクト</strong>（Project）</td><td>倉庫</td><td>画像・音・プログラムなどの素材置き場</td></tr>
+    </table>
+
+    <p>
+      ヒエラルキー（名簿）を見てみると、<code>Player</code>（主人公）や <code>Level</code>（ステージ）など、このゲームの登場人物がもう並んでいるのがわかるよ。<br>
+      これを少しずつ書きかえていくのが「改造」だ。
+    </p>
+
+    <div class="term">
+      <span class="word">ゲームオブジェクト</span> … ゲームの世界に置くモノすべての呼び名。<br>
+      キャラも地面もカメラも、ぜんぶ「ゲームオブジェクト」。<br>
+      ヒエラルキーに並ぶのはこれ。
+    </div>
+
+    <div class="term">
+      <span class="word">シーン</span> … ゲームの「場面」のこと。<br>
+      タイトル画面で1シーン、ステージ1で1シーン、のように使う。<br>
+      今は「SampleScene」という1つの場面を編集しているよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">＋</span><span class="step-title">シーンビューの操作も覚えておこう</span>
+      <ul>
+        <li><strong>ズーム:</strong> マウスホイールを回す（トラックパッドは2本指で上下）</li>
+        <li><strong>視点の移動:</strong> マウスホイールを押し込んだままドラッグ（または手のひらツール）</li>
+        <li><strong>保存:</strong> <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>。<strong>作業の区切りごとに保存するクセ</strong>をつけよう</li>
+      </ul>
+    </div>
+
+    <h2>1-6. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: ゲームをすみずみまで探検しよう</h3>
+      <p>▶で再生して、ステージの最後までクリアしてみよう。<br>
+      そのあと、「もう一度遊びたくなる場所」「変えたら面白そうな場所」を<strong>3つ</strong>見つけてメモしよう。<br>
+      次回からの改造プランになるよ。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>高い場所や行き止まりにもトークンが置いてあるよ。<br>
+          「敵の数」「足場の並び」「色や背景」など、開発者の目線で見てみよう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 主人公のスタート位置を引っこしさせよう</h3>
+      <p>▶を<strong>停止した状態</strong>で、ヒエラルキーから <code>Player</code> をクリック。<br>
+      ツールバーの<strong>移動ツール</strong>（十字の矢印アイコン。<br>
+        キーボードの <code>W</code> でもOK）を選ぶと、キャラに赤と緑の矢印が出ます。<br>
+      矢印をドラッグしてスタート位置を変えて、再生して確かめよう。</p>
+      <ul>
+        <li><strong>赤い矢印</strong> = 横（X方向）に動かす</li>
+        <li><strong>緑の矢印</strong> = 縦（Y方向）に動かす</li>
+      </ul>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>Playerがシーンビューのどこにいるか見つからないときは、ヒエラルキーの <code>Player</code> を<strong>ダブルクリック</strong>すると画面がそこにズームするよ。<br>
+          動かしたら、Inspectorの <code>Transform</code> にある <code>Position</code> の数字が変わるのも見てみよう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 名簿と世界の対応を調べよう</h3>
+      <p>ヒエラルキーに並んでいる名前を上からいくつかクリックして、シーンビューのどこが光る（選択される）か調べよう。<br>
+      「この名前はゲームのアレか！」というのを<strong>5つ</strong>言えたら合格。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>名前の左に「&gt;」マークがあるものは、中に子どものオブジェクトが入っている（フォルダみたいなもの）。<br>
+          クリックして開いてみよう。<br>
+          <code>Main Camera</code> を選ぶと出てくる白い枠は「カメラに映る範囲」だよ。</p>
+      </details>
+    </div>
+
+    <h2>1-7. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>Hubの「Open」で開こうとしたらエラーになる（zipを展開していない）</h4>
+      <p><strong>原因:</strong> zipを展開（解凍）せずに、zipのまま（またはzipの中をのぞいた状態で）開こうとしている。<br>
+      <span class="os-win">Windowsはzipをダブルクリックすると中身が「見える」けど、それは展開されていない状態だよ。</span><span class="os-mac">Macでも、展開してできたフォルダではなくzip本体を選んでいないか確認しよう。</span></p>
+      <p><strong>直し方:</strong> <span class="os-win">zipを右クリック → 「すべて展開」で展開してから、</span><span class="os-mac">zipをダブルクリックして展開してから、</span>できあがった <code>2d-action-game</code> フォルダをHubの「Open」で選び直す。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>開いたらエラーがたくさん出る・文字化けする（日本語フォルダの下に置いた）</h4>
+      <p><strong>原因:</strong> プロジェクトまでの通り道（パス）に日本語のフォルダ名が入っている。<br>
+      Unityは日本語のパスが苦手で、エラーや文字化けの原因になります。</p>
+      <p><strong>直し方:</strong> Unityをいったん閉じて、<code>2d-action-game</code> フォルダをデスクトップの <code>yumeaka-unity</code> のような<strong>半角英数字だけの場所</strong>にフォルダごと移動。<br>
+      そのあとHubの「Open」でもう一度選び直そう（前の場所の登録が一覧に残っていたら、そちらは消してOK）。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>キーを押してもキャラが動かない</h4>
+      <p><strong>原因1:</strong> ゲーム画面が選ばれていない。<br>
+      → ゲーム画面を1回クリックしてから操作する。</p>
+      <p><strong>原因2:</strong> 日本語入力がオンになっている。<br>
+      → <span class="os-win">「半角/全角」キーで日本語入力をオフにする。</span><span class="os-mac">「英数」キーを押して英字入力にする。</span></p>
+    </div>
+
+    <div class="trouble">
+      <h4>Escを押したらゲームが止まったまま戻れない</h4>
+      <p><strong>原因:</strong> Escは一時停止（ポーズ）。<br>
+      ポーズ中も再生モードのまま。</p>
+      <p><strong>直し方:</strong> ポーズ画面のボタンでゲームに戻るか、上部の▶を押して再生モードを終了する。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>せっかく変更したのに、停止したら元に戻った</h4>
+      <p><strong>原因:</strong> 再生中（▶が青いとき）に変更していた。<br>
+      再生中の変更は保存されないルールだったね。</p>
+      <p><strong>直し方:</strong> ▶で停止してから、もう一度同じ変更をしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>画面のレイアウトがぐちゃぐちゃになった／ウィンドウが消えた</h4>
+      <p><strong>直し方:</strong> 画面右上のレイアウトメニュー（またはメニューの <code>Window → Layouts</code>）から <code>Default</code> を選ぶと元どおり。<br>
+      こわれたわけじゃないので安心して。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>まちがって何かを消してしまった</h4>
+      <p><strong>直し方:</strong> あわてず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span>（元に戻す）。<br>
+      ほとんどの操作は取り消せるよ。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>1-8. 🤖 AIを味方につけよう</h2>
+    <p>
+      ChatGPTやClaudeなどのAIは、Unity学習の強力な味方です（13歳以上なら保護者の同意のもとで使えます）。<br>
+      Unityは画面操作が多いので、<strong>「今どういう状態で、何をしたら、どうなったか」</strong>を言葉で伝えるのがコツです。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>操作で迷子になったら:</strong> 「〇〇したいけどボタンが見つからない」を具体的に聞く</li>
+        <li><strong>用語の解説:</strong> シーン、ゲームオブジェクトなど、わからない言葉を自分のレベルで説明してもらう</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3で「Platformer Microgame」を今日開いたばかりの中学生です。<br>
+        再生ボタンを押してもキャラクターがキー入力で動きません。<br>
+        原因として考えられることを、確認する順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        Unityの「シーン」と「ゲームオブジェクト」と「プロジェクト」の関係がこんがらがってきました。<br>
+        学校や部活にたとえて説明してください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>課題の「探検メモ」や「改造プラン」をAIに考えてもらう（自分のゲームにしたい形を見つけるのが今日の練習！）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（AIは古いバージョンのUnityの話をすることもある。<br>
+          必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>1-9. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> ゲームエンジンが何をしてくれるか、ひとことで説明できる</label>
+      <label><input type="checkbox"> 講師からもらった <code>2d-action-game</code> を展開して、Unity Hubの「Open」で開けた</label>
+      <label><input type="checkbox"> ▶でゲームを再生して遊べた（移動・ジャンプ・停止ができる）</label>
+      <label><input type="checkbox"> 「再生中の変更は保存されない」ルールを覚えた</label>
+      <label><input type="checkbox"> 5つのエリア（シーン・ゲーム・ヒエラルキー・インスペクター・プロジェクト）の役割が言える</label>
+      <label><input type="checkbox"> 課題1の「変えたら面白そうな場所」を3つメモした</label>
+    </div>
+    <p>全部チェックできたら第1章クリア！<br>
+      🎉 次回からいよいよ改造スタート。<br>
+      ゲームに自分の画像を飾ったり、オリジナルのタイトルを付けたりして、「自分のゲーム」に近づけていくよ。</p>
+
+    <h2>1-10. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/" target="_blank">Unity Learn</a> — Unity公式の学習サイト。<br>
+      Platformer Microgameの公式チュートリアルもここにあるよ</li>
+      <li><a href="https://docs.unity3d.com/ja/2022.3/Manual/UnityManual.html" target="_blank">Unity 2022.3 公式マニュアル（日本語）</a> — 困ったときの辞書として使おう</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter0.html">← 第0章 事前準備</a>
+      <a href="chapter2.html">第2章 ビルボードとゲーム名 →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

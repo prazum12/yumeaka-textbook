@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第6章 仕上げて発表しよう 〜ワールドを飾って、自分だけの作品に〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第6章（最終回）</span>
+      <h1>仕上げて発表しよう 〜ワールドを飾って、自分だけの作品に〜</h1>
+      <div class="date">📅 第6回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <p>
+      ついに最終回。<br>
+      今日はワールドに小物を飾りつけて、オブジェクトの<strong>追加・複製・移動・拡大・回転・色変え</strong>という編集の基本ワザをひと通りマスターします。<br>
+      そのあとは自由カスタマイズタイム。<br>
+      これまで学んだことを全部使って、自分だけのゲームに仕上げて、最後にみんなで見せ合います。
+    </p>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>プレハブをシーンビューにドラッグしてオブジェクトを追加（インスタンス化）できる</li>
+        <li><span class="os-win"><code>Ctrl + D</code></span><span class="os-mac"><code>⌘ + D</code></span> でオブジェクトを複製できる</li>
+        <li>移動・拡大縮小・回転の3つのツールを使い分けられる</li>
+        <li>Sprite Rendererでオブジェクトの色を変えられる</li>
+        <li>自分のテーマを決めて、ワールドを自由にカスタマイズできる</li>
+      </ul>
+    </div>
+
+    <p>
+      まずは前回まで改造してきたプロジェクトをUnity Hubから開こう。<br>
+      途中がうまくいっていない人も大丈夫、最初にみんなで確認するよ。
+    </p>
+
+    <h2>6-1. ワールドを装飾しよう</h2>
+    <p>
+      ゲームの中身（動き・しかけ）はもう十分そろってきました。<br>
+      最終回のテーマは<strong>「見た目の仕上げ」</strong>です。<br>
+      小物オブジェクトを追加・編集して、世界をよりにぎやかに、楽しく彩っていきます。<br>
+      使うワザは次の6つ。<br>
+      どれもゲーム作りで一生使い続ける基本ワザです。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="装飾の6つの基本ワザ。追加、複製、移動、拡大縮小、回転、色変えの流れ">
+        <defs>
+          <marker id="arrow6a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+        <rect x="20" y="40" width="190" height="70" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="115" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">1. 追加</text>
+        <text x="115" y="92" text-anchor="middle" font-size="11" fill="#0c4a6e">プレハブをドラッグ（インスタンス化）</text>
+        <rect x="20" y="140" width="190" height="70" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="115" y="170" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">2. 複製</text>
+        <text x="115" y="192" text-anchor="middle" font-size="11" fill="#0c4a6e">同じものをどんどん増やす</text>
+        <path d="M214 75 L251 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <path d="M214 175 L251 175" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="258" y="40" width="190" height="170" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="353" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#b45309">3〜5. 配置を整える</text>
+        <text x="353" y="105" text-anchor="middle" font-size="13" fill="#78350f">移動（Move）</text>
+        <text x="353" y="135" text-anchor="middle" font-size="13" fill="#78350f">拡大縮小（Scale）</text>
+        <text x="353" y="165" text-anchor="middle" font-size="13" fill="#78350f">回転（Rotate）</text>
+        <text x="353" y="195" text-anchor="middle" font-size="11" fill="#92400e">ツールバーで切り替える</text>
+        <path d="M452 125 L489 125" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="496" y="90" width="184" height="70" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+        <text x="588" y="120" text-anchor="middle" font-size="15" font-weight="bold" fill="#166534">6. 色を変える</text>
+        <text x="588" y="142" text-anchor="middle" font-size="11" fill="#14532d">Sprite RendererのColor</text>
+        <text x="350" y="232" text-anchor="middle" font-size="12" fill="#334155">この6つを組み合わせれば、ワールドは自由自在に飾れる</text>
+      </svg>
+      <figcaption>図6-1: 装飾の基本ワザ6つ。<br>
+        追加して、増やして、配置を整えて、色を変える</figcaption>
+    </div>
+
+    <h2>6-2. オブジェクトを追加しよう 〜インスタンス化〜</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Foodフォルダを開く</span>
+      <p>プロジェクトウィンドウで、<strong>Mod Assets → 2D Props → Food</strong> の順に選択します。<br>
+        お菓子や食べものの小物プレハブがずらっと並んでいるよ。</p>
+      <figure class="figure">
+        <img src="img/shots/image107.png" alt="プロジェクトウィンドウでMod Assetsから2D Props、Foodの順にフォルダを開いた画面" style="max-width:100%;border-radius:8px">
+        <figcaption>① Mod Assets → ② 2D Props → ③ Food の順にフォルダを開く</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">GummyBearプレハブをシーンビューにドラッグする</span>
+      <p><code>GummyBear</code>（グミベア）のプレハブを選択して、シーンビューにドラッグしてワールドに追加します。<br>
+        このように、設計図（プレハブ）から実物をシーンに作り出すことを「<strong>インスタンス化</strong>」や「インスタンスを作成する」と呼びます。</p>
+      <figure class="figure">
+        <video src="img/shots/image7.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>GummyBearプレハブをシーンビューへドラッグしてインスタンス化する</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">プレハブ（Prefab）</span> … オブジェクトの「設計図」。<br>
+      これまでの章でも、しかけやパワーアップをシーンにドラッグして置いてきたね。<br>
+      あれも全部インスタンス化だったんだ。
+    </div>
+    <div class="term">
+      <span class="word">インスタンス化（Instantiate）</span> … 設計図（プレハブ）から、シーンの中に実物（インスタンス）を作り出すこと。<br>
+      1つの設計図から、何個でも実物を作れる。
+    </div>
+
+    <h2>6-3. オブジェクトを複製しよう</h2>
+    <p>
+      同じ飾りをたくさん並べたいとき、毎回ドラッグしてくるのは面倒。<br>
+      そんなときは<strong>複製（Duplicate）</strong>の出番です。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">複製したいオブジェクトを選ぶ</span>
+      <p>ヒエラルキーで <code>GummyBear</code> を選択します。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Edit → Duplicate で複製する</span>
+      <p>メニューの「<strong>Edit → Duplicate</strong>」を選ぶか、ショートカット <span class="os-win"><code>Ctrl + D</code></span><span class="os-mac"><code>⌘ + D</code></span> を押します。<br>
+        ヒエラルキーに <code>GummyBear (1)</code> のような名前のコピーが増えたら成功。</p>
+      <figure class="figure">
+        <img src="img/shots/image97.png" alt="EditメニューからDuplicateを選択している画面" style="max-width:100%;border-radius:8px">
+        <figcaption>① Edit → ② Duplicate。<br>
+          ショートカットは <span class="os-win">Ctrl + D</span><span class="os-mac">⌘ + D</span></figcaption>
+      </figure>
+      <p>💡 複製されたコピーは<strong>元とまったく同じ位置</strong>に重なって生まれます。<br>
+        「増えてない？」と思ったら、次の移動ツールでずらしてみよう。</p>
+    </div>
+
+    <h2>6-4. オブジェクトを移動しよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Moveツールで矢印をドラッグする</span>
+      <p>ヒエラルキーで <code>GummyBear</code> を選択したまま、ツールバーの<strong>Move（移動）ツール</strong>を選択します。<br>
+        オブジェクトに赤と緑の矢印が表示されるので、矢印をドラッグして好きな場所へ動かそう。<br>
+        赤い矢印は横（X）、緑の矢印は縦（Y）方向だけに動かせるよ。</p>
+      <figure class="figure">
+        <video src="img/shots/image38.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Moveツールを選び、矢印をドラッグしてGummyBearを移動させる</figcaption>
+      </figure>
+    </div>
+
+    <h2>6-5. オブジェクトを拡大・縮小しよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Scaleツールでサイズを変える</span>
+      <p>ツールバーの<strong>Scale(拡大縮小)ツール</strong>をクリックします。<br>
+        中央のグレイの四角をドラッグすると、GummyBear全体をそのままの形で拡大縮小できます。<br>
+        各矢印（赤＝X、緑＝Y）をドラッグすれば、横だけ・縦だけ、1つの軸に沿って引き伸ばすこともできるよ。</p>
+      <figure class="figure">
+        <video src="img/shots/image20.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Scaleツールで中央の四角をドラッグすると全体を拡大縮小、各矢印なら1軸だけ変えられる</figcaption>
+      </figure>
+      <p>💡 巨大グミベアも、ミニチュアグミベアも思いのまま。<br>
+        大きさを変えるだけで、ワールドの印象はガラッと変わる。</p>
+    </div>
+
+    <h2>6-6. オブジェクトを回転させよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Rotateツールでくるっと回す</span>
+      <p>ツールバーの<strong>Rotate（回転）ツール</strong>をクリックします。<br>
+        オブジェクトのまわりに球形のハンドル（円形のライン）が表示されるので、ラインをドラッグしてグミベアを回転させてみよう。<br>
+        横倒しにして、グミベアが側面で立っているようにもできる。</p>
+      <figure class="figure">
+        <video src="img/shots/image29.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Rotateツールの円形ハンドルをドラッグしてグミベアを回転させる</figcaption>
+      </figure>
+    </div>
+
+    <h2>6-7. オブジェクトの色を変えよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Sprite RendererのColorをクリックする</span>
+      <p>色を変えたいオブジェクトを選択して、インスペクターの <strong>Sprite Renderer</strong> の下にある <strong>Color</strong> プロパティをクリックします。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">カラーホイールで色を選ぶ</span>
+      <p>カラーホイールが開くので、好きな色を選びます。<br>
+        選んだ瞬間にシーンのオブジェクトの色が変わるよ。<br>
+        同じグミベアでも、色を変えて並べればカラフルなグミの行列が作れる。</p>
+      <figure class="figure">
+        <img src="img/shots/image90.png" alt="インスペクターのSprite RendererにあるColorプロパティをクリックし、カラーホイールで色を選んでいる画面" style="max-width:100%;border-radius:8px">
+        <figcaption>① Colorをクリック → ② カラーホイールで色を選択</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">Sprite Renderer（スプライトレンダラー）</span> … 2Dの絵（スプライト）を画面に表示するコンポーネント。<br>
+      <code>Color</code>を変えると、元の絵に色が重ねがけされて見た目が変わる。
+    </div>
+
+    <h2>6-8. 自由カスタマイズタイム</h2>
+    <p>
+      基本ワザはこれで全部そろいました。<br>
+      ここからは<strong>自由にカスタマイズする時間</strong>です。<br>
+      小さな改造から、あなたらしいゲームの世界が広がります。<br>
+      ぜひ自由な発想で、作品づくりを楽しんでください。
+    </p>
+    <p>使える道具は、この6回でこんなにたまっています。</p>
+    <table>
+      <tr><th>道具</th><th>できること</th></tr>
+      <tr><td>2DProps（Foodなど）の小物</td><td>ワールドを飾る。<br>
+        追加・複製・移動・拡大・回転・色変えは今日の基本ワザ</td></tr>
+      <tr><td>トレイル（軌跡）</td><td>プレイヤーの動きに残像の演出をつける</td></tr>
+      <tr><td>色合い（Tint）ゾーン</td><td>エリアごとに世界の雰囲気をがらっと変える</td></tr>
+      <tr><td>パーティクル・エフェクト</td><td>火花などのきらびやかな演出を足す</td></tr>
+      <tr><td>カスタムトリガー</td><td>「触れたら何かが起きる」しかけを作る</td></tr>
+      <tr><td>Speed Pad / Bounce Pad</td><td>スピード感と大ジャンプでコースを楽しくする</td></tr>
+    </table>
+    <p>
+      迷ったら、まず<strong>「テーマ」をひとつ決める</strong>のがおすすめ。<br>
+      テーマが決まると、どこに何を置くか自然と決まっていくよ。<br>
+      次の「やってみよう」にアイデア集があります。
+    </p>
+
+    <h2>6-9. 💪 やってみよう: 自由制作アイデア集</h2>
+    <p>
+      次のテーマ例から1つ選んでもいいし、自分で思いついたテーマならもっといい。<br>
+      「これ、どうやるんだっけ？」となったら、前の章のページに戻って確認しながら進めよう。
+    </p>
+
+    <div class="challenge">
+      <h3>テーマ例1: お菓子の国コース</h3>
+      <p>Foodフォルダの小物を総動員して、ステージ全体をお菓子の国にしよう。<br>
+        巨大グミベアの山、色違いグミの行列、逆さづりのドーナツ……拡大・回転・色変えの練習にぴったり。</p>
+    </div>
+
+    <div class="challenge">
+      <h3>テーマ例2: 超高速スピードランコース</h3>
+      <p>Speed PadとBounce Padをたくさん並べて、最初から最後まで走りっぱなし・跳びっぱなしの爽快コースを作ろう。<br>
+        パッドのパラメーターを調整して、気持ちいいスピード感を探そう。</p>
+    </div>
+
+    <div class="challenge">
+      <h3>テーマ例3: エリアごとに世界が変わる冒険コース</h3>
+      <p>色合い（Tint）ゾーンを使って、「昼の草原 → 夕焼けの谷 → 真っ暗な洞窟」のように、進むたびに雰囲気が変わるステージにしよう。<br>
+        エリアごとに置く小物も変えると、もっとそれっぽくなる。</p>
+    </div>
+
+    <div class="challenge">
+      <h3>テーマ例4: びっくりしかけハウス</h3>
+      <p>カスタムトリガーを使って、「触れたら何かが起きる」しかけをたくさん仕込もう。<br>
+        どこに何が隠れているかわからない、遊ぶ人を驚かせるステージに。</p>
+    </div>
+
+    <div class="challenge">
+      <h3>テーマ例5: 激ムズアスレチック</h3>
+      <p>足場の間隔をぎりぎりにしたり、Bounce Padの跳ね方を調整したり、クリアできるかできないかの限界に挑戦するコースを作ろう。<br>
+        ただし<strong>「作った本人はクリアできる」</strong>のがルール。<br>
+        必ず自分でテストプレイしよう。</p>
+    </div>
+
+    <div class="challenge">
+      <h3>テーマ例6: 物語のあるワールド</h3>
+      <p>「主人公は迷子のグミベアを探しに行く」など、自分でお話を決めてから飾りつけよう。<br>
+        ゴール地点に大切なものを置くだけでも、ぐっと物語が生まれるよ。</p>
+    </div>
+
+    <h2>6-10. 発表タイム 〜見せ合いの心得〜</h2>
+    <p>
+      カスタマイズができたら、いよいよ発表です。<br>
+      おたがいの作品を交換して遊び合おう。<br>
+      発表と見せ合いには、ちょっとした「心得」があります。
+    </p>
+    <ul>
+      <li><strong>作った人:</strong> 工夫したポイントを一言で紹介しよう。<br>
+        「お菓子の国にした」「トリガーでびっくりしかけを作った」など、ひとことでOK。</li>
+      <li><strong>遊ぶ人:</strong> 遊び終わったら、<strong>良いところを必ず1つ言葉にして伝えよう</strong>。<br>
+        「この大ジャンプ気持ちいい」「色づかいがきれい」なんでもいい。<br>
+        作った人にとって、いちばんのごほうびになる。</li>
+      <li><strong>直したほうがいいところを言うときは、良いところを言ったあとで。</strong><br>
+        言い方は「こうしたらもっと面白いかも」の形にしよう。</li>
+      <li>うまくできなかった部分があっても大丈夫。<br>
+        「ここまでできた」を堂々と発表しよう。<br>
+        バグも立派な発見のひとつ。</li>
+    </ul>
+
+    <h2>6-11. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>ドラッグしたのにオブジェクトが見つからない</h4>
+      <p><strong>原因:</strong> シーンビューの表示範囲の外や、カメラに映らない遠くに置いてしまった。</p>
+      <p><strong>直し方:</strong> ヒエラルキーでそのオブジェクトを選んで、シーンビューにマウスを置いたまま <code>F</code> キーを押すと、一気にそのオブジェクトまでズームしてくれる。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>複製したはずなのに増えて見えない</h4>
+      <p><strong>原因:</strong> 複製されたコピーは元とまったく同じ位置に重なって生まれるので、見た目は1個のまま。</p>
+      <p><strong>直し方:</strong> ヒエラルキーを見ると <code>GummyBear (1)</code> が増えているはず。<br>
+        Moveツールでドラッグしてずらそう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>色を変えたのに何も変わらない</h4>
+      <p><strong>原因:</strong> 別のオブジェクトを選んだまま操作している。<br>
+        または、Sprite Rendererではない場所のColorを変えている。</p>
+      <p><strong>直し方:</strong> ヒエラルキーで色を変えたいオブジェクトが選ばれているか確認して、インスペクターの<strong>Sprite Renderer</strong>のColorを変えよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>操作をまちがえてぐちゃぐちゃになった</h4>
+      <p><strong>原因:</strong> 移動・拡大・回転のやりすぎは誰にでもある。</p>
+      <p><strong>直し方:</strong> あわてず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span>（元に戻す）。<br>
+        何回でもさかのぼれるので、失敗をおそれずどんどん試そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>せっかく置いた飾りが消えた</h4>
+      <p><strong>原因:</strong> ▶（再生中）のまま編集していた。<br>
+        再生中の変更は、停止するとぜんぶ元に戻ってしまう。</p>
+      <p><strong>直し方:</strong> 編集は必ず再生を止めてから。<br>
+        Unityあるあるナンバーワンのミス、最終回でももう一度注意！</p>
+    </div>
+
+    <h2>6-12. 🤖 AIを味方につけよう</h2>
+    <p>
+      最終回だからこそ伝えたいこと。<br>
+      ここから先は、教科書に載っていない「自分だけのアイデア」を形にしていくフェーズです。<br>
+      そんなときこそAIが頼れる相棒になります。<br>
+      <strong>「まず自分で15分考える」「AIの答えは必ず自分の画面で確かめる」</strong>の2つの原則は、これからもずっと大事にしよう。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — アイデア出しの壁打ちや、操作に迷ったときの調べものに使う</p>
+      <ul>
+        <li><strong>アイデアの壁打ち:</strong> 自分のテーマを伝えて、飾りつけや構成のアイデアを広げてもらう</li>
+        <li><strong>操作の調べもの:</strong> 「Unityでこういうことをしたいけど、どのツール・どの設定？」を聞く</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプトの例:</p>
+      <div class="prompt-example">
+        UnityのPlatformer Microgameを改造して、お菓子の国がテーマの2Dステージを作っています。<br>
+        遊ぶ人が「おっ」と思うような飾りつけや演出のアイデアを、Unityの基本操作（オブジェクトの配置・拡大・回転・色変え）でできる範囲で5つ提案してください。
+      </div>
+      <div class="prompt-example">
+        Unityの2Dゲームで、シーンに置いたオブジェクトをきれいに等間隔で並べたいです。<br>
+        初心者でもできる方法を、手順を追って教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>テーマ決めから飾りつけまで、ぜんぶAIの言うとおりに作る（あなたらしさが作品から消えてしまう）</li>
+        <li>AIの答えをそのまま信じる（AIは古いバージョンのUnityの話をすることがある。<br>
+          必ず自分の画面で確認しよう）</li>
+      </ul>
+    </div>
+
+    <h2>6-13. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> プレハブをドラッグしてオブジェクトを追加（インスタンス化）できた</label>
+      <label><input type="checkbox"> <span class="os-win">Ctrl + D</span><span class="os-mac">⌘ + D</span> でオブジェクトを複製できた</label>
+      <label><input type="checkbox"> 移動・拡大縮小・回転の3つのツールを使えた</label>
+      <label><input type="checkbox"> Sprite RendererのColorで色を変えられた</label>
+      <label><input type="checkbox"> テーマを決めて、自分だけのカスタマイズをした</label>
+      <label><input type="checkbox"> 発表して、友達の作品の良いところを1つ伝えた</label>
+    </div>
+
+    <h2>6-14. 🎓 コース修了、おめでとう！</h2>
+    <p>
+      全部チェックできたら第6章クリア。<br>
+      🎉 そして<strong>全コース、完走です。<br>
+      お疲れさま！</strong><br>
+      最初はただのサンプルゲームだったPlatformer Microgameが、今はもう、世界にひとつだけの「自分の作品」になりました。<br>
+      名前を付けて、色を変えて、しかけを仕込んで、飾りつけて——ぜんぶ自分の手でやってきたことです。
+    </p>
+    <p>
+      ゲーム作りに「完成」はありません。<br>
+      これからも遊びながら、直しながら、アイデアを試しながら、作品を育てていってね。<br>
+      次の一歩に迷ったら、こんな道しるべがあるよ。
+    </p>
+    <ul>
+      <li><a href="https://learn.unity.com/" target="_blank" rel="noopener">Unity Learn</a> — Unity公式の無料学習サイト。<br>
+        今回遊んだPlatformer Microgameのほかにも、カートレースやFPSなどのマイクロゲームがあって、同じように改造しながら学べる</li>
+      <li><a href="https://docs.unity3d.com/ja/current/Manual/UnityManual.html" target="_blank" rel="noopener">Unity 公式マニュアル（日本語）</a> — ツールやコンポーネントの詳しい説明を調べたいときの辞書がわり</li>
+      <li>今回のゲームをさらに改造して、家族や友達に遊んでもらおう。<br>
+        遊んでくれた人の「ここが面白い」「ここが難しい」は、次の作品への最高のヒントになる</li>
+      <li>慣れてきたら、スクリプト（プログラム）で自分だけのしかけを作ることにも挑戦してみよう。<br>
+        Unity LearnにはC#プログラミングの入門コースもあるよ</li>
+    </ul>
+    <p>
+      ここまで走りきったキミなら、もう自分で調べて、試して、直していく力がついているはず。<br>
+      次の作品で、もっとすごい世界を見せてください。<br>
+      またどこかで、キミの作ったゲームで遊べる日を楽しみにしています！
+    </p>
+
+    <nav class="chapter-nav">
+      <a href="chapter5.html">← 第5章 ステージを作りかえよう</a>
+      <a href="index.html">目次に戻る →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

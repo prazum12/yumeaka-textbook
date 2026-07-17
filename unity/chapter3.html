@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第3章 世界の色を変えよう 〜色で自分だけの世界観をつくる〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第3章</span>
+      <h1>世界の色を変えよう 〜色で自分だけの世界観をつくる〜</h1>
+      <div class="date">📅 第3回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>Tilesアセットのスプライトを別の色に切り替えて、木や建物の色を変えられる</li>
+        <li>マテリアルをドラッグして、レベル全体の見た目を一気に変えられる</li>
+        <li>プレイヤーにトレイル（軌跡）をつけて、動きにスピード感を出せる</li>
+        <li>空（カメラの背景）とレベルの色合いを変えて、世界観を統一できる</li>
+      </ul>
+    </div>
+
+    <p>
+      今日は<strong>コードを1行も書きません</strong>。<br>
+      変えるのは「色」だけ。<br>
+      それなのに、ゲームの印象はびっくりするほど変わります。<br>
+      前回のプロジェクトが開けない人は、第1章の手順で「Platformer Microgame」をもう一度インポートすれば大丈夫。<br>
+      今日の内容はそこからでも追いつけるよ。
+    </p>
+
+    <h2>3-1. 色が世界観をつくる</h2>
+    <p>
+      同じステージでも、空が明るい水色なら「昼の冒険」、濃い紫なら「不思議な夜の世界」、赤っぽければ「危険な火山地帯」。<br>
+      ゲームの<strong>世界観（どんな世界なのか、という雰囲気）</strong>は、色でほとんど決まります。<br>
+      Platformer Microgameでは、次の場所から世界の色を変えられます。
+    </p>
+
+    <table>
+      <tr><th>変える場所</th><th>変わるもの</th></tr>
+      <tr><td>Tilesのスプライト</td><td>木・建物など、パーツごとの色</td></tr>
+      <tr><td>マテリアル</td><td>レベル全体の質感・見た目</td></tr>
+      <tr><td>Main CameraのBackground</td><td>空の色</td></tr>
+      <tr><td>LevelのColor</td><td>世界全体にうっすらかかる色合い</td></tr>
+      <tr><td>トレイル</td><td>プレイヤーの動きの演出</td></tr>
+    </table>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ゲーム画面のどこの色を変えられるかを示す図。空・タイル・トレイル・全体の色合いの4か所">
+        <rect x="30" y="30" width="440" height="240" rx="10" fill="#7dd3fc" stroke="#0369a1" stroke-width="2"/>
+        <ellipse cx="120" cy="80" rx="42" ry="16" fill="#f0f9ff"/>
+        <ellipse cx="360" cy="110" rx="50" ry="18" fill="#f0f9ff"/>
+        <rect x="32" y="224" width="436" height="44" fill="#a16207"/>
+        <g stroke="#854d0e" stroke-width="1">
+          <line x1="76" y1="224" x2="76" y2="268"/>
+          <line x1="120" y1="224" x2="120" y2="268"/>
+          <line x1="164" y1="224" x2="164" y2="268"/>
+          <line x1="208" y1="224" x2="208" y2="268"/>
+          <line x1="252" y1="224" x2="252" y2="268"/>
+          <line x1="296" y1="224" x2="296" y2="268"/>
+          <line x1="340" y1="224" x2="340" y2="268"/>
+          <line x1="384" y1="224" x2="384" y2="268"/>
+          <line x1="428" y1="224" x2="428" y2="268"/>
+        </g>
+        <circle cx="224" cy="204" r="6" fill="#fb923c" opacity="0.3"/>
+        <circle cx="248" cy="204" r="8" fill="#fb923c" opacity="0.5"/>
+        <circle cx="272" cy="204" r="10" fill="#fb923c" opacity="0.7"/>
+        <circle cx="300" cy="204" r="16" fill="#f97316"/>
+        <rect x="30" y="30" width="440" height="240" rx="10" fill="#a855f7" opacity="0.12"/>
+        <g font-size="13" fill="#334155">
+          <text x="495" y="62" font-weight="bold">空の色</text>
+          <text x="495" y="79" font-size="11" fill="#64748b">Main CameraのBackground</text>
+          <text x="495" y="122" font-weight="bold">色合い</text>
+          <text x="495" y="139" font-size="11" fill="#64748b">LevelのColorで全体を染める</text>
+          <text x="495" y="182" font-weight="bold">トレイル</text>
+          <text x="495" y="199" font-size="11" fill="#64748b">動いたあとに残る軌跡</text>
+          <text x="495" y="242" font-weight="bold">タイルの色</text>
+          <text x="495" y="259" font-size="11" fill="#64748b">スプライト・マテリアル</text>
+        </g>
+        <g stroke="#94a3b8" stroke-width="1.5" fill="none">
+          <line x1="490" y1="57" x2="420" y2="70"/>
+          <line x1="490" y1="117" x2="455" y2="130"/>
+          <line x1="490" y1="177" x2="320" y2="200"/>
+          <line x1="490" y1="237" x2="470" y2="246"/>
+        </g>
+      </svg>
+      <figcaption>図3-1: 今日はゲーム画面のこの4か所の色を変えて、世界観をまるごと作りかえる</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">スプライト（Sprite）</span> … 2Dゲームで使う1枚の画像のこと。<br>
+      キャラクターも木も建物も雲も、この世界は全部スプライトでできている。
+    </div>
+
+    <div class="term">
+      <span class="word">マテリアル（Material）</span> … オブジェクトの「表面の見せ方」を決める素材データ。<br>
+      色や光り方などの見た目の設定がひとまとめになっていて、貼りかえるだけで雰囲気を変えられる。
+    </div>
+
+    <div class="term">
+      <span class="word">カラーピッカー（Color Picker）</span> … 色を選ぶための小さなウィンドウ。<br>
+      色の輪や四角の中をクリックして好きな色を作れる。RGBの数値で指定することもできる。
+    </div>
+
+    <h2>3-2. タイルの色を変えよう（色のスプラッシュ）</h2>
+    <p>
+      あなたの世界はたくさんの<strong>Tiles（タイル）</strong>でできています。<br>
+      建物、樹木、フェンス、雲など、ぜんぶタイルです。<br>
+      まずは木のスプライトを別の色に切り替えてみましょう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Tilesアセットからtreeを選ぶ</span>
+      <p>ProjectウィンドウでTilesフォルダに移動して、<code>tree</code>アセットを選択します。</p>
+      <figure class="figure"><img src="img/shots/image100.png" alt="ProjectウィンドウでTilesフォルダを開き、treeアセットを選択している画面" style="max-width:100%;border-radius:8px"><figcaption>「Tiles」から順に選択してtreeをクリック</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">スプライトを切り替える</span>
+      <p>Inspectorの<strong>丸い切替ボタン</strong>をクリックすると、スプライトの一覧が出てきます。<br>
+        <code>tree_green</code>のような、別の色のTreeスプライトをリストから選んでみましょう。<br>
+        シーンの中の木が、一斉に選んだ色に変わります。</p>
+      <figure class="figure"><video src="img/shots/image3.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>動画3-1: Inspectorの丸い切替ボタンからtree_greenを選ぶと、シーンの木の色が変わる</figcaption></figure>
+      <p>
+        1本だけじゃなくて<strong>ステージ中の木が全部</strong>変わったのに気づいた？<br>
+        シーンの木はみんな同じ<code>tree</code>スプライトを見ているから、大元を変えると全部に反映されるんだ。<br>
+        世界の色を統一したい今日は、これがむしろ便利！
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">ほかのタイルも変えてみる</span>
+      <p>同じやり方で、雲・フェンス・建物など、Tilesフォルダのほかのアセットも好きな色に変えてみよう。</p>
+    </div>
+
+    <h2>3-3. マテリアルで世界の見た目を一気に変えよう</h2>
+    <p>
+      1つずつスプライトを変えるだけでなく、<strong>マテリアル</strong>を使うとレベル全体の見た目をまとめて変えられます。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Custom Materialsフォルダを開く</span>
+      <p>Projectウィンドウで<code>Custom Materials</code>フォルダを探して開きます。<br>
+        中に、用意されたマテリアルがいくつか入っています。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">マテリアルをレベルにドラッグする</span>
+      <p>好きなマテリアルを選んで、<strong>Sceneビューのレベルの一部にドラッグ</strong>します。<br>
+        ドラッグした場所だけでなく、そのタイルマップ全体にマテリアルが適用されます。</p>
+      <figure class="figure"><video src="img/shots/image6.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>動画3-2: マテリアルをSceneビューにドラッグすると、タイルマップ全体の見た目が変わる</figcaption></figure>
+      <p>いくつか付けかえてみて、自分の世界に合うものを探してみよう。</p>
+    </div>
+
+    <h2>3-4. プレイヤーにトレイル（軌跡）をつけよう</h2>
+    <p>
+      次は色に「動き」をプラス。<br>
+      キャラクターが動いたあとに<strong>トレイル（軌跡）</strong>が残るようにして、走りやジャンプにスピード感を出します。
+    </p>
+
+    <div class="term">
+      <span class="word">トレイル（Trail）</span> … 動いたものの後ろに残る「軌跡」のこと。<br>
+      流れ星のしっぽみたいなイメージ。速く動くほどかっこよく見える。
+    </div>
+
+    <div class="term">
+      <span class="word">プレハブ（Prefab）</span> … 完成した部品を保存しておく「設計図」。<br>
+      ドラッグするだけで、同じ部品をいくつでもシーンに置ける。今回はトレイルの完成品プレハブを使う。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">PlayerとTrail Prefabsを用意する</span>
+      <p>Hierarchyで<code>Player</code>のGameObjectを見つけて選択します。<br>
+        次にProjectウィンドウで、<strong>Mod Assets → Trail Prefabs</strong>の順にフォルダを開きます。<br>
+        3つのプレハブが入っているので、好きなものを1つ選びましょう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">プレハブをPlayerにドラッグする</span>
+      <p>選んだプレハブを、<strong>Hierarchyの<code>Player</code>のGameObjectにドラッグ</strong>します。<br>
+        トレイルがPlayerの<strong>子オブジェクト</strong>になって、プレイヤーと一緒に動くようになります。</p>
+      <figure class="figure"><video src="img/shots/image37.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>動画3-3: Trail PrefabsのプレハブをHierarchyのPlayerにドラッグする</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">再生して動かしてみる</span>
+      <p>▶（再生）を押して、歩き回ったりジャンプしたりしてみよう！<br>
+        キャラクターの後ろに軌跡がついてくれば成功。</p>
+      <figure class="figure"><video src="img/shots/image24.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>動画3-4: 走るとキャラクターの後ろにトレイルが残る</figcaption></figure>
+      <p>確認できたら、<strong>必ず▶をもう一度押して停止</strong>してから次に進もう（理由はこのすぐ下！）。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 超重要ルール（再掲）: 再生中（▶が青いとき）の変更は保存されない！</h4>
+      <p>色の変更もトレイルの追加も、<strong>必ず停止してから</strong>行おう。<br>
+        再生中にいじった内容は、停止した瞬間にぜんぶ元に戻ってしまう。<br>
+        「せっかく作った世界が消えた！」の原因ナンバーワンだよ。<br>
+        色をいじる前に、画面上の▶が押されていない（青くなっていない）ことを確認する習慣をつけよう。</p>
+    </div>
+
+    <h2>3-5. 空とレベルの色合いを変えよう（色合いの世界）</h2>
+    <p>
+      仕上げは世界全体の色。<br>
+      <strong>空の色</strong>と<strong>レベル全体にかかる色合い</strong>を変えて、自分の世界観を完成させます。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">空（カメラの背景）の色を変える</span>
+      <p>Hierarchyから<code>Main Camera</code>のGameObjectを探して選択します。<br>
+        Inspectorで<strong>Camera → Environment → Background</strong>のフィールドをクリックすると、カラーピッカーが開きます。<br>
+        好きな色を選んで、空（Sky）の色を変えましょう。</p>
+      <figure class="figure"><video src="img/shots/image49.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>動画3-5: Main CameraのBackgroundをクリックして、カラーピッカーで空の色を変える</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">レベル全体の色合いを変える</span>
+      <p>Hierarchyの中から<code>Grid</code>のGameObjectを見つけて、左のドロップダウン矢印をクリックして展開します。<br>
+        子オブジェクトの<code>Level</code>を選択しましょう。<br>
+        Inspectorの<strong>Color</strong>フィールドをクリックするとカラーピッカーが開くので、色を選んでレベル全体の色合いを変えます。</p>
+      <figure class="figure"><video src="img/shots/image21.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>動画3-6: GridのLevelを選び、Colorフィールドでレベル全体の色合いを変える</figcaption></figure>
+      <p>
+        こちらは「絵を描きかえる」のではなく、<strong>レベル全体にうっすら色をかける</strong>イメージ。<br>
+        夕焼けのオレンジ、夜の青紫など、時間帯や気温まで表現できるよ。
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">再生して世界を確かめる</span>
+      <p>▶（再生）をクリックして、変わった世界を歩き回ってみよう。<br>
+        空・地面・トレイル、ぜんぶ合わせてどんな世界に見えるかな？</p>
+      <figure class="figure"><video src="img/shots/image68.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video><figcaption>動画3-7: 色を変えた世界をプレイして確認する</figcaption></figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">保存する</span>
+      <p>停止してから、<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>で保存しよう。<br>
+        せっかく作った世界が消えないように、区切りごとの保存を習慣に。</p>
+    </div>
+
+    <h2>3-6. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 自分のテーマカラーで世界を統一しよう</h3>
+      <p>まず「夕焼けの町」「深海」「お菓子の国」「夜の森」など、<strong>テーマを1つ言葉で決めて</strong>から、
+        タイル・マテリアル・空・色合い・トレイルをそのテーマに合わせて選び直そう。<br>
+        バラバラに好きな色を置くより、テーマで統一したほうがぐっと「作品」っぽくなるよ。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>色に迷ったら、テーマの実物を思い浮かべよう。<br>
+          夕焼けなら「空はオレンジ、地面は影になって暗め、色合いは赤っぽく」。<br>
+          空と地面の明るさに差をつけると、キャラクターが見やすくなるよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: トレイルを主役にしよう</h3>
+      <p>Trail Prefabsの3種類をぜんぶ付けかえて試して、自分のテーマに一番合うトレイルを選ぼう。<br>
+        走ったときとジャンプしたときの見え方を両方チェックしてね。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>付けかえるときは、Hierarchyで前のトレイル（Playerの子オブジェクト）を右クリック→Deleteで消してから、新しいプレハブをドラッグしよう。<br>
+          背景が濃い色の世界なら、明るい色のトレイルがよく映えるよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 正反対の世界を2つ作って見比べよう</h3>
+      <p>「昼と夜」「天国と火山」のように、<strong>正反対の世界観を2パターン</strong>作ってみよう。<br>
+        1つ目ができたらスクリーンショットを撮ってから、色を変えて2つ目を作る。<br>
+        できたら家族や友だちに見せて、「どんな世界に見える？」と聞いてみよう。<br>
+        自分の狙いどおりに伝わったら大成功！</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>ステージの形は同じままでOK。<br>
+          色だけでどれだけ印象が変わるかを実験するのがこの課題の狙いだよ。<br>
+          空の色と色合い（LevelのColor）の2つを変えるだけでも、まったく別の世界になる。</p>
+      </details>
+    </div>
+
+    <h2>3-7. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>再生を止めたら、変えた色がぜんぶ元に戻った</h4>
+      <p><strong>原因:</strong> 再生中（▶が青いとき）に色を変えてしまった。<br>
+        再生中の変更は、停止すると必ず元に戻る。</p>
+      <p><strong>直し方:</strong> ▶を押して停止してから、もう一度色を変えよう。<br>
+        「いじる前に▶を確認」を合言葉に。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>カラーピッカーで色を選んだのに、見た目が変わらない</h4>
+      <p><strong>原因1:</strong> カラーピッカーの<code>A</code>（アルファ＝透明度）が0になっていて、透明になっている。</p>
+      <p><strong>原因2:</strong> 変えたいものと別のオブジェクトを選んだまま色を変えている。</p>
+      <p><strong>直し方:</strong> カラーピッカーの<code>A</code>の値を一番大きく（255）してみよう。<br>
+        それでもダメなら、Hierarchyで正しいオブジェクト（Main CameraやLevel）を選び直してからやり直そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>木を1本だけ変えたいのに、ぜんぶ変わってしまう</h4>
+      <p><strong>原因:</strong> 故障ではなくUnityの仕組み。<br>
+        シーンの木はみんな同じ<code>tree</code>スプライトを共有しているので、大元のスプライトを切り替えると全部に反映される。</p>
+      <p><strong>直し方:</strong> 世界の統一が目的の今日はそのままでOK。<br>
+        どうしても1本だけ変えたいときは、Sceneビューでその木だけをクリックして選び、InspectorのSprite Rendererにある<code>Color</code>を変えると、その1本だけ色合いを変えられるよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>トレイルが出ない</h4>
+      <p><strong>原因:</strong> プレハブを<code>Player</code>ではなく、シーンの何もないところにドラッグしてしまい、Playerの子オブジェクトになっていない。</p>
+      <p><strong>直し方:</strong> Hierarchyで<code>Player</code>の左の矢印を開いて、トレイルが子オブジェクトとして入っているか確認しよう。<br>
+        外にある場合は、Hierarchy上でトレイルを<code>Player</code>の上にドラッグすれば子にできる。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>空の色の設定（Background）が見つからない</h4>
+      <p><strong>原因:</strong> <code>Main Camera</code>ではなく別のオブジェクトを選んでいる、またはCameraコンポーネントの<code>Environment</code>が折りたたまれている。</p>
+      <p><strong>直し方:</strong> Hierarchyで<code>Main Camera</code>を選び直そう。<br>
+        InspectorのCameraコンポーネントの中の<code>Environment</code>をクリックして開くと、その中に<code>Background</code>がある。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Custom MaterialsやTrail Prefabsのフォルダが見つからない</h4>
+      <p><strong>原因:</strong> Projectウィンドウの検索欄に前の検索文字が残っている、または別のフォルダの中にいる。</p>
+      <p><strong>直し方:</strong> Projectウィンドウの検索欄を空にして、いちばん上の<code>Assets</code>からフォルダを順にたどり直そう。<br>
+        それでも見つからないときは、検索欄に「Custom Materials」「Trail Prefabs」と入力して探せるよ。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>3-8. 🤖 AIを味方につけよう</h2>
+    <p>
+      今日の作業はエラーが出ないぶん、「どの色にすればいいか分からない」「設定の場所が見つからない」という詰まり方が多くなります。<br>
+      AIは<strong>配色の相談役</strong>としても優秀。<br>
+      ただし最後に「いいな」と決めるのは自分の目です。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分試してから聞く</p>
+      <ul>
+        <li><strong>配色のアイデア出し:</strong> テーマを伝えて、色の組み合わせを何パターンか提案してもらう</li>
+        <li><strong>設定が見つからないとき:</strong> 「〇〇の設定項目がどこにあるか」を具体的に聞く</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        UnityのPlatformer Microgameを改造している中学生です。<br>
+        ゲームの世界を「夜の街」の雰囲気にしたいです。<br>
+        空の色・地面の色合い・トレイルの色の組み合わせを、RGBの数値つきで3パターン提案してください。
+      </div>
+      <div class="prompt-example">
+        UnityのPlatformer Microgameを改造している中学生です。<br>
+        Main CameraのBackgroundの色を変えたのに、Gameビューの空の色が変わりません。<br>
+        確認すべきポイントを順番に教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>課題1の配色を丸ごとAIに決めさせて、そのまま設定するだけにする（実際に画面で見ると印象が違うことが多い。<br>
+          必ず自分の目で見て微調整しよう。それが「センス」の練習！）</li>
+        <li>AIの答えをそのまま信じる（AIは古いバージョンのUnityの画面・メニュー名で説明することがある。<br>
+          必ず自分の画面のメニュー名と見比べよう）</li>
+      </ul>
+    </div>
+
+    <h2>3-9. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Tilesのスプライトを切り替えて、木などの色を変えられた</label>
+      <label><input type="checkbox"> マテリアルをドラッグして、レベル全体の見た目を変えられた</label>
+      <label><input type="checkbox"> Playerにトレイルのプレハブをつけて、動きに軌跡が出た</label>
+      <label><input type="checkbox"> Main CameraのBackgroundで空の色を変えられた</label>
+      <label><input type="checkbox"> LevelのColorで、世界全体の色合いを調整できた</label>
+      <label><input type="checkbox"> 「停止してから変更・こまめに保存」を守って、変更がちゃんと残った</label>
+      <label><input type="checkbox"> 課題1の「テーマカラーで統一した世界」ができた</label>
+    </div>
+    <p>全部チェックできたら第3章クリア！<br>
+      🎉 次の章では、この世界に動きやしかけを足して、もっとゲームらしくしていくよ。</p>
+
+    <h2>3-10. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/" target="_blank">Unity Learn</a> — Unity公式の学習サイト。<br>
+        Platformer Microgameの改造レシピもここにあるよ</li>
+      <li><a href="https://docs.unity3d.com/ja/current/Manual/class-TrailRenderer.html" target="_blank">Trail Renderer 公式マニュアル（日本語）</a> — トレイルの太さや長さを自分で調整したくなったら</li>
+      <li><a href="https://docs.unity3d.com/ja/current/Manual/Materials.html" target="_blank">マテリアル 公式マニュアル（日本語）</a> — マテリアルの仕組みをもっと知りたい人へ</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter2.html">← 第2章 ビルボードとゲーム名</a>
+      <a href="chapter4.html">第4章 世界に命を吹き込もう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

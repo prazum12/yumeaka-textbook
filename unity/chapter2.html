@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第2章 ビルボードとゲーム名 〜自分の画像とタイトルでオリジナルゲームにしよう〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第2章</span>
+      <h1>ビルボードとゲーム名 〜自分の画像とタイトルでオリジナルゲームにしよう〜</h1>
+      <div class="date">📅 第2回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>Unityエディタのレイアウトを「2 by 3」に変更できる</li>
+        <li>ビルボード（看板）のプレハブをワールドに追加できる</li>
+        <li>好きな画像をインポートして、ビルボードに表示できる</li>
+        <li>Rectツール（<code>T</code>キー）で画像の大きさと位置を調整できる</li>
+        <li>ゲームのタイトルを変えて、一時停止画面で確認できる</li>
+        <li>（＋α）タイトルのフォントを変えられる</li>
+      </ul>
+    </div>
+
+    <p>
+      前回は <strong>Platformer Microgame</strong> をプロジェクトに取り込んで、実際に遊んでみるところまでやりました。<br>
+      今日からいよいよ「改造」のスタート！<br>
+      ゲームの中に<strong>自分の画像の看板</strong>を立てて、<strong>自分だけのタイトル</strong>を付けます。<br>
+      まずはUnity Hubから前回のプロジェクトを開いて、ゲームの画面が表示されるか確認しよう。<br>
+      うまく開けない人は<a href="chapter1.html">第1章</a>の手順を見直してみてね。
+    </p>
+
+    <h2>2-1. レイアウトを「2 by 3」に変えよう</h2>
+    <p>
+      改造作業に入る前に、Unityエディタの画面の並び（レイアウト）を作業しやすい形に変えます。<br>
+      SceneビューとGameビューが縦に並ぶ「<strong>2 by 3</strong>」にすると、<strong>編集中の世界（Scene）と実際のゲーム画面（Game）を同時に見ながら</strong>作業できるようになります。
+    </p>
+
+    <div class="term">
+      <span class="word">レイアウト（Layout）</span> … Unityエディタのウィンドウの並べ方のこと。<br>
+      いつでも右上の「Layout」ボタンから切り替えられて、ゲームの中身には影響しない。<br>
+      自分が作業しやすい並びを選んでOK。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">「Layout」ボタンをクリックする</span>
+      <p>Unityエディタの<strong>右上</strong>にある「<strong>Layout</strong>」をクリックします。</p>
+      <figure class="figure">
+        <img src="img/shots/image113.png" alt="Unityエディタ右上のLayoutボタンをクリックしている画面" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-1: 右上の「Layout」をクリック</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「2 by 3」を選ぶ</span>
+      <p>リストから「<strong>2 by 3</strong>」を選びましょう。<br>
+        画面の並びがガラッと変わって、左にSceneビューとGameビューが縦に並ぶ形になります。</p>
+      <figure class="figure">
+        <img src="img/shots/image78.png" alt="Layoutのリストから2 by 3を選択している画面" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-2: 「2 by 3」を選ぶと、SceneとGameが同時に見えるようになる</figcaption>
+      </figure>
+      <p>💡 この教科書では「2 by 3」で進めるけど、慣れてきたらお好みのレイアウトで大丈夫だよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 超重要ルール: 再生中（▶）の変更は保存されない</h4>
+      <p>▶（再生ボタン）を押して<strong>Playモードになっている間</strong>にワールドやInspectorを変更しても、<strong>停止したとたん全部元に戻ります</strong>。<br>
+        せっかくの改造が消えてしまわないように、編集は<strong>かならず■（停止）してから</strong>行おう。<br>
+        Playモード中はGameビューのまわりの色が変わるので、「今どっちのモードか」をいつも意識してね。</p>
+    </div>
+
+    <h2>2-2. ビルボード（看板）をワールドに追加しよう</h2>
+    <p>
+      Platformer Microgameには、改造用の素材（Mod Assets）として<strong>ビルボード（Billboard）＝立て看板</strong>が用意されています。<br>
+      まずはこの看板をゲームの世界に立ててみよう。
+    </p>
+
+    <div class="term">
+      <span class="word">プレハブ（Prefab）</span> … 「量産できるように登録された、モノの完成品テンプレート」。<br>
+      プロジェクトウィンドウからSceneビューへドラッグするだけで、何個でもワールドに置ける。<br>
+      ビルボードもプレハブとして用意されている。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Billboard Prefabsフォルダを開く</span>
+      <p>プロジェクトウィンドウで <code>Mod Assets</code> → <code>2D Props</code> → <code>Billboard Prefabs</code> の順に開きます。<br>
+        中にビルボードのプレハブが3つ入っています。</p>
+      <figure class="figure">
+        <img src="img/shots/image94.png" alt="ProjectウィンドウでMod Assets、2D Props、Billboard Prefabsの順に開いている画面" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-3: Mod Assets → 2D Props → Billboard Prefabs の順に選択</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">好きなビルボードをSceneビューにドラッグする</span>
+      <p>3つのうち好きなものを選んで、<strong>Sceneビューにドラッグ</strong>してワールドに追加します。<br>
+        プレイヤーの近くの、見えやすい場所に置くのがおすすめ。</p>
+      <figure class="figure">
+        <video src="img/shots/image77.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>動画2-1: ビルボードのプレハブをSceneビューへドラッグしてワールドに追加する</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-3. 好きな画像をインポートしよう</h2>
+    <p>
+      看板に貼る画像を、自分のPCからUnityに取り込みます。<br>
+      イラスト、風景写真、自分で描いた絵など、<strong>好きな画像</strong>でOK！
+    </p>
+
+    <div class="trouble">
+      <h4>🚨 個人情報に注意！</h4>
+      <p><strong>自分や友だちの顔写真、本名が写っている画像は使わない</strong>こと。<br>
+        作ったゲームはあとで発表したり、人に見せたりすることがあります。<br>
+        ネットで拾った画像も、勝手に使ってよいものか（フリー素材か）を確認してから使おう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Import New Asset...を開く</span>
+      <p>上部メニューの <code>Assets</code> → <code>Import New Asset...</code> の順に選択します。</p>
+      <figure class="figure">
+        <img src="img/shots/image79.png" alt="上部メニューのAssetsからImport New Asset...を選択している画面" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-4: Assets → Import New Asset... の順にクリック</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">画像を選んでインポートする</span>
+      <p>開いたウィンドウでインポートしたい画像を選び、「<strong>Import</strong>」をクリックします。<br>
+        プロジェクトウィンドウのAssetsの中に画像が追加されれば成功。</p>
+      <figure class="figure">
+        <img src="img/shots/image101.png" alt="ファイル選択ウィンドウで画像を選んでインポートしている画面" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-5: 好きな画像を選択して「Import」をクリック</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">スプライト（Sprite）</span> … 2Dゲームで使われる「1枚の画像」のこと。<br>
+      キャラも背景も看板の絵も、2Dゲームの見た目はぜんぶスプライトでできている。<br>
+      今回のプロジェクトは2D用なので、インポートした画像は自動でスプライトとして扱われる。
+    </div>
+
+    <h2>2-4. 画像をビルボードに貼ろう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Billboard Contentを選択する</span>
+      <p>ヒエラルキーで、さっき追加した <code>Billboard</code> のGameObjectの左の矢印を開き、子になっている <code>Billboard Content</code> をクリックします。<br>
+        Inspectorを見ると「<strong>Sprite</strong>」というフィールドがあります。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">画像をSpriteフィールドにドラッグする</span>
+      <p>2-3でインポートした画像を、プロジェクトウィンドウからInspectorの <code>Sprite</code> フィールドへ<strong>ドラッグ</strong>します。<br>
+        看板の中身が自分の画像に変わったら成功！</p>
+      <figure class="figure">
+        <video src="img/shots/image70.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>動画2-2: インポートした画像をBillboard ContentのSpriteフィールドへドラッグする</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-5. Rectツール（Tキー）でサイズを整えよう</h2>
+    <p>
+      画像のサイズによっては、看板のフレームからはみ出すほど大きく表示されることがあります。<br>
+      そんなときは<strong>Rect（レクト）ツール</strong>の出番。<br>
+      画像の四隅をつまんで、大きさと位置を自由に調整できます。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Rectツールに切り替える</span>
+      <p>ツールバーからRectツールを選択します（キーボードの <code>T</code> を押してもOK）。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">四隅のハンドルで拡大縮小、中央ドラッグで移動</span>
+      <p><code>Billboard Content</code> を選択した状態で、Sceneビューに表示される<strong>四隅のハンドルをドラッグ</strong>して、フレームに合うように画像を拡大縮小します。<br>
+        <strong>中央をドラッグ</strong>すると位置を動かせるので、フレームの真ん中に配置しよう。</p>
+      <figure class="figure">
+        <video src="img/shots/image62.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>動画2-3: Rectツール（Tキー）で四隅のハンドルをドラッグし、フレームに合わせて調整する</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-6. 完成形を確認して、保存しよう</h2>
+    <p>ここまでできたら、こんな感じになっているはずです。</p>
+
+    <figure class="figure">
+      <img src="img/shots/image123.png" alt="ビルボードに画像が表示された完成形のSceneビュー" style="max-width:100%;border-radius:8px">
+      <figcaption>図2-6: 完成イメージ（Sceneビュー）。自分の画像がゲームの世界に立っている</figcaption>
+    </figure>
+    <figure class="figure">
+      <img src="img/shots/image13.png" alt="ゲーム画面にビルボードが表示されている完成形" style="max-width:100%;border-radius:8px">
+      <figcaption>図2-7: 完成イメージ（ゲーム画面）</figcaption>
+    </figure>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">シーンを保存する</span>
+      <p><span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> でシーンを保存します。<br>
+        うっかりUnityを閉じてしまっても大丈夫なように、<strong>作業の区切りごとに保存する習慣</strong>をつけておくと安心だよ。</p>
+    </div>
+
+    <h2>2-7. ゲームに名前を付けよう</h2>
+    <p>
+      次は、このゲームに<strong>自分だけのタイトル</strong>を付けます。<br>
+      「Platformer Microgame」のままじゃなくて、自分の作品らしい名前にしよう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">タイトルのオブジェクトを見つける</span>
+      <p>ヒエラルキーで <code>UI Canvas</code> → <code>Main</code> → <code>Header</code> の順に開いて選択します。<br>
+        これがタイトル画面の文字のGameObjectです。</p>
+      <figure class="figure">
+        <img src="img/shots/image102.png" alt="HierarchyでUI Canvas、Main、Headerの順に選択している画面" style="max-width:100%;border-radius:8px">
+        <figcaption>図2-8: UI Canvas → Main → Header の順に選択</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">UIキャンバス（UI Canvas）</span> … タイトルやスコアなど、<strong>画面に重ねて表示する文字・ボタン</strong>をまとめて置いておく場所。<br>
+      ゲームの世界（ワールド）とは別のレイヤーに描かれるので、カメラが動いても画面の同じ位置に表示され続ける。
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">ゲーム名を入力する</span>
+      <p>Inspectorのテキストフィールドをクリックして、自分のゲーム名を入力します。<br>
+        変更するとすぐGameビューに反映されます。</p>
+      <figure class="figure">
+        <video src="img/shots/image44.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>動画2-4: Inspectorのテキストフィールドにゲーム名を入力すると、Gameビューに反映される</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">Escキーで一時停止して確認する</span>
+      <p>タイトル画面は、<strong>ゲームプレイ中に一時停止したときだけ</strong>表示されます。<br>
+        ▶でPlayモードに入ってから <code>Esc</code> キー（一時停止キー）を押すと、新しいタイトル画面が見られます。</p>
+      <figure class="figure">
+        <video src="img/shots/image45.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>動画2-5: Playモード中にEscキーを押すと、一時停止画面に新しいタイトルが表示される</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 一時停止中も「Playモードのまま」！</h4>
+      <p><code>Esc</code> で一時停止していても、Unityは<strong>まだPlayモードの中</strong>です。<br>
+        このまま編集を続けると、停止した瞬間に変更が全部消えてしまう！<br>
+        確認が終わったら、<strong>かならず手動でPlayモードを終了（■）してから</strong>次の作業をしよう。<br>
+        タイトルの変更自体は停止してから行い、保存（<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span>）も忘れずに。</p>
+    </div>
+
+    <h2>2-8. ＋α フォントを変えてみよう</h2>
+    <p>
+      余裕がある人は、タイトルの<strong>フォント（文字のデザイン）</strong>も変えてみよう。<br>
+      フォントが変わるだけで、ゲームの雰囲気がガラッと変わるよ。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Font Assetを切り替える</span>
+      <p><code>Header</code> を選択したまま、Inspectorの <code>Font Asset</code> フィールドの横にある<strong>丸い切替ボタン</strong>をクリックします。<br>
+        リストから気に入ったフォントを選ぶと、Gameビューにすぐ反映されます。</p>
+      <figure class="figure">
+        <video src="img/shots/image52.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>動画2-6: Font Asset横の丸い切替ボタンから新しいフォントを選ぶ</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-9. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1（基本）: ビルボードを3枚立てて「自分のギャラリー」を作ろう</h3>
+      <p>
+        ビルボードのプレハブは3種類あったよね。<br>
+        画像をあと2枚インポートして、<strong>ちがう画像のビルボードを合計3枚</strong>、ステージのあちこちに立ててみよう。<br>
+        もちろん全部、Rectツールでフレームにぴったり合わせてね。
+      </p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>手順は 2-2 → 2-3 → 2-4 → 2-5 のくり返し。<br>
+          2枚目からは、画像のインポート（<code>Assets → Import New Asset...</code>）とプレハブのドラッグを続けてやるだけ。<br>
+          置く場所に迷ったら、ゴール地点の近くに「おつかれさま」の1枚を置くのも面白いよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2（応用）: オリジナルタイトルを付けて、一時停止画面で発表しよう</h3>
+      <p>
+        自分のゲームにぴったりのタイトルを考えて設定しよう。<br>
+        設定できたら▶で再生 → <code>Esc</code> で一時停止して、となりの人にタイトル画面を見せてみよう。<br>
+        「どんなゲームに改造していきたいか」が伝わる名前だとカッコいい！
+      </p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>タイトルに迷ったら、「主人公の名前＋大冒険」「〇〇ダッシュ」「〇〇ランナー」みたいな型にあてはめてみよう。<br>
+          確認が終わったら、Playモードの終了（■）と保存を忘れずに。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: フォントでゲームの世界観を演出しよう</h3>
+      <p>
+        2-8のフォント変更を使って、自分のタイトルに<strong>いちばん似合うフォント</strong>を探そう。<br>
+        いくつか切り替えて見比べて、「かわいい系」「ホラー系」「近未来系」など、目指す世界観に合うものを選んでみよう。
+      </p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>丸い切替ボタンのリストで、フォントをクリックするたびにGameビューが変わるので、見比べながら選べるよ。<br>
+          太いフォントは元気な印象、細いフォントは静かな印象になりやすい。</p>
+      </details>
+    </div>
+
+    <h2>2-10. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>せっかく置いたビルボードやタイトルが消えた！</h4>
+      <p><strong>原因:</strong> ▶再生中（Playモード）に変更していた。<br>
+        Playモード中の変更は、停止した瞬間にすべて元に戻る。</p>
+      <p><strong>直し方:</strong> 消えたものは残念ながら復活しないので、<strong>■で停止してから</strong>もう一度同じ手順でやり直そう。<br>
+        <code>Esc</code> の一時停止中もPlayモードのままなので要注意。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>画像をSpriteフィールドにドラッグできない・反応しない</h4>
+      <p><strong>原因1:</strong> 選択しているのが <code>Billboard</code>（親）で、<code>Billboard Content</code>（子）ではない。<br>
+        → ヒエラルキーでBillboardの左の矢印を開いて、<strong>Billboard Content</strong>の方を選ぼう。</p>
+      <p><strong>原因2:</strong> 画像がスプライトとして読み込まれていない。<br>
+        → プロジェクトウィンドウでその画像を選び、Inspectorの <code>Texture Type</code> が「<strong>Sprite (2D and UI)</strong>」になっているか確認。<br>
+        違っていたら変更して「<strong>Apply</strong>」を押そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ドラッグしたビルボードがどこに行ったかわからない</h4>
+      <p><strong>原因:</strong> Sceneビューの表示位置から遠い場所にドロップしてしまった。</p>
+      <p><strong>直し方:</strong> ヒエラルキーで <code>Billboard</code> を<strong>ダブルクリック</strong>すると、Sceneビューがそのオブジェクトまでジャンプしてくれる（選択して <code>F</code> キーでもOK）。<br>
+        そこからRectツールや移動ツールで好きな場所に動かそう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>タイトルを変えたのに、ゲーム画面のどこにも見えない</h4>
+      <p><strong>原因:</strong> タイトル画面は<strong>一時停止したときだけ</strong>表示される仕組みになっている。<br>
+        ふつうにプレイしている間は出てこない。</p>
+      <p><strong>直し方:</strong> ▶で再生してから <code>Esc</code> キーを押そう。<br>
+        一時停止画面に新しいタイトルが出てくるはず。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Rectツールのハンドル（四隅の丸）が出てこない</h4>
+      <p><strong>原因1:</strong> ツールがRectツール以外になっている。<br>
+        → キーボードの <code>T</code> を押すか、ツールバーからRectツールを選び直そう。</p>
+      <p><strong>原因2:</strong> 選択中のオブジェクトが違う。<br>
+        → ヒエラルキーで <code>Billboard Content</code> が選ばれているか確認しよう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>2-11. 🤖 AIを味方につけよう</h2>
+    <p>
+      「操作したのに画面が思いどおりにならない」系のトラブルは、状況を言葉にして伝えるとAIが原因の候補を出してくれます（13歳以上なら保護者の同意のもとで使えます）。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 「何をしたら、どうなったか」を順番にそのまま伝える</p>
+      <ul>
+        <li><strong>操作がうまくいかないとき:</strong> どのウィンドウで何をドラッグしたか、画面に何が表示されているかを具体的に伝えて、確認すべき場所を聞く</li>
+        <li><strong>アイデアに詰まったとき:</strong> ゲームタイトルの案出しを手伝ってもらう（最終決定は自分でする！）</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        Unity 2022.3 LTSでPlatformer Microgameを改造している中学生です。<br>
+        インポートした画像を、ビルボードのBillboard ContentにあるSpriteフィールドへドラッグしても反応しません。<br>
+        画像はプロジェクトウィンドウのAssetsの中に見えています。<br>
+        原因として考えられることを、確認する順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        横スクロールのジャンプアクションゲームを作っています。<br>
+        主人公はキツネのキャラクターで、明るく元気な雰囲気にしたいです。<br>
+        日本語のゲームタイトルの案を10個、それぞれ狙いの一言つきで出してください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>自分や友だちの<strong>顔写真・本名などの個人情報</strong>をAIにアップロードして相談する（トラブルの相談は文章だけで十分伝わる）</li>
+        <li>AIが出したタイトル案をそのまま使って終わりにする。<br>
+          案はあくまでヒント、<strong>「自分の作品の名前」は自分で決める</strong>のが今日のいちばん大事なところ！</li>
+      </ul>
+    </div>
+
+    <h2>2-12. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> レイアウトを「2 by 3」に変更した</label>
+      <label><input type="checkbox"> Billboard Prefabsからビルボードをワールドに追加した</label>
+      <label><input type="checkbox"> 好きな画像をインポートした（顔写真・本名入りは使っていない）</label>
+      <label><input type="checkbox"> Billboard ContentのSpriteフィールドに画像を設定できた</label>
+      <label><input type="checkbox"> Rectツール（Tキー）で画像をフレームに合わせて調整した</label>
+      <label><input type="checkbox"> <span class="os-win">Ctrl + S</span><span class="os-mac">⌘ + S</span> でシーンを保存した</label>
+      <label><input type="checkbox"> UI Canvas → Main → Header でゲーム名を変更した</label>
+      <label><input type="checkbox"> 再生中にEscキーを押して、新しいタイトル画面を確認した</label>
+      <label><input type="checkbox"> 確認のあと、Playモードをちゃんと終了してから保存した</label>
+    </div>
+    <p>全部チェックできたら第2章クリア！<br>
+      🎉 ゲームがもう「自分の作品」になってきたね。<br>
+      次回は色やマテリアルを変えて、世界の見た目をガラッと改造していくよ。</p>
+
+    <h2>2-13. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://learn.unity.com/" target="_blank">Unity Learn</a> — Platformer Microgameの公式チュートリアル（Mod: 改造レシピ）がたくさんある</li>
+      <li><a href="https://docs.unity3d.com/ja/current/Manual/Prefabs.html" target="_blank">プレハブ（Unity公式マニュアル・日本語）</a> — プレハブの仕組みのくわしい説明</li>
+      <li><a href="https://docs.unity3d.com/ja/2022.3/Manual/class-SpriteRenderer.html" target="_blank">スプライトレンダラー（Unity公式マニュアル・日本語）</a> — 2Dゲームの画像（スプライト）の表示について</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter1.html">← 第1章 ゲームを手に入れて遊ぼう</a>
+      <a href="chapter3.html">第3章 世界の色を変えよう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

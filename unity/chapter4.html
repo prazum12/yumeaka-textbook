@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第4章 世界に命を吹き込もう 〜揺れる木と紙吹雪のしかけ〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第4章</span>
+      <h1>世界に命を吹き込もう 〜揺れる木と紙吹雪のしかけ〜</h1>
+      <div class="date">📅 第4回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>Add Componentで、用意されているスクリプトをオブジェクトに「部品」として付けられる</li>
+        <li>Treeを置いてJigglerスクリプトで揺らし、世界に動きを足せる</li>
+        <li>Trigger（トリガー）が「見えないセンサー」であることを説明できる</li>
+        <li>SimpleTriggerとパーティクルを組み合わせて、「プレイヤーが通ると紙吹雪が舞う」しかけを作れる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 前回までに使ったプロジェクト（<code>2d-action-game</code>）をUnity Hubから開いてから始めよう。<br>
+      色を変えたりトレイルを付けたりした、自分のPlatformer Microgameの続きから作っていくよ。
+    </p>
+
+    <h2>4-1. 今回つくるもの</h2>
+    <p>
+      前回までで、ゲームの世界は自分好みの「色」になりました。<br>
+      でも今の世界は、プレイヤー以外なにも動かない、ちょっと静かな世界です。<br>
+      今回はここに<strong>「動き」と「しかけ」</strong>を足して、世界に命を吹き込みます。
+    </p>
+    <p>
+      やることは大きく2つ。<br>
+      ① 風に揺れる<strong>木（Tree）</strong>を植える<br>
+      ② プレイヤーが特定の場所を通ると<strong>紙吹雪が舞う「見えないしかけ」</strong>を作る<br>
+      完成するとこうなります。
+    </p>
+    <figure class="figure">
+      <video src="img/shots/image81.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+      <figcaption>完成イメージ: プレイヤーがしかけの場所を通ると、紙吹雪が飛び出す！</figcaption>
+    </figure>
+    <p>
+      今回の主役は、Platformer Microgameにあらかじめ入っている<strong>できあいのスクリプト</strong>たち。<br>
+      自分でコードをたくさん書くのではなく、<strong>用意された部品を選んで、取り付けて、設定する</strong>のが今日のテーマだよ。
+    </p>
+
+    <h2>4-2. スクリプトは「あと付けできる部品」</h2>
+    <p>
+      Unityでは、ゲームオブジェクトに<strong>コンポーネント</strong>という部品を付け足すことで、機能を増やしていきます。<br>
+      見た目を表示するSprite Rendererも、当たり判定のColliderも、ぜんぶコンポーネント。<br>
+      そして<strong>スクリプト（プログラム）もコンポーネントの一種</strong>です。<br>
+      インスペクターの「<strong>Add Component</strong>」ボタンから名前で検索して付けるだけで、
+      そのオブジェクトに新しい「ふるまい」が加わります。
+    </p>
+    <p>
+      Platformer Microgameには、改造用のスクリプトがはじめから何個も入っています。<br>
+      今日はその中から2つを使います。
+    </p>
+    <table>
+      <tr><th>スクリプト名</th><th>付けるとどうなる？</th></tr>
+      <tr><td><code>Jiggler</code>（ジグラー）</td><td>オブジェクトがぷるぷる・ゆらゆら揺れる。<br>木や草を「風に揺れている」ように見せられる</td></tr>
+      <tr><td><code>SimpleTrigger</code>（シンプルトリガー）</td><td>決めた相手がその場所に入ってきた瞬間に、登録しておいた処理を実行する。<br>「見えないセンサー」を作れる</td></tr>
+    </table>
+
+    <div class="term">
+      <span class="word">コンポーネント（component）</span> … 「部品」という意味。<br>
+      ゲームオブジェクトはからっぽの入れ物で、コンポーネントを付け足すことで機能が増えていく。<br>
+      インスペクターに縦に並んでいる1つ1つが、それぞれコンポーネントだよ。
+    </div>
+
+    <h2>4-3. 揺れる木を植えよう</h2>
+    <p>まずは木を1本植えて、Jigglerで揺らしてみよう。</p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Treeをシーンに置く</span>
+      <p>プロジェクトウィンドウで <code>Environment</code> → <code>Sprites</code> の順に開き、「<strong>tree</strong>」のスプライトを探そう。<br>
+      見つけたら、シーンビューの好きな場所にドラッグ＆ドロップ。</p>
+      <figure class="figure">
+        <video src="img/shots/image2.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Environment → Sprites の tree をシーンにドラッグして木を植える</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Jigglerスクリプトを付けて揺らす</span>
+      <p>置いたtreeを選んだ状態で、インスペクターの「<strong>Add Component</strong>」をクリックし、「<strong>Jiggler</strong>」と入力。<br>
+      出てきた <code>Jiggler</code> をクリックして追加しよう。<br>
+      追加できたら再生（Play）ボタンを押してみて。木が小さくぷるぷる揺れていたら成功！</p>
+      <figure class="figure">
+        <video src="img/shots/image73.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Add ComponentでJigglerを追加すると、再生中に木が揺れる</figcaption>
+      </figure>
+      <p>Jigglerは、はじめの設定では「大きさ（スケール）を少しだけ揺らす」動きをするよ。<br>
+      確認できたら、再生をもう一度押して<strong>必ず停止</strong>しておこう。</p>
+    </div>
+
+    <h2>4-4. 木をカスタマイズしよう</h2>
+    <p>木が1本だけだとさびしいので、増やして、動きも変えてみよう。</p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">木を複製する</span>
+      <p>ヒエラルキーで <code>tree</code> を選んだまま、メニューバーの <strong>Edit → Duplicate</strong> を選ぶか、
+      ショートカット <span class="os-win"><code>Ctrl + D</code></span><span class="os-mac"><code>⌘ + D</code></span> を押そう。<br>
+      同じ木がもう1本できるよ。</p>
+      <figure class="figure">
+        <img src="img/shots/image118.png" alt="EditメニューからDuplicateを選んで木を複製する" style="max-width:100%;border-radius:8px">
+        <figcaption>① Edit → ② Duplicate で選んだオブジェクトを複製できる</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Moveツールで木を移動する</span>
+      <p>複製した直後は同じ場所に重なっているので、ツールバーの<strong>Move（移動）ツール</strong>を選び、
+      矢印をドラッグして木を別の場所に動かそう。</p>
+      <figure class="figure">
+        <video src="img/shots/image32.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Moveツールの矢印をドラッグして木の位置を調整する</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">揺れ方を変えてみる</span>
+      <p>木を1本選んで、インスペクターのJigglerにある <code>Rotation Jig Amount</code> の <strong>Z</strong> に <code>100</code> と入力してみよう。<br>
+      再生すると、その木は大きさではなく<strong>前後にぐらんぐらん回転</strong>するようになるよ。</p>
+      <figure class="figure">
+        <video src="img/shots/image74.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Rotation Jig AmountのZを100にすると、木が前後に回転して揺れる</figcaption>
+      </figure>
+      <p>数値をいろいろ変えて、「そよ風の木」「大嵐の木」など、木ごとに揺れ方の個性をつけてみよう。</p>
+    </div>
+
+    <h2>4-5. トリガー 〜見えないセンサー〜</h2>
+    <p>
+      次は「プレイヤーがある場所を通ると紙吹雪が舞う」しかけです。<br>
+      ここで大活躍するのが<strong>Trigger（トリガー）</strong>という仕組み。<br>
+      トリガーは、コンビニの自動ドアの<strong>センサー</strong>にそっくりです。<br>
+      センサーそのものは目に見えないし、さわった感覚もないけれど、
+      人が範囲に入った<strong>瞬間を検知</strong>して、「ドアを開ける」という処理を実行しますよね。<br>
+      ゲームの中でも同じで、<strong>見えない範囲</strong>を置いておいて、プレイヤーが入ってきた瞬間に
+      「紙吹雪を出す」「音を鳴らす」などの処理を実行できるのです。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="トリガーは自動ドアのセンサーのように、見えない範囲に入った瞬間を検知して処理を実行することを示す図">
+        <rect x="20" y="230" width="660" height="20" rx="4" fill="#94a3b8"/>
+        <text x="660" y="270" text-anchor="end" font-size="12" fill="#334155">地面</text>
+
+        <circle cx="90" cy="200" r="22" fill="#0ea5e9"/>
+        <circle cx="83" cy="194" r="3" fill="#fff"/>
+        <circle cx="97" cy="194" r="3" fill="#fff"/>
+        <text x="90" y="160" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">プレイヤー</text>
+        <path d="M125 200 L 265 200" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="5 4" marker-end="url(#arrowTr)"/>
+
+        <rect x="280" y="110" width="140" height="120" rx="10" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8 6"/>
+        <text x="350" y="95" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">トリガー（見えないセンサー）</text>
+        <text x="350" y="175" text-anchor="middle" font-size="12" fill="#b45309">入ったことだけ検知。</text>
+        <text x="350" y="193" text-anchor="middle" font-size="12" fill="#b45309">すり抜けられる</text>
+
+        <path d="M430 150 L 520 150" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrowTr2)"/>
+        <text x="475" y="138" text-anchor="middle" font-size="12" fill="#334155">入った瞬間</text>
+
+        <text x="595" y="120" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">処理を実行！</text>
+        <text x="595" y="145" text-anchor="middle" font-size="12" fill="#15803d">例: 紙吹雪を出す</text>
+        <circle cx="555" cy="180" r="5" fill="#f472b6"/>
+        <circle cx="585" cy="165" r="5" fill="#fde047"/>
+        <circle cx="615" cy="185" r="5" fill="#34d399"/>
+        <circle cx="640" cy="165" r="5" fill="#60a5fa"/>
+        <circle cx="570" cy="205" r="5" fill="#c084fc"/>
+        <circle cx="625" cy="210" r="5" fill="#fb923c"/>
+
+        <defs>
+          <marker id="arrowTr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#0ea5e9"/>
+          </marker>
+          <marker id="arrowTr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図4-1: トリガーは自動ドアのセンサー。<br>
+        見えない範囲に「入った瞬間」を検知して、決めておいた処理を実行する</figcaption>
+    </div>
+
+    <p>
+      トリガーの正体は、当たり判定（Collider）の設定の1つです。<br>
+      Colliderの <code>Is Trigger</code> にチェックを入れると、
+      「ぶつかって止まる壁」だったものが「すり抜けられるセンサー」に変わります。
+    </p>
+
+    <div class="term">
+      <span class="word">Is Trigger（イズ・トリガー）</span> … Colliderにある設定項目。<br>
+      チェックなし＝物理的にぶつかる（地面や壁）。<br>
+      チェックあり＝すり抜けられるが、「入ってきたこと」は検知できる（センサー）。
+    </div>
+
+    <p>これから作るしかけの全体像はこうなります。作業に入る前に、ゴールの形を頭に入れておこう。</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ConfettiTriggerにBox Collider 2DとSimpleTriggerを付け、子にConfettiCelebrationを持たせる構成図">
+        <rect x="30" y="40" width="330" height="220" rx="12" fill="#eff6ff" stroke="#0ea5e9" stroke-width="2.5"/>
+        <text x="195" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">ConfettiTrigger（センサー役）</text>
+
+        <rect x="55" y="90" width="280" height="42" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="195" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">Box Collider 2D（Is Trigger ✓）</text>
+        <text x="195" y="124" text-anchor="middle" font-size="11" fill="#64748b">→ 検知する「範囲」を作る</text>
+
+        <rect x="55" y="142" width="280" height="42" rx="8" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+        <text x="195" y="160" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">SimpleTrigger（スクリプト）</text>
+        <text x="195" y="176" text-anchor="middle" font-size="11" fill="#64748b">→ 「誰に・何をするか」を決める</text>
+
+        <rect x="85" y="200" width="250" height="42" rx="8" fill="#fdf4ff" stroke="#c084fc" stroke-width="1.5"/>
+        <text x="210" y="218" text-anchor="middle" font-size="12" font-weight="bold" fill="#7e22ce">└ 子: ConfettiCelebration</text>
+        <text x="210" y="234" text-anchor="middle" font-size="11" fill="#7e22ce">紙吹雪のパーティクル</text>
+
+        <circle cx="430" cy="150" r="24" fill="#0ea5e9"/>
+        <text x="430" y="196" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">Player</text>
+        <path d="M418 130 C 400 100, 380 90, 362 96" stroke="#f59e0b" stroke-width="2.5" fill="none" marker-end="url(#arrowFl)"/>
+        <text x="435" y="92" text-anchor="middle" font-size="11" fill="#b45309">範囲に入る</text>
+
+        <path d="M480 150 L 545 150" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrowFl2)"/>
+        <text x="512" y="138" text-anchor="middle" font-size="11" fill="#334155">検知！</text>
+
+        <text x="620" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803d">ParticleSystem</text>
+        <text x="620" y="138" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803d">の Play を実行</text>
+        <circle cx="585" cy="175" r="5" fill="#f472b6"/>
+        <circle cx="615" cy="160" r="5" fill="#fde047"/>
+        <circle cx="645" cy="180" r="5" fill="#34d399"/>
+        <circle cx="600" cy="205" r="5" fill="#60a5fa"/>
+        <circle cx="650" cy="210" r="5" fill="#fb923c"/>
+
+        <defs>
+          <marker id="arrowFl" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+          </marker>
+          <marker id="arrowFl2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図4-2: 紙吹雪のしかけの全体像。<br>
+        センサー役のConfettiTriggerに部品を付けて、子どもに紙吹雪を持たせる</figcaption>
+    </div>
+
+    <h2>4-6. トリガー用オブジェクトを置こう</h2>
+    <p>まずはセンサーの「本体」になる四角いオブジェクトを作ります。</p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Squareを作る</span>
+      <p>メニューバーで <strong>GameObject → 2D Object → Sprite → Square</strong> の順に選ぼう。<br>
+      シーンに白い四角ができる。これがトリガーの本体になるよ。</p>
+      <figure class="figure">
+        <img src="img/shots/image132.png" alt="GameObjectメニューから2D Object、Sprite、Squareの順に選ぶ" style="max-width:100%;border-radius:8px">
+        <figcaption>① 2D Object → ② Sprite → ③ Square の順に選ぶ</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">見た目のスプライトを設定する</span>
+      <p>作ったSquareのインスペクターで、<strong>Sprite Renderer</strong> の <code>Sprite</code> 欄（None (Sprite) と表示されている場所）の
+      隣にある<strong>丸いボタン（◎）</strong>をクリック。<br>
+      検索欄に「<strong>TileGround</strong>」と入力して、出てきたものをダブルクリックしよう。<br>
+      作業中に場所がわかりやすいよう、いったん地面タイルの見た目にしておくんだ（最後に見えなくするよ）。</p>
+      <figure class="figure">
+        <img src="img/shots/image116.png" alt="Sprite欄の丸ボタンをクリックしてTileGroundを検索する" style="max-width:100%;border-radius:8px">
+        <figcaption>①丸ボタンをクリック → ②「TileGround」と検索してダブルクリック</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">通り道をおおうように配置する</span>
+      <p><strong>Move</strong>ツールと<strong>Scale（拡大縮小）</strong>ツールを使って、
+      プレイヤーが歩いて通るコースの一部をおおうように、位置と大きさを調整しよう。<br>
+      「ここを通ったら発動」という場所を自分で決めてね。</p>
+      <figure class="figure">
+        <video src="img/shots/image86.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>MoveとScaleツールで、プレイヤーの通り道をおおうように調整する</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-7. 名前を付けて、コライダーでセンサー化しよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">名前を「ConfettiTrigger」に変える</span>
+      <p>ヒエラルキーでSquareを選び、名前を <code>ConfettiTrigger</code>（コンフェッティ・トリガー＝紙吹雪トリガー）に変更しよう。<br>
+      オブジェクトが増えてきたら、<strong>役割がわかる名前を付ける</strong>のが迷子にならないコツだよ。</p>
+      <figure class="figure">
+        <img src="img/shots/image127.png" alt="GameObjectの名前をConfettiTriggerに変更する" style="max-width:100%;border-radius:8px">
+        <figcaption>名前を「ConfettiTrigger」に変更する</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Box Collider 2Dを付けて、Is Triggerをオンにする</span>
+      <p>インスペクターの「<strong>Add Component</strong>」をクリックし、「<strong>Box Collider 2D</strong>」を検索して追加。<br>
+      追加できたら、Box Collider 2Dの中にある <code>Is Trigger</code> のボックスに<strong>チェックを入れる</strong>。<br>
+      これで「ぶつかる四角」ではなく「すり抜けられるセンサー」になった！</p>
+      <figure class="figure">
+        <video src="img/shots/image1.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Box Collider 2Dを追加して、Is Triggerにチェックを入れる</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-8. SimpleTriggerで「誰に反応するか」を決めよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">SimpleTriggerスクリプトを付ける</span>
+      <p>ConfettiTriggerを選んだまま「<strong>Add Component</strong>」→「<strong>Simple Trigger</strong>」を検索して追加しよう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">TriggerBodyにPlayerを登録する</span>
+      <p>ヒエラルキーの <code>Player</code> を、インスペクターのSimple Triggerにある <code>TriggerBody</code> 欄に<strong>ドラッグ＆ドロップ</strong>。<br>
+      これで「<strong>Playerが入ってきたときだけ</strong>反応するセンサー」になるよ。<br>
+      木や敵が触れても発動しないのは、この設定のおかげ。</p>
+      <figure class="figure">
+        <video src="img/shots/image4.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Simple Triggerを追加し、HierarchyのPlayerをTriggerBody欄へドラッグする</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-9. 紙吹雪パーティクルを仕込もう</h2>
+    <p>
+      センサーはできたけど、まだ「検知したら何をするか」が空っぽです。<br>
+      発動させる<strong>紙吹雪のパーティクル</strong>を用意して、センサーとつなぎます。
+    </p>
+
+    <div class="term">
+      <span class="word">パーティクル（particle）</span> … 「粒」という意味。<br>
+      小さな粒をたくさん飛ばして、紙吹雪・煙・火花・キラキラなどの演出を作る仕組み。<br>
+      Unityでは<code>ParticleSystem</code>というコンポーネントが担当していて、<code>Play</code>で再生できる。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ConfettiCelebrationを子どもとして追加する</span>
+      <p>プロジェクトウィンドウで <code>Mod Assets</code> → <code>Particle Prefabs</code> の順に開き、
+      <code>ConfettiCelebration</code>（紙吹雪のお祝い）を見つけよう。<br>
+      それを、ヒエラルキーの <code>ConfettiTrigger</code> の<strong>上に重ねるように</strong>ドラッグ＆ドロップ。<br>
+      ConfettiTriggerの<strong>子ども</strong>になって、トリガーの中央に自動で配置されるよ。</p>
+      <figure class="figure">
+        <video src="img/shots/image19.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>ConfettiCelebrationプレハブを、HierarchyのConfettiTriggerに重ねてドラッグして子にする</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「入ったら紙吹雪を再生」を登録する</span>
+      <p>ヒエラルキーで <code>ConfettiTrigger</code> をクリックし、Simple Triggerコンポーネントの <strong>On Trigger Enter ()</strong> の下にある
+      「<strong>＋</strong>」をクリック。<br>
+      次に、<strong>ヒエラルキー</strong>（プロジェクトウィンドウではないよ！）から <code>ConfettiCelebration</code> を
+      <code>None (Object)</code> の欄にドラッグしよう。<br>
+      最後に「<strong>No Function</strong>」と書かれたドロップダウンをクリックして、<strong>ParticleSystem → Play ()</strong> の順に選べば設定完了！</p>
+      <figure class="figure">
+        <video src="img/shots/image28.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>On Trigger Enter ()の＋を押し、ConfettiCelebrationを登録して機能を選ぶ</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="img/shots/image125.png" alt="No FunctionのドロップダウンからParticleSystemのPlayを選ぶ" style="max-width:100%;border-radius:8px">
+        <figcaption>① ParticleSystem → ② Play () を選ぶ</figcaption>
+      </figure>
+      <p>これで「Playerが入った瞬間 → ConfettiCelebrationのParticleSystemをPlayする」というつながりができたよ。<br>
+      図4-2の全体像、そのままだね。</p>
+    </div>
+
+    <h2>4-10. 仕上げ 〜センサーを見えなくして動作確認〜</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">見た目だけを消す</span>
+      <p>センサーの四角が見えたままだと、ステージに変なタイルが浮かんでいるように見えてしまう。<br>
+      ConfettiTriggerのインスペクターで、<strong>Sprite Rendererコンポーネントの左にあるチェックボックス</strong>を外そう。<br>
+      これで見た目だけがオフになり、センサーの機能はそのまま残るよ。</p>
+      <figure class="figure">
+        <video src="img/shots/image9.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>Sprite Rendererのチェックを外すと、見た目だけが消えてセンサーは残る</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">再生して確かめる</span>
+      <p>再生（Play）を押して、プレイヤーをしかけの場所まで走らせよう。<br>
+      通った瞬間に紙吹雪が舞い上がったら大成功！🎉</p>
+      <figure class="figure">
+        <video src="img/shots/image81.mp4" autoplay loop muted playsinline controls style="max-width:100%;border-radius:8px"></video>
+        <figcaption>見えないセンサーを通ると紙吹雪が飛び出す</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-11. C#コーナー 〜SimpleTriggerの中をのぞいてみよう〜</h2>
+    <p>
+      今日はコードを1行も書かずに、しかけが完成しました。<br>
+      でも、SimpleTriggerの中では何が起きているんだろう？<br>
+      中身のイメージを、うんと短くするとこんな形です（<strong>読むだけでOK。書き写す必要はないよ</strong>）。
+    </p>
+
+    <div class="code-block">
+      <span class="code-label">SimpleTriggerのしくみ（わかりやすくした簡略版）</span>
+      <pre><code>public class SimpleTrigger : MonoBehaviour
+{
+    public Collider2D triggerBody;     // 誰に反応するか（＝Inspectorの TriggerBody 欄）
+    public UnityEvent onTriggerEnter;  // 入った瞬間にやること（＝On Trigger Enter () の一覧）
+
+    // 何かがこのTriggerに入ってきた瞬間、Unityが自動で呼ぶ
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other == triggerBody)          // 入ってきたのが登録した相手（Player）なら…
+        {
+            onTriggerEnter.Invoke();       // 登録しておいた処理を実行！
+        }
+    }
+}</code></pre>
+    </div>
+
+    <div class="term">
+      <span class="word">public変数とInspector</span> … スクリプトの変数に<code>public</code>を付けると、インスペクターに入力欄として表示される。<br>
+      PlayerをTriggerBody欄にドラッグしたのは、実は「<code>triggerBody</code>という変数に値を入れる」操作だったんだ。
+    </div>
+
+    <div class="term">
+      <span class="word">OnTriggerEnter2D（オン・トリガー・エンター2D）</span> … Is TriggerがオンのColliderに何かが入ってきた瞬間、<strong>Unityが自動で呼んでくれる</strong>特別なメソッド（処理のまとまり）。<br>
+      自分で呼び出すコードを書かなくても、「入った瞬間」に勝手に実行される。
+    </div>
+
+    <div class="term">
+      <span class="word">UnityEvent（ユニティイベント）</span> … 「あとで実行する処理のリスト」を入れておける箱。<br>
+      インスペクターの<strong>＋ボタンで処理を追加</strong>できるのが特徴で、ParticleSystemのPlayを登録したのがまさにこれ。<br>
+      コードを書き換えずに「何をするか」を差し替えられる、Unityらしい便利な仕組みだよ。
+    </div>
+
+    <p>
+      つまり今日の作業は、「プログラムを書く」代わりに、
+      <strong>できあがったプログラムの設定欄（public変数とUnityEvent）をインスペクターから埋める</strong>ことだったんだね。<br>
+      プロのゲーム開発でも、プログラマーが作った部品をレベルデザイナーがこうやって配置・設定していくよ。
+    </p>
+
+    <h2>4-12. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 秘密の場所に紙吹雪トリガーを仕掛けよう</h3>
+      <p>ステージのすみっこ、高いジャンプでしか届かない足場、行き止まりの奥……<br>
+      「よくぞここまで来たな！」という<strong>秘密の場所</strong>を1つ決めて、そこにも紙吹雪トリガーを仕掛けてみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>できあがったConfettiTriggerを選んで <span class="os-win"><code>Ctrl + D</code></span><span class="os-mac"><code>⌘ + D</code></span> で複製すれば、
+        コライダーもSimpleTriggerの設定も、子どもの紙吹雪も丸ごとコピーされる。<br>
+        あとはMoveツールで秘密の場所へ動かすだけでOK。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 揺れる森を作ろう</h3>
+      <p>木を5本以上に増やして、1本1本の<strong>大きさ・位置・揺れ方</strong>を変えてみよう。<br>
+      奥ゆかしくそよぐ木、ぶんぶん暴れる木……揺れの個性で森の雰囲気が変わるよ。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>Jigglerの<code>Rotation Jig Amount</code>のZを、10・50・200など極端に変えて見比べてみよう。<br>
+        Scaleツールで木の大きさを変えると、遠近感のある森になるよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 別のパーティクルでしかけを作ろう</h3>
+      <p><code>Mod Assets → Particle Prefabs</code> の中には、紙吹雪以外のパーティクルも入っている。<br>
+      好きなものを選んで、「通ると発動する新しいしかけ」をもう1つ作ってみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>作り方の流れはまったく同じ。<br>
+        ①Squareでトリガー用オブジェクトを作る → ②Box Collider 2D＋Is Trigger → ③SimpleTriggerでTriggerBodyにPlayer →
+        ④パーティクルを子どもにして、On Trigger Enter ()にParticleSystem → Play ()を登録、だよ。<br>
+        図4-2を見ながら進めよう。</p>
+      </details>
+    </div>
+
+    <h2>4-13. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>トリガーを通っても紙吹雪が出ない</h4>
+      <p><strong>原因:</strong> ①<code>TriggerBody</code>にPlayerが入っていない ②<code>On Trigger Enter ()</code>の欄が<code>None (Object)</code>や<code>No Function</code>のまま ③<code>Is Trigger</code>のチェック忘れ、のどれかが多い。</p>
+      <p><strong>直し方:</strong> ConfettiTriggerのインスペクターを上から順に見直そう。<br>
+      Simple Triggerの各欄が「TriggerBody＝Player」「ConfettiCelebration＋ParticleSystem.Play」になっているか1つずつ確認。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>On Trigger Enter ()にConfettiCelebrationをドラッグできない・登録しても動かない</h4>
+      <p><strong>原因:</strong> <strong>プロジェクトウィンドウのプレハブ</strong>をドラッグしている。<br>
+      登録するのは、シーンに置いた（＝ヒエラルキーにある）ConfettiCelebrationじゃないとダメ。</p>
+      <p><strong>直し方:</strong> <strong>ヒエラルキー</strong>のConfettiTriggerの子になっているConfettiCelebrationを、None (Object)欄へドラッグし直そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>プレイヤーがトリガーの四角にぶつかって進めない</h4>
+      <p><strong>原因:</strong> Box Collider 2Dの<code>Is Trigger</code>にチェックが入っていないので、センサーではなく「壁」になっている。</p>
+      <p><strong>直し方:</strong> ConfettiTriggerのBox Collider 2Dを開いて、<code>Is Trigger</code>にチェックを入れよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>センサーを見えなくしたら、しかけごと動かなくなった</h4>
+      <p><strong>原因:</strong> Sprite Rendererのチェックではなく、<strong>インスペクター一番上の名前の左にあるチェック</strong>（オブジェクト全体のオン/オフ）を外してしまった。<br>
+      これを外すとオブジェクトが丸ごと無効になり、センサーも止まってしまう。</p>
+      <p><strong>直し方:</strong> 名前の左のチェックは<strong>オン</strong>に戻して、<strong>Sprite Rendererコンポーネントの左のチェックだけ</strong>を外そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>木が揺れない</h4>
+      <p><strong>原因:</strong> Jigglerが付いていない（別の木に付けていた）、または<strong>再生していない</strong>。<br>
+      Jigglerの揺れは再生中にしか動かないよ。</p>
+      <p><strong>直し方:</strong> 揺らしたい木を選んでインスペクターにJigglerがあるか確認 → 再生ボタンを押して確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>再生中に調整した位置や設定が、停止したら元に戻ってしまった</h4>
+      <p><strong>原因:</strong> 再生中（Playモード中）の変更は、停止すると<strong>すべて捨てられる</strong>のがUnityのルール。</p>
+      <p><strong>直し方:</strong> 調整は必ず<strong>停止してから</strong>行おう。<br>
+      再生中は画面の色が少し変わるので、「今どっちのモードか」をいつも気にするクセをつけよう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>4-14. 🤖 AIを味方につけよう</h2>
+    <p>
+      今回のしかけは「コライダー・スクリプト・パーティクル」の3つの部品の連係プレー。<br>
+      どこか1か所の設定ミスで動かなくなるので、<strong>今の設定を正確に伝えて</strong>確認ポイントを聞くのがコツだよ。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>しかけが動かないとき:</strong> 「Is Triggerはチェック済み」「TriggerBodyにはPlayerを入れた」など、やったことを箇条書きで伝えて、確認すべき順番を聞く</li>
+        <li><strong>概念の理解:</strong> トリガーやパーティクルなど、初めての言葉を身近な例にたとえて説明してもらう</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        UnityのPlatformer Microgameを改造している中学生です。<br>
+        SquareオブジェクトにBox Collider 2D（Is Triggerチェック済み）とSimpleTriggerを付けて、TriggerBodyにPlayerを設定し、On Trigger Enter ()に子のパーティクルのParticleSystem.Playを登録しました。<br>
+        でもプレイヤーが通ってもパーティクルが出ません。確認すべきポイントを順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        Unityの「Is Trigger」にチェックを入れると当たり判定がどう変わるのか、中学生にもわかるように身近なものにたとえて説明してください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>課題の「しかけをどこに置くか」までAIに決めてもらう（世界のデザインは自分の仕事！）</li>
+        <li>AIの答えを<strong>動かして確かめずに</strong>信じる（AIは違うバージョンのUnityの話をすることもある。<br>
+          必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>4-15. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Add Componentで、スクリプトを部品としてオブジェクトに付けられた</label>
+      <label><input type="checkbox"> Treeを植えてJigglerで揺らし、Rotation Jig Amountで揺れ方を変えられた</label>
+      <label><input type="checkbox"> トリガーが「見えないセンサー」であることを、自分の言葉で説明できる</label>
+      <label><input type="checkbox"> Box Collider 2DのIs Triggerにチェックを入れて、すり抜けるセンサーを作れた</label>
+      <label><input type="checkbox"> SimpleTriggerのTriggerBodyにPlayerを登録できた</label>
+      <label><input type="checkbox"> プレイヤーが通ると紙吹雪が舞うことを、再生して確認した</label>
+    </div>
+    <p>全部チェックできたら第4章クリア！<br>
+      🎉 世界が動いて、しかけまで反応するようになった。次回はステージそのものを自分の手で作りかえていくよ。</p>
+
+    <h2>4-16. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://docs.unity3d.com/ja/current/Manual/CollidersOverview.html" target="_blank">コライダーの概要（Unity 公式マニュアル・日本語）</a> — 当たり判定とトリガーの仕組みをもっとくわしく</li>
+      <li><a href="https://docs.unity3d.com/ja/current/Manual/class-ParticleSystem.html" target="_blank">パーティクルシステム（Unity 公式マニュアル・日本語）</a> — 紙吹雪以外の演出もぜんぶこの仕組み</li>
+      <li><a href="https://learn.unity.com/" target="_blank">Unity Learn</a> — Unity公式の学習サイト。<br>
+      日本語のコースもあるよ</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter3.html">← 第3章 世界の色を変えよう</a>
+      <a href="chapter5.html">第5章 ステージを作りかえよう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+  <script>
+    // コードブロックのコピーボタン
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.parentElement.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(function () {
+          btn.textContent = 'コピーした！';
+          setTimeout(function () { btn.textContent = 'コピー'; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

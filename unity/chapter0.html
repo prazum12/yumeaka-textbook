@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第0章 事前準備 〜Unityをインストールしよう〜 | 夢アカUnity教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 印刷用（この章は紙でも配布するため） */
+    @media print {
+      .os-toggle, .copy-btn, .chapter-nav { display: none; }
+      .site-header { background: #fff; color: #000; border-bottom: 2px solid #000; }
+      .site-header a { color: #000; }
+      a { color: #000; }
+      .step, .trouble, .goal-box, .challenge { break-inside: avoid; }
+      body:not([data-os="mac"]) .os-mac { display: block; }  /* 印刷時は両OS表示 */
+      body:not([data-os="mac"]) span.os-mac { display: inline; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <h1><a href="index.html">Unityコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第0章</span>
+      <h1>事前準備 〜Unityをインストールしよう〜</h1>
+      <div class="date">🏠 第1回の講習が始まる前に、家でやってきてください（目安: 60〜90分＋ダウンロード時間）</div>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章のゴール</h2>
+      <ul>
+        <li>Unity Hub（Unityを管理する玄関アプリ）が入っている</li>
+        <li>Unity 2022.3.62f3 LTS（ゲームを作るソフト本体）が自分のPCで起動する</li>
+        <li>（余裕があれば）VSCode（プログラムを書くソフト）も入れてある</li>
+      </ul>
+      <p style="margin:8px 0 0;">
+        ⚠️ <strong>途中でうまくいかなくても大丈夫！</strong>
+        できたところまでで止めてOKです。<br>
+        第1回の最初に講師と一緒に解決します。<br>
+        「どこで止まったか」をメモしておいてくれると助かります。
+      </p>
+    </div>
+
+    <div class="term">
+      <span class="word">保護者の方へ</span> …
+      本講座ではゲーム開発ソフト「Unity」（個人利用無料）を使用します。<br>
+      インストールには合計20GB程度の空き容量と、アカウント登録用のメールアドレスが必要です。<br>
+      登録などの作業は、できるだけお子さんと一緒に進めていただくようお願いします。<br>
+      ご不明な点はお気軽にご連絡ください。
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <h2>0-1. 準備するもの・確認すること</h2>
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>パソコン</td><td>Windows 10/11 または Mac（ここ5年くらいのモデルなら基本OK）</td></tr>
+      <tr><td>空き容量</td><td><strong>20GB以上</strong>を推奨（Unity本体が大きいため）</td></tr>
+      <tr><td>ネット環境</td><td>ダウンロードが数GBあるので、Wi-Fi環境で行う</td></tr>
+      <tr><td>メールアドレス</td><td>Unityのアカウント登録に使用（自分のがなければ保護者のものでOK）</td></tr>
+      <tr><td>時間</td><td>60〜90分（＋回線によってはダウンロード待ち時間）</td></tr>
+    </table>
+
+    <div class="trouble">
+      <h4>🚨 空き容量の確認方法</h4>
+      <p class="os-win"><strong>Windows:</strong> エクスプローラーを開いて左側の「PC」をクリック →「Windows (C:)」の下に「空き領域 ○○GB」と表示されます。</p>
+      <p class="os-mac"><strong>Mac:</strong> 画面左上のリンゴマーク →「このMacについて」→「詳細情報」→「ストレージ設定」で確認できます。</p>
+      <p>足りない場合は、使っていないアプリや動画を削除するか、保護者の方に相談してください。</p>
+    </div>
+
+    <h2>0-2. Unityアカウント（Unity ID）を作る</h2>
+    <p>Unityを使うには無料のアカウントが必要です。</p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">公式サイトを開く</span>
+      <p>ブラウザで <code>unity.com/ja</code> を開き、右上の人型アイコン（またはサインイン）→「<strong>Unity IDを作成</strong>」を選びます。</p>
+      <figure class="figure">
+        <img src="img/ch0-01_unity-id-create.svg" alt="Unity公式サイト右上の人型アイコンからUnity IDを作成を選ぶ画面イメージ">
+        <figcaption>右上の人型アイコン →「Unity IDを作成」を選ぶ<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">メールアドレスで登録する</span>
+      <p>メールアドレス・パスワード・ユーザーネームなどを入力します。<br>
+        GoogleアカウントでもOK。<br>
+      登録したメールアドレスとパスワードは<strong>必ずメモしておこう</strong>（講習でも使います）。</p>
+      <figure class="figure">
+        <img src="img/ch0-02_unity-id-form.svg" alt="Unity ID登録フォームの入力項目の画面イメージ">
+        <figcaption>Unity ID登録フォームの入力例<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">確認メールをチェック</span>
+      <p>登録したアドレスにUnityからメールが届くので、中のリンク（またはボタン）を押して登録を完了させます。</p>
+    </div>
+
+    <h2>0-3. Unity Hub をインストールする</h2>
+    <p>
+      <strong>Unity Hub（ユニティ ハブ）</strong>は、Unity本体やプロジェクトを管理する「玄関」のようなアプリです。<br>
+      まずこれを入れます。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ダウンロード</span>
+      <p>ブラウザで <code>unity.com/ja/download</code> を開き、自分のPCに合ったボタンを押します。</p>
+      <p class="os-win"><strong>Windows:</strong> 「Windows用ダウンロード」を押す。</p>
+      <p class="os-mac"><strong>Mac:</strong> 「Mac用ダウンロード」を押す。<br>
+      M1/M2/M3などのAppleシリコン用とIntel用がある場合は、「このMacについて」の「チップ」欄を見て選ぶ（AppleならApple silicon用）。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20220601/learn/images/ac4cff29-f4b8-470d-9f25-d58595d181b0_DownloadPage2021.png" alt="unity.comのダウンロードページ。Unity Hubのダウンロードボタンが並んでいる" style="max-width:100%;border-radius:8px">
+        <figcaption>unity.com/download のダウンロードページ（英語表示の例）<br>画像出典: Unity Learn（Unity Technologies）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">インストール</span>
+      <p class="os-win"><strong>Windows:</strong> ダウンロードした <code>UnityHubSetup.exe</code> をダブルクリック →「同意する」→「インストール」。<br>
+      「このアプリがデバイスに変更を加えることを許可しますか？」<br>
+      と出たら「はい」。</p>
+      <p class="os-mac"><strong>Mac:</strong> ダウンロードした <code>.dmg</code> を開き、Unity Hubのアイコンを「Applications」フォルダにドラッグ。<br>
+      初回起動時に「開いてもよろしいですか？」<br>
+      と聞かれたら「開く」。</p>
+      <figure class="figure">
+        <img src="img/ch0-04_hub-install.svg" alt="Unity Hubインストーラーの画面イメージ。左がWindows、右がMac">
+        <figcaption>Unity Hubのインストール（左: Windows、右: Mac）<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">サインインする</span>
+      <p>Unity Hubを起動し、0-2で作ったUnity IDで<strong>サインイン</strong>します。<br>
+      ライセンスについて聞かれたら、無料の「<strong>Unity Personal</strong>」を選べばOKです。</p>
+      <figure class="figure">
+        <img src="img/ch0-05_hub-signin.svg" alt="Unity Hubのサインイン画面イメージ">
+        <figcaption>Unity Hubを起動してUnity IDでサインイン<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <h2>0-4. Unity 2022.3.62f3 LTS 本体をインストールする</h2>
+    <p>次に、Unity Hubからゲームを作るソフト本体を入れます。<br>
+      この講座で使うのは「<strong>Unity 2022.3.62f3 LTS</strong>」です。<br>
+      ここが一番時間がかかります（数GBのダウンロード）。</p>
+
+    <div class="term">
+      <span class="word">なぜ最新版じゃないの？</span> … この講座では「Platformer Microgame」というUnity公式のゲームテンプレートを改造していきます。<br>
+      このテンプレートは最新のUnity 6ではうまく動かないという報告があるため、安定して動く <strong>Unity 2022.3 LTS</strong> を使います。<br>
+      バージョン選びはゲーム開発でとても大事なポイントだよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">インストール画面を開く</span>
+      <p>Unity Hubの左メニューから「<strong>インストール</strong>」→ 右上の「<strong>エディターをインストール</strong>」ボタンを押します。</p>
+      <figure class="figure">
+        <img src="https://connect-mediagw.unity.com/h1/20240424/learn/images/af5b3c46-f0dd-4627-8aab-3f9359bab227_InstallEditorFTU.png" alt="Unity HubのInstall Unity Editor画面。青いインストールボタンが表示されている" style="max-width:100%;border-radius:8px">
+        <figcaption>Unity Hubの「エディターをインストール（Install Unity Editor）」画面（英語表示の例）<br>画像出典: Unity Learn（Unity Technologies）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「アーカイブ」から Unity 2022.3 LTS を選ぶ</span>
+      <p>最初に開く「<strong>正式リリース</strong>」には、Unity 6.5／6.3 LTS／6.0 などしか表示され、<strong>Unity 2022.3 は出てきません</strong>。<br>
+      上にある「<strong>アーカイブ</strong>」を押してから、<strong>「2022.3.62f3」と書かれた「LTS」版</strong>を選び、「インストール」を押します。</p>
+      <p>「アーカイブ」が見当たらない・Hubから進めないときは、<a href="https://unity.com/releases/editor/archive" target="_blank" rel="noopener">Unity公式のエディター・アーカイブ</a>を開き、<strong>2022 LTS → 2022.3.62f3（LTS）</strong>を選んでください。<br>
+      Unity 6などの新しいバージョンは、今回は選ばないように注意！</p>
+      <div class="term">
+        <span class="word">LTS</span> … Long Term Support（長期サポート）の略。<br>
+        安定していて長く使えるバージョンのこと。<br>
+        迷ったらLTSを選ぼう。
+      </div>
+      <div class="term">
+        <span class="word">「延長LTS」ではなく「LTS」を選ぶ</span> … 延長LTS（Extended LTS）は、通常のLTSのサポート終了後に、Unity Enterprise／Unity Industry向けに提供されるものです。<br>
+        この講座では無料のUnity Personalを使うので、<strong>「Extended LTS」「3-year LTS」と書かれたものは選ばず、2022.3.62f3 の「LTS」を選びます。</strong>
+      </div>
+      <figure class="figure">
+        <img src="img/ch0-07_select-version.svg" alt="Unity Hubでアーカイブを開き、Unity 2022.3.62f3 LTSを選ぶ画面イメージ">
+        <figcaption>「アーカイブ」から「2022.3.62f3」のLTSを選ぶ<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">Visual Studioのチェックだけ外す</span>
+      <p>「モジュールを加える」という画面が出たら、<strong>「Microsoft Visual Studio Community 2022」のチェックだけ外します。</strong><br>
+        この講座ではあとでVSCodeを使うため、Visual Studioは入れません。ほかの項目はそのままで、「インストール」（または「続行する」）を押します。<br>
+      あとはダウンロードとインストールが終わるのを待ちます（30分以上かかることも。<br>
+      放置でOK）。</p>
+      <figure class="figure">
+        <img src="img/ch0-08_modules.svg" alt="モジュール選択画面でMicrosoft Visual Studio Community 2022のチェックを外す画面イメージ">
+        <figcaption>Visual Studioのチェックだけ外し、ほかは変えずに進めよう<br>画面イメージ図（実際の画面と多少異なる場合があります）</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 Unityの画面が英語だけど大丈夫？</h4>
+      <p>大丈夫！<br>
+        Unityの画面は英語ですが、この教科書がボタンの場所を日本語で全部案内します。<br>
+      使ううちに「Play=再生」みたいに自然と覚えていくので、英語の勉強にもなるよ。</p>
+    </div>
+
+    <h2>0-5. VSCode をインストールする（余裕があればでOK）</h2>
+    <p>
+      <strong>Visual Studio Code（VSCode）</strong>は、プログラムを書くためのソフトです。<br>
+      この講座は「できあがったゲームを改造する」のが中心なので、プログラムを書く場面は少なめ。<br>
+      <strong>必須ではない</strong>けれど、入れておくと講習中のちょっとした編集で安心です。<br>
+      時間に余裕があればやっておこう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ダウンロードとインストール</span>
+      <p>ブラウザで <code>code.visualstudio.com</code> を開き、まん中の大きなダウンロードボタンを押します。</p>
+      <p class="os-win"><strong>Windows:</strong> ダウンロードしたファイルをダブルクリック →「同意する」→ あとは「次へ」でOK。</p>
+      <p class="os-mac"><strong>Mac:</strong> ダウンロードしたzipを開き、「Visual Studio Code」を「アプリケーション」フォルダにドラッグ。</p>
+      <figure class="figure">
+        <img src="img/ch0-09_vscode-download.svg" alt="VSCode公式サイトのダウンロードボタン">
+        <figcaption>VSCode公式サイトのダウンロードボタン（Web教科書と共通の図解を流用）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">日本語にする</span>
+      <p>VSCodeを起動したら、左端の四角が4つ並んだアイコン（拡張機能）をクリック。<br>
+        検索欄に <code>japanese</code> と入力し、「Japanese Language Pack」の <strong>Install</strong> を押します。<br>
+        右下に出る「Change Language and Restart」を押すと日本語になります。</p>
+      <figure class="figure">
+        <img src="img/ch0-10_vscode-japanese.svg" alt="拡張機能でJapanese Language Packをインストール">
+        <figcaption>拡張機能でJapanese Language Packをインストール（Web教科書と共通の図解を流用）</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      💡 ちなみに、ゲームで使うキャラクターや地面などの<strong>素材のダウンロードは不要</strong>です。<br>
+      この講座で改造するゲーム（テンプレート）に、素材が最初から全部入っています。
+    </p>
+
+    <h2>0-6. 最後の確認 〜自宅での準備はここまで〜</h2>
+    <p>Microgame版では、第1章で<strong>講師から受け取るゲームのプロジェクト</strong>を開きます。<br>
+      そのため、第0章ではプロジェクトや作業フォルダを作りません。自宅では、Unityが入っているかだけ確認できればOKです。</p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Unity Hubでバージョンを確認する</span>
+      <p>Unity Hubを開き、「インストール」または「エディター」の一覧に <strong>2022.3.62f3</strong> が表示されていればOKです。<br>
+        Unityエディタを起動するのは、第1章で講師配布の <code>2d-action-game</code> を開くときが最初です。ここでプロジェクトを作る必要はありません。</p>
+    </div>
+
+    <h2>0-7. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>ダウンロードがものすごく遅い・途中で止まる</h4>
+      <p><strong>対処:</strong> Wi-Fiルーターの近くで再挑戦。<br>
+      夜など回線が混む時間帯を避けるのも効果的。<br>
+      それでもだめなら、できたところまででOK。当日講師に相談してください。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>「空き容量が足りません」と出た</h4>
+      <p><strong>対処:</strong> 使っていないアプリ・ゲーム・動画を削除して20GB以上空ける。<br>
+      難しければ保護者の方に相談を。<br>
+      どうしても無理なら当日相談してください。</p>
+    </div>
+
+    <div class="trouble">
+      <h4 class="os-win">Windows: 「WindowsによってPCが保護されました」と出た</h4>
+      <p class="os-win"><strong>対処:</strong> 「詳細情報」→「実行」を押せば進めます（Unity公式サイトからダウンロードしたファイルなら安全です）。</p>
+      <h4 class="os-mac">Mac: 「開発元を検証できないため開けません」と出た</h4>
+      <p class="os-mac"><strong>対処:</strong> システム設定 →「プライバシーとセキュリティ」→ 下の方の「このまま開く」を押します。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>確認メールが届かない</h4>
+      <p><strong>対処:</strong> 迷惑メールフォルダを確認。<br>
+      キャリアメール（@docomo.ne.jp等）は届きにくいことがあるので、GmailなどのアドレスかGoogleアカウント連携がおすすめ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Unity Hubにバージョン一覧が表示されない</h4>
+      <p><strong>対処:</strong> ネット接続を確認して、Unity Hubをいったん閉じて開き直す。<br>
+      それでも出なければ当日一緒にやりましょう。</p>
+    </div>
+
+    <h2>0-8. 🤖 AIを味方につけよう</h2>
+    <div class="ai-box">
+      <h3>インストールで困ったときのAI活用</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — エラーメッセージを<strong>そのままコピペ</strong>して聞くのがコツ</p>
+      <div class="prompt-example">
+        UnityをインストールしようとしているPC初心者の中学生です。<br>
+        Unity Hubでインストール中に「（出たメッセージをそのまま貼る）」と表示されて進めません。<br>
+        原因と対処法を、順番に1つずつ教えてください。<br>
+        使っているPCはWindows 11です。
+      </div>
+      <p><span class="ai-ng">🚫 注意</span></p>
+      <ul>
+        <li>「レジストリを編集」「ターミナルでコマンド実行」など、意味のわからない操作をすすめられたら実行せず、保護者に相談するか当日講師に聞こう</li>
+      </ul>
+    </div>
+
+    <h2>0-9. ✅ チェックリスト（当日このページを見せてね）</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Unity ID（アカウント）を作り、メールアドレスとパスワードをメモした</label>
+      <label><input type="checkbox"> Unity Hubをインストールしてサインインできた</label>
+      <label><input type="checkbox"> Unity 2022.3.62f3 のLTS版をインストールできた</label>
+      <label><input type="checkbox"> Unity Hubの一覧に <code>2022.3.62f3</code> が表示されている</label>
+      <label><input type="checkbox">（余裕があれば）VSCodeをインストールして日本語にできた</label>
+    </div>
+    <p>
+      全部チェックできたら準備完了！<br>
+      🎉 第1回でいよいよゲーム作りが始まります。<br>
+      <strong>チェックできなかった項目があっても心配いりません。</strong>どこで止まったかメモして、当日そのまま来てください。
+    </p>
+
+    <nav class="chapter-nav">
+      <a href="index.html">← 目次にもどる</a>
+      <a href="chapter1.html">第1章 ゲームを手に入れて遊ぼう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー Unityコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>
