@@ -1,0 +1,54 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <rect x="0" y="0" width="1000" height="620" rx="10" fill="#1e1e1e"/>
+  <rect x="0" y="0" width="1000" height="34" rx="10" fill="#323233"/>
+  <circle cx="22" cy="17" r="6" fill="#ff5f57"/><circle cx="42" cy="17" r="6" fill="#febc2e"/><circle cx="62" cy="17" r="6" fill="#28c840"/>
+  <text x="500" y="22" font-size="13" fill="#9d9d9d" text-anchor="middle">Visual Studio Code</text>
+  <!-- アクティビティバー -->
+  <rect x="0" y="34" width="52" height="556" fill="#333333"/>
+  <g fill="#858585" font-size="20" text-anchor="middle">
+    <g><rect x="17" y="57" width="11" height="14" rx="2" fill="none" stroke="#858585" stroke-width="2"/><rect x="22" y="61" width="11" height="14" rx="2" fill="#333333" stroke="#858585" stroke-width="2"/></g>
+    <text x="26" y="120">🔍</text>
+    <g stroke="#858585" fill="none" stroke-width="2"><circle cx="21" cy="155" r="3"/><circle cx="21" cy="169" r="3"/><circle cx="32" cy="155" r="3"/><path d="M21 158 L21 166 M32 158 C32 163,21 163,21 166"/></g>
+    <text x="26" y="216">▷</text>
+  </g>
+  <rect x="0" y="238" width="3" height="40" fill="#ffffff"/>
+  <text x="26" y="266" font-size="20" fill="#ffffff" text-anchor="middle">▤</text>
+  <!-- サイドバー -->
+  <rect x="52" y="34" width="300" height="556" fill="#252526"/>
+  <!-- エディタ領域 -->
+  <rect x="352" y="34" width="648" height="556" fill="#1e1e1e"/>
+  <polygon points="716.5,288.5 696.2,323.6 655.8,323.6 635.5,288.5 655.8,253.4 696.2,253.4" fill="none" stroke="#2d2d30" stroke-width="6"/>
+  <text x="68" y="60" font-size="12" fill="#bbbbbb">拡張機能</text>
+  <rect x="64" y="72" width="276" height="28" rx="3" fill="#3c3c3c" stroke="#007acc"/>
+  <text x="74" y="91" font-size="13" fill="#ffffff">live server</text>
+  <!-- 検索結果1: Live Server -->
+  <rect x="52" y="112" width="300" height="72" fill="#37373d"/>
+  <rect x="64" y="122" width="44" height="44" rx="4" fill="#4527a0"/>
+  <text x="86" y="152" font-size="16" fill="#fff" text-anchor="middle">Go</text>
+  <text x="118" y="134" font-size="12" fill="#ffffff">Live Server</text>
+  <text x="118" y="151" font-size="11" fill="#9d9d9d">Launch a development local Server…</text>
+  <text x="118" y="168" font-size="11" fill="#9d9d9d">Ritwick Dey ・ ★4.5 ・ 6,000万+ DL</text>
+  <!-- 注釈1: 作者名 -->
+  <rect x="112" y="156" width="88" height="18" rx="4" fill="none" stroke="#ff3b30" stroke-width="2.5"/>
+  <circle cx="98" cy="188" r="13" fill="#ff3b30"/>
+  <text x="98" y="193" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <text x="118" y="193" font-size="11" fill="#ff6b60">作者名がRitwick Deyのものを選ぶ</text>
+  <rect x="288" y="122" width="52" height="18" rx="3" fill="#007acc"/>
+  <text x="314" y="135" font-size="11" fill="#fff" text-anchor="middle">Install</text>
+  <!-- 注釈2: Install -->
+  <rect x="283" y="117" width="62" height="28" rx="5" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="362" cy="131" r="13" fill="#ff3b30"/>
+  <text x="362" y="136" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <!-- 検索結果2（ダミー） -->
+  <g opacity="0.55">
+    <rect x="64" y="210" width="44" height="44" rx="4" fill="#475569"/>
+    <text x="118" y="224" font-size="12" fill="#cccccc">Live Server Preview</text>
+    <text x="118" y="241" font-size="11" fill="#9d9d9d">別の似た名前の拡張機能（まちがえないで！）</text>
+  </g>
+  <!-- ステータスバー: Go Live -->
+  <rect x="0" y="590" width="1000" height="30" fill="#007acc"/>
+  <text x="20" y="610" font-size="12" fill="#fff">main</text>
+  <text x="880" y="610" font-size="12" fill="#fff">Go Live</text>
+  <rect x="866" y="592" width="80" height="26" rx="4" fill="none" stroke="#ffd60a" stroke-width="2.5"/>
+  <text x="852" y="580" font-size="11" fill="#ffd60a" text-anchor="end">インストール後、ここに「Go Live」が出れば成功！</text>
+</svg>

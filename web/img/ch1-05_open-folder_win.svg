@@ -1,0 +1,57 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- VSCodeウィンドウ（Windows） -->
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#1e1e1e"/>
+  <rect x="0" y="0" width="1000" height="34" rx="8" fill="#323233"/>
+  <polygon points="29.0,17.0 25.5,23.1 18.5,23.1 15.0,17.0 18.5,10.9 25.5,10.9" fill="none" stroke="#0098ff" stroke-width="2"/>
+  <g font-size="12" fill="#cccccc">
+    <text x="40" y="22">ファイル</text>
+    <text x="92" y="22">編集</text>
+    <text x="128" y="22">選択</text>
+    <text x="164" y="22">表示</text>
+    <text x="200" y="22">移動</text>
+    <text x="236" y="22">実行</text>
+    <text x="272" y="22">ターミナル</text>
+    <text x="336" y="22">ヘルプ</text>
+  </g>
+  <g font-size="14" fill="#cccccc">
+    <text x="906" y="23">—</text>
+    <text x="936" y="23">□</text>
+    <text x="966" y="23">✕</text>
+  </g>
+  <!-- 注釈1: ファイルメニュー -->
+  <rect x="34" y="4" width="56" height="26" rx="5" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="108" cy="17" r="13" fill="#ff3b30"/>
+  <text x="108" y="22" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <!-- ファイルメニュー（開いた状態） -->
+  <rect x="36" y="36" width="280" height="340" rx="6" fill="#252526" stroke="#454545"/>
+  <g font-size="13" fill="#cccccc">
+    <text x="54" y="64">新しいテキストファイル</text>
+    <text x="54" y="94">新しいウィンドウ</text>
+    <line x1="44" y1="110" x2="308" y2="110" stroke="#454545"/>
+    <text x="54" y="136">ファイルを開く…</text>
+  </g>
+  <!-- フォルダーを開く（ハイライト行） -->
+  <rect x="42" y="148" width="268" height="30" rx="4" fill="#0ea5e9"/>
+  <text x="54" y="168" font-size="13" fill="#ffffff">フォルダーを開く…</text>
+  <!-- 注釈2 -->
+  <rect x="38" y="144" width="276" height="38" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="334" cy="163" r="13" fill="#ff3b30"/>
+  <text x="334" y="168" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <g font-size="13" fill="#cccccc">
+    <text x="54" y="208">ワークスペースを開く…</text>
+    <text x="54" y="238">最近使用した項目を開く</text>
+    <line x1="44" y1="254" x2="308" y2="254" stroke="#454545"/>
+    <text x="54" y="280">保存</text>
+    <text x="54" y="310">名前を付けて保存…</text>
+    <text x="54" y="340">すべて保存</text>
+  </g>
+  <!-- エディタ領域 -->
+  <polygon points="700.5,298.5 680.2,333.6 639.8,333.6 619.5,298.5 639.8,263.4 680.2,263.4" fill="none" stroke="#2d2d30" stroke-width="6"/>
+  <!-- 説明 -->
+  <rect x="440" y="60" width="500" height="120" rx="10" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="460" y="90" font-size="15" fill="#c0392b" font-weight="bold">① 左上の「ファイル」をクリック</text>
+  <text x="460" y="120" font-size="15" fill="#c0392b" font-weight="bold">②「フォルダーを開く…」を選ぶ</text>
+  <text x="460" y="150" font-size="13" fill="#c0392b">→ デスクトップの yumeaka-web を選択して「フォルダーの選択」</text>
+  <!-- ステータスバー -->
+  <rect x="0" y="590" width="1000" height="30" fill="#007acc"/>
+</svg>

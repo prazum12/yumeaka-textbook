@@ -1,0 +1,51 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, sans-serif">
+  <rect x="0" y="0" width="1000" height="560" fill="#f1f5f9"/>
+  <!-- ダウンロードフォルダ（Finder風） -->
+  <rect x="60" y="60" width="380" height="330" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="60" y="60" width="380" height="36" rx="10" fill="#e8eaed"/>
+  <circle cx="82" cy="78" r="6" fill="#ff5f57"/><circle cx="102" cy="78" r="6" fill="#febc2e"/><circle cx="122" cy="78" r="6" fill="#28c840"/>
+  <text x="250" y="83" font-size="13" fill="#475569" text-anchor="middle">ダウンロード</text>
+  <!-- zipファイル -->
+  <g opacity="0.6">
+    <rect x="100" y="130" width="70" height="80" rx="8" fill="#e2e8f0" stroke="#94a3b8"/>
+    <rect x="115" y="155" width="40" height="26" rx="4" fill="#94a3b8"/><text x="135" y="173" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold">ZIP</text>
+    <text x="135" y="230" font-size="11" fill="#475569" text-anchor="middle">VSCode-darwin….zip</text>
+  </g>
+  <text x="195" y="175" font-size="20" fill="#64748b">→</text>
+  <!-- VSCodeアプリアイコン -->
+  <rect x="230" y="125" width="90" height="90" rx="18" fill="#0ea5e9"/>
+  <polygon points="295.0,170.0 285.0,187.3 265.0,187.3 255.0,170.0 265.0,152.7 285.0,152.7" fill="none" stroke="#ffffff" stroke-width="4"/>
+  <text x="275" y="240" font-size="11" fill="#475569" text-anchor="middle">Visual Studio Code</text>
+  <text x="130" y="290" font-size="13" fill="#475569">① zipをダブルクリックすると</text>
+  <text x="145" y="312" font-size="13" fill="#475569">アプリが出てくる</text>
+  <!-- 注釈1 -->
+  <rect x="222" y="117" width="106" height="106" rx="20" fill="none" stroke="#ff3b30" stroke-width="4"/>
+  <!-- ドラッグ矢印 -->
+  <path d="M 350 170 C 480 100, 560 100, 660 165" stroke="#ff3b30" stroke-width="6" fill="none" marker-end="url(#arrow2)"/>
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#ff3b30"/>
+    </marker>
+  </defs>
+  <text x="505" y="90" font-size="15" fill="#c0392b" font-weight="bold" text-anchor="middle">② そのままドラッグ！</text>
+  <!-- アプリケーションフォルダ -->
+  <rect x="580" y="60" width="360" height="330" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="580" y="60" width="360" height="36" rx="10" fill="#e8eaed"/>
+  <circle cx="602" cy="78" r="6" fill="#ff5f57"/><circle cx="622" cy="78" r="6" fill="#febc2e"/><circle cx="642" cy="78" r="6" fill="#28c840"/>
+  <text x="760" y="83" font-size="13" fill="#475569" text-anchor="middle">アプリケーション</text>
+  <!-- 既存アプリのアイコン群 -->
+  <g font-size="34" text-anchor="middle">
+    <text x="650" y="165">🧭</text>
+    <text x="730" y="165">🎵</text>
+    <text x="810" y="165">📮</text>
+    <text x="890" y="165">📷</text>
+  </g>
+  <!-- ドロップ先ハイライト -->
+  <rect x="615" y="195" width="90" height="90" rx="18" fill="#e0f2fe" stroke="#0ea5e9" stroke-dasharray="8 5" stroke-width="3"/>
+  <polygon points="680.0,240.0 670.0,257.3 650.0,257.3 640.0,240.0 650.0,222.7 670.0,222.7" fill="none" stroke="#7dd3fc" stroke-width="4"/>
+  <text x="660" y="310" font-size="12" fill="#0369a1" text-anchor="middle">ここにドロップ</text>
+  <!-- キャプション -->
+  <rect x="180" y="430" width="640" height="90" rx="10" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="500" y="465" font-size="15" fill="#c0392b" text-anchor="middle" font-weight="bold">Macはインストーラなし！ アプリを「アプリケーション」フォルダに入れるだけ</text>
+  <text x="500" y="495" font-size="13" fill="#c0392b" text-anchor="middle">入れ終わったらLaunchpadかアプリケーションフォルダから起動しよう</text>
+</svg>

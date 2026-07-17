@@ -1,0 +1,86 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <rect x="0" y="0" width="1000" height="620" rx="8" fill="#1e1e1e"/>
+  <rect x="0" y="0" width="1000" height="34" rx="8" fill="#323233"/>
+  <polygon points="29.0,17.0 25.5,23.1 18.5,23.1 15.0,17.0 18.5,10.9 25.5,10.9" fill="none" stroke="#0098ff" stroke-width="2"/>
+  <g font-size="12" fill="#cccccc">
+    <text x="40" y="22">ファイル</text>
+    <text x="92" y="22">編集</text>
+    <text x="128" y="22">選択</text>
+    <text x="164" y="22">表示</text>
+    <text x="200" y="22">移動</text>
+    <text x="236" y="22">実行</text>
+    <text x="272" y="22">ターミナル</text>
+    <text x="336" y="22">ヘルプ</text>
+  </g>
+  <g font-size="14" fill="#cccccc">
+    <text x="906" y="23">—</text>
+    <text x="936" y="23">□</text>
+    <text x="966" y="23">✕</text>
+  </g>
+  <!-- アクティビティバー -->
+  <rect x="0" y="34" width="52" height="556" fill="#333333"/>
+  <rect x="0" y="52" width="3" height="40" fill="#ffffff"/>
+  <g font-size="20" text-anchor="middle">
+    <g><rect x="17" y="65" width="11" height="14" rx="2" fill="none" stroke="#ffffff" stroke-width="2"/><rect x="22" y="69" width="11" height="14" rx="2" fill="#333333" stroke="#ffffff" stroke-width="2"/></g>
+    <text x="26" y="128" fill="#858585">🔍</text>
+    <g stroke="#858585" fill="none" stroke-width="2"><circle cx="21" cy="163" r="3"/><circle cx="21" cy="177" r="3"/><circle cx="32" cy="163" r="3"/><path d="M21 166 L21 174 M32 166 C32 171,21 171,21 174"/></g>
+    <text x="26" y="224" fill="#858585">▷</text>
+    <text x="26" y="272" fill="#858585">▤</text>
+  </g>
+  <!-- サイドバー: エクスプローラー -->
+  <rect x="52" y="34" width="300" height="556" fill="#252526"/>
+  <text x="68" y="60" font-size="12" fill="#bbbbbb">エクスプローラー</text>
+  <rect x="52" y="72" width="300" height="28" fill="#37373d"/>
+  <text x="68" y="91" font-size="12" fill="#ffffff" font-weight="bold">∨ YUMEAKA-WEB</text>
+  <text x="80" y="124" font-size="13" fill="#cccccc">&gt; img</text>
+  <rect x="52" y="134" width="300" height="26" fill="#094771"/>
+  <text x="90" y="152" font-size="13" fill="#ffffff">index.html</text>
+  <text x="90" y="180" font-size="13" fill="#cccccc">style.css</text>
+  <!-- エディタ領域 -->
+  <rect x="352" y="34" width="648" height="556" fill="#1e1e1e"/>
+  <!-- タブバー -->
+  <rect x="352" y="34" width="648" height="36" fill="#252526"/>
+  <rect x="352" y="34" width="130" height="36" fill="#1e1e1e"/>
+  <text x="368" y="57" font-size="13" fill="#ffffff">index.html</text>
+  <text x="498" y="57" font-size="13" fill="#969696">style.css</text>
+  <!-- コード -->
+  <g font-size="14" font-family="Consolas, Menlo, monospace">
+    <g fill="#6e7681" text-anchor="end">
+      <text x="382" y="100">1</text>
+      <text x="382" y="130">2</text>
+      <text x="382" y="160">3</text>
+      <text x="382" y="190">4</text>
+      <text x="382" y="220">5</text>
+      <text x="382" y="250">6</text>
+      <text x="382" y="280">7</text>
+      <text x="382" y="310">8</text>
+      <text x="382" y="340">9</text>
+      <text x="382" y="370">10</text>
+      <text x="382" y="400">11</text>
+    </g>
+    <text x="400" y="100" fill="#569cd6">&lt;!DOCTYPE html&gt;</text>
+    <text x="400" y="130" fill="#569cd6">&lt;html <tspan fill="#9cdcfe">lang=</tspan><tspan fill="#ce9178">"ja"</tspan>&gt;</text>
+    <text x="417" y="160" fill="#569cd6">&lt;head&gt;</text>
+    <text x="434" y="190" fill="#569cd6">&lt;meta <tspan fill="#9cdcfe">charset=</tspan><tspan fill="#ce9178">"UTF-8"</tspan>&gt;</text>
+    <text x="434" y="220" fill="#569cd6">&lt;title&gt;<tspan fill="#d4d4d4" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">はじめてのページ</tspan>&lt;/title&gt;</text>
+    <text x="434" y="250" fill="#569cd6">&lt;link <tspan fill="#9cdcfe">rel=</tspan><tspan fill="#ce9178">"stylesheet"</tspan><tspan fill="#9cdcfe"> href=</tspan><tspan fill="#ce9178">"style.css"</tspan>&gt;</text>
+    <text x="417" y="280" fill="#569cd6">&lt;/head&gt;</text>
+    <text x="417" y="310" fill="#569cd6">&lt;body&gt;</text>
+    <text x="434" y="340" fill="#569cd6">&lt;h1&gt;<tspan fill="#d4d4d4" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">こんにちは、世界！</tspan>&lt;/h1&gt;</text>
+    <text x="417" y="370" fill="#569cd6">&lt;/body&gt;</text>
+    <text x="400" y="400" fill="#569cd6">&lt;/html&gt;</text>
+  </g>
+  <!-- 注釈: linkタグの行 -->
+  <rect x="428" y="228" width="366" height="32" rx="5" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="814" cy="244" r="13" fill="#ff3b30"/>
+  <text x="814" y="249" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <text x="834" y="249" font-size="12" fill="#ff6b60">この1行を追加！</text>
+  <!-- 説明ボックス -->
+  <rect x="420" y="440" width="520" height="120" rx="10" fill="#252526" stroke="#454545"/>
+  <text x="440" y="470" font-size="14" fill="#cccccc" font-weight="bold">ポイント</text>
+  <text x="440" y="496" font-size="13" fill="#9d9d9d">・場所は &lt;head&gt; の中ならOK（&lt;/head&gt; より上に書く）</text>
+  <text x="440" y="520" font-size="13" fill="#9d9d9d">・href="style.css" はファイル名と完全一致させる</text>
+  <text x="440" y="544" font-size="13" fill="#9d9d9d">・書いたら Ctrl + S で保存して、ブラウザで確認</text>
+  <!-- ステータスバー -->
+  <rect x="0" y="590" width="1000" height="30" fill="#007acc"/>
+</svg>

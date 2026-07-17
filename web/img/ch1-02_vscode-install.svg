@@ -1,0 +1,39 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <rect x="0" y="0" width="1000" height="560" fill="#f1f5f9"/>
+  <!-- Windows インストーラダイアログ -->
+  <rect x="170" y="40" width="660" height="470" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+  <rect x="170" y="40" width="660" height="40" rx="8" fill="#e2e8f0"/>
+  <text x="190" y="66" font-size="15" fill="#1e293b">セットアップ - Microsoft Visual Studio Code</text>
+  <text x="790" y="66" font-size="15" fill="#64748b">✕</text>
+  <text x="200" y="115" font-size="17" font-weight="bold" fill="#1e293b">使用許諾契約書の同意</text>
+  <text x="200" y="140" font-size="13" fill="#475569">続行する前に以下の重要な情報をお読みください。</text>
+  <!-- ライセンス本文 -->
+  <rect x="200" y="160" width="600" height="200" fill="#f8fafc" stroke="#cbd5e1"/>
+  <g font-size="11" fill="#64748b">
+    <text x="212" y="182">本ライセンス条項は、上記のソフトウェアおよび</text>
+    <text x="212" y="200">Microsoft のサービスまたはソフトウェア更新プログラムに適用されます…</text>
+    <text x="212" y="226">1. インストールおよび使用に関する権利。</text>
+    <text x="212" y="244">お客様は、本ソフトウェアの複製を任意の数だけインストールして使用できます。</text>
+  </g>
+  <!-- ラジオボタン -->
+  <circle cx="212" cy="390" r="7" fill="#fff" stroke="#0ea5e9" stroke-width="2"/>
+  <circle cx="212" cy="390" r="3.5" fill="#0ea5e9"/>
+  <text x="228" y="395" font-size="14" fill="#1e293b">同意する(A)</text>
+  <circle cx="212" cy="418" r="7" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+  <text x="228" y="423" font-size="14" fill="#64748b">同意しない(D)</text>
+  <!-- 注釈1 -->
+  <rect x="196" y="374" width="140" height="32" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="180" cy="390" r="13" fill="#ff3b30"/>
+  <text x="180" y="395" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+  <!-- ボタン列 -->
+  <rect x="600" y="455" width="90" height="32" rx="4" fill="#0ea5e9"/>
+  <text x="645" y="476" font-size="13" fill="#fff" text-anchor="middle">次へ(N) &gt;</text>
+  <rect x="700" y="455" width="90" height="32" rx="4" fill="#e2e8f0"/>
+  <text x="745" y="476" font-size="13" fill="#475569" text-anchor="middle">キャンセル</text>
+  <!-- 注釈2 -->
+  <rect x="592" y="447" width="106" height="48" rx="6" fill="none" stroke="#ff3b30" stroke-width="3"/>
+  <circle cx="578" cy="440" r="13" fill="#ff3b30"/>
+  <text x="578" y="445" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+  <!-- キャプション -->
+  <text x="500" y="540" font-size="13" fill="#64748b" text-anchor="middle">①「同意する」を選んで → ②「次へ」。あとは「次へ」を押していけばOK（Windowsの画面）</text>
+</svg>

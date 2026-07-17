@@ -1,0 +1,42 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" font-family="Hiragino Kaku Gothic ProN, Meiryo, sans-serif">
+  <!-- ブラウザ枠（Windows） -->
+  <rect x="0" y="0" width="1000" height="560" rx="8" fill="#e8eaed"/>
+  <rect x="10" y="6" width="180" height="28" rx="8" fill="#ffffff"/>
+  <text x="24" y="25" font-size="13" fill="#444">新しいタブ</text>
+  <g font-size="16" fill="#555">
+    <text x="920" y="24">—</text>
+    <text x="950" y="24">□</text>
+    <text x="978" y="24">✕</text>
+  </g>
+  <rect x="90" y="40" width="620" height="26" rx="13" fill="#ffffff" stroke="#d0d3d8"/>
+  <text x="106" y="58" font-size="14" fill="#444">🔒 code.visualstudio.com</text>
+  <!-- サイト本体（ダーク） -->
+  <rect x="0" y="74" width="1000" height="486" fill="#0b0b0f"/>
+  <!-- サイトヘッダー -->
+  <g font-size="14" fill="#d4d4d8">
+    <text x="60" y="107" font-size="16" font-weight="bold" fill="#ffffff">Visual Studio Code</text>
+    <text x="290" y="107">Features</text>
+    <text x="370" y="107">Docs</text>
+    <text x="430" y="107">Blog</text>
+    <text x="485" y="107">Learn</text>
+  </g>
+  <rect x="855" y="87" width="105" height="30" rx="6" fill="#3b82f6"/>
+  <text x="907" y="107" font-size="14" fill="#fff" text-anchor="middle">Download</text>
+  <!-- 見出し -->
+  <text x="500" y="205" font-size="40" font-weight="bold" fill="#ffffff" text-anchor="middle">The open source AI code editor</text>
+  <text x="500" y="245" font-size="18" fill="#a1a1aa" text-anchor="middle">Your home for multi-agent development</text>
+  <!-- ダウンロードボタン -->
+  <rect x="320" y="295" width="360" height="58" rx="10" fill="#ffffff"/>
+  <text x="500" y="332" font-size="21" font-weight="bold" fill="#111" text-anchor="middle">Download for Windows</text>
+  <text x="500" y="385" font-size="13" fill="#a1a1aa" text-anchor="middle">Web, Insiders edition, or other platforms</text>
+  <!-- 注釈 -->
+  <rect x="308" y="283" width="384" height="82" rx="12" fill="none" stroke="#ff3b30" stroke-width="4"/>
+  <line x1="692" y1="324" x2="795" y2="324" stroke="#ff3b30" stroke-width="3"/>
+  <rect x="795" y="280" width="185" height="88" rx="8" fill="#fff1f0" stroke="#ff3b30" stroke-width="2"/>
+  <text x="805" y="305" font-size="14" fill="#c0392b">このボタンを押す！</text>
+  <text x="805" y="327" font-size="12" fill="#c0392b">押すとすぐダウンロード</text>
+  <text x="805" y="345" font-size="12" fill="#c0392b">が始まるよ</text>
+  <!-- 下部イメージ略 -->
+  <rect x="200" y="425" width="600" height="110" rx="10" fill="#1e293b"/>
+  <text x="500" y="487" font-size="14" fill="#64748b" text-anchor="middle">（エディタのプレビュー画像）</text>
+</svg>

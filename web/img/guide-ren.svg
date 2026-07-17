@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+  <title id="title">案内役のレン</title>
+  <desc id="desc">黒髪で、学習のポイントを整理する高校生の案内役</desc>
+  <circle cx="90" cy="90" r="84" fill="#fff2cf"/>
+  <path d="M25 146c12-27 36-41 65-41s53 14 65 41v26H25z" fill="#278a78" stroke="#17233f" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M72 108h36v26c-8 8-28 8-36 0z" fill="#edb989" stroke="#17233f" stroke-width="5"/>
+  <path d="M49 67c0-29 17-47 42-47 26 0 43 19 43 49v26c0 28-18 46-43 46S48 123 48 95z" fill="#f2c195" stroke="#17233f" stroke-width="5"/>
+  <path d="M48 78c-7-23 8-61 43-61 32 0 50 28 43 61-12-5-21-12-27-24-17 15-35 21-59 24z" fill="#26384a" stroke="#17233f" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M52 75c-13 0-16 11-9 21 3 5 7 7 12 7M131 75c13 0 16 11 9 21-3 5-7 7-12 7" fill="#f2c195" stroke="#17233f" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="75" cy="88" r="4" fill="#17233f"/>
+  <circle cx="108" cy="88" r="4" fill="#17233f"/>
+  <path d="M79 109c8 5 17 5 24-1" fill="none" stroke="#17233f" stroke-width="4" stroke-linecap="round"/>
+  <path d="M91 104v-7" fill="none" stroke="#ce8063" stroke-width="3" stroke-linecap="round"/>
+  <path d="M56 148l34 23 34-23" fill="none" stroke="#fff9ec" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M142 27l4 9 10 1-8 7 2 10-8-5-9 5 2-10-7-7 10-1z" fill="#e45b50" stroke="#17233f" stroke-width="3" stroke-linejoin="round"/>
+</svg>
