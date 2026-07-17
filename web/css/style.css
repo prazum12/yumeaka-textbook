@@ -633,6 +633,28 @@ p code, li code, td code {
 .ai-ok { color: var(--mint); font-weight: 900; }
 .ai-ng { color: var(--coral); font-weight: 900; }
 
+.answer-link {
+  margin: 16px 0 30px;
+  padding: 16px 20px;
+  background: var(--mint-light);
+  border: 2px dashed var(--mint);
+  border-radius: 5px 14px 14px 5px;
+}
+.answer-link p { margin: 0 0 10px; color: #0d4a3d; font-size: 14px; }
+.answer-link a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 9px 18px;
+  color: #fff;
+  background: var(--mint);
+  border-radius: 5px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.answer-link a:hover { background: #0f5a4c; }
+.answer-link a + a { margin-left: 10px; }
+
 details.hint {
   margin: 13px 0;
   padding: 8px 15px;
@@ -853,7 +875,7 @@ th { color: #fff; background: var(--blue); }
   .site-header .academy { color: var(--ink); }
   .site-header a { color: var(--ink); }
   .container { max-width: none; margin: 0; padding: 15px; border: 0; box-shadow: none; }
-  .container::before, .reading-progress, .skip-link, .chapter-map, .os-toggle, .back-to-top, .copy-btn { display: none !important; }
+  .container::before, .reading-progress, .skip-link, .chapter-map, .os-toggle, .back-to-top, .copy-btn, .answer-link { display: none !important; }
   .step, .mentor-dialogue, .goal-box, .chapter-title, .toc-card { box-shadow: none; break-inside: avoid; }
   .code-block pre { white-space: pre-wrap; }
 }
