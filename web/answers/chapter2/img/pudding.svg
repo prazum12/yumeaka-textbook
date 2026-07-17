@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="150" height="125" role="img" aria-label="プリンのイラスト">
+  <rect x="0" y="0" width="240" height="200" rx="16" fill="#fef9c3"/>
+  <ellipse cx="120" cy="158" rx="82" ry="20" fill="#ffffff" stroke="#d1d5db" stroke-width="3"/>
+  <path d="M79 90 L161 90 C168 90, 173 96, 172 103 L164 148 C163 155, 157 160, 150 160 L90 160 C83 160, 77 155, 76 148 L68 103 C67 96, 72 90, 79 90 Z" fill="#fbbf24" stroke="#d97706" stroke-width="3"/>
+  <ellipse cx="120" cy="92" rx="49" ry="13" fill="#92400e"/>
+  <rect x="88" y="98" width="11" height="18" rx="5" fill="#92400e"/>
+  <rect x="114" y="100" width="11" height="14" rx="5" fill="#92400e"/>
+  <rect x="140" y="98" width="11" height="22" rx="5" fill="#92400e"/>
+  <circle cx="120" cy="76" r="11" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5"/>
+  <path d="M122 66 C124 58, 130 56, 133 51" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="40,52 45,62 40,72 35,62" fill="#fde047"/>
+  <polygon points="202,58 206,67 202,76 198,67" fill="#fde047"/>
+</svg>
