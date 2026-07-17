@@ -132,6 +132,21 @@ button, .chapter-nav a, .hero-start, .toc-card, .chapter-map summary, .chapter-m
 
 .site-header a { color: #fff; text-decoration: none; }
 
+.site-header .portal-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 2px 0 6px;
+  color: rgba(255, 255, 255, .78);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-header .portal-link:hover { color: #fff; text-decoration: underline; }
+
 /* Main sheet */
 .container {
   position: relative;
