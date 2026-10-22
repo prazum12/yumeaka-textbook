@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第3章 イベントでしかけを作ろう 〜コインとスコア〜 | 夢アカGDevelop教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第3章</span>
+      <h1>イベントでしかけを作ろう 〜コインとスコア〜</h1>
+      <div class="date">📅 第3回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>「条件 → アクション」のイベントを自分で組み立てられる</li>
+        <li>キーに合わせて、キャラの向きを左右に変えられる</li>
+        <li>変数（数を覚えておく箱）を使って、スコアを数えられる</li>
+        <li>コインを取るとスコアが増えて、画面に表示されるしくみを作れる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 前回のステージが開けない・壊れてしまった人は、第1章「1-5〜1-7」と第2章「2-5」をやり直せば、この章に必要な最低限の状態になります。<br>
+      困ったら講師を呼んでね。
+    </p>
+
+    <h2>3-1. イベントのしくみをもう一度</h2>
+    <p>
+      前回、条件なしのイベントでカメラを動かしました。<br>
+      今回は<strong>条件つき</strong>のイベントを作ります。<br>
+      イベントは「<strong>もし〜なら（条件）、〜する（アクション）</strong>」という、ゲームのルールそのものです。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="イベントは条件を満たしたときだけアクションが実行される">
+        <rect x="20" y="70" width="200" height="90" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+        <text x="120" y="102" text-anchor="middle" font-size="15" font-weight="bold" fill="#334155">条件</text>
+        <text x="120" y="128" text-anchor="middle" font-size="13" fill="#334155">PlayerがCoinに</text>
+        <text x="120" y="146" text-anchor="middle" font-size="13" fill="#334155">さわっている？</text>
+        <path d="M 225 115 L 300 115" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow3a)"/>
+        <text x="262" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#16a34a">YES</text>
+        <rect x="305" y="40" width="250" height="150" rx="12" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="430" y="72" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">アクション（上から順に）</text>
+        <text x="430" y="104" text-anchor="middle" font-size="13" fill="#0c4a6e">1. そのCoinを消す</text>
+        <text x="430" y="130" text-anchor="middle" font-size="13" fill="#0c4a6e">2. Scoreを1ふやす</text>
+        <text x="120" y="200" text-anchor="middle" font-size="13" fill="#dc2626">NOなら何もしない</text>
+        <path d="M 120 165 L 120 182" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow3b)"/>
+        <text x="630" y="110" text-anchor="middle" font-size="12" fill="#64748b">毎フレーム</text>
+        <text x="630" y="128" text-anchor="middle" font-size="12" fill="#64748b">チェック</text>
+        <defs>
+          <marker id="arrow3a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+          </marker>
+          <marker id="arrow3b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図3-1: 条件が「YES」のときだけ、右のアクションが上から順番に実行される</figcaption>
+    </div>
+
+    <h2>3-2. ウォーミングアップ: キャラの向きを変えよう</h2>
+    <p>
+      今のPlayerは、左へ走っても右を向いたままのはず。<br>
+      最初のイベントとして、<strong>押したキーの方向を向く</strong>ようにしてみよう。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">条件「左キーが押されている」を作る</span>
+      <p><code>Stage1 (Events)</code> タブを開き、「Add a new event」で新しいイベントを追加します。<br>
+        今度は左側の「<strong>Add condition</strong>」を押して、検索欄に <code>key pressed</code> と入力。<br>
+        「<strong>Key pressed</strong>」（キーが押されている）を選び、キーの欄で <code>Left</code>（左矢印）を選んで「OK」。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        条件選択画面でKey pressedを選び、キーにLeftを指定しているところ
+        <div class="fname">ch3-01_key-pressed-condition.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">アクション「Playerを左右反転する」を作る</span>
+      <p>同じイベントの右側「<strong>Add action</strong>」を押して、<code>flip</code> と検索。<br>
+        「<strong>Flip the object horizontally</strong>」（左右に反転する）を選び、Object に <code>Player</code>、反転するかどうかを <strong>Yes</strong> にして「OK」。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        アクション選択画面でFlip the object horizontallyを選び、PlayerとYesを指定しているところ
+        <div class="fname">ch3-02_flip-action.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">右キー用のイベントも作る</span>
+      <p>同じようにもう1つイベントを作ります。<br>
+        今度は条件を「Key pressed: <code>Right</code>」、アクションを「Flip the object horizontally: Player を <strong>No</strong>」にします。<br>
+        2つのイベントが次のようになっていればOK。</p>
+      <div class="event-sheet">
+        <div class="ev-label">キャラの向き</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">1</span>Key pressed: <code>Left</code></div>
+          <div class="ev-act"><span class="ev-head">アクション</span>Flip <code>Player</code> horizontally: Yes</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-num">2</span>Key pressed: <code>Right</code></div>
+          <div class="ev-act">Flip <code>Player</code> horizontally: No</div>
+        </div>
+      </div>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        キャラの向きを変える2つのイベントが並んだイベントシート
+        <div class="fname">ch3-03_flip-events-done.png</div>
+      </div>
+      <p>Previewで、左右に走ると向きが変わるか確かめよう。<br>
+        もし<strong>逆向き</strong>になったら、キャラの絵がもともと左を向いているということ。<br>
+        そのときは Yes と No を入れかえればOK。</p>
+    </div>
+
+    <h2>3-3. コイン（Coin）を置こう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">コインの素材を追加する</span>
+      <p>シーンエディタに戻り、「Add a new object」からアセットストアで <code>coin</code> と検索します。<br>
+        好きなコイン（宝石や果物などでもOK）を追加して、名前を <code>Coin</code> にしよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        アセットストアでcoinと検索し、コインの素材を選んでいるところ
+        <div class="fname">ch3-04_asset-store-coin.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">ステージにコインを並べる</span>
+      <p>コピー＆貼り付けで、ステージのあちこちにコインを置こう。<br>
+        <strong>Coin にはビヘイビアをつけません</strong>（足場ではないので、すり抜けてOK）。<br>
+        取りやすい場所にたくさん、ジャンプが必要な場所に少し、と置き分けると楽しいよ。</p>
+    </div>
+
+    <h2>3-4. 変数でスコアを数えよう</h2>
+    <p>
+      コインを何枚取ったかを数えるには、数を覚えておく場所が必要です。<br>
+      それが<strong>変数</strong>です。
+    </p>
+
+    <div class="term">
+      <span class="word">変数（へんすう）</span> … 数や文字を覚えておく「名前つきの箱」。<br>
+      今回は <code>Score</code> という名前の箱を作って、コインを取るたびに中の数を1ずつ増やしていく。<br>
+      シーンの中で使う変数を「シーン変数」と呼ぶよ。
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="変数Scoreの箱の数がコインを取るたびに増える">
+        <rect x="40" y="50" width="140" height="90" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="110" y="40" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">Score</text>
+        <text x="110" y="108" text-anchor="middle" font-size="34" font-weight="bold" fill="#b45309">0</text>
+        <path d="M 190 95 L 260 95" stroke="#64748b" stroke-width="3" marker-end="url(#arrow3c)"/>
+        <text x="225" y="82" text-anchor="middle" font-size="12" fill="#334155">コイン</text>
+        <rect x="270" y="50" width="140" height="90" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="340" y="40" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">Score</text>
+        <text x="340" y="108" text-anchor="middle" font-size="34" font-weight="bold" fill="#b45309">1</text>
+        <path d="M 420 95 L 490 95" stroke="#64748b" stroke-width="3" marker-end="url(#arrow3c)"/>
+        <text x="455" y="82" text-anchor="middle" font-size="12" fill="#334155">コイン</text>
+        <rect x="500" y="50" width="140" height="90" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="570" y="40" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">Score</text>
+        <text x="570" y="108" text-anchor="middle" font-size="34" font-weight="bold" fill="#b45309">2</text>
+        <text x="350" y="170" text-anchor="middle" font-size="13" fill="#334155">箱の名前（Score）は変わらず、中の数だけが変わっていく</text>
+        <defs>
+          <marker id="arrow3c" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図3-2: 変数は「名前つきの箱」。<br>
+        コインを取るたびに、箱の中の数を1ずつ増やす</figcaption>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">シーン変数の画面を開く</span>
+      <p>シーンの何もない場所を右クリック →「<strong>Scene properties</strong>」→「<strong>Edit scene variables</strong>」（シーン変数を編集）を押します。<br>
+        イベントシートの上のほうに「Scene variables」のようなボタンがあれば、そこから開いてもOK。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        Scene propertiesのEdit scene variablesボタン（赤枠）
+        <div class="fname">ch3-05_scene-variables.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">変数 Score を追加する</span>
+      <p>「<strong>Add a variable</strong>」（変数を追加）を押して、名前を <code>Score</code>、種類（Type）を <strong>Number</strong>（数）、最初の値を <code>0</code> にして「Apply」または「OK」。<br>
+        <strong>名前は大文字・小文字も区別されます。</strong><br>
+        <code>Score</code> と <code>score</code> は別の箱になってしまうので注意しよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        シーン変数の一覧にScore（Number、値0）が追加された状態
+        <div class="fname">ch3-06_add-score-variable.png</div>
+      </div>
+    </div>
+
+    <h2>3-5. コインを取るイベントを作ろう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">条件「PlayerがCoinにさわっている」を作る</span>
+      <p>イベントシートで「Add a new event」→「Add condition」を押して、<code>collision</code> と検索。<br>
+        「<strong>Collision</strong>」（さわっている・ぶつかっている）を選び、1つ目のオブジェクトに <code>Player</code>、2つ目に <code>Coin</code> を選んで「OK」。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        条件選択画面でCollisionを選び、PlayerとCoinを指定しているところ
+        <div class="fname">ch3-07_collision-condition.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">アクション「Coinを消す」を作る</span>
+      <p>右側の「Add action」→ <code>delete</code> と検索して「<strong>Delete an object</strong>」（オブジェクトを消す）を選び、Object に <code>Coin</code> を選んで「OK」。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        アクション選択画面でDelete an objectを選び、Coinを指定しているところ
+        <div class="fname">ch3-08_delete-object-action.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">アクション「Scoreを1ふやす」を足す</span>
+      <p>同じイベントの右側で、もう一度「Add action」を押します（アクションは1つのイベントにいくつでも足せる）。<br>
+        <code>variable</code> と検索して、変数の値を変えるアクション（「<strong>Change variable value</strong>」など）を選びます。<br>
+        変数に <code>Score</code>、計算のしかたに「<strong>+ (add)</strong>」（足す）、値に <code>1</code> を入れて「OK」。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        変数の値を変えるアクションで、Score／+ (add)／1を指定しているところ
+        <div class="fname">ch3-09_change-variable-action.png</div>
+      </div>
+      <div class="event-sheet">
+        <div class="ev-label">コインを取る</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">3</span><code>Player</code> is in collision with <code>Coin</code></div>
+          <div class="ev-act"><span class="ev-head">アクション</span>Delete <code>Coin</code><br>Change <code>Score</code>: + 1</div>
+        </div>
+      </div>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        コインを取るイベント（条件1つ・アクション2つ）が完成したイベントシート
+        <div class="fname">ch3-10_coin-event-done.png</div>
+      </div>
+    </div>
+
+    <div class="term">
+      <span class="word">「さわったCoinだけ」が消えるワケ</span> … 条件で「PlayerがCoinにさわっている」を調べると、GDevelopは<strong>さわっているCoinだけ</strong>を選んでおいてくれる。<br>
+      そのあとのアクション「Coinを消す」は、選ばれたCoinにだけ効く。<br>
+      だから、ステージ中のコインが全部消えたりしないんだ。
+    </div>
+
+    <h2>3-6. スコアを画面に表示しよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">文字のオブジェクト（Text）を作る</span>
+      <p>「Add a new object」を押して、アセットストアではなく<strong>一から作るオブジェクト</strong>の一覧（New object from scratch など）から「<strong>Text</strong>」を選びます。<br>
+        名前を <code>ScoreText</code> にして、シーンの左上あたりに置こう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        新しいオブジェクトの種類一覧からTextを選んでいるところ
+        <div class="fname">ch3-11_add-text-object.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">UI用のレイヤーを作る</span>
+      <p>このままだと、カメラが動いたときに ScoreText は置き去りにされてしまいます。<br>
+        そこで、<strong>カメラが動いても画面に貼りついたままの層</strong>、レイヤーを作ります。<br>
+        レイヤー（Layers）のパネルを開いて、新しいレイヤーを追加し、名前を <code>UI</code> にしよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        Layersパネルで新しいレイヤーを追加し、名前をUIにしたところ
+        <div class="fname">ch3-12_layers-panel-ui.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">ScoreText を UI レイヤーに移す</span>
+      <p>シーンに置いた <code>ScoreText</code> をクリックして、プロパティの「<strong>Layer</strong>」を <code>UI</code> に変えます。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ScoreTextのプロパティでLayerをUIに変えているところ
+        <div class="fname">ch3-13_text-layer-setting.png</div>
+      </div>
+    </div>
+
+    <div class="term">
+      <span class="word">レイヤー</span> … 透明なシートを何枚も重ねたようなしくみ。<br>
+      ステージは下のシート、スコアは上のシートに描くイメージ。<br>
+      カメラを動かすイベントは下のシート（最初からあるレイヤー）だけを動かすので、UIレイヤーのスコアは画面の同じ場所に表示され続けるよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">スコアの文字を毎フレーム書きかえるイベントを作る</span>
+      <p>イベントシートに戻って「Add a new event」。<br>
+        条件はなし（いつでも・ずっと）で、「Add action」から <code>text</code> と検索。<br>
+        ScoreText の文字を変えるアクション（「<strong>Text</strong>」や「Change the text」など）を選び、Object に <code>ScoreText</code>、変え方を「<strong>= (set to)</strong>」（〜にする）にします。<br>
+        値の欄には、次の式をそのまま入力しよう。</p>
+      <div class="code-block">
+        <span class="code-label">ScoreText に入れる式</span>
+        <button class="copy-btn" type="button">コピー</button>
+        <pre><code>"Score: " + ToString(Score)</code></pre>
+      </div>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ScoreTextのテキストを変えるアクションで、= (set to) と式を入力しているところ
+        <div class="fname">ch3-14_change-text-action.png</div>
+      </div>
+      <table>
+        <tr><th>式の部分</th><th>意味</th></tr>
+        <tr><td><code>"Score: "</code></td><td>「"」でかこんだ部分は、そのまま表示される文字</td></tr>
+        <tr><td><code>+</code></td><td>文字と文字をつなげる</td></tr>
+        <tr><td><code>ToString(Score)</code></td><td>変数 Score の<strong>数</strong>を、表示できる<strong>文字</strong>に変換する</td></tr>
+      </table>
+      <div class="event-sheet">
+        <div class="ev-label">スコアの表示</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">4</span>（なし＝いつでも・ずっと）</div>
+          <div class="ev-act"><span class="ev-head">アクション</span>Change the text of <code>ScoreText</code>: set to <code>"Score: " + ToString(Score)</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">Previewで確かめて保存する</span>
+      <p>コインを取るたびにコインが消えて、左上の数字が1ずつ増えれば大成功！<br>
+        <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        Previewのゲーム画面。左上にScore: 3 のように表示され、コインが減っている状態
+        <div class="fname">ch3-15_preview-score.png</div>
+      </div>
+    </div>
+
+    <h2>3-7. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: スコアの見た目を変えよう</h3>
+      <p><code>ScoreText</code> を選んで、プロパティや設定画面から<strong>文字の大きさ・色</strong>を変えてみよう。<br>
+      背景の色に負けない、見やすい色にできたら合格。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>ScoreText をダブルクリックすると、文字の大きさ（size）や色（color）を変える欄があるよ。<br>
+          暗い背景には明るい文字、明るい背景には暗い文字が見やすい。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 大きいコインで5点もらえるようにしよう</h3>
+      <p>別の素材で <code>BigCoin</code> というオブジェクトを作り、取ると <strong>Scoreが5</strong> ふえるようにしよう。<br>
+      むずかしい場所に置くと、取りに行きたくなるよ。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>3-5で作ったコインのイベントと、ほとんど同じものを作ればOK。<br>
+          ちがうのは「どのオブジェクトにさわったか」と「いくつ足すか」の2か所だけ。<br>
+          イベントを右クリックしてコピー＆貼り付けし、中身を書きかえるとラクだよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: コインを全部取ったらメッセージを出そう</h3>
+      <p>ステージのコインを全部取ったら、ScoreText の文字が「ALL COINS!」に変わるようにしてみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>条件の検索で <code>number</code> と入れると、「シーンにあるオブジェクトの数」を調べる条件が見つかるよ。<br>
+          Coin の数が 0 になったら……という条件にしてみよう。<br>
+          イベントは上から順に実行されるので、スコア表示のイベントより<strong>下</strong>に置かないと、すぐ上書きされてしまうよ。</p>
+      </details>
+    </div>
+
+    <h2>3-8. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>コインにさわってもスコアがものすごい勢いで増える</h4>
+      <p><strong>原因:</strong> 「Coinを消す」アクションがない。<br>
+      コインが消えないので、さわっているあいだ毎フレーム（1秒に何十回も）+1されている。</p>
+      <p><strong>直し方:</strong> 同じイベントに「Delete an object: Coin」が入っているか確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>スコアの表示が変わらない・「Score:」すら出ない</h4>
+      <p><strong>原因1:</strong> 式の打ちまちがい。<br>
+      → <code>"</code>（ダブルクォーテーション）が半角か、<code>ToString</code> のつづりと大文字・小文字が合っているか確認しよう。<br>
+      式の欄が赤くなっているときは、どこかがまちがっているサイン。</p>
+      <p><strong>原因2:</strong> 変数の名前がちがう。<br>
+      → シーン変数の名前が <code>Score</code>（Sが大文字）になっているか確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>スコアの文字が、走るとどこかへ行ってしまう</h4>
+      <p><strong>原因:</strong> <code>ScoreText</code> が UI レイヤーに入っていない。</p>
+      <p><strong>直し方:</strong> シーンに置いた ScoreText を選んで、プロパティの Layer が <code>UI</code> になっているか確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>キャラの向きが逆になる</h4>
+      <p><strong>原因:</strong> キャラの絵が、もともと左を向いている。</p>
+      <p><strong>直し方:</strong> 3-2の2つのイベントで、Yes と No を入れかえよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>コインにさわっても何も起きない</h4>
+      <p><strong>原因:</strong> 条件で選んだオブジェクトがちがう（Coin ではなく別のものになっている）。<br>
+      または、イベントを左右逆（条件とアクションを入れちがえ）に作っている。</p>
+      <p><strong>直し方:</strong> イベントの文をダブルクリックして、中身を確認しよう。<br>
+        左が「Player is in collision with Coin」、右が「Delete Coin」になっていればOK。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>3-9. 🤖 AIを味方につけよう</h2>
+    <p>
+      イベントの相談をするときは、<strong>イベントシートの中身を、上から順番に「条件／アクション」の形で書き写す</strong>のがコツ。<br>
+      画面の写真だけより、ずっと正確に伝わります。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>式の意味を知りたいとき:</strong> <code>ToString</code> や <code>+</code> の働きを、自分の言葉で説明できるまで聞く</li>
+        <li><strong>イベントのバグ探し:</strong> 書き写したイベントを見せて、どこがおかしいかヒントをもらう</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        ブラウザ版のGDevelopでアクションゲームを作っている中学生です。<br>
+        イベントは次のとおりです。<br>
+        イベント1: 条件「Player is in collision with Coin」／アクション「Change Score: + 1」<br>
+        コインにさわるとスコアがすごい勢いで増えてしまいます。<br>
+        答えをそのまま言わずに、原因に気づけるヒントをください。
+      </div>
+      <div class="prompt-example">
+        GDevelopの式 "Score: " + ToString(Score) の意味を、プログラミング初心者の中学生にわかるように説明してください。<br>
+        特に、なぜ ToString が必要なのかを教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>課題のイベントをAIに全部作らせて、そのまま写す（自分で組み立てる練習がこの章のゴール！）</li>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの書き方を答えることがある。<br>
+          アクションの名前や式は、必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>3-10. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> 「条件」と「アクション」を自分で選んでイベントを作れた</label>
+      <label><input type="checkbox"> 左右キーでキャラの向きが変わるようになった</label>
+      <label><input type="checkbox"> シーン変数 <code>Score</code> を作った</label>
+      <label><input type="checkbox"> コインを取ると、コインが消えて Score が1ふえるようになった</label>
+      <label><input type="checkbox"> <code>ScoreText</code> を UI レイヤーに置いて、スコアが画面に表示された</label>
+      <label><input type="checkbox"> 「さわったCoinだけが消える」理由を説明できる</label>
+    </div>
+    <p>全部チェックできたら第3章クリア！<br>
+      🎉 次回は、いよいよ敵が登場。<br>
+      踏んだら倒せる・横から当たったらやり直し、というゲームらしいルールを作るよ。</p>
+
+    <h2>3-11. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/platformer/part-5" target="_blank">公式プラットフォーマーチュートリアル Part 5「Add Collectible Coins」（英語）</a> — コイン集めの公式手順</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/all-features/variables/scene-variables/" target="_blank">シーン変数の解説（公式Wiki）</a> — 変数の作り方・使い方の公式説明</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/events/expressions/" target="_blank">式（Expressions）の解説（公式Wiki）</a> — ToString など、式の書き方がまとまっている</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter2.html">← 第2章 ステージを作ろう</a>
+      <a href="chapter4.html">第4章 敵とゲームオーバー →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+  <script>
+    // コピーボタン
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.parentElement.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(function () {
+          btn.textContent = 'コピーしました！';
+          setTimeout(function () { btn.textContent = 'コピー'; }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

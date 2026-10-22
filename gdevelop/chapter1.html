@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第1章 キャラを置いて動かそう 〜はじめてのGDevelop〜 | 夢アカGDevelop教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第1章</span>
+      <h1>キャラを置いて動かそう 〜はじめてのGDevelop〜</h1>
+      <div class="date">📅 第1回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>ゲームエンジンが何をしてくれるのか説明できる</li>
+        <li>GDevelopで新しいプロジェクトを作り、保存できる</li>
+        <li>エディタの5つのエリアの名前と役割がわかる</li>
+        <li>主人公と地面を置いて、走ってジャンプできるゲームを動かせる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 講習の最初に、第0章の準備がうまくいったか全員で確認します。<br>
+      できなかった人も大丈夫、ここで一緒に解決するよ。
+    </p>
+
+    <h2>1-1. ゲームエンジンってなに？</h2>
+    <p>
+      マリオもスプラトゥーンも原神も、ゲームには共通して必要なものがあります。<br>
+      絵を画面に表示する、音を鳴らす、重力で落ちる、ボタン入力に反応する……。<br>
+      これを毎回ゼロから作るのは大変すぎる！<br>
+      そこで、<strong>ゲームに必要な機能をぜんぶ詰め込んだ道具箱</strong>が生まれました。<br>
+      それが<strong>ゲームエンジン</strong>です。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ゲームエンジンの役割">
+        <rect x="230" y="30" width="240" height="200" rx="16" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+        <text x="350" y="65" text-anchor="middle" font-size="20" font-weight="bold" fill="#0369a1">ゲームエンジン</text>
+        <text x="350" y="88" text-anchor="middle" font-size="13" fill="#0c4a6e">（GDevelop）</text>
+        <rect x="250" y="105" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="297" y="127" text-anchor="middle" font-size="13" fill="#0c4a6e">絵の表示</text>
+        <rect x="355" y="105" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="402" y="127" text-anchor="middle" font-size="13" fill="#0c4a6e">音を鳴らす</text>
+        <rect x="250" y="147" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="297" y="169" text-anchor="middle" font-size="13" fill="#0c4a6e">重力・衝突</text>
+        <rect x="355" y="147" width="95" height="34" rx="8" fill="#fff" stroke="#0ea5e9"/>
+        <text x="402" y="169" text-anchor="middle" font-size="13" fill="#0c4a6e">ボタン入力</text>
+        <text x="350" y="212" text-anchor="middle" font-size="13" fill="#0c4a6e">めんどうな部分は全部おまかせ！</text>
+        <rect x="20" y="80" width="170" height="100" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="105" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#b45309">キミ（開発者）</text>
+        <text x="105" y="140" text-anchor="middle" font-size="12" fill="#78350f">「どんなゲームにするか」</text>
+        <text x="105" y="160" text-anchor="middle" font-size="12" fill="#78350f">を考えて指示を出す</text>
+        <path d="M 195 130 L 225 130" stroke="#64748b" stroke-width="3" marker-end="url(#arrow1a)"/>
+        <rect x="510" y="80" width="170" height="100" rx="12" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="595" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">完成したゲーム</text>
+        <text x="595" y="140" text-anchor="middle" font-size="12" fill="#166534">ブラウザ・PC・スマホ</text>
+        <text x="595" y="160" text-anchor="middle" font-size="12" fill="#166534">などで遊べる</text>
+        <path d="M 475 130 L 505 130" stroke="#64748b" stroke-width="3" marker-end="url(#arrow1a)"/>
+        <defs>
+          <marker id="arrow1a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図1-1: ゲームエンジンは「ゲーム作りの道具箱」。<br>
+        作り手はアイデアとルール作りに集中できる</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">GDevelop（ジーデベロップ）</span> … 無料で使えるゲームエンジンのひとつ。<br>
+      プログラムの文字を打つかわりに「イベント」というブロックを並べてルールを作るのが特徴。<br>
+      GDevelopで作られたゲームが、Steamなどのゲームストアで売られていることもあるよ。
+    </div>
+
+    <h2>1-2. この講座で作るもの 〜ゼロから組み立てる〜</h2>
+    <p>
+      この講座では、<strong>空っぽのプロジェクトから</strong>横スクロールアクションゲームを組み立てていきます。<br>
+      毎回、ゲームに部品がひとつずつ増えていくイメージです。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="全6回でゲームに部品が増えていく流れ">
+        <rect x="10" y="40" width="104" height="110" rx="10" fill="#0ea5e9"/>
+        <text x="62" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">第1回</text>
+        <text x="62" y="98" text-anchor="middle" font-size="12" fill="#fff">主人公と地面</text>
+        <text x="62" y="118" text-anchor="middle" font-size="12" fill="#fff">走る・跳ぶ</text>
+        <text x="62" y="172" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">今日はここ！</text>
+        <rect x="124" y="40" width="104" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9"/>
+        <text x="176" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">第2回</text>
+        <text x="176" y="98" text-anchor="middle" font-size="12" fill="#0c4a6e">足場と</text>
+        <text x="176" y="118" text-anchor="middle" font-size="12" fill="#0c4a6e">カメラ</text>
+        <rect x="238" y="40" width="104" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9"/>
+        <text x="290" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">第3回</text>
+        <text x="290" y="98" text-anchor="middle" font-size="12" fill="#0c4a6e">コインと</text>
+        <text x="290" y="118" text-anchor="middle" font-size="12" fill="#0c4a6e">スコア</text>
+        <rect x="352" y="40" width="104" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9"/>
+        <text x="404" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">第4回</text>
+        <text x="404" y="98" text-anchor="middle" font-size="12" fill="#0c4a6e">敵と</text>
+        <text x="404" y="118" text-anchor="middle" font-size="12" fill="#0c4a6e">ゲームオーバー</text>
+        <rect x="466" y="40" width="104" height="110" rx="10" fill="#e0f2fe" stroke="#0ea5e9"/>
+        <text x="518" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">第5回</text>
+        <text x="518" y="98" text-anchor="middle" font-size="12" fill="#0c4a6e">ゴールと</text>
+        <text x="518" y="118" text-anchor="middle" font-size="12" fill="#0c4a6e">画面の切り替え</text>
+        <rect x="580" y="40" width="110" height="110" rx="10" fill="#fef3c7" stroke="#f59e0b"/>
+        <text x="635" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">第6回</text>
+        <text x="635" y="98" text-anchor="middle" font-size="12" fill="#78350f">仕上げて</text>
+        <text x="635" y="118" text-anchor="middle" font-size="12" fill="#78350f">発表！</text>
+      </svg>
+      <figcaption>図1-2: 全6回のロードマップ。<br>
+        毎回ひとつずつ部品を足して、最後に自分だけのゲームを完成させる</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">プラットフォーマー</span> … 足場（プラットフォーム）を走ってジャンプして進むタイプのゲームのこと。<br>
+      横スクロールアクションの定番スタイルで、マリオもこの仲間だよ。
+    </div>
+
+    <h2>1-3. 新しいプロジェクトを作ろう</h2>
+    <p>
+      まずはゲーム1本分の入れ物、<strong>プロジェクト</strong>を作ります。<br>
+      無料プランは保存できるプロジェクトの数に上限があるので、<strong>この講座ではこの1つだけを最後まで使います</strong>。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">GDevelopを開いてログインを確認する</span>
+      <p>ブックマークから <code>https://editor.gdevelop.io</code> を開きます。<br>
+        右上に自分のユーザー名やアイコンが出ていればログインOK。<br>
+        出ていなければ「Log in」からログインしよう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">新しいプロジェクトを作る画面を開く</span>
+      <p>ホーム画面の左側のメニューから「<strong>Create</strong>」（作る）を選び、「<strong>Create a new project</strong>」（新しいプロジェクトを作る）のボタンを押します。<br>
+        いろいろなテンプレート（ひな形）が並んだ画面が出たら、<strong>空っぽのゲーム（Empty game）</strong>を選ぼう。<br>
+        今回はゼロから作るので、完成済みのテンプレートは選びません。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ホーム画面のCreateから新規プロジェクト作成ボタンを押すところ（赤枠）
+        <div class="fname">ch1-01_home-create-project.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">プロジェクト名を付けて作成する</span>
+      <p>プロジェクト名（Project name / Game name）の欄に <code>my-action-game</code> と入力します。<br>
+        名前は<strong>半角英数字</strong>にしておこう。<br>
+        画面の大きさ（解像度）などの設定は、最初に入っている値のままでOK。<br>
+        最後に作成ボタン（Create など）を押します。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        新規プロジェクトの設定画面。プロジェクト名にmy-action-gameと入力したところ
+        <div class="fname">ch1-02_new-project-dialog.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">シーンの名前を Stage1 にする</span>
+      <p>プロジェクトができると、最初のシーン（ゲームの場面）が用意されています。<br>
+        プロジェクトマネージャー（シーンの一覧が出る場所）で、シーンの名前を右クリック →「<strong>Rename</strong>」（名前を変える）を選び、<code>Stage1</code> にしよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        プロジェクトマネージャーでシーンを右クリックし、RenameでStage1に変えるところ
+        <div class="fname">ch1-03_rename-scene.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">さっそく保存する</span>
+      <p><span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> を押して保存します。<br>
+        初めて保存するときは保存先を聞かれることがあります。<br>
+        <strong>GDevelop Cloud</strong>（アカウントへの保存）を選び、名前が <code>my-action-game</code> になっていることを確認して保存しよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        初回保存時の保存先選択画面。GDevelop Cloudを選んでいるところ
+        <div class="fname">ch1-04_save-cloud.png</div>
+      </div>
+    </div>
+
+    <div class="term">
+      <span class="word">シーン</span> … ゲームの「場面」のこと。<br>
+      タイトル画面で1シーン、ステージ1で1シーン、のように使い分ける。<br>
+      今は「Stage1」という1つの場面を作っているよ。
+    </div>
+
+    <h2>1-4. エディタ画面の見方 〜5つのエリアを覚えよう〜</h2>
+    <p>
+      最初はいろいろなボタンがあって戸惑うけど、大事なのは<strong>5つのエリア</strong>だけ。<br>
+      これから毎回使うので、名前と役割をセットで覚えよう。<br>
+      パネルの並び方は画面の大きさによって変わることがあるので、下の図は「だいたいの位置」だと思ってね。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GDevelopエディタの5つのエリア">
+        <rect x="10" y="10" width="680" height="410" rx="8" fill="#1e293b"/>
+        <rect x="10" y="10" width="680" height="34" rx="8" fill="#334155"/>
+        <polygon points="343,20 343,34 355,27" fill="#e2e8f0"/>
+        <text x="368" y="31" font-size="11" fill="#94a3b8">← Preview（ゲームを試しに動かす）</text>
+        <rect x="18" y="52" width="150" height="360" rx="6" fill="#475569"/>
+        <text x="93" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">プロジェクト</text>
+        <text x="93" y="96" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">マネージャー</text>
+        <text x="93" y="116" text-anchor="middle" font-size="11" fill="#cbd5e1">Project manager</text>
+        <text x="93" y="150" text-anchor="middle" font-size="12" fill="#e2e8f0">シーンがならぶ</text>
+        <text x="93" y="168" text-anchor="middle" font-size="12" fill="#e2e8f0">「本だな」</text>
+        <rect x="176" y="52" width="330" height="360" rx="6" fill="#0ea5e9" opacity="0.85"/>
+        <text x="341" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">シーンエディタ</text>
+        <text x="341" y="98" text-anchor="middle" font-size="11" fill="#e0f2fe">Scene editor</text>
+        <text x="341" y="130" text-anchor="middle" font-size="12" fill="#fff">ゲームの世界を組み立てる</text>
+        <text x="341" y="148" text-anchor="middle" font-size="12" fill="#fff">「作業机」</text>
+        <text x="341" y="184" text-anchor="middle" font-size="11" fill="#e0f2fe">※上のタブで「Events」（イベント）に</text>
+        <text x="341" y="200" text-anchor="middle" font-size="11" fill="#e0f2fe">切り替え＝ルールを書く画面</text>
+        <rect x="514" y="52" width="168" height="175" rx="6" fill="#475569"/>
+        <text x="598" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">オブジェクト</text>
+        <text x="598" y="98" text-anchor="middle" font-size="11" fill="#cbd5e1">Objects</text>
+        <text x="598" y="130" text-anchor="middle" font-size="12" fill="#e2e8f0">登場するモノの</text>
+        <text x="598" y="148" text-anchor="middle" font-size="12" fill="#e2e8f0">「倉庫」</text>
+        <rect x="514" y="235" width="168" height="177" rx="6" fill="#64748b"/>
+        <text x="598" y="261" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">プロパティ</text>
+        <text x="598" y="281" text-anchor="middle" font-size="11" fill="#e2e8f0">Properties</text>
+        <text x="598" y="313" text-anchor="middle" font-size="12" fill="#f1f5f9">選んだモノの</text>
+        <text x="598" y="331" text-anchor="middle" font-size="12" fill="#f1f5f9">「プロフィール帳」</text>
+        <text x="598" y="349" text-anchor="middle" font-size="12" fill="#f1f5f9">（位置・大きさなど）</text>
+      </svg>
+      <figcaption>図1-3: GDevelopエディタの5つのエリア（位置関係のイメージ図）。<br>
+        「本だな・作業机・倉庫・プロフィール帳・再生ボタン」と覚えよう</figcaption>
+    </div>
+
+    <div class="screenshot">
+      <span class="cam">📷</span>
+      Stage1を開いたエディタ全体。5つのエリアに番号を振って注釈
+      <div class="fname">ch1-05_editor-overview.png</div>
+    </div>
+
+    <table>
+      <tr><th>エリア</th><th>たとえ</th><th>役割</th></tr>
+      <tr><td><strong>シーンエディタ</strong>（Scene editor）</td><td>作業机</td><td>ゲームの世界を目で見て組み立てる場所</td></tr>
+      <tr><td><strong>オブジェクト</strong>（Objects）</td><td>倉庫</td><td>このシーンに登場するモノ（キャラ・地面など）の一覧</td></tr>
+      <tr><td><strong>プロパティ</strong>（Properties）</td><td>プロフィール帳</td><td>選んだモノの位置・大きさなどの詳しい設定</td></tr>
+      <tr><td><strong>プロジェクトマネージャー</strong>（Project manager）</td><td>本だな</td><td>シーンやゲーム全体の設定がならぶ場所</td></tr>
+      <tr><td><strong>Preview</strong>（プレビュー）</td><td>再生ボタン</td><td>作りかけのゲームをその場で動かして試す</td></tr>
+    </table>
+
+    <div class="trouble">
+      <h4>🚨 パネルが見当たらないとき</h4>
+      <p>画面が小さいと、パネルが閉じていたり、アイコンだけになっていたりします。<br>
+        シーンエディタの上のほうにあるボタン（パネルを開く・閉じるボタン）を押すと表示されます。<br>
+        ブラウザの画面を最大化しておくと、全部のパネルが見やすくなるよ。</p>
+    </div>
+
+    <h2>1-5. 主人公（Player）を用意しよう</h2>
+    <p>
+      いよいよ主人公です。<br>
+      GDevelopには、無料で使える絵や音がたくさん入った<strong>アセットストア</strong>（素材のお店）がついています。<br>
+      ここから好きなキャラを選んで、ゲームに入れよう。
+    </p>
+
+    <div class="term">
+      <span class="word">アセット</span> … ゲームに使う素材（絵・音・フォントなど）のこと。<br>
+      アセットストアは、その素材が並んだお店。<br>
+      無料のものだけで、ゲーム1本ちゃんと作れるよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">「Add a new object」を押す</span>
+      <p>オブジェクトパネル（倉庫）にある「<strong>Add a new object</strong>」（新しいオブジェクトを追加）や「<strong>＋</strong>」ボタンを押します。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        オブジェクトパネルのAdd a new objectボタン（赤枠）
+        <div class="fname">ch1-06_add-object-button.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">アセットストアでキャラを探す</span>
+      <p>開いた画面の検索欄に <code>character</code> や <code>player</code> と入力して検索します。<br>
+        いろいろなキャラが出てくるので、<strong>横から見たキャラ</strong>（横スクロール向き）で、<strong>無料（Free）</strong>のものを選ぼう。<br>
+        気に入ったキャラを開いて「<strong>Add to the scene</strong>」などの追加ボタンを押します。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        アセットストアでcharacterと検索した結果画面。横向きのキャラを選んで追加ボタンを押すところ
+        <div class="fname">ch1-07_asset-store-character.png</div>
+      </div>
+      <p>💡 歩く・ジャンプするなどの動き（アニメーション）がついたキャラを選ぶと、あとで楽しくなるよ。<br>
+        迷ったら、まずは見た目で選んでOK。<br>
+        あとから変えることもできます。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">オブジェクトの名前を Player にする</span>
+      <p>オブジェクトパネルに、追加したキャラが並びます。<br>
+        キャラを右クリック →「<strong>Rename</strong>」で、名前を <code>Player</code> に変えよう。<br>
+        名前は<strong>半角英数字</strong>で、最初の文字は大文字にしておきます（この教科書の名前とそろえるため）。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        オブジェクトパネルでキャラを右クリックしRenameでPlayerに変えるところ
+        <div class="fname">ch1-08_rename-player.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">Player をシーンに置く</span>
+      <p>オブジェクトパネルの <code>Player</code> を、シーンエディタ（作業机）の左のほうへ<strong>ドラッグ＆ドロップ</strong>します。<br>
+        すでにシーンに置かれている人は、そのままでOK。</p>
+      <p>🎬 操作動画: オブジェクトパネルからシーンへPlayerをドラッグして置く様子（ch1-mov01）</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        シーンエディタの左側にPlayerが1体置かれている状態
+        <div class="fname">ch1-09_player-on-scene.png</div>
+      </div>
+    </div>
+
+    <div class="term">
+      <span class="word">オブジェクトとインスタンス</span> … オブジェクトパネルにあるのは「設計図」、シーンに置いたものは設計図から作った「実物」（インスタンス）。<br>
+      たいやきの「型」と「焼けたたいやき」の関係と同じで、1つの型からいくつでも置けるよ。<br>
+      型（オブジェクト）を変えると、置いた実物ぜんぶが変わります。
+    </div>
+
+    <h2>1-6. 地面（Ground）を用意しよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">地面の素材を探して追加する</span>
+      <p>もう一度「Add a new object」を押して、検索欄に <code>ground</code> や <code>platform</code> や <code>grass</code> と入力します。<br>
+        地面や足場に使えそうな素材を選んで追加しよう。<br>
+        追加したら、名前を <code>Ground</code> に変えます。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        アセットストアでgroundと検索し、地面の素材を選んでいるところ
+        <div class="fname">ch1-10_asset-store-ground.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">地面をシーンの下に広げる</span>
+      <p><code>Ground</code> をシーンの下のほう、Player の真下あたりにドラッグして置きます。<br>
+        地面を選ぶと四すみに小さな四角（ハンドル）が出るので、<strong>右側のハンドルを右へドラッグして横長に伸ばそう</strong>。<br>
+        伸ばすと絵がくり返し並ぶタイプ（Tiled Sprite）なら、きれいな地面になります。<br>
+        絵が引きのばされてしまうタイプなら、伸ばさずに <code>Ground</code> をいくつも横に並べればOK。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        Groundをシーン下部に置き、右のハンドルをドラッグして横長にしたところ
+        <div class="fname">ch1-11_ground-stretch.png</div>
+      </div>
+    </div>
+
+    <div class="term">
+      <span class="word">Tiled Sprite（タイルド スプライト）</span> … 同じ絵をタイルのようにくり返し並べて表示するオブジェクト。<br>
+      地面や壁など、長いものを作るときに便利。<br>
+      ふつうの絵のオブジェクトは「Sprite（スプライト）」と呼ぶよ。
+    </div>
+
+    <h2>1-7. ビヘイビアで「走る・跳ぶ・乗れる」をつけよう</h2>
+    <p>
+      今のままPreviewしても、Playerは動きません。<br>
+      置いただけの絵には、まだ「動き方」が決まっていないからです。<br>
+      そこで使うのが<strong>ビヘイビア（Behavior）</strong>。<br>
+      オブジェクトに「性格」や「能力」をつけるしくみで、ボタンを押すだけで<strong>走る・跳ぶ・重力で落ちる</strong>といった動きがまとめて手に入ります。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ビヘイビアをつけるとオブジェクトに能力が加わる">
+        <rect x="20" y="30" width="300" height="160" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="170" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#b45309">Player</text>
+        <rect x="45" y="80" width="250" height="40" rx="8" fill="#fff" stroke="#f59e0b"/>
+        <text x="170" y="106" text-anchor="middle" font-size="13" fill="#78350f">Platformer character</text>
+        <text x="170" y="145" text-anchor="middle" font-size="13" fill="#78350f">→ 矢印キーで走る・ジャンプする</text>
+        <text x="170" y="167" text-anchor="middle" font-size="13" fill="#78350f">→ 重力で下に落ちる</text>
+        <rect x="380" y="30" width="300" height="160" rx="14" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="530" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#15803d">Ground</text>
+        <rect x="405" y="80" width="250" height="40" rx="8" fill="#fff" stroke="#16a34a"/>
+        <text x="530" y="106" text-anchor="middle" font-size="13" fill="#166534">Platform</text>
+        <text x="530" y="145" text-anchor="middle" font-size="13" fill="#166534">→ 上に乗れる「床」になる</text>
+        <text x="530" y="167" text-anchor="middle" font-size="13" fill="#166534">（ないとすり抜けて落ちる）</text>
+      </svg>
+      <figcaption>図1-4: ビヘイビアは、オブジェクトにつける「能力シール」。<br>
+        主人公には Platformer character、地面には Platform をつける</figcaption>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Player の設定画面を開く</span>
+      <p>オブジェクトパネルの <code>Player</code> を<strong>ダブルクリック</strong>（または右クリック →「Edit object」）します。<br>
+        オブジェクトの設定画面が開いたら、上のタブから「<strong>Behaviors</strong>」（ビヘイビア）を選ぼう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        Playerのオブジェクト設定画面。上部のBehaviorsタブ（赤枠）
+        <div class="fname">ch1-12_behaviors-tab.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Platformer character を追加する</span>
+      <p>「<strong>Add a behavior</strong>」（ビヘイビアを追加）を押して、一覧から「<strong>Platformer character</strong>」（プラットフォーマーのキャラ）を選びます。<br>
+        検索欄に <code>platformer</code> と入れると見つけやすいよ。<br>
+        追加できたら、右下の「<strong>Apply</strong>」（適用）を押して設定画面を閉じます。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ビヘイビア一覧からPlatformer characterを選んでいるところ
+        <div class="fname">ch1-13_add-platformer-character.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">Ground に Platform を追加する</span>
+      <p>同じように <code>Ground</code> をダブルクリック →「Behaviors」→「Add a behavior」で、今度は「<strong>Platform</strong>」（足場）を選んで追加。<br>
+        「Apply」で閉じます。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        GroundのBehaviorsにPlatformが追加された状態
+        <div class="fname">ch1-14_add-platform-behavior.png</div>
+      </div>
+    </div>
+
+    <h2>1-8. Previewで遊んでみよう！</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Preview ボタンを押す</span>
+      <p>画面の上のほうにある<strong>▶（Preview）</strong>ボタンを押します。<br>
+        新しいタブやウィンドウでゲームが始まります。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ツールバーのPreviewボタン（赤枠）
+        <div class="fname">ch1-15_preview-button.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">走ってジャンプしてみる</span>
+      <table>
+        <tr><th>操作</th><th>キー</th></tr>
+        <tr><td>左右に移動</td><td><code>←</code> <code>→</code></td></tr>
+        <tr><td>ジャンプ</td><td><code>スペース</code> または <code>Shift</code></td></tr>
+      </table>
+      <p>Playerが地面の上に乗って、走ったりジャンプしたりできれば大成功！<br>
+        キーを押しても動かないときは、まず<strong>ゲームの画面を1回クリック</strong>してから操作してみよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        Previewのゲーム画面。地面の上でPlayerがジャンプしている瞬間
+        <div class="fname">ch1-16_preview-window.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">Previewを閉じて保存する</span>
+      <p>遊び終わったら、Previewのタブ（ウィンドウ）を閉じてエディタに戻ります。<br>
+        <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。<br>
+        <strong>作業の区切りごとに保存するクセ</strong>をつけておくと、トラブルのときに助かります。</p>
+    </div>
+
+    <div class="term">
+      <span class="word">テストプレイ</span> … 作ったゲームを開発者が自分で遊んで、ちゃんと動くか確かめること。<br>
+      ゲーム作りでは「少し作る → Previewで試す」を何十回もくり返すよ。
+    </div>
+
+    <h2>1-9. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 走る速さとジャンプ力を変えてみよう</h3>
+      <p><code>Player</code> の設定画面 →「Behaviors」を開くと、Platformer character の細かい設定が並んでいます。<br>
+      その中の <strong>最高速度</strong>（Max. speed や Maximum speed のような名前）と <strong>Jump speed</strong>（ジャンプの勢い）の数字を変えて、Previewで違いを確かめよう。<br>
+      「自分が気持ちいい」と思う数字を見つけたら合格。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>まずは今の数字をメモしてから、1.5倍や半分にしてみると違いがわかりやすいよ。<br>
+          <strong>Gravity</strong>（重力）の数字も変えると、ふわふわ跳ぶゲームや、ずっしり重いゲームになります。<br>
+          変えすぎて困ったら、メモした数字に戻せばOK。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: 段差を作って登ろう</h3>
+      <p>シーンにもう1つ <code>Ground</code> を置いて、少し高い位置に段差を作ろう。<br>
+      Previewで、その段差にジャンプで飛び乗れるか確かめます。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>オブジェクトパネルから <code>Ground</code> をもう一度ドラッグすれば、2つ目が置けるよ（設計図からもう1個実物を作るイメージ）。<br>
+          高すぎると跳べないので、課題1のジャンプ力と相談しよう。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: プロパティで位置を調べよう</h3>
+      <p>シーンに置いた <code>Player</code> をクリックすると、プロパティ（プロフィール帳）に <strong>X</strong> と <strong>Y</strong> の数字が出ます。<br>
+      Playerを右へ動かすとXがどう変わるか、上へ動かすとYがどう変わるか調べて、ノートに書こう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>GDevelopでは、<strong>下へ行くほどYの数字が大きくなります</strong>。<br>
+          算数のグラフと上下が逆なので、ここで覚えておくと第4回で役に立つよ。</p>
+      </details>
+    </div>
+
+    <h2>1-10. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>Previewを押すと、Playerが地面をすり抜けて落ちていく</h4>
+      <p><strong>原因:</strong> <code>Ground</code> に Platform ビヘイビアがついていない。</p>
+      <p><strong>直し方:</strong> <code>Ground</code> をダブルクリック →「Behaviors」に Platform があるか確認しよう。<br>
+        なければ「Add a behavior」で追加して「Apply」。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Playerがまったく動かない・落ちもしない</h4>
+      <p><strong>原因:</strong> <code>Player</code> に Platformer character ビヘイビアがついていない。<br>
+        または、ゲーム画面が選ばれていない。</p>
+      <p><strong>直し方:</strong> <code>Player</code> の「Behaviors」を確認しよう。<br>
+        ついているのに動かないときは、Previewのゲーム画面を1回クリックしてからキーを押してみよう。<br>
+        日本語入力がオンだとキーが効かないこともあるので、<span class="os-win">「半角/全角」キーで</span><span class="os-mac">「英数」キーで</span>英字入力にしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Previewを押しても、新しいタブやウィンドウが開かない</h4>
+      <p><strong>原因:</strong> ブラウザが「ポップアップ（勝手に開く画面）」をブロックしている。</p>
+      <p><strong>直し方:</strong> アドレスバーの右はしに、ブロックされたことを知らせるアイコンが出ていないか見てみよう。<br>
+        そこから「editor.gdevelop.io のポップアップを常に許可」を選ぶと開くようになります。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>保存しようとしたら、プロジェクトの数が上限だと言われた</h4>
+      <p><strong>原因:</strong> 無料プランで保存できるプロジェクトの数を使い切っている。</p>
+      <p><strong>直し方:</strong> 自分で消さずに、講師を呼んでね。<br>
+        いらない練習用のプロジェクトがあれば、講師と一緒に整理します。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>まちがって何かを消してしまった</h4>
+      <p><strong>直し方:</strong> あわてず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span>（元に戻す）。<br>
+        ほとんどの操作は取り消せるよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>シーンエディタで迷子になった（何も見えなくなった）</h4>
+      <p><strong>直し方:</strong> マウスホイールでズームを戻してみよう。<br>
+        シーンの中をスペースキーを押しながらドラッグすると、画面を動かせます。<br>
+        それでもわからなければ、オブジェクトの一覧やインスタンスの一覧から Player を探すと、その場所に移動できることがあります。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>1-11. 🤖 AIを味方につけよう</h2>
+    <p>
+      ChatGPTやClaudeなどのAIは、GDevelop学習の強力な味方です（13歳以上なら保護者の同意のもとで使えます）。<br>
+      GDevelopは画面操作が中心なので、<strong>「今どういう状態で、何をしたら、どうなったか」</strong>を言葉で伝えるのがコツです。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>操作で迷子になったら:</strong> 「〇〇したいけどボタンが見つからない」を具体的に聞く</li>
+        <li><strong>用語の解説:</strong> ビヘイビア、インスタンスなど、わからない言葉を自分のレベルで説明してもらう</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        ブラウザ版のGDevelopで、初めてゲームを作っている中学生です。<br>
+        PlayerにPlatformer characterビヘイビアを、GroundにPlatformビヘイビアをつけましたが、Previewすると地面をすり抜けて落ちてしまいます。<br>
+        原因として考えられることを、確認する順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        GDevelopの「オブジェクト」と「インスタンス」と「ビヘイビア」の関係がこんがらがってきました。<br>
+        学校や部活にたとえて説明してください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>「自分のゲームにどんなキャラを使うか」をAIに決めてもらう（自分で選ぶから自分のゲームになる！）</li>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの画面の話をすることもある。<br>
+          ボタンの名前や場所は、必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>1-12. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> ゲームエンジンが何をしてくれるか、ひとことで説明できる</label>
+      <label><input type="checkbox"> <code>my-action-game</code> というプロジェクトを作って、GDevelop Cloudに保存できた</label>
+      <label><input type="checkbox"> シーンの名前を <code>Stage1</code> にした</label>
+      <label><input type="checkbox"> 5つのエリア（シーンエディタ・オブジェクト・プロパティ・プロジェクトマネージャー・Preview）の役割が言える</label>
+      <label><input type="checkbox"> <code>Player</code> に Platformer character、<code>Ground</code> に Platform をつけた</label>
+      <label><input type="checkbox"> Previewで、地面の上を走ってジャンプできた</label>
+    </div>
+    <p>全部チェックできたら第1章クリア！<br>
+      🎉 次回は、足場をたくさん置いてステージらしくして、カメラが主人公について来るようにするよ。<br>
+      はじめての「イベント」も登場します。</p>
+
+    <h2>1-13. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/platformer" target="_blank">公式プラットフォーマーチュートリアル Part 1・Part 2（英語）</a> — この章と同じ「プロジェクト作成〜主人公づくり」を公式の手順で復習できる</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki</a> — GDevelopの公式説明書（英語）。<br>
+        ブラウザの翻訳機能を使うと日本語で読めるよ</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/behaviors/platformer/" target="_blank">Platformer character の解説（公式Wiki）</a> — 課題1の設定項目の意味がくわしく書いてある</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter0.html">← 第0章 事前準備</a>
+      <a href="chapter2.html">第2章 ステージを作ろう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

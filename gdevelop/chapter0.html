@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第0章 事前準備 〜GDevelopをブラウザで開こう〜 | 夢アカGDevelop教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 印刷用（この章は紙でも配布するため） */
+    @media print {
+      .os-toggle, .copy-btn, .chapter-nav { display: none; }
+      .site-header { background: #fff; color: #000; border-bottom: 2px solid #000; }
+      .site-header a { color: #000; }
+      a { color: #000; }
+      .step, .trouble, .goal-box, .challenge { break-inside: avoid; }
+      body:not([data-os="mac"]) .os-mac { display: block; }  /* 印刷時は両OS表示 */
+      body:not([data-os="mac"]) span.os-mac { display: inline; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第0章</span>
+      <h1>事前準備 〜GDevelopをブラウザで開こう〜</h1>
+      <div class="date">🏠 第1回の講習が始まる前に、家でやってきてください（目安: 20〜30分）</div>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章のゴール</h2>
+      <ul>
+        <li>ブラウザでGDevelopのエディタ（ゲームを作る画面）が開ける</li>
+        <li>GDevelopのアカウントを作って、ログインできている</li>
+        <li>エディタの表示が英語になっている</li>
+      </ul>
+      <p style="margin:8px 0 0;">
+        ⚠️ <strong>途中でうまくいかなくても大丈夫！</strong><br>
+        できたところまでで止めてOKです。<br>
+        第1回の最初に講師と一緒に解決します。<br>
+        「どこで止まったか」をメモしておいてくれると助かります。
+      </p>
+    </div>
+
+    <div class="term">
+      <span class="word">保護者の方へ</span> …
+      本講座ではゲーム開発ツール「GDevelop」（無料プランあり）を使用します。<br>
+      ブラウザで動くため、ソフトのインストールは不要です。<br>
+      作ったゲームをインターネット上に保存するため、アカウント登録用のメールアドレスが必要です。<br>
+      登録などの作業は、できるだけお子さんと一緒に進めていただくようお願いします。<br>
+      ご不明な点はお気軽にご連絡ください。
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <h2>0-1. 準備するもの・確認すること</h2>
+    <table>
+      <tr><th>項目</th><th>内容</th></tr>
+      <tr><td>パソコン</td><td>Windows 10/11 または Mac（キーボードとマウスがあると作業しやすい）</td></tr>
+      <tr><td>ブラウザ</td><td><strong>Google Chrome</strong> または <strong>Microsoft Edge</strong>（最新版）</td></tr>
+      <tr><td>ネット環境</td><td>Wi-Fiなど、安定してつながる環境</td></tr>
+      <tr><td>メールアドレス</td><td>GDevelopのアカウント登録に使用（自分のがなければ保護者のものでOK）</td></tr>
+      <tr><td>時間</td><td>20〜30分</td></tr>
+    </table>
+
+    <div class="term">
+      <span class="word">ブラウザ</span> … インターネットのページを見るためのアプリのこと。<br>
+      ChromeやEdge、Safariなどがあるよ。<br>
+      GDevelopはこのブラウザの中で動くゲームエンジンです。
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 Chromeがない／Safariしか使っていない人へ</h4>
+      <p class="os-win"><strong>Windows:</strong> Windowsには最初から <strong>Microsoft Edge</strong> が入っています。<br>Edgeを使えばOKです。</p>
+      <p class="os-mac"><strong>Mac:</strong> Safariでも動くことがありますが、講習では <strong>Google Chrome</strong> を推奨します。<br>保護者の方と相談して、Chromeを入れておいてください。</p>
+    </div>
+
+    <h2>0-2. GDevelopってどんなもの？</h2>
+    <p>
+      GDevelop（ジーデベロップ）は、無料で使えるゲームエンジン（ゲームを作るための道具箱）です。<br>
+      大きな特徴は、<strong>プログラムの文字を打たずに、ブロックを並べてゲームのルールを作れる</strong>こと。<br>
+      しかも<strong>ブラウザだけで動く</strong>ので、重たいソフトをインストールする必要がありません。<br>
+      この講座では、GDevelopで横スクロールアクションゲームをゼロから1本作ります。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ブラウザだけでゲームが作れるしくみ">
+        <rect x="20" y="40" width="190" height="140" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="115" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#b45309">キミのPC</text>
+        <text x="115" y="108" text-anchor="middle" font-size="13" fill="#78350f">ブラウザを開くだけ</text>
+        <text x="115" y="130" text-anchor="middle" font-size="13" fill="#78350f">（インストール不要）</text>
+        <path d="M 215 110 L 265 110" stroke="#64748b" stroke-width="3" marker-end="url(#arrow0a)"/>
+        <rect x="270" y="40" width="190" height="140" rx="14" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="365" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#0369a1">GDevelopの</text>
+        <text x="365" y="102" text-anchor="middle" font-size="16" font-weight="bold" fill="#0369a1">エディタ</text>
+        <text x="365" y="130" text-anchor="middle" font-size="13" fill="#0c4a6e">ここでゲームを作る</text>
+        <path d="M 465 110 L 515 110" stroke="#64748b" stroke-width="3" marker-end="url(#arrow0a)"/>
+        <rect x="520" y="40" width="160" height="140" rx="14" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="600" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#15803d">クラウド保存</text>
+        <text x="600" y="108" text-anchor="middle" font-size="13" fill="#166534">アカウントに保存</text>
+        <text x="600" y="130" text-anchor="middle" font-size="13" fill="#166534">家でも教室でも</text>
+        <text x="600" y="150" text-anchor="middle" font-size="13" fill="#166534">続きができる</text>
+        <defs>
+          <marker id="arrow0a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図0-1: GDevelopはブラウザの中で動き、作ったゲームはアカウントに保存される。<br>
+        だから、どのPCからでも続きができる</figcaption>
+    </div>
+
+    <h2>0-3. GDevelopを開いてアカウントを作ろう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ブラウザでGDevelopのエディタを開く</span>
+      <p>ChromeかEdgeを開いて、アドレスバー（画面の一番上の、URLを入れる欄）に次のアドレスを入力して <code>Enter</code> を押します。</p>
+      <p><code>https://editor.gdevelop.io</code></p>
+      <p>しばらく読み込みがあって、GDevelopのホーム画面が表示されたら成功です。<br>
+        初回は表示まで少し時間がかかることがあります。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ブラウザでeditor.gdevelop.ioを開いた直後のGDevelopホーム画面（全体）
+        <div class="fname">ch0-01_editor-home.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">ブックマーク（お気に入り）に登録する</span>
+      <p>毎回アドレスを打つのは大変なので、ブックマークしておこう。</p>
+      <p class="os-win"><strong>Windows:</strong> <code>Ctrl + D</code> を押して「完了」。</p>
+      <p class="os-mac"><strong>Mac:</strong> <code>⌘ + D</code> を押して「完了」。</p>
+      <p>名前は「GDevelop」など、自分でわかるものにしておけばOKです。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">アカウント作成の画面を開く</span>
+      <p>ホーム画面の右上あたりにある「<strong>Create an account</strong>」（アカウントを作る）のボタンを押します。<br>
+        ボタンの名前や位置は、時期によって少し変わることがあります。<br>
+        見つからないときは、右上の人型のアイコンや「<strong>Log in</strong>」の近くを探してみよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ホーム画面右上のアカウント作成ボタン（赤枠で強調）
+        <div class="fname">ch0-02_create-account.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">メールアドレスとパスワードを登録する</span>
+      <p>メールアドレス、ユーザー名、パスワードを入力して登録します。<br>
+        Googleアカウントなどでログインできるボタンがあればそれを使ってもOKです（保護者の方と相談してね）。</p>
+      <ul>
+        <li><strong>ユーザー名</strong>は本名にしない。ニックネームを半角英数字で付けよう</li>
+        <li><strong>パスワード</strong>は紙のノートなど、なくさない場所にメモしておく</li>
+        <li>確認メールが届いたら、メールの中のボタンを押して登録を完了させる</li>
+      </ul>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        アカウント作成フォーム（メール・ユーザー名・パスワードの入力欄）
+        <div class="fname">ch0-03_signup-form.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">ログインできているか確認する</span>
+      <p>ホーム画面の右上に、<strong>自分のユーザー名やアイコン</strong>が表示されていればログインできています。<br>
+        一度ブラウザを閉じて、もう一度 <code>https://editor.gdevelop.io</code> を開いても、ログインしたままになっているか確かめよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        ログイン後のホーム画面。右上にユーザー名（アイコン）が出ている状態
+        <div class="fname">ch0-04_logged-in.png</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">表示が日本語になっていたら英語に切り替える</span>
+      <p>この講座では、GDevelopを<strong>英語の表示のまま</strong>使います。<br>
+        教科書のボタン名がすべて英語で書いてあるので、表示をそろえておくと迷子になりません。</p>
+      <p>もし画面が日本語で表示されていたら、メニューから「<strong>Preferences</strong>」（設定）を開き、「<strong>Language</strong>」（言語）を <strong>English</strong> にします。<br>
+        Preferencesの場所がわからなければ、そのままで大丈夫。<br>
+        第1回の最初に一緒に設定します。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        PreferencesのLanguage設定でEnglishを選んでいる画面
+        <div class="fname">ch0-05_language-setting.png</div>
+      </div>
+    </div>
+
+    <h2>0-4. 無料プランで気をつけること</h2>
+    <p>
+      GDevelopの無料プランでは、アカウントに保存できるプロジェクト（ゲーム1本分のデータ）の数に上限があります。<br>
+      <strong>この講座では、ゲームを1本（プロジェクト1つ）だけ作ります。</strong><br>
+      上限に引っかからないように、<strong>講習が始まるまでは新しいプロジェクトを作らずに待っていてね</strong>。
+    </p>
+
+    <div class="term">
+      <span class="word">プロジェクト</span> … ゲーム1本分のデータをまとめた入れ物。<br>
+      画像・音・ルール（イベント）など、そのゲームに関係するものが全部ここに入る。
+    </div>
+
+    <details class="hint">
+      <summary>待ちきれない人へ（任意）</summary>
+      <p>ホーム画面には、ほかの人がGDevelopで作ったゲームを遊べるコーナーや、学習用のコーナーがあります。<br>
+        プロジェクトを作らずに遊ぶだけなら、上限は気にしなくて大丈夫。<br>
+        「どんなゲームが作れるのか」を見ておくと、第1回がもっと楽しくなるよ。</p>
+    </details>
+
+    <h2>0-5. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>画面が真っ白のまま、いつまでも表示されない</h4>
+      <p><strong>原因:</strong> 読み込みに時間がかかっている、またはブラウザが古い。</p>
+      <p><strong>直し方:</strong> 1〜2分待っても変わらなければ、ページを再読み込み（<span class="os-win"><code>Ctrl + R</code></span><span class="os-mac"><code>⌘ + R</code></span>）。<br>
+        それでもダメなら、ChromeかEdgeを最新版にしてからもう一度開こう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>確認メールが届かない</h4>
+      <p><strong>原因:</strong> 迷惑メールフォルダに入っている、またはメールアドレスの打ちまちがい。</p>
+      <p><strong>直し方:</strong> 迷惑メールフォルダを確認しよう。<br>
+        見つからなければ、メールアドレスがまちがっていないか確かめて、もう一度登録してみよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>「This site can't be reached」などと出て開けない</h4>
+      <p><strong>原因:</strong> アドレスの打ちまちがい、またはネットにつながっていない。</p>
+      <p><strong>直し方:</strong> <code>editor.gdevelop.io</code> のつづりを確認しよう（gdevelop の「de」と「ve」に注意）。<br>
+        ほかのサイトが開けるかも確かめてみよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>パスワードを忘れた</h4>
+      <p><strong>直し方:</strong> ログイン画面にある「Forgot your password?」のようなリンクから、パスワードを作り直せます。<br>
+        作り直したら、今度こそメモしておこう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、無理をせずそこで止めてOK。<br>
+      どこで止まったかをメモして、第1回の講習に持ってきてね。</p>
+
+    <h2>0-6. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> ChromeかEdgeで <code>editor.gdevelop.io</code> が開けた</label>
+      <label><input type="checkbox"> GDevelopをブックマークした</label>
+      <label><input type="checkbox"> アカウントを作って、確認メールのボタンを押した</label>
+      <label><input type="checkbox"> ブラウザを開き直してもログインしたままになっている</label>
+      <label><input type="checkbox"> ユーザー名とパスワードをメモした</label>
+      <label><input type="checkbox"> 表示が英語になっている（できなくても第1回でOK）</label>
+    </div>
+    <p>全部チェックできたら準備完了！<br>
+      🎉 第1回では、いよいよ主人公をステージに置いて、走らせてジャンプさせるよ。</p>
+
+    <nav class="chapter-nav">
+      <a href="index.html">← 目次へ</a>
+      <a href="chapter1.html">第1章 キャラを置いて動かそう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

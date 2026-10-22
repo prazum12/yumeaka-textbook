@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第6章 仕上げて発表しよう 〜自分だけの作品に〜 | 夢アカGDevelop教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第6章</span>
+      <h1>仕上げて発表しよう 〜自分だけの作品に〜</h1>
+      <div class="date">📅 第6回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>自分のゲームを良くするための「仕上げ計画」を立てられる</li>
+        <li>これまで覚えたことを組み合わせて、自分で新しいしかけを作れる</li>
+        <li>人に遊んでもらって、意見をもとにゲームを直せる</li>
+        <li>自分の作品の「こだわり」と「工夫」を、人に伝えられる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 第5章までが終わっていない人も大丈夫。<br>
+      今日は「できているところまで」を自分の作品として仕上げて発表します。<br>
+      ゴールやタイトル画面がなくても、遊べる部分があれば立派な作品だよ。
+    </p>
+
+    <h2>6-1. 今日の進め方</h2>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="仕上げ計画からカスタマイズ、テストプレイ、発表準備、発表までの流れ">
+        <rect x="10" y="40" width="120" height="70" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="70" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">1. 仕上げ</text>
+        <text x="70" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">計画</text>
+        <path d="M 134 75 L 150 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="155" y="40" width="120" height="70" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="215" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">2. カスタ</text>
+        <text x="215" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">マイズ</text>
+        <path d="M 279 75 L 295 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="300" y="40" width="120" height="70" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="360" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">3. テスト</text>
+        <text x="360" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">プレイ</text>
+        <path d="M 424 75 L 440 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="445" y="40" width="120" height="70" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="505" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">4. 発表</text>
+        <text x="505" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">準備</text>
+        <path d="M 569 75 L 585 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="590" y="40" width="100" height="70" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="640" y="81" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">5. 発表！</text>
+        <path d="M 360 114 C 360 140, 215 140, 215 116" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow6b)"/>
+        <text x="288" y="162" text-anchor="middle" font-size="12" fill="#64748b">2と3は時間の許すかぎりくり返す</text>
+        <defs>
+          <marker id="arrow6a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+          <marker id="arrow6b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#94a3b8"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図6-1: 今日の流れ。<br>
+        「作る → 遊んでもらう → 直す」を何回まわせるかが、作品の完成度を決める</figcaption>
+    </div>
+
+    <h2>6-2. 仕上げ計画を立てよう</h2>
+    <p>
+      まずは、今日やりたいことを紙に書き出そう。<br>
+      ポイントは、<strong>「絶対やること」と「時間があればやること」を分ける</strong>こと。<br>
+      欲ばって全部やろうとすると、発表のときに動かない……ということになりがちです。
+    </p>
+
+    <h3>アイデア一覧（★が多いほどむずかしい）</h3>
+    <table>
+      <tr><th>アイデア</th><th>むずかしさ</th><th>使う知識（復習する章）</th></tr>
+      <tr><td>ステージを長くする・穴や敵を増やす</td><td>★</td><td>第2章・第4章</td></tr>
+      <tr><td>背景・タイトル画面・クリア画面を飾る</td><td>★</td><td>第2章・第5章</td></tr>
+      <tr><td>トゲや大きいコインなど、新しいしかけを置く</td><td>★★</td><td>第3章・第4章の課題</td></tr>
+      <tr><td>ステージ2（Stage2）を作る</td><td>★★</td><td>第5章（シーンの切り替え）</td></tr>
+      <tr><td>キャラが走る・跳ぶときにアニメーションを切りかえる</td><td>★★★</td><td>第3章（条件とアクション）＋下の6-3</td></tr>
+      <tr><td>クリア画面にスコアを出す</td><td>★★★</td><td>第5章の課題3（グローバル変数）</td></tr>
+    </table>
+
+    <div class="challenge">
+      <h3>課題1: 自分の「仕上げ計画」を書こう</h3>
+      <p>次の3つを紙に書こう。<br>
+      書けたら講師に見せてから、作業スタート！</p>
+      <ul>
+        <li><strong>絶対やること</strong>（1〜2個）</li>
+        <li><strong>時間があればやること</strong>（1〜3個）</li>
+        <li><strong>このゲームのいちばんのこだわり</strong>（ひとこと）</li>
+      </ul>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>「絶対やること」は、30分くらいで終わりそうなものにしよう。<br>
+          迷ったら、第2章の課題3でテストプレイしてもらったときの意見を思い出してみて。<br>
+          遊んだ人が困っていた場所を直すのも、立派な仕上げだよ。</p>
+      </details>
+    </div>
+
+    <h2>6-3. 仕上げに使えるワザ集</h2>
+    <p>
+      ここからは、仕上げでよく使うワザを紹介します。<br>
+      全部やる必要はありません。<br>
+      自分の計画に必要なものだけ使おう。
+    </p>
+
+    <h3>ワザ1: シーンをコピーしてステージ2を作る</h3>
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Stage1 を複製する</span>
+      <p>プロジェクトマネージャーで <code>Stage1</code> を右クリック →「<strong>Duplicate</strong>」（複製）を選ぶと、オブジェクトもイベントも丸ごとコピーされたシーンができます。<br>
+        名前を <code>Stage2</code> に変えて、ステージの形を作りかえよう。</p>
+      <div class="screenshot">
+        <span class="cam">📷</span>
+        プロジェクトマネージャーでStage1を右クリックし、Duplicateを選んでいるところ
+        <div class="fname">ch6-01_duplicate-scene.png</div>
+      </div>
+      <p>⚠️ 複製したシーンのイベントには、「Change the scene to <code>Stage1</code>」がそのまま残っています。<br>
+        Stage2 でやられたときは Stage2 からやり直すように、シーン名を書きかえよう。<br>
+        Stage1 のゴールの行き先を <code>Stage2</code> に、Stage2 のゴールの行き先を <code>Clear</code> にすればつながるよ。</p>
+    </div>
+
+    <h3>ワザ2: 走る・跳ぶでアニメーションを切りかえる</h3>
+    <p>
+      アセットストアのキャラには、「Idle（立ち止まり）」「Run（走る）」「Jump（跳ぶ）」のように、いくつかのアニメーションが入っていることがあります。<br>
+      Player をダブルクリックして、どんな名前のアニメーションがあるか見てみよう。
+    </p>
+    <div class="event-sheet">
+      <div class="ev-label">アニメーション切りかえの例（アニメーションの名前は自分のキャラに合わせる）</div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span><code>Player</code> is moving</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>Change the animation of <code>Player</code> to <code>"Run"</code></div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><code>Player</code> is jumping</div>
+        <div class="ev-act">Change the animation of <code>Player</code> to <code>"Jump"</code></div>
+      </div>
+    </div>
+    <p>
+      「動いていない」ときの条件は、条件を右クリックすると出てくる「Invert condition」（条件を逆にする）で作れます。<br>
+      アクションは <code>animation</code> と検索すると見つかるよ（名前で指定するタイプを選ぼう）。<br>
+      どのイベントを上に置くと自然に見えるか、順番もためしてみてね。
+    </p>
+    <div class="screenshot">
+      <span class="cam">📷</span>
+      アクション選択画面で、アニメーションを名前で切りかえるアクションを選んでいるところ
+      <div class="fname">ch6-02_change-animation-action.png</div>
+    </div>
+
+    <h3>ワザ3: イベントにメモ（コメント）を残す</h3>
+    <p>
+      イベントが増えてくると、「これ何のイベントだっけ？」となりがち。<br>
+      イベントシートの上のほうのボタンから<strong>コメント</strong>（メモ）を追加できます。<br>
+      「ここから敵のルール」のように書いておくと、発表のときに説明しやすくなるよ。
+    </p>
+    <div class="screenshot">
+      <span class="cam">📷</span>
+      イベントシートにコメント（「敵のルール」など）を追加したところ
+      <div class="fname">ch6-03_add-comment.png</div>
+    </div>
+
+    <h2>6-4. テストプレイしてもらおう</h2>
+    <p>
+      ある程度できたら、<strong>となりの人と交換して遊んでもらおう</strong>。<br>
+      遊んでもらうときは、作った人は<strong>説明しないで、だまって見ている</strong>のがコツです。<br>
+      説明しないとわからない部分は、ゲームの中でわかるように直すべき部分だからです。
+    </p>
+
+    <table>
+      <tr><th>遊んだ人に聞くこと</th><th>メモ</th></tr>
+      <tr><td>遊び方は、説明なしでわかった？</td><td></td></tr>
+      <tr><td>むずかしすぎた場所・かんたんすぎた場所は？</td><td></td></tr>
+      <tr><td>いちばん楽しかったところは？</td><td></td></tr>
+      <tr><td>バグ（おかしな動き）はあった？</td><td></td></tr>
+    </table>
+
+    <div class="challenge">
+      <h3>課題2: もらった意見で1か所以上直そう</h3>
+      <p>テストプレイでもらった意見の中から、1つ選んでゲームを直そう。<br>
+      直したら、もう一度遊んでもらって「良くなった？」と聞いてみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>「むずかしすぎる」と言われたら、穴をせまくする・敵を減らす・ジャンプ力を上げる、など直し方はいろいろ。<br>
+          全部の意見に従う必要はないよ。<br>
+          自分の「こだわり」とぶつかる意見は、取り入れなくてもOK。</p>
+      </details>
+    </div>
+
+    <h2>6-5. 発表の準備をしよう</h2>
+    <p>
+      発表では、ゲームを遊んで見せながら、次の順番で話すと伝わりやすくなります。<br>
+      1人の持ち時間は講師が伝えます。
+    </p>
+
+    <table>
+      <tr><th>順番</th><th>話すこと</th><th>例</th></tr>
+      <tr><td>1</td><td>ゲームの名前</td><td>「〇〇〇という名前のゲームです」</td></tr>
+      <tr><td>2</td><td>どんなゲームか・遊び方</td><td>「コインを集めながらゴールを目指します。敵は上から踏むと倒せます」</td></tr>
+      <tr><td>3</td><td>いちばんのこだわり</td><td>「夜の街をイメージして、背景と音楽をそろえました」</td></tr>
+      <tr><td>4</td><td>苦労したこと・どう解決したか</td><td>「敵を踏むとやり直しになるバグがあって、イベントの順番を入れかえて直しました」</td></tr>
+      <tr><td>5</td><td>次にやってみたいこと</td><td>「ステージ2を作って、ボスを出したいです」</td></tr>
+    </table>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 「苦労したこと」を具体的に話そう</h3>
+      <p>発表の4番目「苦労したこと・どう解決したか」を、<strong>どんなイベントを、どう直したか</strong>まで具体的に話そう。<br>
+      聞いている人が「自分も同じところでつまずくかも」と思えたら大成功。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>失敗の話は、発表でいちばん役に立つ部分です。<br>
+          つまずきポイント集で読んだことや、AIに相談したことを思い出してみよう。<br>
+          「最初は〇〇だと思ったけど、実は△△だった」という話し方をすると伝わりやすいよ。</p>
+      </details>
+    </div>
+
+    <h2>6-6. 作品の公開について（任意）</h2>
+    <p>
+      GDevelopには、作ったゲームをインターネットで遊べるように公開する機能があります。<br>
+      公開すると、家族や友だちにURLを送って遊んでもらえます。<br>
+      ただし、<strong>公開は講師の確認が終わってから</strong>にしてください。
+    </p>
+    <ul>
+      <li>ゲームの中やタイトル・説明文に、<strong>本名・学校名・住所など</strong>を書かない</li>
+      <li>アセットストアの無料素材や自分で作った素材だけを使っているか、もう一度確認する</li>
+      <li>公開するかどうかは、保護者の方とも相談して決める</li>
+    </ul>
+    <div class="screenshot">
+      <span class="cam">📷</span>
+      エディタ上部の公開（Share / Publish）ボタンの位置（赤枠）。講師確認後に使う
+      <div class="fname">ch6-04_share-button.png</div>
+    </div>
+
+    <h2>6-7. この先の3つの道</h2>
+    <p>
+      全6回の導入はこれでおしまい。<br>
+      ここから先は、<strong>自分で進む道を選びます</strong>。<br>
+      どの道を選んでも、この6回で身につけた「条件 → アクションで考える力」と「自分で原因を探して直す力」が土台になります。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="導入のあとに選べる3つの道">
+        <rect x="260" y="10" width="180" height="50" rx="10" fill="#1e293b"/>
+        <text x="350" y="41" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">GDevelop導入（全6回）</text>
+        <path d="M 350 62 L 120 100" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6c)"/>
+        <path d="M 350 62 L 350 100" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6c)"/>
+        <path d="M 350 62 L 580 100" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6c)"/>
+        <rect x="20" y="105" width="200" height="110" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="120" y="135" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">道1</text>
+        <text x="120" y="160" text-anchor="middle" font-size="13" fill="#0c4a6e">GDevelopで</text>
+        <text x="120" y="180" text-anchor="middle" font-size="13" fill="#0c4a6e">オリジナル作品を作る</text>
+        <rect x="250" y="105" width="200" height="110" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="350" y="135" text-anchor="middle" font-size="15" font-weight="bold" fill="#b45309">道2</text>
+        <text x="350" y="160" text-anchor="middle" font-size="13" fill="#78350f">ほかの技術を</text>
+        <text x="350" y="180" text-anchor="middle" font-size="13" fill="#78350f">自分で学ぶ</text>
+        <rect x="480" y="105" width="200" height="110" rx="12" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="580" y="135" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">道3</text>
+        <text x="580" y="160" text-anchor="middle" font-size="13" fill="#166534">講師と生成AIで</text>
+        <text x="580" y="180" text-anchor="middle" font-size="13" fill="#166534">調べながら作る</text>
+        <defs>
+          <marker id="arrow6c" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図6-2: 導入のあとに選べる3つの道。<br>
+        どれを選んでもOK。<br>
+        大事なのは「自分が何を作りたいか」</figcaption>
+    </div>
+
+    <table>
+      <tr><th>道</th><th>こんな人に向いている</th></tr>
+      <tr><td><strong>道1</strong> GDevelopでオリジナル制作</td><td>今日のゲームをもっと大きくしたい人、まったく新しいゲームを作りたい人</td></tr>
+      <tr><td><strong>道2</strong> ほかの技術を自分で学ぶ</td><td>Unity・Webサイト・プログラミング言語など、気になる技術がある人</td></tr>
+      <tr><td><strong>道3</strong> 講師と生成AIで調べながら作る</td><td>作りたいものはあるけど、どの技術を使えばいいかわからない人</td></tr>
+    </table>
+
+    <p>
+      次の講習までに、<strong>どの道を選ぶか、そしてその理由</strong>を考えてきてください。<br>
+      まだ決められない人は、「作ってみたいもの」をひとつ考えてくるだけでもOKです。
+    </p>
+
+    <h2>6-8. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>いろいろ変えていたら、急にゲームがおかしくなった</h4>
+      <p><strong>原因:</strong> 最後に変えたところが原因のことがほとんど。</p>
+      <p><strong>直し方:</strong> まず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span> で1つずつ戻して、どこで直るか確かめよう。<br>
+        これからは「1つ変えたらPreviewで確認」をくせにしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>発表の直前に、新しいことを始めて壊れた</h4>
+      <p><strong>原因:</strong> 時間ギリギリの大きな変更。</p>
+      <p><strong>直し方:</strong> 発表の15分前からは、新しいしかけを作るのはやめて、テストプレイと発表練習だけにしよう。<br>
+        <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> の保存も忘れずに。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Stage2 でやられると Stage1 に戻ってしまう</h4>
+      <p><strong>原因:</strong> 複製したシーンのイベントで、Change the scene の行き先が <code>Stage1</code> のまま。</p>
+      <p><strong>直し方:</strong> Stage2 のイベントシートで、やり直しのイベントの行き先を <code>Stage2</code> に書きかえよう（6-3のワザ1）。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>アニメーションが切りかわらない・変な動きになる</h4>
+      <p><strong>原因1:</strong> アニメーションの名前が、キャラに入っている名前と1文字でもちがう（大文字・小文字も区別される）。<br>
+      → Player をダブルクリックして、アニメーションの名前を確認しよう。</p>
+      <p><strong>原因2:</strong> イベントの順番で、あとのイベントが上書きしている。<br>
+      → 「跳んでいる」のイベントを「走っている」のイベントより下に置くと、空中ではJumpが優先されるよ。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。<br>
+      発表の日は時間が限られているので、早めに講師を呼ぶのもアリです。</p>
+
+    <h2>6-9. 🤖 AIを味方につけよう</h2>
+    <p>
+      最終回のAIの使い方は、<strong>「作品をもっと良くするための相談相手」</strong>。<br>
+      ただし、作品と発表の主役はキミです。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で考えたものを、もっと良くするために聞く</p>
+      <ul>
+        <li><strong>発表原稿のチェック:</strong> 自分で書いた原稿を見せて、わかりにくいところを指摘してもらう</li>
+        <li><strong>この先の道の相談:</strong> 自分の興味を伝えて、どんな技術があるか教えてもらう（選ぶのは自分）</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        中学生です。<br>
+        GDevelopで作った横スクロールアクションゲームの発表原稿を書きました。<br>
+        書き直さずに、「聞いている人にわかりにくいところ」を3つだけ指摘してください。<br>
+        （ここに自分の原稿をはりつける）
+      </div>
+      <div class="prompt-example">
+        GDevelopで横スクロールアクションを1本作り終えた中学生です。<br>
+        次は「〇〇〇（作ってみたいもの）」を作ってみたいです。<br>
+        どんな技術や道具があるか、中学生でも始めやすい順に3つ教えてください。<br>
+        それぞれの良いところと大変なところも教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>発表原稿をAIにまるごと書いてもらう（自分の言葉で話すから、作品の良さが伝わる！）</li>
+        <li>「どの道を選ぶか」をAIに決めてもらう（AIは情報をくれるけど、決めるのはキミ）</li>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの画面の話をすることもある。<br>
+          必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>6-10. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> 仕上げ計画（絶対やること・時間があればやること・こだわり）を書いた</label>
+      <label><input type="checkbox"> 計画の「絶対やること」を作り終えた</label>
+      <label><input type="checkbox"> 人にテストプレイしてもらい、意見をもとに1か所以上直した</label>
+      <label><input type="checkbox"> 発表で、こだわりと苦労したことを話せた</label>
+      <label><input type="checkbox"> 最後に保存して、Title から通しで遊べることを確認した</label>
+      <label><input type="checkbox"> この先の3つの道のどれに進みたいか考えた</label>
+    </div>
+    <p>全部チェックできたら、GDevelop編 完全クリア！<br>
+      🎉 空っぽのプロジェクトから、自分の力でゲームを1本作り上げました。<br>
+      ここで身につけた力を持って、次の道へ進もう。</p>
+
+    <h2>6-11. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/platformer/part-4" target="_blank">公式プラットフォーマーチュートリアル Part 4「Animate the Playable Character」（英語）</a> — ワザ2のアニメーション切りかえを公式の手順で</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/platformer/part-8" target="_blank">公式プラットフォーマーチュートリアル Part 8「Add Checkpoints」（英語）</a> — 中間地点（チェックポイント）を作りたい人向け</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki</a> — 「Publishing」のページに公開のくわしい説明がある（公開は講師確認後に）</li>
+      <li><a href="https://gdevelop.io/" target="_blank">GDevelop公式サイト</a> — ほかの人が作ったゲームや、上級者向けの学習コンテンツも見つかる</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter5.html">← 第5章 ゴールと画面の切り替え</a>
+      <a href="index.html">目次へもどる →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>
