@@ -15,3 +15,14 @@
     });
   });
 })();
+
+// 別のページから来たときは、ページの一番上から表示する
+// （埋め込み表示などで前のページのスクロール位置が残ることがあるため）
+(function () {
+  if (location.hash) return;
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  var toTop = function () { window.scrollTo(0, 0); };
+  toTop();
+  window.addEventListener('load', toTop);
+  window.addEventListener('pageshow', toTop);
+})();
