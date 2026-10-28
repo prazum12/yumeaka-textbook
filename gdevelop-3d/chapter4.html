@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第4章 ゾンビがやってきた | 夢アカGDevelop教科書（3Dアクション編）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（3Dアクション編）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第4章</span>
+      <h1>ゾンビがやってきた</h1>
+      <div class="date">📅 第4回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>敵を主人公のほうへ向かせて、追いかけさせられる</li>
+        <li>3Dモデルのアニメーションを名前で切りかえられる</li>
+        <li>体力（HP）を変数で数えて、少しずつ減らせる</li>
+        <li>UIレイヤーに文字を置いて、HPを画面に出せる</li>
+      </ul>
+    </div>
+
+    <h2>4-1. この章で作るしくみ</h2>
+    <p>
+      街にゾンビを3体置いて、主人公を追いかけてくるようにします。<br>
+      ゾンビにくっつかれている間は、主人公の HP（体力）がどんどん減っていきます。
+    </p>
+    <div class="event-sheet">
+      <div class="ev-label">この章で作るルール（まとめ）</div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>（なし＝いつでも）</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゾンビを主人公のほうへ向ける</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゾンビが主人公から遠い</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゾンビを主人公のほうへ動かす<br>歩くアニメーションにする</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゾンビが主人公に近い<br>乗っていない</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>パンチのアニメーションにする<br>HP を少しずつ減らす</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>（なし＝いつでも）</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>画面の文字を「HP: 〇〇」にする</div>
+      </div>
+    </div>
+
+    <h2>4-2. ゾンビを置こう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ゾンビを追加する</span>
+      <p>「Objects」の「<strong>＋</strong>」から「<strong>Zombie Apocalypse</strong>」のパックを開き、「<strong>Character</strong>」のフォルダを開きます。<br>
+        緑色の「<strong>Zombie Basic</strong>」を選んで「<strong>Add to the scene</strong>」を押します。<br>
+        （上の検索欄に <code>zombie basic</code> と入力しても見つかります。）</p>
+      <figure class="figure">
+        <a href="img/ch4-01_zombie-basic.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-01_zombie-basic.jpg" alt="Zombie ApocalypseのCharacterフォルダ。Zombie Basic（赤枠）を選ぶ" loading="lazy"></a>
+        <figcaption>Character フォルダの「Zombie Basic」（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">名前を Zombie にして、大きさを決める</span>
+      <p>一覧に「Zombie_Basic」ができます。<br>
+        右の「<strong>⋮</strong>」を押して「<strong>Rename</strong>」を選び、名前を <code>Zombie</code> にして <code>Enter</code>。<br>
+        次に Zombie をクリックして、左の「Default size」の Width・Height・Depth を全部 <code>70</code> にします。<br>
+        主人公（高さ60）より少し大きいくらいです。</p>
+      <figure class="figure">
+        <a href="img/ch4-02_zombie-size.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-02_zombie-size.jpg" alt="Zombieの大きさを70、70、70にしたところ（赤枠）。一覧にZombie（赤枠）" loading="lazy"></a>
+        <figcaption>名前を Zombie にして、大きさを 70 に（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>名前を変えるときの注意</h4>
+      <p>名前の欄が入力できる状態になっていないのにキーを押すと、そのキーが「ショートカット」として動いてしまいます。<br>
+        パネルが閉じたり、ほかのものが選ばれたりしたら、あわてずに Rename からやり直そう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">ゾンビを3体置く</span>
+      <p>一覧の Zombie を、シーンの草原にドラッグします。<br>
+        主人公から少しはなれた場所に、3回くり返して3体置こう。<br>
+        上から見ると小さく見えますが、それで大丈夫です。</p>
+    </div>
+
+    <h2>4-3. HP を用意しよう</h2>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">HP の変数を作る</span>
+      <p>シーンの何もないところをクリックすると、左に「Game Scene」のプロパティが出ます。<br>
+        「<strong>Scene Variables</strong>」の右の、四角から矢印が出たマークを押します。<br>
+        「<strong>Add variable</strong>」を押して、名前を <code>PlayerHealth</code>、型は「Number」（数）のまま、値を <code>100</code> にして「Apply」。</p>
+      <figure class="figure">
+        <a href="img/ch4-05_player-health.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-05_player-health.jpg" alt="Game Scene variablesの画面。PlayerHealth、Number、100の行（赤枠）" loading="lazy"></a>
+        <figcaption><code>PlayerHealth</code> を Number で <code>100</code>（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">UI 用のレイヤーを作る</span>
+      <p>HP の文字は、カメラが動いても画面の左上にずっと表示させたいです。<br>
+        そこで、<strong>カメラが動いても画面に貼りついたままの層</strong>、レイヤーを作ります。<br>
+        画面右上のボタンの列にある、紙が重なったマークのボタンを押すと、右下に「<strong>Layers</strong>」のパネルが開きます。<br>
+        パネルの右上の「＋」を押して、名前を <code>UI</code> にします。<br>
+        そのあと、UI の行の右にある「<strong>○</strong>」を押して、●にします。<br>
+        ●がついたレイヤーに、これから置くものが入ります。</p>
+    </div>
+
+    <div class="term">
+      <span class="word">レイヤー</span> … 透明なシートを何枚も重ねたようなしくみ。<br>
+      街やゾンビは下のシート（Base layer）、HP の文字は上のシート（UI）に描くイメージ。<br>
+      カメラが動かすのは下のシートだけなので、UI の文字は画面の同じ場所に出続けます。<br>
+      最初からある「MobileControls」は、スマホ用のボタンを置くためのレイヤーです。
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">HP の文字を作る</span>
+      <p>「＋」から「<strong>New object from scratch</strong>」を開き、<code>text</code> で検索して「<strong>Text</strong>」を選びます。<br>
+        次のように設定して「Apply」を押します。</p>
+      <ul>
+        <li>Object name: <code>HealthText</code></li>
+        <li>Size: <code>36</code>、Bold にチェック</li>
+        <li>Initial text to display: <code>HP: 100</code></li>
+        <li>Outline の Enabled にチェック、Thickness: <code>4</code>（白いふちどりで読みやすくなる）</li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch4-03_health-text.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-03_health-text.jpg" alt="Edit HealthTextの画面。名前、大きさとBold、文字、Outline（赤枠）" loading="lazy"></a>
+        <figcaption>名前・大きさ・文字・ふちどりを設定（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span><span class="step-title">HP の文字を画面の左上に置く</span>
+      <p>一覧の HealthText を、シーンの中の四角い線（ゲーム画面のはんい）の中にドラッグします。<br>
+        置いた文字をクリックして、左の X を <code>20</code>、Y を <code>110</code> にします。<br>
+        レイヤーの欄が「UI」になっていればOK。<br>
+        最後に、Layers パネルの「Base layer」の「○」を押して、●を Base layer にもどしておこう。</p>
+      <figure class="figure">
+        <a href="img/ch4-04_ui-layer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-04_ui-layer.jpg" alt="HealthTextの位置X20、Y110とレイヤーUI（赤枠）。右下のLayersパネルにUIレイヤー（赤枠）" loading="lazy"></a>
+        <figcaption>X・Y とレイヤー（左の赤枠）、UI レイヤー（右の赤枠）、置いた文字（中の赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-4. ゾンビを動かすイベントを作ろう</h2>
+    <p>
+      イベントシートで、新しいグループ <code>Zombie</code> を作ります（「+ Add...」→「Event group」）。<br>
+      グループをクリックしてから <code>Shift + D</code> で、中にイベントを作ります。
+    </p>
+
+    <div class="trouble">
+      <h4>グループ名の最後に「d」がついてしまった</h4>
+      <p>名前を入力している途中で <code>Shift + D</code> を押すと、「Zombied」のように文字が入ってしまいます。<br>
+        <code>Backspace</code> で消して <code>Enter</code> で決めてから、もう一度 <code>Shift + D</code> を押そう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span><span class="step-title">ゾンビを主人公のほうへ向ける</span>
+      <p>条件はなし。<br>
+        アクションに <code>rotate toward</code> で検索して「<strong>Rotate toward another object</strong>」（ほかのオブジェクトのほうを向く）を選びます。<br>
+        Object は <code>Zombie</code>、Target object は <code>Player</code>、Angular speed（回る速さ）は <code>0</code>。<br>
+        0 にすると、すぐにそっちを向きます。</p>
+      <figure class="figure">
+        <a href="img/ch4-06_rotate-toward.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-06_rotate-toward.jpg" alt="Rotate toward another objectのアクション。ZombieをPlayerのほうへ、速さ0（赤枠）" loading="lazy"></a>
+        <figcaption>「Rotate toward another object」で Zombie を Player のほうへ（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">9</span><span class="step-title">遠いときは、歩いて近づく</span>
+      <p>今のイベントをクリックして <code>Shift + A</code> で、下に新しいイベントを作ります。<br>
+        条件は「<strong>Distance between two objects</strong>」で <code>Zombie</code> と <code>Player</code>、距離 <code>50</code>。<br>
+        「<strong>Invert condition</strong>」を ON にして、「50 より遠い」にします（第3章の弾と同じ）。</p>
+      <p>アクションは2つです。</p>
+      <ul>
+        <li><code>move toward</code> で検索 →「<strong>Add a force to move toward an object</strong>」、Object は <code>Zombie</code>、Target は <code>Player</code>、Speed は <code>80</code>、下は「<strong>Instant</strong>」のまま</li>
+        <li><code>animation by name</code> で検索 →「<strong>Animation (by name)</strong>」、Object は <code>Zombie</code>、Animation name は一覧から「<strong>Walk</strong>」</li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch4-08_move-toward.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-08_move-toward.jpg" alt="Add a force to move toward an objectのアクション。ZombieをPlayerへ、速さ80、Instant（赤枠）" loading="lazy"></a>
+        <figcaption>速さ 80 で Player のほうへ。Instant（1回だけ押す）を選ぶ（赤枠）</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-09_walk-anim.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-09_walk-anim.jpg" alt="Animation (by name)のアクション。ZombieのアニメーションをWalkにする（赤枠）" loading="lazy"></a>
+        <figcaption>「Animation (by name)」で「Walk」（歩く）を選ぶ（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">Instant と Permanent</span> … 第3章の弾は「Permanent」（ずっと押し続ける）でした。<br>
+      ゾンビは「Instant」（1回だけ押す）にします。<br>
+      条件が合っている間は毎回このイベントが動くので、遠い間だけ押され続けて、近づいたら止まります。
+    </div>
+
+    <div class="step">
+      <span class="step-num">10</span><span class="step-title">近いときは、パンチで HP を減らす</span>
+      <p>もう一度 <code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件は2つ。</p>
+      <ul>
+        <li>「Distance between two objects」で <code>Zombie</code> と <code>Player</code>、距離 <code>50</code>（Invert は OFF のまま＝50 より近い）</li>
+        <li>「Variable value」で <code>InCar</code> が <strong>False</strong>（トラックに乗っていない）</li>
+      </ul>
+      <p>アクションも2つ。</p>
+      <ul>
+        <li>「Animation (by name)」で <code>Zombie</code> を「<strong>Punch</strong>」（パンチ）</li>
+        <li><code>change variable value</code> で検索 →「<strong>Change variable value</strong>」、Variable は <code>PlayerHealth</code>、Modification's sign は「<strong>- (subtract)</strong>」（引く）、Value は下の式</li>
+      </ul>
+      <div class="code-block"><span class="code-label">Value（へらす量）</span><button class="copy-btn" type="button">コピー</button><pre><code>20 * TimeDelta()</code></pre></div>
+      <figure class="figure">
+        <a href="img/ch4-10_damage.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-10_damage.jpg" alt="Change variable valueのアクション。PlayerHealthから20 * TimeDelta()を引く（赤枠）" loading="lazy"></a>
+        <figcaption>PlayerHealth から <code>20 * TimeDelta()</code> を引く（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">TimeDelta()</span> … 前の画面から今の画面までにかかった時間（秒）。<br>
+      ゲームは1秒に60回くらい画面をかきかえるので、TimeDelta() はだいたい 0.016 です。<br>
+      <code>20 * TimeDelta()</code> を毎回引くと、ちょうど「1秒で20へる」になります。<br>
+      PC が速くても遅くても、同じペースでへるのがポイントです。
+    </div>
+
+    <div class="step">
+      <span class="step-num">11</span><span class="step-title">HP を画面に出す</span>
+      <p>もう一度 <code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件はなし。<br>
+        アクションの画面で、左の一覧から <code>HealthText</code> を選び、いちばん上の「<strong>Text</strong>」を選びます。<br>
+        Modification's sign は「= (set to)」のまま、Text の欄に次の式を入れます。</p>
+      <div class="code-block"><span class="code-label">HealthText に入れる式</span><button class="copy-btn" type="button">コピー</button><pre><code>"HP: " + ToString(round(PlayerHealth))</code></pre></div>
+      <figure class="figure">
+        <a href="img/ch4-11_hp-text.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-11_hp-text.jpg" alt="HealthTextのTextアクションに式を入れたところ（赤枠）" loading="lazy"></a>
+        <figcaption>HealthText →「Text」→ 式を入れる（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">round()</span> … 小数を四捨五入して、整数にしてくれる式。<br>
+      HP は 0.33 ずつのように細かくへるので、そのまま出すと「HP: 87.66666」のようになってしまいます。
+    </div>
+
+    <div class="step">
+      <span class="step-num">12</span><span class="step-title">できあがったイベントを確かめる</span>
+      <p>Zombie グループの中が、下の写真と同じ4つのイベントになっていればOK。</p>
+      <figure class="figure">
+        <a href="img/ch4-12_zombie-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-12_zombie-events.jpg" alt="Zombieグループの4つのイベント（赤枠）" loading="lazy"></a>
+        <figcaption>Zombie グループの4つのイベント（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-5. ためしてみよう</h2>
+    <div class="step">
+      <span class="step-num">13</span><span class="step-title">保存して Preview</span>
+      <p>保存してから Preview します。<br>
+        左右からゾンビが歩いてきて、主人公に近づくとパンチを始めます。<br>
+        パンチされている間、左上の HP がどんどんへっていきます。<br>
+        走ってにげたり、トラックに乗ったりしてみよう。</p>
+      <figure class="figure">
+        <a href="img/ch4-13_preview-walk.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-13_preview-walk.jpg" alt="Previewで左右からゾンビ（赤枠）が歩いてくる。左上にHP: 100（赤枠）" loading="lazy"></a>
+        <figcaption>左右からゾンビ（赤枠）が歩いてくる</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-14_preview-attack.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-14_preview-attack.jpg" alt="Previewで主人公がゾンビにかこまれ（赤枠）、HPが24にへっている（赤枠）" loading="lazy"></a>
+        <figcaption>かこまれると HP がへっていく（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">HP がマイナスに？</span> … 今は HP が 0 になってもゲームは終わらず、マイナスになっていきます。<br>
+      次の章で、ゲームオーバーのしくみを作ります。
+    </div>
+
+    <div class="challenge">
+      <h3>💪 やってみよう</h3>
+      <p>ゾンビの速さ（80）や、HP のへる量（20）を変えて、ちょうどいいむずかしさにしてみよう。<br>
+        ゾンビをもっとたくさん置いてみるのもおもしろいよ。</p>
+      <details class="hint">
+        <summary>ヒント</summary>
+        <p>Character フォルダには「Zombie Chubby」や「Zombie Ribcage」など、ほかのゾンビもいます。<br>
+          オブジェクトを右クリックして「Swap assets」を使うと、イベントはそのままで見た目だけ入れかえられます。</p>
+      </details>
+    </div>
+
+    <h2>4-6. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>ゾンビが動かない</h4>
+      <p><strong>原因:</strong> 2つ目のイベントの「Invert condition」が OFF になっている。</p>
+      <p><strong>直し方:</strong> 条件をダブルクリックで開いて、Invert condition を ON にしよう。<br>
+        ON になると、条件の前に赤いマークがつきます。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ゾンビが歩かずにすべってくる</h4>
+      <p><strong>原因:</strong> Animation の名前を選んでいない。</p>
+      <p><strong>直し方:</strong> Animation (by name) を開いて、Animation name の一覧から「Walk」を選びなおそう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>HP の文字がカメラといっしょに動いてしまう</h4>
+      <p><strong>原因:</strong> HealthText が Base layer に置かれている。</p>
+      <p><strong>直し方:</strong> 置いた HealthText をクリックして、左のレイヤーの欄を「UI」に変えよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>HP の文字が出ない・「HP: 100」から変わらない</h4>
+      <p><strong>原因:</strong> 4つ目のイベントの式がまちがっている、またはそのイベントがない。</p>
+      <p><strong>直し方:</strong> 上の式をコピーして貼りつけなおそう。<br>
+        <code>"HP: "</code> のダブルクォーテーション（"）を忘れやすいので注意。</p>
+    </div>
+
+    <h2>4-7. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> ゾンビを3体置いた</label>
+      <label><input type="checkbox"> PlayerHealth（100）の変数を作った</label>
+      <label><input type="checkbox"> UI レイヤーに HP の文字を置いた</label>
+      <label><input type="checkbox"> ゾンビが主人公を追いかけてくる</label>
+      <label><input type="checkbox"> パンチされると HP がへる</label>
+    </div>
+    <p>全部チェックできたら第4章クリア！<br>
+      🎉 次回は、銃とトラックでゾンビをたおせるようにするよ。</p>
+
+    <nav class="chapter-nav">
+      <a href="chapter3.html">← 第3章 銃を撃とう</a>
+      <a href="index.html">目次へ →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（3Dアクション編）
+  </footer>
+  <script src="js/os.js"></script>
+</body>
+</html>
