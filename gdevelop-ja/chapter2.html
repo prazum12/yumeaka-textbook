@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第2章 ステージを作ろう 〜足場とカメラ〜 | 夢アカGDevelop教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第2章</span>
+      <h1>ステージを作ろう 〜足場とカメラ〜</h1>
+      <div class="date">📅 第2回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>足場をたくさん並べて、横に長いステージを作れる</li>
+        <li>下から通り抜けられる床（Jumpthru）を作れる</li>
+        <li>はじめての「イベント」で、カメラを主人公について来させられる</li>
+        <li>背景の色を変えて、ステージの雰囲気を作れる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 前回のプロジェクトが開けない・壊れてしまった人は、第1章の「1-5〜1-7」をもう一度やれば15分ほどで追いつけます。<br>
+      困ったら講師を呼んでね。
+    </p>
+
+    <h2>2-1. 前回の続きを開こう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">my-action-game を開く</span>
+      <p><code>https://editor.gdevelop.io</code> を開き、ログインしていることを確認します。<br>
+        ホーム画面の左の「<strong>Create</strong>」を選ぶと、下のほうの「<strong>Games</strong>」に自分のプロジェクトが並んでいます。<br>
+        <code>my-action-game</code> の右下にある「<strong>Open</strong>」を押して開こう。</p>
+      <figure class="figure">
+        <a href="img/ch2-01_open-project.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-01_open-project.jpg" alt="ホーム画面のCreateを選び、Gamesの一覧にあるmy-action-gameを開く" loading="lazy"></a>
+        <figcaption>ホーム画面のCreateを選び、Gamesの一覧にあるmy-action-gameを開く</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Stage1 を開いて、Previewで前回の状態を確認する</span>
+      <p>ふつうは <code>Stage1</code> のシーンがそのまま開きます。<br>
+        開いていなければ、左上の「≡」でプロジェクトマネージャーを開き、<code>Stage1</code> をクリックします。<br>
+        Previewを押して、前回と同じように走ってジャンプできるか確かめよう。</p>
+    </div>
+
+    <h2>2-2. ステージの設計図を描こう</h2>
+    <p>
+      いきなり作り始める前に、<strong>どんなステージにするか紙に描いてみよう</strong>。<br>
+      プロのゲーム開発でも、まずは紙やホワイトボードにステージを描いてから作ります。<br>
+      下の図はひとつの例です。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="横スクロールステージの設計図の例">
+        <rect x="10" y="10" width="680" height="230" rx="10" fill="#f0f9ff" stroke="#0ea5e9"/>
+        <rect x="20" y="190" width="200" height="40" fill="#16a34a"/>
+        <rect x="270" y="190" width="160" height="40" fill="#16a34a"/>
+        <rect x="490" y="190" width="190" height="40" fill="#16a34a"/>
+        <rect x="290" y="130" width="90" height="16" fill="#f59e0b"/>
+        <rect x="390" y="85" width="90" height="16" fill="#0ea5e9"/>
+        <rect x="560" y="140" width="40" height="50" fill="#b45309"/>
+        <rect x="600" y="110" width="40" height="80" fill="#b45309"/>
+        <circle cx="50" cy="175" r="12" fill="#1e293b"/>
+        <text x="50" y="160" text-anchor="middle" font-size="12" fill="#1e293b">スタート</text>
+        <text x="245" y="215" text-anchor="middle" font-size="12" fill="#dc2626">穴</text>
+        <text x="460" y="215" text-anchor="middle" font-size="12" fill="#dc2626">穴</text>
+        <text x="335" y="124" text-anchor="middle" font-size="12" fill="#b45309">足場（Block）</text>
+        <text x="435" y="79" text-anchor="middle" font-size="12" fill="#0369a1">通り抜け床</text>
+        <text x="620" y="102" text-anchor="middle" font-size="12" fill="#78350f">段差</text>
+        <text x="660" y="40" text-anchor="end" font-size="12" fill="#64748b">→ 右へ進むほどむずかしく</text>
+      </svg>
+      <figcaption>図2-1: ステージの設計図の例。<br>
+        「やさしい → むずかしい」の順に並べると、遊ぶ人が自然にうまくなっていく</figcaption>
+    </div>
+
+    <p>
+      ポイントは、<strong>最初はやさしく、だんだんむずかしく</strong>すること。<br>
+      いきなり大ジャンプが必要だと、遊ぶ人はすぐあきらめてしまいます。
+    </p>
+
+    <h2>2-3. 足場ブロック（Block）を作ろう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ブロックの素材を追加する</span>
+      <p>オブジェクトパネルの「＋」から、アセットストアで <code>block</code> と検索します（Viewpointの「Side view」にチェックを入れると探しやすい）。<br>
+        足場にしたい素材を選んで追加し、名前を <code>Block</code> にしよう。<br>
+        この教科書では「Wood Block 1」を使い、置いたあとにプロパティの W と H を <code>64</code> にしています。</p>
+      <figure class="figure">
+        <a href="img/ch2-02_asset-store-block.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-02_asset-store-block.jpg" alt="blockと検索し、Side viewにチェック。Wood Block 1を選んでいるところ" loading="lazy"></a>
+        <figcaption>blockと検索し、Side viewにチェック。Wood Block 1を選んでいるところ</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Block に Platform ビヘイビアをつける</span>
+      <p><code>Block</code> をダブルクリック →「Behaviors」→「Add a behavior」→「<strong>Platform</strong>」→「Apply」。<br>
+        「Ledges can be grabbed」のチェックは外しておこう。<br>
+        第1章の Ground と同じ手順だよ。<br>
+        これを忘れると、Playerがブロックをすり抜けます。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">グリッド（方眼）を表示する</span>
+      <p>画面の右上のボタンの列にある「<strong>#</strong>」のボタンを押して、出てきたメニューの「<strong>Show grid</strong>」（グリッドを表示）を選ぶと、シーンに方眼が表示されます。<br>
+        グリッドがあると、ブロックがマス目にピタッとそろって置けるようになるよ。</p>
+      <figure class="figure">
+        <a href="img/ch2-03_grid-button.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-03_grid-button.jpg" alt="右上の「#」ボタンのメニューから「Show grid」を選ぶ" loading="lazy"></a>
+        <figcaption>右上の「#」ボタンのメニューから「Show grid」を選ぶ</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch2-03b_grid-shown.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-03b_grid-shown.jpg" alt="グリッド（方眼）が表示されたシーン" loading="lazy"></a>
+        <figcaption>グリッド（方眼）が表示されたシーン</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">ブロックをたくさん並べる</span>
+      <p>オブジェクトパネルから <code>Block</code> をシーンにドラッグして置きます。<br>
+        同じものをたくさん置くときは、置いたブロックを<strong>右クリック →「Duplicate」</strong>（複製）すると、すぐ横にもう1つできるよ。<br>
+        <span class="os-win"><code>Ctrl + D</code></span><span class="os-mac"><code>⌘ + D</code></span> でも複製できます。<br>
+        2-2で描いた設計図を見ながら、ステージを組み立てよう。</p>
+      <figure class="figure">
+        <a href="img/ch2-04b_duplicate-menu.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04b_duplicate-menu.jpg" alt="置いたものを右クリックして「Duplicate」を選ぶと、同じものがもう1つできる" loading="lazy"></a>
+        <figcaption>置いたものを右クリックして「Duplicate」を選ぶと、同じものがもう1つできる</figcaption>
+      </figure>
+      <p>🎬 操作動画: ブロックを複製（Duplicate）して、段差や足場を並べていく様子（ch2-mov01）</p>
+      <figure class="figure">
+        <a href="img/ch2-04_blocks-placed.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04_blocks-placed.jpg" alt="地面に穴をあけ、ブロックの段差と空中の足場（Floating）を置いたステージ" loading="lazy"></a>
+        <figcaption>地面に穴をあけ、ブロックの段差と空中の足場（Floating）を置いたステージ</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 まとめて選んで動かしたいとき</h4>
+      <p>シーンの何もないところからドラッグして四角で囲むと、中のものをまとめて選べます。<br>
+        <span class="os-win"><code>Shift</code></span><span class="os-mac"><code>Shift</code></span> を押しながらクリックすると、1つずつ選択に追加できるよ。<br>
+        まちがえて地面まで動かしてしまったら <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span> で戻そう。</p>
+    </div>
+
+    <h2>2-4. 下から通り抜けられる床を作ろう</h2>
+    <p>
+      マリオのステージには、<strong>下からジャンプするとすり抜けて、上には乗れる床</strong>がありますよね。<br>
+      GDevelopの Platform ビヘイビアには、この床に切り替える設定があります。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">通り抜け床用のオブジェクトを追加する</span>
+      <p>アセットストアから、薄い板や橋のような素材を追加して、名前を <code>Floating</code> にします（<code>bridge</code> や <code>platform</code> で検索すると見つかるよ）。<br>
+        <code>Floating</code> にも Platform ビヘイビアをつけよう。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Platform type を Jumpthru にする</span>
+      <p>オブジェクトパネルで <code>Floating</code> を選ぶと、左のプロパティに「Behaviors」が出ます。<br>
+        Platform の設定にある「<strong>Type</strong>」（足場の種類）を「<strong>Jumpthru platform</strong>」に変えよう。<br>
+        ダブルクリックで開く「Edit Floating」の「Behaviors」タブで変えて「Apply」を押してもOKです。</p>
+      <figure class="figure">
+        <a href="img/ch2-05_jumpthru-setting.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-05_jumpthru-setting.jpg" alt="Floatingを選び、左のBehaviorsにあるPlatformのTypeを「Jumpthru platform」にしたところ" loading="lazy"></a>
+        <figcaption>Floatingを選び、左のBehaviorsにあるPlatformのTypeを「Jumpthru platform」にしたところ</figcaption>
+      </figure>
+      <p>Previewで、下からジャンプしてすり抜けられるか、上に乗れるか確かめよう。<br>
+        乗っているときに <code>↓</code> キーを押すと、下に降りられるよ。</p>
+    </div>
+
+    <table>
+      <tr><th>Type</th><th>どうなる？</th></tr>
+      <tr><td><strong>NormalPlatform</strong>（ふつうの足場）</td><td>ぶつかる。上に乗れる。下からはすり抜けない</td></tr>
+      <tr><td><strong>Jumpthru platform</strong>（通り抜け床）</td><td>下からはすり抜ける。上には乗れる</td></tr>
+      <tr><td><strong>Ladder</strong>（はしご）</td><td>ぶつからない。重なっているあいだ ↑↓ キーで登り降りできる</td></tr>
+    </table>
+
+    <h2>2-5. はじめてのイベント 〜カメラを主人公について来させよう〜</h2>
+    <p>
+      ステージを横に長くしてPreviewしてみると……右へ走っていくと、<strong>Playerが画面の外へ消えてしまいます</strong>。<br>
+      カメラ（ゲーム画面に映る範囲）が、最初の場所から動いていないからです。<br>
+      ここで、GDevelopのいちばん大事な機能、<strong>イベント</strong>が登場します。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="カメラが動かない場合と、主人公に合わせて動く場合の比較">
+        <rect x="10" y="20" width="330" height="180" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+        <text x="175" y="45" text-anchor="middle" font-size="14" font-weight="bold" fill="#dc2626">イベントなし</text>
+        <rect x="30" y="60" width="140" height="90" rx="4" fill="none" stroke="#dc2626" stroke-width="3"/>
+        <text x="100" y="170" text-anchor="middle" font-size="12" fill="#dc2626">カメラは止まったまま</text>
+        <rect x="20" y="140" width="310" height="10" fill="#16a34a"/>
+        <circle cx="270" cy="128" r="10" fill="#1e293b"/>
+        <text x="270" y="110" text-anchor="middle" font-size="12" fill="#1e293b">Player</text>
+        <text x="270" y="190" text-anchor="middle" font-size="12" fill="#64748b">画面の外へ…</text>
+        <rect x="360" y="20" width="330" height="180" rx="10" fill="#f0f9ff" stroke="#0ea5e9"/>
+        <text x="525" y="45" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">イベントあり</text>
+        <rect x="550" y="60" width="140" height="90" rx="4" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="0"/>
+        <rect x="370" y="140" width="310" height="10" fill="#16a34a"/>
+        <circle cx="620" cy="128" r="10" fill="#1e293b"/>
+        <text x="620" y="110" text-anchor="middle" font-size="12" fill="#1e293b">Player</text>
+        <text x="525" y="175" text-anchor="middle" font-size="12" fill="#0369a1">カメラがPlayerを追いかける</text>
+      </svg>
+      <figcaption>図2-2: 枠がカメラに映る範囲。<br>
+        イベントで「カメラをPlayerの位置に合わせる」と命令すると、ずっとついて来てくれる</figcaption>
+    </div>
+
+    <div class="term">
+      <span class="word">イベント（Event）</span> … ゲームのルールを書くしくみ。<br>
+      「<strong>条件</strong>（もし〜なら）」と「<strong>アクション</strong>（〜する）」の組み合わせでできている。<br>
+      条件を何も書かないと、「いつでも・ずっと」という意味になるよ。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">イベントシートを開く</span>
+      <p>画面のいちばん上のタブに、「<strong>Stage1</strong>」と「<strong>Stage1 (Events)</strong>」の2つが並んでいます。<br>
+        「Stage1 (Events)」をクリックすると、ルールを書く画面（イベントシート）に切り替わります。<br>
+        見つからないときは、プロジェクトマネージャー（≡）で <code>Stage1</code> を右クリック →「<strong>Open events sheet</strong>」を選んでもOK。</p>
+      <figure class="figure">
+        <a href="img/ch2-06_events-tab.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-06_events-tab.jpg" alt="いちばん上の「Stage1 (Events)」タブを開いたところ。左上に「＋ Add a new event」" loading="lazy"></a>
+        <figcaption>いちばん上の「Stage1 (Events)」タブを開いたところ。左上に「＋ Add a new event」</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">新しいイベントを追加する</span>
+      <p>イベントシートの左上にある「<strong>＋ Add a new event</strong>」（新しいイベントを追加）を押します。<br>
+        イベントが1つもないときは、真ん中の「Add an event」ボタンでもOK。<br>
+        左に「Add condition」（条件を追加）、右に「Add action」（アクションを追加）と書かれた空のイベントが1つできます。</p>
+      <figure class="figure">
+        <a href="img/ch2-07_add-new-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-07_add-new-event.jpg" alt="追加された空のイベント。左に「Add condition」、右に「Add action」" loading="lazy"></a>
+        <figcaption>追加された空のイベント。左に「Add condition」、右に「Add action」</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">アクション「カメラをPlayerに合わせる」を選ぶ</span>
+      <p>今回は条件は空のまま。<br>
+        右側の「<strong>Add action</strong>」を押して、検索欄に <code>center camera</code> と入力します。<br>
+        「<strong>Center the camera on an object</strong>」（カメラをオブジェクトの中心に合わせる）を選ぼう。</p>
+      <figure class="figure">
+        <a href="img/ch2-08_center-camera-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08_center-camera-action.jpg" alt="center cameraと検索し、「Center the camera on an object」を選ぶ" loading="lazy"></a>
+        <figcaption>center cameraと検索し、「Center the camera on an object」を選ぶ</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch2-08b_choose-player.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08b_choose-player.jpg" alt="ObjectにPlayerを選び、右下の「Ok」を押す" loading="lazy"></a>
+        <figcaption>ObjectにPlayerを選び、右下の「Ok」を押す</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">対象のオブジェクトに Player を選ぶ</span>
+      <p>右側の設定欄の「Object」（オブジェクト）を押して、一覧から <code>Player</code> を選び、右下の「<strong>Ok</strong>」を押します。<br>
+        ほかの欄（Anticipate the movement、Layer の Base layer など）は、最初の値のままでOK。<br>
+        イベントシートが次のようになっていれば完成です。</p>
+      <div class="event-sheet">
+        <div class="ev-label">Stage1 のイベント（第2章時点）</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">1</span>（なし＝いつでも・ずっと）</div>
+          <div class="ev-act"><span class="ev-head">アクション</span>Center the camera on <code>Player</code></div>
+        </div>
+      </div>
+      <figure class="figure">
+        <a href="img/ch2-09_camera-event-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-09_camera-event-done.jpg" alt="カメラがPlayerについて来るイベントができたところ" loading="lazy"></a>
+        <figcaption>カメラがPlayerについて来るイベントができたところ</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">Previewで確かめる</span>
+      <p>Previewを押して右へ走ってみよう。<br>
+        カメラがPlayerを追いかけて、ステージの奥まで見えるようになったら成功！<br>
+        <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存も忘れずに。</p>
+          <figure class="figure">
+            <a href="img/ch2-12_preview-camera.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-12_preview-camera.jpg" alt="Previewで右へ走ると、カメラがPlayerについて来る" loading="lazy"></a>
+            <figcaption>Previewで右へ走ると、カメラがPlayerについて来る</figcaption>
+          </figure>
+    </div>
+
+    <details class="hint">
+      <summary>もっとなめらかなカメラにしたい人へ（任意）</summary>
+      <p>公式コース「Make a Platformer Game」では、イベントのかわりに <strong>Smooth platformer camera</strong>（なめらかなプラットフォーマー用カメラ）というビヘイビアを Player につける方法を使っています。<br>
+        カメラが少し遅れてふわっとついて来るので、プロっぽい動きになります。<br>
+        さらに「<strong>Enforce camera boundaries</strong>」（カメラの動ける範囲を決める）アクションを使うと、ステージの外がうつらないようにできます。<br>
+        まずは今日の「Center the camera on an object」で動くことを確かめてから、ためしてみよう。</p>
+    </details>
+
+    <div class="term">
+      <span class="word">フレーム</span> … ゲームの画面は、パラパラマンガのように1秒間に何十回も描き直されている。<br>
+      その1枚1枚を「フレーム」と呼ぶ。<br>
+      イベントは毎フレーム、上から順番にチェックされているんだ。<br>
+      だから「条件なし」のイベントは、1秒に何十回も実行され続けるよ。
+    </div>
+
+    <h2>2-6. 背景の色を変えよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">シーンのプロパティを開く</span>
+      <p>シーンエディタのタブに戻ります。<br>
+        シーンの<strong>何も置いていない場所を右クリック</strong>して、メニューのいちばん下の「<strong>Open scene properties</strong>」（シーンのプロパティを開く）を選びます。</p>
+      <figure class="figure">
+        <a href="img/ch2-10_scene-properties.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-10_scene-properties.jpg" alt="何もない場所を右クリックしたメニューのいちばん下「Open scene properties」" loading="lazy"></a>
+        <figcaption>何もない場所を右クリックしたメニューのいちばん下「Open scene properties」</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">背景色を選ぶ</span>
+      <p>「Stage1 properties」の画面が開きます。<br>
+        「<strong>Scene background color</strong>」（シーンの背景色）の右はしの色の四角をクリックして、好きな色を選び、「Ok」を押そう。<br>
+        欄には色が「赤;緑;青」の3つの数字で出ます（この教科書の水色は <code>135;206;235</code>）。<br>
+        昼の空なら水色、夜のステージなら紺色、どうくつなら茶色……と、ステージのテーマに合わせるのがコツ。</p>
+      <figure class="figure">
+        <a href="img/ch2-11_background-color.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-11_background-color.jpg" alt="Stage1 propertiesの画面。Scene background colorで背景色を選ぶ" loading="lazy"></a>
+        <figcaption>Stage1 propertiesの画面。Scene background colorで背景色を選ぶ</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-7. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 画面3つ分以上の長さのステージにしよう</h3>
+      <p>2-2の設計図をもとに、Previewの画面3つ分以上の長さのステージを作ろう。<br>
+      穴（地面のないところ）を1つ以上入れて、ジャンプで越えられるように調整します。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>穴に落ちると、今はずっと落ち続けてしまいます（第4回で直します）。<br>
+          落ちたらPreviewを閉じて、もう一度Previewすればやり直せるよ。<br>
+          穴の幅は、第1章の課題1で決めたジャンプ力で「ギリギリ越えられる」くらいが楽しい。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: はしごを作ろう</h3>
+      <p>高い場所へ登れるはしごを作ろう。<br>
+      はしごっぽい素材を追加して Platform ビヘイビアをつけ、Platform type を「Ladder」にします。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>はしごの上に足場（Block）を置いておくと、登りきったあとに乗れるよ。<br>
+          はしごに重なった状態で <code>↑</code> キーを押すと登れます。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 友だちにテストプレイしてもらおう</h3>
+      <p>となりの人に自分のステージを遊んでもらい、「むずかしすぎた場所」「楽しかった場所」を聞いてみよう。<br>
+      意見をもとに、1か所以上ステージを直したら合格。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>作った本人は、ステージの攻略法を知っているので「かんたん」に感じがち。<br>
+          初めて遊ぶ人の様子を<strong>だまって見ている</strong>と、どこで困っているかがよくわかるよ。</p>
+      </details>
+    </div>
+
+    <h2>2-8. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>Previewしても、カメラがついて来ない</h4>
+      <p><strong>原因1:</strong> イベントを、条件側（左）に入れてしまった。<br>
+      → Center the camera はアクションなので、<strong>右側の「Add action」</strong>から追加し直そう。</p>
+      <p><strong>原因2:</strong> 対象のオブジェクトが Player 以外になっている。<br>
+      → アクションをダブルクリックして、Object が <code>Player</code> になっているか確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ブロックをすり抜けてしまう</h4>
+      <p><strong>原因:</strong> <code>Block</code> に Platform ビヘイビアがついていない。</p>
+      <p><strong>直し方:</strong> <code>Block</code> の「Behaviors」を確認して、Platform を追加しよう。<br>
+        ビヘイビアはオブジェクト（設計図）につけるので、置いたブロック全部にまとめて効くよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>通り抜け床なのに、下から頭をぶつける</h4>
+      <p><strong>原因:</strong> Platform type が「Platform」のまま。</p>
+      <p><strong>直し方:</strong> <code>Floating</code> の「Behaviors」で、Platform type を「Jumpthru platform」に変えて「Apply」を押したか確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ブロックを置こうとすると、ほかのブロックが選ばれてしまう</h4>
+      <p><strong>原因:</strong> 重なっている場所でクリックしている。</p>
+      <p><strong>直し方:</strong> 少しずらした場所でクリックするか、ズームして大きく表示してから操作しよう。<br>
+        どうしても選びにくいときは、いったん離れた場所に置いてから、ドラッグで正しい位置に動かすとやりやすいよ。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>イベントのタブが見つからない</h4>
+      <p><strong>直し方:</strong> 左上の「≡」でプロジェクトマネージャーを開き、<code>Stage1</code> を右クリック →「Open events sheet」を選ぶと、イベントシートが開きます。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>2-9. 🤖 AIを味方につけよう</h2>
+    <p>
+      イベントの相談をするときは、<strong>イベントシートの中身を、左（条件）と右（アクション）に分けて文字で伝える</strong>とAIが理解しやすくなります。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>イベントがうまく動かないとき:</strong> 条件とアクションを書き写して、どこがおかしいか一緒に考えてもらう</li>
+        <li><strong>ステージ作りのコツ:</strong> 「遊びやすいステージの作り方」の考え方を教えてもらう（作るのは自分）</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        ブラウザ版のGDevelopで横スクロールアクションを作っている中学生です。<br>
+        イベントシートに「条件: なし／アクション: Center the camera on Player」と書きましたが、Previewしてもカメラが動きません。<br>
+        確認するべきことを、順番に教えてください。
+      </div>
+      <div class="prompt-example">
+        横スクロールアクションのステージを作っています。<br>
+        初めて遊ぶ人が「むずかしすぎてやめる」のを防ぐには、ステージの最初の部分をどう作ればいいですか？<br>
+        考え方のポイントを3つ教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>ステージの設計図をAIに丸ごと考えてもらう（設計図を描くのが今日のいちばん大事な練習！）</li>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの画面の話をすることもある。<br>
+          ボタンやアクションの名前は、必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>2-10. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> 紙にステージの設計図を描いた</label>
+      <label><input type="checkbox"> <code>Block</code> に Platform をつけて、足場をたくさん並べた</label>
+      <label><input type="checkbox"> <code>Floating</code> を Jumpthru platform にして、下からすり抜けられた</label>
+      <label><input type="checkbox"> イベントの「条件」と「アクション」の意味が説明できる</label>
+      <label><input type="checkbox"> カメラがPlayerについて来るようになった</label>
+      <label><input type="checkbox"> 背景の色を、ステージのテーマに合わせて変えた</label>
+    </div>
+    <p>全部チェックできたら第2章クリア！<br>
+      🎉 次回は、イベントをもっと使いこなして、コインを取るとスコアが増えるしくみを作るよ。</p>
+
+    <h2>2-11. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/platformer/part-3" target="_blank">公式プラットフォーマーチュートリアル Part 3「Create Platforms」（英語）</a> — 足場づくりの公式手順</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/behaviors/platformer/" target="_blank">Platformer character の解説（公式Wiki）</a> — Platform type のくわしい説明もここにある</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki</a> — 「Events」のページで、イベントのしくみを公式の説明で読める</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter1.html">← 第1章 キャラを置いて動かそう</a>
+      <a href="chapter3.html">第3章 イベントでしかけを作ろう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>

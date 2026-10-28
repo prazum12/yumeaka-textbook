@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第4章 敵とゲームオーバー 〜ゲームらしいルール〜（日本語UI版） | 夢アカGDevelop教科書</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（日本語UI版）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第4章</span>
+      <h1>敵とゲームオーバー 〜ゲームらしいルール〜</h1>
+      <div class="date">📅 第4回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>穴に落ちたら、ステージの最初からやり直しになるようにできる</li>
+        <li>オブジェクト変数を使って、左右に往復する敵を作れる</li>
+        <li>条件を2つ組み合わせて「上から踏んだら倒す」を作れる</li>
+        <li>イベントの順番が結果を変えることを説明できる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 前回のプロジェクトが開けない・壊れてしまった人は、講師を呼んでね。<br>
+      この章は、Player・地面・カメラのイベントがあれば始められます（コインとスコアは後から追いつけばOK）。
+    </p>
+
+    <h2>4-1. ゲームらしいルールを考えよう</h2>
+    <p>
+      今のゲームは、穴に落ちてもずっと落ち続けるし、こわいものが何もありません。<br>
+      「失敗することがある」から、ゲームはドキドキして楽しくなります。<br>
+      この章で作るルールはこの3つ。
+    </p>
+
+    <table>
+      <tr><th>ルール</th><th>条件（もし〜なら）</th><th>アクション（〜する）</th></tr>
+      <tr><td>落ちたらやり直し</td><td>Playerが画面のずっと下まで落ちた</td><td>Stage1を最初からやり直す</td></tr>
+      <tr><td>踏んだら倒せる</td><td>Playerが落ちながらEnemyにさわった</td><td>Enemyを消して、Playerを少し跳ねさせる</td></tr>
+      <tr><td>当たったらやり直し</td><td>Playerが（それ以外の形で）Enemyにさわった</td><td>Stage1を最初からやり直す</td></tr>
+    </table>
+
+    <h2>4-2. 穴に落ちたらやり直しにしよう</h2>
+    <p>
+      第1章の課題3で調べたように、GDevelopでは<strong>下へ行くほどYの数字が大きく</strong>なります。<br>
+      だから「PlayerのYが、いちばん低い地面よりもっと大きくなった」＝「穴に落ちた」と判断できます。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">落ちたと判断するYの数字を決める</span>
+      <p>シーンエディタで、いちばん低い地面を選んでプロパティの <strong>Y</strong> を見ます。<br>
+        その数字より<strong>300くらい大きい数</strong>を、「落ちた」と判断するラインにしよう。<br>
+        たとえば地面のYが 620 なら、ラインは 920 です。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">条件「PlayerのYがラインより大きい」を作る</span>
+      <p>イベントシートで「新しいイベントを追加」→「条件を追加」→ <code>位置</code> と検索。<br>
+        「Y座標」と検索してもヒットしないので、「位置」で探すのがコツです。<br>
+        候補の中から「<strong>Y 座標</strong>」（全般 › オブジェクト › 位置）を選びます（「X 座標」のすぐ下）。<br>
+        「オブジェクト」に <code>Player</code>、「テスト記号」（比べ方）を「<strong>&gt;（より大きい）</strong>」、「比較する値」に決めたラインの数字を入れて「OK」。</p>
+      <figure class="figure">
+        <a href="img/ch4-01_position-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-01_position-condition.jpg" alt="位置と検索して「Y 座標」を選び、Player／&gt;（より大きい）／920を指定する" loading="lazy"></a>
+        <figcaption>「位置」と検索して「Y 座標」を選び、Player／&gt;（より大きい）／920を指定する</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">アクション「Stage1をやり直す」を作る</span>
+      <p>「アクションを追加」→ <code>シーンを変更</code> と検索して、いちばん上の「<strong>シーンを変更する</strong>」（全般 › シーン）を選びます。<br>
+        <code>シーン</code> だけで検索すると候補が多すぎて見つけにくいので注意。<br>
+        「新しいシーンの名前」（切り替え先のシーン）で <code>Stage1</code> を選んで「OK」。<br>
+        今いるシーンと同じシーンに切り替えると、<strong>シーンが最初からやり直し</strong>になります。</p>
+      <figure class="figure">
+        <a href="img/ch4-02_change-scene-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-02_change-scene-action.jpg" alt="シーンを変更と検索して「シーンを変更する」を選び、新しいシーンの名前をStage1にする" loading="lazy"></a>
+        <figcaption>「シーンを変更」と検索して「シーンを変更する」を選び、新しいシーンの名前をStage1にする</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-02b_fall-event-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-02b_fall-event-done.jpg" alt="落ちたらやり直しのイベント（PlayerのY 座標 &gt; 920 → シーン Stage1 に変更する）ができたところ" loading="lazy"></a>
+        <figcaption>落ちたらやり直しのイベント（「Player の Y 座標 &gt; 920」→「シーン "Stage1" に変更する」）ができたところ</figcaption>
+      </figure>
+      <div class="event-sheet">
+        <div class="ev-label">落ちたらやり直し</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span><code>Player</code> の Y 座標 &gt; 920</div>
+          <div class="ev-act"><span class="ev-head">アクション</span>シーン "<code>Stage1</code>" に変更する</div>
+        </div>
+      </div>
+      <p>プレビューでわざと穴に落ちてみよう。<br>
+        スタート地点に戻れば成功！<br>
+        取ったコインも元に戻り、Score も 0 からになっているはずです（シーンごとやり直しになるため）。</p>
+    </div>
+
+    <h2>4-3. 敵（Enemy）を用意しよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">敵の素材を追加する</span>
+      <p>オブジェクトパネルの「＋」からアセットストアで <code>slime</code> や <code>enemy</code> と検索します。<br>
+        横から見た敵を選んで追加し、名前を <code>Enemy</code> にしよう。<br>
+        この教科書では「slime normal」（ライセンスはCC0）を使っています。<br>
+        地面の上、少し進んだ場所に1体置きます（右クリック →「シーンにインスタンスを追加」で置いて X・Y を直してもOK）。</p>
+      <figure class="figure">
+        <a href="img/ch4-03_asset-store-enemy.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-03_asset-store-enemy.jpg" alt="アセットストアでslimeと検索し、slime normalを選んでいるところ" loading="lazy"></a>
+        <figcaption>「新しいオブジェクト」のアセットストアでslimeと検索し、slime normalを選んでいるところ</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-03b_enemy-detail.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-03b_enemy-detail.jpg" alt="slime normalのくわしい画面。ライセンスの種類はCC0。右下の「シーンに追加」で追加" loading="lazy"></a>
+        <figcaption>slime normalのくわしい画面。ライセンスの種類はCC0。右下の「シーンに追加」で追加</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">Enemy にもプラットフォームキャラクターをつける</span>
+      <p>敵も地面の上を歩いてほしいので、<code>Enemy</code> にも「<strong>プラットフォームキャラクター</strong>」ビヘイビアをつけます。<br>
+        ビヘイビアを探すときは <code>プラットフォーム</code> で検索しよう（検索欄に前回の文字が残っていたら、消してから入力）。<br>
+        ただし、このままだと<strong>キミのキー操作で敵まで動いてしまいます</strong>。<br>
+        ビヘイビアの設定のいちばん上にある「<strong>デフォルトのキーボードコントロールを無効にする</strong>」（いつものキー操作を使わない）を<strong>ONにして</strong>おこう。<br>
+        ついでに「<strong>最高速度</strong>」を Player より小さい数（<code>120</code> くらい）にしておくと、のんびり歩く敵になるよ。<br>
+        数字を入れる欄はとなりどうしで似ているので、「スロープの最大角度」など別の欄を変えないように気をつけよう。</p>
+      <div class="trouble">
+        <h4>🚨 ビヘイビアの右上の「－」は押さない</h4>
+        <p>左のプロパティのビヘイビア名の右はしにある「－」は、そのビヘイビアを<strong>消す</strong>ボタンです。<br>
+          押すと「消しますか？」と聞かれるので、まちがえたら「キャンセル」を押そう。</p>
+      </div>
+      <figure class="figure">
+        <a href="img/ch4-04_enemy-default-controls.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-04_enemy-default-controls.jpg" alt="Enemyを選び、左のビヘイビア（PlatformerObject）で「デフォルトのキーボードコントロールを無効にする」をON、最高速度を120にしたところ" loading="lazy"></a>
+        <figcaption>Enemyを選び、左のビヘイビア（PlatformerObject）で「デフォルトのキーボードコントロールを無効にする」をON、最高速度を120にしたところ</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-4. 敵に「今どっち向きか」を覚えさせよう</h2>
+    <p>
+      敵を左右に往復させるには、敵ごとに「今、右へ進んでいるか」を覚えておく必要があります。<br>
+      第3章ではシーン全体で1つの箱（シーン変数）を使いましたが、今回は<strong>敵1体ずつに持たせる箱</strong>、<strong>オブジェクト変数</strong>を使います。
+    </p>
+
+    <div class="term">
+      <span class="word">オブジェクト変数</span> … オブジェクトの1体1体が、それぞれ自分用に持っている箱。<br>
+      敵が3体いれば、箱も3つ。<br>
+      だから「この敵は右へ、あの敵は左へ」と、別々に動かせるんだ。
+    </div>
+
+    <div class="term">
+      <span class="word">真偽値（しんぎち）</span> … 「真（はい）」か「偽（いいえ）」の2つだけを入れられる変数の種類。<br>
+      「右へ進んでいる？」→ はい／いいえ、のような質問の答えを覚えるのにぴったり。
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">Enemy にオブジェクト変数 GoingRight を作る</span>
+      <p>オブジェクトパネルで <code>Enemy</code> を選ぶと、左のプロパティの下のほうに「<strong>オブジェクト変数</strong>」が出ます。<br>
+        その右の「＋」を押すと、新しい変数が1行（Variable）できます。<br>
+        名前を <code>GoingRight</code> にして <code>Enter</code>。<br>
+        名前の右の「123」のマーク（種類）を押して <strong>真偽値</strong> を選び、右はしの「⇄」ボタンで値を <strong>真</strong> にします。<br>
+        ダブルクリックで開く「Enemy を編集」の「変数」タブで作ってもOKです。<br>
+        これで「最初は右へ進む」敵になります。</p>
+      <figure class="figure">
+        <a href="img/ch4-05_object-variable.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-05_object-variable.jpg" alt="左のオブジェクト変数にGoingRight（真偽値、真）を追加したところ" loading="lazy"></a>
+        <figcaption>左のオブジェクト変数にGoingRight（真偽値、真）を追加したところ</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-5. 折り返しの目印を置こう</h2>
+    <p>
+      敵が「どこで向きを変えるか」の目印を置きます。<br>
+      目印にさわったら向きを変える、というルールにするんだ。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="折り返しの目印TurnRightとTurnLeftの間を敵が往復する">
+        <rect x="40" y="140" width="620" height="24" fill="#16a34a"/>
+        <rect x="90" y="80" width="40" height="60" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="5,4"/>
+        <text x="110" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">TurnRight</text>
+        <text x="110" y="186" text-anchor="middle" font-size="12" fill="#0369a1">さわったら右へ</text>
+        <rect x="570" y="80" width="40" height="60" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4"/>
+        <text x="590" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">TurnLeft</text>
+        <text x="590" y="186" text-anchor="middle" font-size="12" fill="#b45309">さわったら左へ</text>
+        <rect x="320" y="104" width="50" height="36" rx="10" fill="#dc2626"/>
+        <text x="345" y="127" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Enemy</text>
+        <path d="M 380 95 L 540 95" stroke="#64748b" stroke-width="3" marker-end="url(#arrow4a)"/>
+        <path d="M 310 115 L 150 115" stroke="#64748b" stroke-width="3" marker-end="url(#arrow4a)"/>
+        <defs>
+          <marker id="arrow4a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図4-1: 敵は2つの目印のあいだを往復する。<br>
+        右はしに TurnLeft（左へ向かえ）、左はしに TurnRight（右へ向かえ）を置く</figcaption>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">目印のオブジェクトを2つ作る</span>
+      <p>アセットストアで <code>sign</code> と検索し、小さな看板や矢印など目印になりそうな素材を選びます（この教科書では「ArrowSign」）。<br>
+        「シーンに追加」を押すと、ボタンが「<strong>もう一度追加</strong>」に変わるので、続けてもう1回押そう。<br>
+        同じ素材のオブジェクトが2つできるので、名前をそれぞれ <code>TurnLeft</code> と <code>TurnRight</code> に変えます。<br>
+        目印には<strong>ビヘイビアをつけません</strong>。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">敵の通り道の両はしに置く</span>
+      <p>敵が歩いてほしい範囲の<strong>右はしに TurnLeft</strong>、<strong>左はしに TurnRight</strong> を置きます。<br>
+        敵と同じ高さ（地面の上）に置いて、<strong>敵が歩いてきたら必ず重なる位置</strong>にしよう。<br>
+        プロパティの Y を「地面の Y − 目印の H」にすると、ちょうど地面の上に立ちます（地面が Y 620、目印の高さが 44 なら Y 576）。</p>
+      <figure class="figure">
+        <a href="img/ch4-06_turn-markers-placed.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-06_turn-markers-placed.jpg" alt="地面の上に、左からTurnRight・Enemy・TurnLeftを置いたところ。左のインスタンスのプロパティでX 1300・Y 576" loading="lazy"></a>
+        <figcaption>地面の上に、左からTurnRight・Enemy・TurnLeftを置いたところ（左は「インスタンス - TurnRight」のX・Y）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">ゲームが始まったら目印をかくす</span>
+      <p>目印はプレイヤーに見えなくていいので、ゲームが始まった瞬間にかくします。<br>
+        「新しいイベントを追加」→「条件を追加」→ <code>シーンが始まった</code> と検索して「<strong>シーンが始まった</strong>」（全般 › シーン）を選んで「OK」（「開始」で検索すると候補が多すぎるので注意）。<br>
+        設定する欄はありません（「設定するものはありません。」と出ます）。<br>
+        アクションは <code>非表示</code> と検索していちばん上の「<strong>非表示</strong>」（かくす、全般 › オブジェクト › 可視性）を選び、「オブジェクト」を <code>TurnLeft</code> にします。<br>
+        同じイベントにもう1つ「非表示」を足して、<code>TurnRight</code> もかくそう。</p>
+      <div class="event-sheet">
+        <div class="ev-label">目印をかくす</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span>シーンが始まった</div>
+          <div class="ev-act"><span class="ev-head">アクション</span><code>TurnLeft</code> を非表示にする<br><code>TurnRight</code> を非表示にする</div>
+        </div>
+      </div>
+      <figure class="figure">
+        <a href="img/ch4-07_hide-markers-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-07_hide-markers-event.jpg" alt="「シーンが始まった」でTurnLeftとTurnRightを非表示にするイベント" loading="lazy"></a>
+        <figcaption>「シーンが始まった」でTurnLeftとTurnRightを非表示にするイベント</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-6. 敵を往復させるイベントを作ろう</h2>
+    <p>
+      いよいよ敵を動かします。<br>
+      キー操作を使わない設定にした敵は、自分では動きません。<br>
+      そこで、イベントで「<strong>右キーが押されたふり</strong>」をさせて動かします。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">「右へ進んでいるなら、右キーを押したふり」</span>
+      <p>「新しいイベントを追加」→「条件を追加」→ <code>オブジェクト変数</code> と検索して、いちばん上の「<strong>オブジェクト変数の値</strong>」（全般 › オブジェクト › 変数）を選びます。<br>
+        「オブジェクト」に <code>Enemy</code>、「変数」に <code>GoingRight</code> と入れます。<br>
+        GoingRight は真偽値なので、下に「比較する値：」と <strong>真</strong>／<strong>偽</strong> のボタンが出ます。<br>
+        <strong>真</strong> を押して「OK」。</p>
+      <figure class="figure">
+        <a href="img/ch4-08_enemy-variable-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-08_enemy-variable-condition.jpg" alt="「オブジェクト変数の値」でEnemyのGoingRightを調べ、比較する値で真を選ぶ" loading="lazy"></a>
+        <figcaption>「オブジェクト変数の値」でEnemyのGoingRightを調べ、比較する値で「真」を選ぶ</figcaption>
+      </figure>
+      <p>アクションは <code>右キー</code> と検索して「<strong>右キー押下をシミュレートする</strong>」（右キーを押したふり）を選び、「オブジェクト」に <code>Enemy</code> を指定して「OK」。<br>
+        同じ名前が2つあります。<br>
+        下に「<strong>移動 › プラットフォームビヘイビア › プラットフォームのコントロール</strong>」と書いてあるほうを選ぼう（「トップダウン移動」のほうではありません）。</p>
+      <figure class="figure">
+        <a href="img/ch4-09_simulate-key-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-09_simulate-key-action.jpg" alt="右キーと検索して「右キー押下をシミュレートする」（プラットフォームビヘイビア › プラットフォームのコントロールのほう）を選び、オブジェクトをEnemyにする" loading="lazy"></a>
+        <figcaption>「右キー押下をシミュレートする」（プラットフォームビヘイビア › プラットフォームのコントロールのほう）を選び、オブジェクトをEnemyにする</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「左へ進んでいるなら、左キーを押したふり」</span>
+      <p>同じようにイベントをもう1つ。<br>
+        条件は Enemy の <code>GoingRight</code> が <strong>偽</strong>、アクションは <code>左キー</code> と検索して「<strong>左キー押下をシミュレートする</strong>」（こちらもプラットフォームビヘイビアのほう）です。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">目印にさわったら向きを変える</span>
+      <p>さらにイベントを2つ作ります。<br>
+        条件は <code>衝突</code> と検索して「衝突」（全般 › オブジェクト › 衝突）を選び、<code>Enemy</code> と <code>TurnLeft</code>。<br>
+        アクションは <code>オブジェクト変数の値</code> と検索して「<strong>オブジェクト変数の値を変更</strong>」（全般 › オブジェクト › 変数）を選びます。<br>
+        「オブジェクト」に <code>Enemy</code>、「変数」に <code>GoingRight</code>、「値」を「<strong>偽に設定</strong>」にします。<br>
+        もう1つは <code>Enemy</code> と <code>TurnRight</code> の衝突で、<code>GoingRight</code> を「<strong>真に設定</strong>」に。<br>
+        設定欄の上に「Toggle States With A Variable」というチュートリアルの案内が出ることがありますが、気にしなくてOKです。</p>
+      <figure class="figure">
+        <a href="img/ch4-09b_object-variable-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-09b_object-variable-action.jpg" alt="「オブジェクト変数の値を変更」でEnemyのGoingRightの値を「偽に設定」にする" loading="lazy"></a>
+        <figcaption>「オブジェクト変数の値を変更」でEnemyのGoingRightの値を「偽に設定」にする</figcaption>
+      </figure>
+      <div class="event-sheet">
+        <div class="ev-label">敵の往復（4つのイベント）</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">A</span><code>Enemy</code> の変数 GoingRight は 真 である</div>
+          <div class="ev-act"><span class="ev-head">アクション</span><code>Enemy</code> の右キー押下をシミュレートする</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-num">B</span><code>Enemy</code> の変数 GoingRight は 偽 である</div>
+          <div class="ev-act"><code>Enemy</code> の左キー押下をシミュレートする</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-num">C</span><code>Enemy</code> は <code>TurnLeft</code> と衝突している</div>
+          <div class="ev-act"><code>Enemy</code> の変数 GoingRight を変更する：偽に設定</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-num">D</span><code>Enemy</code> は <code>TurnRight</code> と衝突している</div>
+          <div class="ev-act"><code>Enemy</code> の変数 GoingRight を変更する：真に設定</div>
+        </div>
+      </div>
+      <figure class="figure">
+        <a href="img/ch4-10_enemy-events-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-10_enemy-events-done.jpg" alt="敵の往復の4つのイベント（A〜D）" loading="lazy"></a>
+        <figcaption>敵の往復の4つのイベント（A〜D）</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-10b_preview-enemy-patrol.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-10b_preview-enemy-patrol.jpg" alt="プレビューで、目印が消えて敵（赤枠）が左右に往復している" loading="lazy"></a>
+        <figcaption>プレビューで、目印が消えて敵（赤枠）が左右に往復している</figcaption>
+      </figure>
+      <p>プレビューで、敵が目印のあいだを行ったり来たりすれば成功！<br>
+        敵の向き（絵の左右）も変えたい人は、第3章のキャラの向きと同じように「オブジェクトを水平方向に反転させる」（検索「反転」）をイベントAとBに足してみよう。</p>
+    </div>
+
+    <h2>4-7. 踏んだら倒す・当たったらやり直し</h2>
+    <p>
+      最後に、Playerと敵がさわったときのルールです。<br>
+      ポイントは「<strong>上から踏んだのか、横からぶつかったのか</strong>」をどう見分けるか。<br>
+      答えは、<strong>Playerが落ちている最中にさわったら「踏んだ」</strong>とみなすこと。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="落ちながらさわったら踏んだ、それ以外は当たったと判断する">
+        <rect x="20" y="20" width="320" height="170" rx="12" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="180" y="48" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">落ちながらさわった＝踏んだ</text>
+        <circle cx="180" cy="72" r="14" fill="#1e293b"/>
+        <path d="M 180 90 L 180 120" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow4b)"/>
+        <rect x="155" y="130" width="50" height="30" rx="8" fill="#dc2626"/>
+        <text x="180" y="181" text-anchor="middle" font-size="12" fill="#166534">→ Enemyを消して、ぴょんと跳ねる</text>
+        <rect x="360" y="20" width="320" height="170" rx="12" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+        <text x="520" y="48" text-anchor="middle" font-size="15" font-weight="bold" fill="#dc2626">それ以外でさわった＝当たった</text>
+        <circle cx="465" cy="140" r="14" fill="#1e293b"/>
+        <path d="M 488 140 L 518 140" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow4c)"/>
+        <rect x="525" y="128" width="50" height="30" rx="8" fill="#dc2626"/>
+        <text x="520" y="181" text-anchor="middle" font-size="12" fill="#991b1b">→ Stage1をやり直す</text>
+        <defs>
+          <marker id="arrow4b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+          </marker>
+          <marker id="arrow4c" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図4-2: 「落ちている最中かどうか」で、踏んだのか当たったのかを見分ける</figcaption>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">条件を2つ重ねた「踏んだ」イベントを作る</span>
+      <p>「新しいイベントを追加」で、1つ目の条件に「衝突: <code>Player</code> と <code>Enemy</code>」を入れます。<br>
+        同じイベントの左側で、もう一度「条件を追加」を押して、<code>落下</code> と検索。<br>
+        「<strong>落下中である</strong>」が2つ出るので、「<strong>移動 › プラットフォームビヘイビア › プラットフォームの状態</strong>」のほうを選び（「3D物理エンジン」のほうではありません）、「オブジェクト」に <code>Player</code> を指定します。<br>
+        1つのイベントに条件を2つ並べると、「<strong>両方ともYESのときだけ</strong>」アクションが実行されます。</p>
+      <figure class="figure">
+        <a href="img/ch4-11_is-falling-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-11_is-falling-condition.jpg" alt="落下と検索して「落下中である」（プラットフォームビヘイビア › プラットフォームの状態のほう）を選び、オブジェクトをPlayerにする" loading="lazy"></a>
+        <figcaption>「落下中である」（プラットフォームビヘイビア › プラットフォームの状態のほう）を選び、オブジェクトをPlayerにする</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-11b_allow-jumping-again.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-11b_allow-jumping-again.jpg" alt="ジャンプと検索して「2段ジャンプを可能にする」（プラットフォームビヘイビア › プラットフォームの状態のほう）を選び、オブジェクトをPlayerにする" loading="lazy"></a>
+        <figcaption>「2段ジャンプを可能にする」（プラットフォームビヘイビア › プラットフォームの状態のほう）を選び、オブジェクトをPlayerにする</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「敵を消して、跳ねる」アクションを入れる</span>
+      <p>アクションは3つです。</p>
+      <ul>
+        <li><code>オブジェクトを削除</code> と検索して「オブジェクトを削除する」で <code>Enemy</code> を消す</li>
+        <li><code>ジャンプ</code> と検索して、「<strong>2段ジャンプを可能にする</strong>」（もう一度ジャンプできるようにする、プラットフォームビヘイビア › プラットフォームの状態 のほう）を <code>Player</code> に</li>
+        <li><code>ジャンプキー</code> と検索して、「<strong>ジャンプキー押下シミュレーション</strong>」（ジャンプキーを押したふり、プラットフォームビヘイビア › プラットフォームのコントロール のほう）を <code>Player</code> に</li>
+      </ul>
+      <p>2つ目のアクションがないと、空中ではジャンプできないので跳ねてくれません。<br>
+        「2段ジャンプを可能にする」は、イベントシートでは「Playerに再ジャンプを許可する」と表示されます。<br>
+        名前がちがって見えても同じものなので安心してね。</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">そのすぐ下に「当たったらやり直し」を作る</span>
+      <p>「踏んだ」イベントの<strong>すぐ下</strong>に、もう1つイベントを作ります。<br>
+        条件は「衝突: <code>Player</code> と <code>Enemy</code>」だけ、アクションは「シーンを変更する: <code>Stage1</code>」。</p>
+      <div class="event-sheet">
+        <div class="ev-label">Playerと敵（この順番が大事！）</div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">E</span><code>Player</code> は <code>Enemy</code> と衝突している<br><code>Player</code> は落下中である</div>
+          <div class="ev-act"><span class="ev-head">アクション</span><code>Enemy</code> を削除する<br><code>Player</code>に再ジャンプを許可する<br><code>Player</code>のジャンプキー押下シミュレート</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-cond"><span class="ev-num">F</span><code>Player</code> は <code>Enemy</code> と衝突している</div>
+          <div class="ev-act">シーン "<code>Stage1</code>" に変更する</div>
+        </div>
+      </div>
+      <figure class="figure">
+        <a href="img/ch4-12_stomp-events-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-12_stomp-events-done.jpg" alt="踏んだら倒す（E）と当たったらやり直し（F）が上下に並んだところ" loading="lazy"></a>
+        <figcaption>踏んだら倒す（E）と当たったらやり直し（F）が上下に並んだところ</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>🚨 イベントの順番が大事なワケ</h4>
+      <p>イベントは<strong>上から順番に</strong>チェックされます。<br>
+        上から踏んだときは、先にイベントEで敵が消えるので、すぐ下のイベントFでは「さわっている敵」がもういません。<br>
+        だから、やり直しにならずにすむんだ。<br>
+        もしEとFの順番が逆だと、踏んだ瞬間にFが先に実行されて、やり直しになってしまいます。<br>
+        イベントはドラッグで上下に並べかえられるよ。</p>
+    </div>
+
+    <div class="term">
+      <span class="word">公式チュートリアルとのちがい</span> … 公式Wikiのチュートリアル（Part 6・Part 7、英語）では、敵を「力を加える」アクションで動かし、「当たった」の判定に「地面に立っている」という条件を足しています。<br>
+      この教科書では、敵にもプラットフォームキャラクターをつけて重力で地面を歩かせ、「イベントの順番」で踏んだのか当たったのかを見分けています。<br>
+      「踏んだら跳ねる（落下中である ＋ 2段ジャンプを可能にする ＋ ジャンプキー押下シミュレーション）」の部分は公式と同じです。<br>
+      どちらのやり方でも動くので、余裕がある人は公式の方法もためしてくらべてみよう。
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">プレビューで確かめて保存する</span>
+      <p>敵を上から踏むと消えて、Playerがぴょんと跳ねる。<br>
+        横からぶつかるとスタートに戻る。<br>
+        両方できれば大成功！<br>
+        <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。</p>
+      <figure class="figure">
+        <a href="img/ch4-13_preview-enemy.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-13_preview-enemy.jpg" alt="プレビューで敵を上から踏んだところ。敵が消えて、Playerはぴょんと跳ねている" loading="lazy"></a>
+        <figcaption>プレビューで敵を上から踏んだところ。敵が消えて、Playerはぴょんと跳ねている</figcaption>
+      </figure>
+    </div>
+
+    <h2>4-8. 💪 やってみよう</h2>
+
+    <div class="challenge">
+      <h3>課題1: 敵を増やそう</h3>
+      <p>ステージのほかの場所にも敵を置こう。<br>
+      それぞれの敵の両はしに、TurnLeft と TurnRight を置くのを忘れずに。<br>
+      イベントは<strong>追加しなくても</strong>、新しい敵も往復するはず。<br>
+      なぜイベントを増やさなくていいのか、説明できたら合格。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>イベントは「Enemy という設計図から作ったもの全部」に効くよ。<br>
+          そして GoingRight はオブジェクト変数なので、敵1体ずつが自分の箱を持っている。<br>
+          だから、それぞれ別々に往復できるんだ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題2: トゲを作ろう</h3>
+      <p>さわったらやり直しになる <code>Spike</code>（トゲ）を作って、ステージに置こう。<br>
+      トゲは踏んでもダメ、という点が敵とのちがいです。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>イベントFとほとんど同じイベントで作れるよ。<br>
+          さわる相手を Enemy から Spike に変えるだけ。</p>
+        <p>トゲやノコギリなど「さわったらアウト」のものが増えてきたら、<strong>オブジェクトグループ</strong>が便利です。<br>
+          公式コースでは、SawとSpikesを <code>Hazards</code>（危険なもの）というグループにまとめて、「Player は Hazards と衝突している」の1つのイベントでまとめて判定しています。<br>
+          グループは、エディタの右上にあるオブジェクトグループのパネルから作れるよ。</p>
+      </details>
+    </div>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 速さのちがう敵を作ろう</h3>
+      <p>素早く動く敵 <code>FastEnemy</code> を作ってみよう。<br>
+      見た目も変えて、「この敵は速い！」とわかるようにできたら合格。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>新しいオブジェクトにすると、イベントA〜Fをもう一度作る必要があります。<br>
+          イベントをコピーして、Enemy の部分を FastEnemy に書きかえるとラク。<br>
+          速さはビヘイビアの「最高速度」などで変えられるよ。</p>
+      </details>
+    </div>
+
+    <h2>4-9. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>自分が矢印キーを押すと、敵まで一緒に動く</h4>
+      <p><strong>原因:</strong> Enemy のプラットフォームキャラクターで「デフォルトのキーボードコントロールを無効にする」がOFFのまま。</p>
+      <p><strong>直し方:</strong> Enemy のビヘイビア設定で、「デフォルトのキーボードコントロールを無効にする」をONにしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>敵が目印で折り返さない（通り過ぎて落ちていく）</h4>
+      <p><strong>原因1:</strong> 目印が敵の通り道と重なっていない（高さがずれている、地面にうまっている）。<br>
+      → 目印を、敵とちょうど同じ高さに置き直そう。</p>
+      <p><strong>原因2:</strong> TurnLeft と TurnRight を逆に置いている。<br>
+      → 右はしが TurnLeft、左はしが TurnRight だよ。</p>
+      <p><strong>原因3:</strong> イベントCとDで、「真に設定」と「偽に設定」が逆になっている。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>上から踏んでも、やり直しになってしまう</h4>
+      <p><strong>原因1:</strong> 「当たったらやり直し」のイベントFが、イベントEより上にある。<br>
+      → イベントをドラッグして、Eを上・Fを下にしよう。</p>
+      <p><strong>原因2:</strong> イベントEの条件に「Player は落下中である」が入っていない、または別のイベントに分かれている。<br>
+      → 2つの条件が<strong>同じイベントの左側に並んでいる</strong>か確認しよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>穴に落ちても、やり直しにならない</h4>
+      <p><strong>原因:</strong> Yの比べ方が逆（&lt; にしている）、またはラインの数字が大きすぎる。</p>
+      <p><strong>直し方:</strong> テスト記号が「&gt;（より大きい）」になっているか確認しよう。<br>
+        下へ行くほどYは大きくなる、を思い出してね。<br>
+        ラインは「いちばん低い地面のY＋300」くらいが目安です。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>プレビューで目印が見えてしまう</h4>
+      <p><strong>原因:</strong> 目印をかくすイベントがない、または条件が「シーンが始まった」になっていない。</p>
+      <p><strong>直し方:</strong> 4-5の手順3のイベントを確認しよう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
+
+    <h2>4-10. 🤖 AIを味方につけよう</h2>
+    <p>
+      イベントが増えてきたら、AIに相談するときは<strong>関係するイベントだけを、上からの順番どおりに</strong>書き写そう。<br>
+      今回のように「順番」が原因のバグもあるからです。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で15分考えてわからなかったら聞く</p>
+      <ul>
+        <li><strong>順番のバグ探し:</strong> イベントを順番どおりに書き写して、どこで問題が起きているか一緒に追いかけてもらう</li>
+        <li><strong>しくみの理解:</strong> 「オブジェクト変数とシーン変数のちがい」など、説明できるようになるまで聞く</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        ブラウザ版のGDevelop（日本語表示）でアクションゲームを作っている中学生です。<br>
+        敵を上から踏んで倒したいのに、踏むとステージの最初に戻ってしまいます。<br>
+        イベントは上から順に次のとおりです。<br>
+        イベント1: 条件「Player は Enemy と衝突している」／アクション「シーン "Stage1" に変更する」<br>
+        イベント2: 条件「Player は Enemy と衝突している」「Player は落下中である」／アクション「Enemy を削除する」<br>
+        答えを言わずに、原因に気づけるヒントをください。
+      </div>
+      <div class="prompt-example">
+        GDevelopの「シーン変数」と「オブジェクト変数」のちがいを、クラスの持ち物にたとえて説明してください。<br>
+        敵ごとに向きを覚えさせるとき、どちらを使うべきかも教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>敵のイベントをAIに全部作らせて写す（条件を組み合わせて考えるのがこの章の練習！）</li>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの条件名やアクション名を答えることがある。<br>
+          必ず自分の画面で検索して確認）</li>
+      </ul>
+    </div>
+
+    <h2>4-11. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> 穴に落ちると、Stage1の最初からやり直しになった</label>
+      <label><input type="checkbox"> Enemy の「デフォルトのキーボードコントロールを無効にする」をONにして、オブジェクト変数 GoingRight を作った</label>
+      <label><input type="checkbox"> 敵が TurnLeft と TurnRight のあいだを往復するようになった</label>
+      <label><input type="checkbox"> 上から踏むと敵が消えて、Playerが跳ねた</label>
+      <label><input type="checkbox"> 横からぶつかると、やり直しになった</label>
+      <label><input type="checkbox"> 「イベントEがFより上でないといけない理由」を説明できる</label>
+    </div>
+    <p>全部チェックできたら第4章クリア！<br>
+      🎉 次回は、ゴールを作ってクリア画面へ。<br>
+      タイトル画面や効果音もつけて、「1本のゲーム」としてつながった形にするよ。</p>
+
+    <h2>4-12. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/platformer/part-6" target="_blank">公式プラットフォーマーチュートリアル Part 6・Part 7（英語）</a> — 敵の作り方と「踏んで倒す」の公式版。この教科書とはちがう方法なので、くらべてみよう</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/behaviors/platformer/" target="_blank">プラットフォームキャラクター（Platformer character）の解説（公式Wiki・英語）</a> — ページの下のほうから、使える条件・アクションの一覧へ進める</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki（英語）</a> — 「Variables」（変数）のページで、オブジェクト変数の公式説明が読める</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter3.html">← 第3章 イベントでしかけを作ろう</a>
+      <a href="chapter5.html">第5章 ゴールと画面の切り替え →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>
