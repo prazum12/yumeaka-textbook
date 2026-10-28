@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第6章 仕上げて発表しよう 〜自分だけの作品に〜 | 夢アカGDevelop教科書（3Dアクション編）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（3Dアクション編）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第6章</span>
+      <h1>仕上げて発表しよう 〜自分だけの作品に〜</h1>
+      <div class="date">📅 第6回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>自分のゲームを良くするための「仕上げ計画」を立てられる</li>
+        <li>これまで覚えたことを組み合わせて、自分で新しいしかけを作れる</li>
+        <li>人に遊んでもらって、意見をもとにゲームを直せる</li>
+        <li>自分の作品の「こだわり」と「工夫」を、人に伝えられる</li>
+      </ul>
+    </div>
+
+    <p>
+      ※ 第5章までが終わっていない人も大丈夫。<br>
+      今日は「できているところまで」を自分の作品として仕上げて発表します。<br>
+      ゾンビをたおすしくみがなくても、街を歩いたりトラックを運転したりできれば立派な作品だよ。
+    </p>
+
+    <h2>6-1. 今日の進め方</h2>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="仕上げ計画からカスタマイズ、テストプレイ、発表準備、発表までの流れ">
+        <rect x="10" y="40" width="120" height="70" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="70" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">1. 仕上げ</text>
+        <text x="70" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">計画</text>
+        <path d="M 134 75 L 150 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="155" y="40" width="120" height="70" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="215" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">2. カスタ</text>
+        <text x="215" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">マイズ</text>
+        <path d="M 279 75 L 295 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="300" y="40" width="120" height="70" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="360" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">3. テスト</text>
+        <text x="360" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">プレイ</text>
+        <path d="M 424 75 L 440 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="445" y="40" width="120" height="70" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="505" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">4. 発表</text>
+        <text x="505" y="92" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">準備</text>
+        <path d="M 569 75 L 585 75" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6a)"/>
+        <rect x="590" y="40" width="100" height="70" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="640" y="81" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">5. 発表！</text>
+        <path d="M 360 114 C 360 140, 215 140, 215 116" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow6b)"/>
+        <text x="288" y="162" text-anchor="middle" font-size="12" fill="#64748b">2と3は時間の許すかぎりくり返す</text>
+        <defs>
+          <marker id="arrow6a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+          <marker id="arrow6b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#94a3b8"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図6-1: 今日の流れ。<br>
+        「作る → 遊んでもらう → 直す」を何回まわせるかが、作品の完成度を決める</figcaption>
+    </div>
+
+    <h2>6-2. 仕上げ計画を立てよう</h2>
+    <p>
+      まずは、今日やりたいことを紙に書き出そう。<br>
+      ポイントは、<strong>「絶対やること」と「時間があればやること」を分ける</strong>こと。<br>
+      欲ばって全部やろうとすると、発表のときに動かない……ということになりがちです。
+    </p>
+
+    <h3>アイデア一覧（★が多いほどむずかしい）</h3>
+    <table>
+      <tr><th>アイデア</th><th>むずかしさ</th><th>使う知識（復習する章）</th></tr>
+      <tr><td>道路や建物をふやして、街を広げる</td><td>★</td><td>第1章</td></tr>
+      <tr><td>建物にぶつかるようにする（下のワザ1）</td><td>★</td><td>第2章（ビヘイビア）</td></tr>
+      <tr><td>撃つときに音を鳴らす（下のワザ2）</td><td>★</td><td>第3章</td></tr>
+      <tr><td>ゾンビの速さ・体力・わく間かくを調整する</td><td>★★</td><td>第4章・第5章</td></tr>
+      <tr><td>ほかの銃やゾンビに入れかえる（Swap assets）</td><td>★★</td><td>第3章・第4章の「やってみよう」</td></tr>
+      <tr><td>たおすほどゾンビがわきやすくなるようにする</td><td>★★★</td><td>第5章の「やってみよう」</td></tr>
+    </table>
+
+    <div class="challenge">
+      <h3>課題1: 自分の「仕上げ計画」を書こう</h3>
+      <p>次の3つを紙に書こう。<br>
+      書けたら講師に見せてから、作業スタート！</p>
+      <ul>
+        <li><strong>絶対やること</strong>（1〜2個）</li>
+        <li><strong>時間があればやること</strong>（1〜3個）</li>
+        <li><strong>このゲームのいちばんのこだわり</strong>（ひとこと）</li>
+      </ul>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>「絶対やること」は、30分くらいで終わりそうなものにしよう。<br>
+          迷ったら、今までの章で友だちや講師に遊んでもらったときの意見を思い出してみて。<br>
+          遊んだ人が困っていた場所を直すのも、立派な仕上げだよ。</p>
+      </details>
+    </div>
+
+    <h2>6-3. 仕上げに使えるワザ集</h2>
+    <p>
+      ここからは、仕上げでよく使うワザを紹介します。<br>
+      全部やる必要はありません。<br>
+      自分の計画に必要なものだけ使おう。
+    </p>
+
+    <h3>ワザ1: 建物にぶつかるようにする</h3>
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">建物に「3D physics engine」をつける</span>
+      <p>今のままだと、主人公もゾンビも建物をすりぬけてしまいます。<br>
+        シーンエディターで一覧の <code>Large_Building_B</code> をクリックし、左の「Behaviors」の「＋」を押します。<br>
+        <code>physics</code> で検索して「<strong>3D physics engine</strong>」を選びます。<br>
+        つけたら、Physics3D の「<strong>Type</strong>」を「Dynamic」から「<strong>Static</strong>」（動かない）に変えます。<br>
+        <code>Small_Building_B</code> にも同じようにつけよう。</p>
+      <figure class="figure">
+        <a href="img/ch6-01_building-static.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-01_building-static.jpg" alt="Large_Building_BのBehaviorsにPhysics3Dをつけ、TypeをStaticにしたところ（赤枠）" loading="lazy"></a>
+        <figcaption>Physics3D をつけて、Type を Static に（赤枠）</figcaption>
+      </figure>
+      <p>Preview で建物に向かって歩くと、かべの前で止まります。</p>
+      <figure class="figure">
+        <a href="img/ch6-05_preview-wall.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-05_preview-wall.jpg" alt="Previewで、主人公が建物のかべの前で止まっている（赤枠）" loading="lazy"></a>
+        <figcaption>建物のかべで止まるようになった（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">Dynamic と Static</span> … 「Dynamic」（ダイナミック）は、ぶつかると押されたり転がったりする物。<br>
+      「Static」（スタティック）は、ぜったいに動かない物。<br>
+      建物や地面は Static にします。<br>
+      Dynamic のままだと、トラックでぶつかったときに建物がふっとんでしまいます。
+    </div>
+
+    <h3>ワザ2: 撃つときに音を鳴らす</h3>
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">「Play a sound」で効果音をつける</span>
+      <p>イベントシートの Gun グループで、弾を撃つイベント（左クリックをはなした）の「Add action」を押します。<br>
+        <code>play a sound</code> で検索して「<strong>Play a sound</strong>」を選びます。<br>
+        「Choose the audio file to use」の欄をクリックすると、メニューが出ます。<br>
+        「<strong>Choose from asset store</strong>」（アセットストアから選ぶ）を押そう。</p>
+      <figure class="figure">
+        <a href="img/ch6-02_play-sound.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-02_play-sound.jpg" alt="Play a soundのアクション。Choose from asset store（赤枠）" loading="lazy"></a>
+        <figcaption>「Play a sound」→「Choose from asset store」（赤枠）</figcaption>
+      </figure>
+      <p>検索欄に <code>laser</code> と入力すると、レーザー銃の音がたくさん出てきます。<br>
+        左の ▷ を押すと、音をためしに聞けます。<br>
+        気に入った音（写真では「Laser-weapon 1」）を選んで「<strong>Add to project</strong>」を押します。</p>
+      <figure class="figure">
+        <a href="img/ch6-03_laser-sound.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-03_laser-sound.jpg" alt="New resourceの画面でlaserと検索し、Laser-weapon 1を選んでAdd to project（赤枠）" loading="lazy"></a>
+        <figcaption><code>laser</code> で検索 → 音を選んで「Add to project」（赤枠）</figcaption>
+      </figure>
+      <p>もとの画面にもどったら、Volume（音の大きさ）に <code>50</code> と入れて「Ok」。<br>
+        撃つたびに音が鳴るようになります。</p>
+      <figure class="figure">
+        <a href="img/ch6-04_sound-volume.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-04_sound-volume.jpg" alt="選んだ音とVolume 50（赤枠）" loading="lazy"></a>
+        <figcaption>選んだ音と、Volume <code>50</code>（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>音を選ぶときは「ライセンス」も見よう</h4>
+      <p>音の名前の下に「CC0 (public domain)」や「CC-BY 4.0」と書いてあります。<br>
+        CC0 は自由に使える素材です。<br>
+        CC-BY は、使うときに作った人の名前（クレジット）を書く約束がある素材です。<br>
+        まよったら CC0 のものを選ぼう。</p>
+    </div>
+
+    <h3>ワザ3: 街を広げる・ゾンビの種類をふやす</h3>
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">これまでのやり方を組み合わせる</span>
+      <p>道路や建物は、第1章と同じやり方で「Zombie Apocalypse」のパックから追加して、コピー＆貼りつけでふやせます。<br>
+        建物をふやしたら、ワザ1の Physics3D も忘れずに。<br>
+        ほかのゾンビにしたいときは、一覧の Zombie を右クリック →「<strong>Swap assets</strong>」で見た目だけ入れかえられます。<br>
+        イベントはそのまま使えるので、こわれません。</p>
+    </div>
+
+    <h2>6-4. テストプレイしてもらおう</h2>
+    <p>
+      ある程度できたら、<strong>となりの人と交換して遊んでもらおう</strong>。<br>
+      遊んでもらうときは、作った人は<strong>説明しないで、だまって見ている</strong>のがコツです。<br>
+      説明しないとわからない部分は、ゲームの中でわかるように直すべき部分だからです。
+    </p>
+
+    <table>
+      <tr><th>遊んだ人に聞くこと</th><th>メモ</th></tr>
+      <tr><td>遊び方は、説明なしでわかった？</td><td></td></tr>
+      <tr><td>むずかしすぎた場所・かんたんすぎた場所は？</td><td></td></tr>
+      <tr><td>いちばん楽しかったところは？</td><td></td></tr>
+      <tr><td>バグ（おかしな動き）はあった？</td><td></td></tr>
+    </table>
+
+    <div class="challenge">
+      <h3>課題2: もらった意見で1か所以上直そう</h3>
+      <p>テストプレイでもらった意見の中から、1つ選んでゲームを直そう。<br>
+      直したら、もう一度遊んでもらって「良くなった？」と聞いてみよう。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>「むずかしすぎる」と言われたら、ゾンビをおそくする・わく間かくを長くする・HP のへり方をゆっくりにする、など直し方はいろいろ。<br>
+          全部の意見に従う必要はないよ。<br>
+          自分の「こだわり」とぶつかる意見は、取り入れなくてもOK。</p>
+      </details>
+    </div>
+
+    <h2>6-5. 発表の準備をしよう</h2>
+    <p>
+      発表では、ゲームを遊んで見せながら、次の順番で話すと伝わりやすくなります。<br>
+      1人の持ち時間は講師が伝えます。
+    </p>
+
+    <table>
+      <tr><th>順番</th><th>話すこと</th><th>例</th></tr>
+      <tr><td>1</td><td>ゲームの名前</td><td>「〇〇〇という名前のゲームです」</td></tr>
+      <tr><td>2</td><td>どんなゲームか・遊び方</td><td>「ゾンビをたおしながら街で生きのこるゲームです。トラックでひくこともできます」</td></tr>
+      <tr><td>3</td><td>いちばんのこだわり</td><td>「建物をふやして、本物の街っぽくしました」</td></tr>
+      <tr><td>4</td><td>苦労したこと・どう解決したか</td><td>「トラックに乗っている間もHPがへるバグがあって、InCar の条件を足して直しました」</td></tr>
+      <tr><td>5</td><td>次にやってみたいこと</td><td>「ボスゾンビを出したいです」</td></tr>
+    </table>
+
+    <div class="challenge">
+      <h3>課題3（チャレンジ）: 「苦労したこと」を具体的に話そう</h3>
+      <p>発表の4番目「苦労したこと・どう解決したか」を、<strong>どんなイベントを、どう直したか</strong>まで具体的に話そう。<br>
+      聞いている人が「自分も同じところでつまずくかも」と思えたら大成功。</p>
+      <details class="hint">
+        <summary>ヒントを見る</summary>
+        <p>失敗の話は、発表でいちばん役に立つ部分です。<br>
+          つまずきポイント集で読んだことや、AIに相談したことを思い出してみよう。<br>
+          「最初は〇〇だと思ったけど、実は△△だった」という話し方をすると伝わりやすいよ。</p>
+      </details>
+    </div>
+
+    <h2>6-6. 作品の公開について（任意）</h2>
+    <p>
+      GDevelopには、作ったゲームをインターネットで遊べるように公開する機能があります。<br>
+      画面の上の真ん中にある「<strong>Share</strong>」ボタンを押すと、公開のしかたを選ぶ画面が開きます。<br>
+      いちばん上の「<strong>gd.games</strong>」（Easiest＝いちばんかんたん）を使うと、遊べるURLが作れます。<br>
+      公開すると、家族や友だちにURLを送って遊んでもらえます。<br>
+      ただし、<strong>公開は講師の確認が終わってから</strong>にしてください。
+    </p>
+    <ul>
+      <li>ゲームの中やタイトル・説明文に、<strong>本名・学校名・住所など</strong>を書かない</li>
+      <li>アセットストアの無料素材や自分で作った素材だけを使っているか、もう一度確認する</li>
+      <li>この教科書で使った「Zombie Apocalypse」（Quaternius）や効果音は CC0 なので、クレジットは書かなくてもOK。<br>
+        自分で CC-BY の素材を追加したときは、作った人の名前（クレジット）をゲームの中や説明文に書く</li>
+      <li>公開するかどうかは、保護者の方とも相談して決める</li>
+    </ul>
+    <figure class="figure">
+      <a href="img/ch6-06_share-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-06_share-dialog.jpg" alt="上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）" loading="lazy"></a>
+      <figcaption>上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）</figcaption>
+    </figure>
+
+    <h2>6-7. この先の3つの道</h2>
+    <p>
+      全6回の導入はこれでおしまい。<br>
+      ここから先は、<strong>自分で進む道を選びます</strong>。<br>
+      どの道を選んでも、この6回で身につけた「条件 → アクションで考える力」と「自分で原因を探して直す力」が土台になります。
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="導入のあとに選べる3つの道">
+        <rect x="260" y="10" width="180" height="50" rx="10" fill="#1e293b"/>
+        <text x="350" y="41" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">GDevelop導入（全6回）</text>
+        <path d="M 350 62 L 120 100" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6c)"/>
+        <path d="M 350 62 L 350 100" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6c)"/>
+        <path d="M 350 62 L 580 100" stroke="#64748b" stroke-width="3" marker-end="url(#arrow6c)"/>
+        <rect x="20" y="105" width="200" height="110" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+        <text x="120" y="135" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">道1</text>
+        <text x="120" y="160" text-anchor="middle" font-size="13" fill="#0c4a6e">GDevelopで</text>
+        <text x="120" y="180" text-anchor="middle" font-size="13" fill="#0c4a6e">オリジナル作品を作る</text>
+        <rect x="250" y="105" width="200" height="110" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="350" y="135" text-anchor="middle" font-size="15" font-weight="bold" fill="#b45309">道2</text>
+        <text x="350" y="160" text-anchor="middle" font-size="13" fill="#78350f">ほかの技術を</text>
+        <text x="350" y="180" text-anchor="middle" font-size="13" fill="#78350f">自分で学ぶ</text>
+        <rect x="480" y="105" width="200" height="110" rx="12" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+        <text x="580" y="135" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">道3</text>
+        <text x="580" y="160" text-anchor="middle" font-size="13" fill="#166534">講師と生成AIで</text>
+        <text x="580" y="180" text-anchor="middle" font-size="13" fill="#166534">調べながら作る</text>
+        <defs>
+          <marker id="arrow6c" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption>図6-2: 導入のあとに選べる3つの道。<br>
+        どれを選んでもOK。<br>
+        大事なのは「自分が何を作りたいか」</figcaption>
+    </div>
+
+    <table>
+      <tr><th>道</th><th>こんな人に向いている</th></tr>
+      <tr><td><strong>道1</strong> GDevelopでオリジナル制作</td><td>今日のゲームをもっと大きくしたい人、まったく新しいゲームを作りたい人</td></tr>
+      <tr><td><strong>道2</strong> ほかの技術を自分で学ぶ</td><td>Unity・Webサイト・プログラミング言語など、気になる技術がある人</td></tr>
+      <tr><td><strong>道3</strong> 講師と生成AIで調べながら作る</td><td>作りたいものはあるけど、どの技術を使えばいいかわからない人</td></tr>
+    </table>
+
+    <p>
+      次の講習までに、<strong>どの道を選ぶか、そしてその理由</strong>を考えてきてください。<br>
+      まだ決められない人は、「作ってみたいもの」をひとつ考えてくるだけでもOKです。
+    </p>
+
+    <h2>6-8. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>いろいろ変えていたら、急にゲームがおかしくなった</h4>
+      <p><strong>原因:</strong> 最後に変えたところが原因のことがほとんど。</p>
+      <p><strong>直し方:</strong> まず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span> で1つずつ戻して、どこで直るか確かめよう。<br>
+        これからは「1つ変えたらPreviewで確認」をくせにしよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>発表の直前に、新しいことを始めて壊れた</h4>
+      <p><strong>原因:</strong> 時間ギリギリの大きな変更。</p>
+      <p><strong>直し方:</strong> 発表の15分前からは、新しいしかけを作るのはやめて、テストプレイと発表練習だけにしよう。<br>
+        <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> の保存も忘れずに。</p>
+    </div>
+    <div class="trouble">
+      <h4>建物にぶつかるようにしたら、トラックがとまってしまう</h4>
+      <p><strong>原因:</strong> トラックや道路が、建物と重なる場所に置いてある。</p>
+      <p><strong>直し方:</strong> シーンエディターで、建物とトラック・主人公が重なっていないか確かめよう。<br>
+        重なっていたら、建物を少し動かそう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>音が鳴らない</h4>
+      <p><strong>原因1:</strong> PC やブラウザの音量が0、またはミュートになっている。<br>
+      → 右下の音量や、ブラウザのタブのスピーカーのマークを確かめよう。</p>
+      <p><strong>原因2:</strong> Play a sound を、撃つイベントではないイベントに入れてしまった。<br>
+      → 「左クリックをはなした」の条件があるイベントに入っているか確かめよう。</p>
+    </div>
+
+    <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。<br>
+      発表の日は時間が限られているので、早めに講師を呼ぶのもアリです。</p>
+
+    <h2>6-9. 🤖 AIを味方につけよう</h2>
+    <p>
+      最終回のAIの使い方は、<strong>「作品をもっと良くするための相談相手」</strong>。<br>
+      ただし、作品と発表の主役はキミです。
+    </p>
+
+    <div class="ai-box">
+      <h3>この章でのAIの使い所</h3>
+      <p><span class="ai-ok">✅ 良い使い方</span> — 自分で考えたものを、もっと良くするために聞く</p>
+      <ul>
+        <li><strong>発表原稿のチェック:</strong> 自分で書いた原稿を見せて、わかりにくいところを指摘してもらう</li>
+        <li><strong>この先の道の相談:</strong> 自分の興味を伝えて、どんな技術があるか教えてもらう（選ぶのは自分）</li>
+      </ul>
+      <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
+      <div class="prompt-example">
+        中学生です。<br>
+        GDevelopで作った3Dアクションゲームの発表原稿を書きました。<br>
+        書き直さずに、「聞いている人にわかりにくいところ」を3つだけ指摘してください。<br>
+        （ここに自分の原稿をはりつける）
+      </div>
+      <div class="prompt-example">
+        GDevelopで3Dアクションゲームを1本作り終えた中学生です。<br>
+        次は「〇〇〇（作ってみたいもの）」を作ってみたいです。<br>
+        どんな技術や道具があるか、中学生でも始めやすい順に3つ教えてください。<br>
+        それぞれの良いところと大変なところも教えてください。
+      </div>
+      <p><span class="ai-ng">🚫 やめておこう</span></p>
+      <ul>
+        <li>発表原稿をAIにまるごと書いてもらう（自分の言葉で話すから、作品の良さが伝わる！）</li>
+        <li>「どの道を選ぶか」をAIに決めてもらう（AIは情報をくれるけど、決めるのはキミ）</li>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの画面の話をすることもある。<br>
+          必ず自分の画面で確認）</li>
+      </ul>
+    </div>
+
+    <h2>6-10. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> 仕上げ計画（絶対やること・時間があればやること・こだわり）を書いた</label>
+      <label><input type="checkbox"> 計画の「絶対やること」を作り終えた</label>
+      <label><input type="checkbox"> 人にテストプレイしてもらい、意見をもとに1か所以上直した</label>
+      <label><input type="checkbox"> 発表で、こだわりと苦労したことを話せた</label>
+      <label><input type="checkbox"> 最後に保存して、最初から通しで遊べることを確認した</label>
+      <label><input type="checkbox"> この先の3つの道のどれに進みたいか考えた</label>
+    </div>
+    <p>全部チェックできたら、3Dアクション編 完全クリア！<br>
+      🎉 空っぽのプロジェクトから、自分の力でゲームを1本作り上げました。<br>
+      ここで身につけた力を持って、次の道へ進もう。</p>
+
+    <h2>6-11. 📚 もっと知りたい人へ</h2>
+    <ul>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/behaviors/physics3d/" target="_blank">公式Wiki「3D physics engine」（英語）</a> — ワザ1の Physics3D のくわしい説明</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/all-features/audio/" target="_blank">公式Wiki「Audio」（英語）</a> — 効果音や BGM の鳴らし方</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki</a> — 「Publishing」のページに公開のくわしい説明がある（公開は講師確認後に）</li>
+      <li><a href="https://gdevelop.io/" target="_blank">GDevelop公式サイト</a> — 公式コース「Make a 3D GTA Game」の続きや、ほかの人が作ったゲームも見つかる</li>
+    </ul>
+
+    <nav class="chapter-nav">
+      <a href="chapter5.html">← 第5章 ゾンビをたおそう</a>
+      <a href="index.html">目次へもどる →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（3Dアクション編）
+  </footer>
+
+  <script src="js/os.js"></script>
+</body>
+</html>
