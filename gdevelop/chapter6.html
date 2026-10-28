@@ -124,13 +124,12 @@
     <h3>ワザ1: シーンをコピーしてステージ2を作る</h3>
     <div class="step">
       <span class="step-num">1</span><span class="step-title">Stage1 を複製する</span>
-      <p>プロジェクトマネージャーで <code>Stage1</code> を右クリック →「<strong>Duplicate</strong>」（複製）を選ぶと、オブジェクトもイベントも丸ごとコピーされたシーンができます。<br>
+      <p>左上の「≡」でプロジェクトマネージャーを開き、<code>Stage1</code> を右クリック →「<strong>Duplicate</strong>」（複製）を選ぶと、オブジェクトもイベントも丸ごとコピーされたシーンができます。<br>
         名前を <code>Stage2</code> に変えて、ステージの形を作りかえよう。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        プロジェクトマネージャーでStage1を右クリックし、Duplicateを選んでいるところ
-        <div class="fname">ch6-01_duplicate-scene.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch6-01_duplicate-scene.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-01_duplicate-scene.jpg" alt="プロジェクトマネージャーでStage1を右クリックし、いちばん下の「Duplicate」" loading="lazy"></a>
+        <figcaption>プロジェクトマネージャーでStage1を右クリックし、いちばん下の「Duplicate」</figcaption>
+      </figure>
       <p>⚠️ 複製したシーンのイベントには、「Change the scene to <code>Stage1</code>」がそのまま残っています。<br>
         Stage2 でやられたときは Stage2 からやり直すように、シーン名を書きかえよう。<br>
         Stage1 のゴールの行き先を <code>Stage2</code> に、Stage2 のゴールの行き先を <code>Clear</code> にすればつながるよ。</p>
@@ -145,23 +144,23 @@
       <div class="ev-label">アニメーション切りかえの例（アニメーションの名前は自分のキャラに合わせる）</div>
       <div class="ev-row">
         <div class="ev-cond"><span class="ev-head">条件</span><code>Player</code> is moving</div>
-        <div class="ev-act"><span class="ev-head">アクション</span>Animation (by name) of <code>Player</code>: <code>"Run"</code></div>
+        <div class="ev-act"><span class="ev-head">アクション</span>Animation (by name) of <code>Player</code>: <code>"Move"</code></div>
       </div>
       <div class="ev-row">
         <div class="ev-cond"><code>Player</code> is jumping</div>
-        <div class="ev-act">Animation (by name) of <code>Player</code>: <code>"Jump"</code></div>
+        <div class="ev-act">Animation (by name) of <code>Player</code>: <code>"Kick"</code></div>
       </div>
     </div>
     <p>
-      「動いていない」ときの条件は、条件を右クリックすると出てくる「Invert condition」（条件を逆にする）で作れます。<br>
+      この教科書の Dino Doux には、Idle（立ち止まり）・Crouch・Hurt・Kick・Move（歩く）・Sneak の6つのアニメーションがあります（ジャンプ用はないので、上の例では Kick で代わりにしています）。<br>
+      「動いていない」ときの条件は、条件の設定画面にある「<strong>Invert condition</strong>」（条件を逆にする）のスイッチをONにすると作れます。<br>
       アクションは <code>animation</code> と検索すると見つかる「<strong>Animation (by name)</strong>」（名前でアニメーションを変える）を使おう。<br>
       どのイベントを上に置くと自然に見えるか、順番もためしてみてね。
     </p>
-    <div class="screenshot">
-      <span class="cam">📷</span>
-      アクション選択画面で、アニメーションを名前で切りかえるアクションを選んでいるところ
-      <div class="fname">ch6-02_change-animation-action.png</div>
-    </div>
+    <figure class="figure">
+      <a href="img/ch6-02_change-animation-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-02_change-animation-action.jpg" alt="「Animation (by name)」を選び、ObjectにPlayer、Animation nameを選ぶ（Dino Douxなら Idle・Move など）" loading="lazy"></a>
+      <figcaption>「Animation (by name)」を選び、ObjectにPlayer、Animation nameを選ぶ（Dino Douxなら Idle・Move など）</figcaption>
+    </figure>
     <p>
       もっとかんたんにしたい人は、Player に「<strong>Platformer character animator</strong>」というビヘイビアを追加する方法もあります。<br>
       立ち止まり・走る・跳ぶなどのアニメーションを、自動で切りかえてくれます。<br>
@@ -171,14 +170,14 @@
     <h3>ワザ3: イベントにメモ（コメント）を残す</h3>
     <p>
       イベントが増えてくると、「これ何のイベントだっけ？」となりがち。<br>
-      イベントシートの上のほうのボタンから<strong>コメント</strong>（メモ）を追加できます。<br>
+      イベントを1つクリックして選んでから、イベントシートの右上にある吹き出しのボタン（Add a comment）を押すと、選んだイベントの上に黄色い<strong>コメント</strong>（メモ）が追加されます。<br>
+      そのまま文字を打って、何もないところをクリックすれば完成。<br>
       「ここから敵のルール」のように書いておくと、発表のときに説明しやすくなるよ。
     </p>
-    <div class="screenshot">
-      <span class="cam">📷</span>
-      イベントシートにコメント（「敵のルール」など）を追加したところ
-      <div class="fname">ch6-03_add-comment.png</div>
-    </div>
+    <figure class="figure">
+      <a href="img/ch6-03_add-comment.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-03_add-comment.jpg" alt="右上の吹き出しボタン（Add a comment）でコメントを追加したところ" loading="lazy"></a>
+      <figcaption>右上の吹き出しボタン（Add a comment）でコメントを追加したところ</figcaption>
+    </figure>
 
     <h2>6-4. テストプレイしてもらおう</h2>
     <p>
@@ -237,19 +236,21 @@
     <h2>6-6. 作品の公開について（任意）</h2>
     <p>
       GDevelopには、作ったゲームをインターネットで遊べるように公開する機能があります。<br>
+      画面の上の真ん中にある「<strong>Share</strong>」ボタンを押すと、公開のしかたを選ぶ画面が開きます。<br>
+      いちばん上の「<strong>gd.games</strong>」（Easiest＝いちばんかんたん）を使うと、遊べるURLが作れます。<br>
       公開すると、家族や友だちにURLを送って遊んでもらえます。<br>
       ただし、<strong>公開は講師の確認が終わってから</strong>にしてください。
     </p>
     <ul>
       <li>ゲームの中やタイトル・説明文に、<strong>本名・学校名・住所など</strong>を書かない</li>
       <li>アセットストアの無料素材や自分で作った素材だけを使っているか、もう一度確認する</li>
+      <li>ライセンスが <strong>CC-BY</strong> の素材を使ったら、作った人の名前（クレジット）をタイトル画面などに書く（この教科書の Dino Doux なら「Dino Doux by ScissorMarks」）</li>
       <li>公開するかどうかは、保護者の方とも相談して決める</li>
     </ul>
-    <div class="screenshot">
-      <span class="cam">📷</span>
-      エディタ上部の公開（Share / Publish）ボタンの位置（赤枠）。講師確認後に使う
-      <div class="fname">ch6-04_share-button.png</div>
-    </div>
+    <figure class="figure">
+      <a href="img/ch6-04_share-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-04_share-dialog.jpg" alt="上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）" loading="lazy"></a>
+      <figcaption>上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）</figcaption>
+    </figure>
 
     <h2>6-7. この先の3つの道</h2>
     <p>

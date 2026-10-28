@@ -65,34 +65,38 @@
       <span class="step-num">1</span><span class="step-title">落ちたと判断するYの数字を決める</span>
       <p>シーンエディタで、いちばん低い地面を選んでプロパティの <strong>Y</strong> を見ます。<br>
         その数字より<strong>300くらい大きい数</strong>を、「落ちた」と判断するラインにしよう。<br>
-        たとえば地面のYが 600 なら、ラインは 900 です。</p>
+        たとえば地面のYが 620 なら、ラインは 920 です。</p>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">条件「PlayerのYがラインより大きい」を作る</span>
       <p>イベントシートで「Add a new event」→「Add condition」→ <code>y position</code> と検索。<br>
-        Player のY座標を比べる条件（「<strong>Y position</strong>」など）を選び、Object に <code>Player</code>、比べ方を「<strong>&gt; (greater than)</strong>」（より大きい）、値に決めたラインの数字を入れて「OK」。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        条件選択画面でY positionを選び、Player／&gt;／900を指定しているところ
-        <div class="fname">ch4-01_position-condition.png</div>
-      </div>
+        いちばん上の「<strong>Y position</strong>」（General ＞ Objects ＞ Position）を選びます。<br>
+        Object に <code>Player</code>、「Sign of the test」（比べ方）を「<strong>&gt; (greater than)</strong>」（より大きい）、「Value to compare」に決めたラインの数字を入れて「Ok」。</p>
+      <figure class="figure">
+        <a href="img/ch4-01_position-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-01_position-condition.jpg" alt="「Y position」を選び、Player／&gt; (greater than)／920を指定する" loading="lazy"></a>
+        <figcaption>「Y position」を選び、Player／> (greater than)／920を指定する</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">アクション「Stage1をやり直す」を作る</span>
-      <p>「Add action」→ <code>scene</code> と検索して「<strong>Change the scene</strong>」（シーンを切り替える）を選びます。<br>
-        シーン名に <code>Stage1</code> を選んで「OK」。<br>
+      <p>「Add action」→ <code>change the scene</code> と検索して、いちばん上の「<strong>Change the scene</strong>」（シーンを切り替える、General ＞ Scene）を選びます。<br>
+        <code>scene</code> だけで検索すると候補が多すぎて見つけにくいので注意。<br>
+        「Name of the new scene」（切り替え先のシーン）で <code>Stage1</code> を選んで「Ok」。<br>
         今いるシーンと同じシーンに切り替えると、<strong>シーンが最初からやり直し</strong>になります。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        アクション選択画面でChange the sceneを選び、Stage1を指定しているところ
-        <div class="fname">ch4-02_change-scene-action.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch4-02_change-scene-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-02_change-scene-action.jpg" alt="change the sceneと検索して「Change the scene」を選び、Name of the new sceneをStage1にする" loading="lazy"></a>
+        <figcaption>change the sceneと検索して「Change the scene」を選び、Name of the new sceneをStage1にする</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-02b_fall-event-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-02b_fall-event-done.jpg" alt="落ちたらやり直しのイベントができたところ" loading="lazy"></a>
+        <figcaption>落ちたらやり直しのイベントができたところ</figcaption>
+      </figure>
       <div class="event-sheet">
         <div class="ev-label">落ちたらやり直し</div>
         <div class="ev-row">
-          <div class="ev-cond"><span class="ev-head">条件</span>The Y position of <code>Player</code> &gt; 900</div>
+          <div class="ev-cond"><span class="ev-head">条件</span>The Y position of <code>Player</code> &gt; 920</div>
           <div class="ev-act"><span class="ev-head">アクション</span>Change the scene to <code>Stage1</code></div>
         </div>
       </div>
@@ -105,27 +109,36 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">敵の素材を追加する</span>
-      <p>「Add a new object」からアセットストアで <code>enemy</code> や <code>slime</code> や <code>monster</code> と検索します。<br>
+      <p>オブジェクトパネルの「＋」からアセットストアで <code>slime</code> や <code>enemy</code> と検索します。<br>
         横から見た敵を選んで追加し、名前を <code>Enemy</code> にしよう。<br>
-        地面の上、少し進んだ場所に1体置きます。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        アセットストアでenemyと検索し、敵の素材を選んでいるところ
-        <div class="fname">ch4-03_asset-store-enemy.png</div>
-      </div>
+        この教科書では「slime normal」（ライセンスはCC0）を使っています。<br>
+        地面の上、少し進んだ場所に1体置きます（右クリック →「Add instance to the scene」で置いて X・Y を直してもOK）。</p>
+      <figure class="figure">
+        <a href="img/ch4-03_asset-store-enemy.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-03_asset-store-enemy.jpg" alt="slimeと検索し、slime normalを選んでいるところ" loading="lazy"></a>
+        <figcaption>slimeと検索し、slime normalを選んでいるところ</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-03b_enemy-detail.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-03b_enemy-detail.jpg" alt="slime normalのくわしい画面。ライセンスはCC0。右下の「Add to the scene」で追加" loading="lazy"></a>
+        <figcaption>slime normalのくわしい画面。ライセンスはCC0。右下の「Add to the scene」で追加</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">Enemy にも Platformer character をつける</span>
       <p>敵も地面の上を歩いてほしいので、<code>Enemy</code> にも「<strong>Platformer character</strong>」ビヘイビアをつけます。<br>
         ただし、このままだと<strong>キミのキー操作で敵まで動いてしまいます</strong>。<br>
-        ビヘイビアの設定にある「<strong>Default controls</strong>」（いつものキー操作）の<strong>チェックを外して</strong>おこう。<br>
-        ついでに <strong>最高速度</strong>（Max. speed など）を Player より小さい数（半分くらい）にしておくと、のんびり歩く敵になるよ。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        EnemyのPlatformer character設定。Default controlsのチェックを外し、Max. speedを小さくしたところ
-        <div class="fname">ch4-04_enemy-default-controls.png</div>
+        ビヘイビアの設定のいちばん上にある「<strong>Disable default keyboard controls</strong>」（いつものキー操作を使わない）を<strong>ONにして</strong>おこう。<br>
+        ついでに <strong>Max. speed</strong>（最高速度）を Player より小さい数（<code>120</code> くらい）にしておくと、のんびり歩く敵になるよ。<br>
+        数字を入れる欄はとなりどうしで似ているので、「Slope max. angle」など別の欄を変えないように気をつけよう。</p>
+      <div class="trouble">
+        <h4>🚨 ビヘイビアの右上の「－」は押さない</h4>
+        <p>左のプロパティのビヘイビア名の右はしにある「－」は、そのビヘイビアを<strong>消す</strong>ボタンです。<br>
+          押すと「消しますか？」と聞かれるので、まちがえたら「キャンセル」を押そう。</p>
       </div>
+      <figure class="figure">
+        <a href="img/ch4-04_enemy-default-controls.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-04_enemy-default-controls.jpg" alt="Enemyを選び、左のBehaviorsでDisable default keyboard controlsをON、Max. speedを120にしたところ" loading="lazy"></a>
+        <figcaption>Enemyを選び、左のBehaviorsでDisable default keyboard controlsをON、Max. speedを120にしたところ</figcaption>
+      </figure>
     </div>
 
     <h2>4-4. 敵に「今どっち向きか」を覚えさせよう</h2>
@@ -147,14 +160,16 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">Enemy にオブジェクト変数 GoingRight を作る</span>
-      <p><code>Enemy</code> をダブルクリックして、上のタブから「<strong>Variables</strong>」（変数）を開きます。<br>
-        「Add a variable」で、名前を <code>GoingRight</code>、種類（Type）を <strong>Boolean</strong>、値を <strong>true</strong> にして「Apply」。<br>
+      <p>オブジェクトパネルで <code>Enemy</code> を選ぶと、左のプロパティの下のほうに「<strong>Object Variables</strong>」（オブジェクト変数）が出ます。<br>
+        その右の「＋」を押すと、新しい変数が1行できます。<br>
+        名前を <code>GoingRight</code> にして <code>Enter</code>。<br>
+        名前の右の「123」のマーク（種類）を押して <strong>Boolean</strong> を選び、右はしの「⇄」ボタンで値を <strong>True</strong> にします。<br>
+        ダブルクリックで開く「Edit Enemy」の「Variables」タブで作ってもOKです。<br>
         これで「最初は右へ進む」敵になります。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        EnemyのVariablesタブで、GoingRight（Boolean、true）を追加したところ
-        <div class="fname">ch4-05_object-variable.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch4-05_object-variable.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-05_object-variable.jpg" alt="左のObject VariablesにGoingRight（Boolean、True）を追加したところ" loading="lazy"></a>
+        <figcaption>左のObject VariablesにGoingRight（Boolean、True）を追加したところ</figcaption>
+      </figure>
     </div>
 
     <h2>4-5. 折り返しの目印を置こう</h2>
@@ -188,27 +203,28 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">目印のオブジェクトを2つ作る</span>
-      <p>アセットストアから、小さな看板や矢印など目印になりそうな素材を追加して、名前を <code>TurnLeft</code> にします。<br>
-        もう1つ別の素材（同じ素材でもOK）を追加して、名前を <code>TurnRight</code> にしよう。<br>
+      <p>アセットストアで <code>sign</code> と検索し、小さな看板や矢印など目印になりそうな素材を選びます（この教科書では「ArrowSign」）。<br>
+        「Add to the scene」を押すと、ボタンが「<strong>Add again</strong>」（もう一度追加）に変わるので、続けてもう1回押そう。<br>
+        同じ素材のオブジェクトが2つできるので、名前をそれぞれ <code>TurnLeft</code> と <code>TurnRight</code> に変えます。<br>
         目印には<strong>ビヘイビアをつけません</strong>。</p>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">敵の通り道の両はしに置く</span>
       <p>敵が歩いてほしい範囲の<strong>右はしに TurnLeft</strong>、<strong>左はしに TurnRight</strong> を置きます。<br>
-        敵と同じ高さ（地面の上）に置いて、<strong>敵が歩いてきたら必ず重なる位置</strong>にしよう。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        地面の上に、Enemyをはさんで左にTurnRight、右にTurnLeftを置いたシーン
-        <div class="fname">ch4-06_turn-markers-placed.png</div>
-      </div>
+        敵と同じ高さ（地面の上）に置いて、<strong>敵が歩いてきたら必ず重なる位置</strong>にしよう。<br>
+        プロパティの Y を「地面の Y − 目印の H」にすると、ちょうど地面の上に立ちます（地面が Y 620、目印の高さが 44 なら Y 576）。</p>
+      <figure class="figure">
+        <a href="img/ch4-06_turn-markers-placed.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-06_turn-markers-placed.jpg" alt="地面の上に、左からTurnRight・Enemy・TurnLeftを置いたところ" loading="lazy"></a>
+        <figcaption>地面の上に、左からTurnRight・Enemy・TurnLeftを置いたところ</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">ゲームが始まったら目印をかくす</span>
       <p>目印はプレイヤーに見えなくていいので、ゲームが始まった瞬間にかくします。<br>
-        「Add a new event」→「Add condition」→ <code>beginning</code> と検索して「<strong>At the beginning of the scene</strong>」（シーンの始まり）を選びます。<br>
-        アクションは <code>hide</code> と検索して「<strong>Hide</strong>」（かくす）を選び、<code>TurnLeft</code> に。<br>
+        「Add a new event」→「Add condition」→ <code>beginning</code> と検索して「<strong>At the beginning of the scene</strong>」（シーンの始まり、General ＞ Scene）を選んで「Ok」。<br>
+        アクションは <code>hide</code> と検索していちばん上の「<strong>Hide</strong>」（かくす、General ＞ Objects ＞ Visibility）を選び、Object を <code>TurnLeft</code> にします。<br>
         同じイベントにもう1つ「Hide」を足して、<code>TurnRight</code> もかくそう。</p>
       <div class="event-sheet">
         <div class="ev-label">目印をかくす</div>
@@ -217,35 +233,36 @@
           <div class="ev-act"><span class="ev-head">アクション</span>Hide <code>TurnLeft</code><br>Hide <code>TurnRight</code></div>
         </div>
       </div>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        At the beginning of the sceneとHideアクション2つでできた、目印をかくすイベント
-        <div class="fname">ch4-07_hide-markers-event.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch4-07_hide-markers-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-07_hide-markers-event.jpg" alt="At the beginning of the sceneでTurnLeftとTurnRightをかくすイベント" loading="lazy"></a>
+        <figcaption>At the beginning of the sceneでTurnLeftとTurnRightをかくすイベント</figcaption>
+      </figure>
     </div>
 
     <h2>4-6. 敵を往復させるイベントを作ろう</h2>
     <p>
       いよいよ敵を動かします。<br>
-      Default controls を外した敵は、自分では動きません。<br>
+      キー操作を使わない設定にした敵は、自分では動きません。<br>
       そこで、イベントで「<strong>右キーが押されたふり</strong>」をさせて動かします。
     </p>
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">「右へ進んでいるなら、右キーを押したふり」</span>
-      <p>「Add a new event」→「Add condition」→ <code>variable</code> と検索して、<strong>オブジェクト変数の値を調べる条件</strong>を選びます。<br>
-        Object に <code>Enemy</code>、変数に <code>GoingRight</code>、値に <strong>true</strong> を指定して「OK」。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        条件選択画面で、EnemyのGoingRightがtrueかどうかを調べる条件を設定しているところ
-        <div class="fname">ch4-08_enemy-variable-condition.png</div>
-      </div>
-      <p>アクションは <code>simulate</code> と検索して、Platformer character の「<strong>Simulate right key press</strong>」（右キーを押したふり）を選び、Object に <code>Enemy</code> を指定。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        アクション選択画面でSimulate right key pressを選び、Enemyを指定しているところ
-        <div class="fname">ch4-09_simulate-key-action.png</div>
-      </div>
+      <p>「Add a new event」→「Add condition」→ <code>variable</code> と検索して、「<strong>Object variable value</strong>」（オブジェクト変数の値、General ＞ Objects ＞ Variables）を選びます。<br>
+        Object に <code>Enemy</code>、Variable に <code>GoingRight</code> と入れます。<br>
+        GoingRight は Boolean なので、下に「Check if the value is」（値は〜か）と <strong>True</strong>／<strong>False</strong> のボタンが出ます。<br>
+        <strong>True</strong> を押して「Ok」。</p>
+      <figure class="figure">
+        <a href="img/ch4-08_enemy-variable-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-08_enemy-variable-condition.jpg" alt="「Object variable value」でEnemyのGoingRightを調べ、Trueを選ぶ" loading="lazy"></a>
+        <figcaption>「Object variable value」でEnemyのGoingRightを調べ、Trueを選ぶ</figcaption>
+      </figure>
+      <p>アクションは <code>simulate</code> と検索して「<strong>Simulate right key press</strong>」（右キーを押したふり）を選び、Object に <code>Enemy</code> を指定して「Ok」。<br>
+        同じ名前が2つあります。<br>
+        下に「<strong>Platform behavior ＞ Platformer controls</strong>」と書いてあるほうを選ぼう（「Top-down movement」のほうではありません）。</p>
+      <figure class="figure">
+        <a href="img/ch4-09_simulate-key-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-09_simulate-key-action.jpg" alt="「Simulate right key press」（Platform behavior ＞ Platformer controlsのほう）を選び、ObjectをEnemyにする" loading="lazy"></a>
+        <figcaption>「Simulate right key press」（Platform behavior ＞ Platformer controlsのほう）を選び、ObjectをEnemyにする</figcaption>
+      </figure>
     </div>
 
     <div class="step">
@@ -257,8 +274,14 @@
     <div class="step">
       <span class="step-num">3</span><span class="step-title">目印にさわったら向きを変える</span>
       <p>さらにイベントを2つ作ります。<br>
-        条件は「Collision」で <code>Enemy</code> と <code>TurnLeft</code>、アクションはオブジェクト変数を変えるアクションで <code>GoingRight</code> を <strong>false</strong> にします。<br>
+        条件は「Collision」（General ＞ Objects ＞ Collision）で <code>Enemy</code> と <code>TurnLeft</code>。<br>
+        アクションは <code>object variable</code> と検索して「<strong>Change object variable value</strong>」（オブジェクト変数の値を変える）を選びます。<br>
+        Object に <code>Enemy</code>、Variable に <code>GoingRight</code>、Value を「<strong>set to false</strong>」（false にする）にします。<br>
         もう1つは <code>Enemy</code> と <code>TurnRight</code> のCollisionで、<code>GoingRight</code> を <strong>true</strong> に。</p>
+      <figure class="figure">
+        <a href="img/ch4-09b_object-variable-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-09b_object-variable-action.jpg" alt="「Change object variable value」でEnemyのGoingRightを「set to false」にする" loading="lazy"></a>
+        <figcaption>「Change object variable value」でEnemyのGoingRightを「set to false」にする</figcaption>
+      </figure>
       <div class="event-sheet">
         <div class="ev-label">敵の往復（4つのイベント）</div>
         <div class="ev-row">
@@ -278,11 +301,14 @@
           <div class="ev-act"><code>Enemy</code> の GoingRight を true にする</div>
         </div>
       </div>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        敵の往復の4つのイベント（A〜D）が並んだイベントシート
-        <div class="fname">ch4-10_enemy-events-done.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch4-10_enemy-events-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-10_enemy-events-done.jpg" alt="敵の往復の4つのイベント（A〜D）" loading="lazy"></a>
+        <figcaption>敵の往復の4つのイベント（A〜D）</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-10b_preview-enemy-patrol.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-10b_preview-enemy-patrol.jpg" alt="Previewで、目印が消えて敵（赤枠）が左右に往復している" loading="lazy"></a>
+        <figcaption>Previewで、目印が消えて敵（赤枠）が左右に往復している</figcaption>
+      </figure>
       <p>Previewで、敵が目印のあいだを行ったり来たりすれば成功！<br>
         敵の向き（絵の左右）も変えたい人は、第3章のキャラの向きと同じように「Flip the object horizontally」をイベントAとBに足してみよう。</p>
     </div>
@@ -324,13 +350,16 @@
       <span class="step-num">1</span><span class="step-title">条件を2つ重ねた「踏んだ」イベントを作る</span>
       <p>「Add a new event」で、1つ目の条件に「Collision: <code>Player</code> と <code>Enemy</code>」を入れます。<br>
         同じイベントの左側で、もう一度「Add condition」を押して、<code>falling</code> と検索。<br>
-        Platformer character の「<strong>Is falling</strong>」（落ちている）を選び、Object に <code>Player</code> を指定します。<br>
+        「<strong>Is falling</strong>」（落ちている）が2つ出るので、「<strong>Platform behavior ＞ Platformer state</strong>」のほうを選び、Object に <code>Player</code> を指定します。<br>
         1つのイベントに条件を2つ並べると、「<strong>両方ともYESのときだけ</strong>」アクションが実行されます。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        条件選択画面でIs fallingを選び、Playerを指定しているところ
-        <div class="fname">ch4-11_is-falling-condition.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch4-11_is-falling-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-11_is-falling-condition.jpg" alt="「Is falling」（Platform behavior ＞ Platformer stateのほう）を選び、ObjectをPlayerにする" loading="lazy"></a>
+        <figcaption>「Is falling」（Platform behavior ＞ Platformer stateのほう）を選び、ObjectをPlayerにする</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-11b_allow-jumping-again.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-11b_allow-jumping-again.jpg" alt="「Allow jumping again」（Platform behaviorのほう）を選び、ObjectをPlayerにする" loading="lazy"></a>
+        <figcaption>「Allow jumping again」（Platform behaviorのほう）を選び、ObjectをPlayerにする</figcaption>
+      </figure>
     </div>
 
     <div class="step">
@@ -338,8 +367,8 @@
       <p>アクションは3つです。</p>
       <ul>
         <li>「Delete the object」で <code>Enemy</code> を消す</li>
-        <li><code>allow</code> と検索して、Platformer character の「<strong>Allow jumping again</strong>」（もう一度ジャンプできるようにする）を <code>Player</code> に</li>
-        <li><code>simulate</code> と検索して、「<strong>Simulate jump key press</strong>」（ジャンプキーを押したふり）を <code>Player</code> に</li>
+        <li><code>jumping again</code> と検索して、「<strong>Allow jumping again</strong>」（もう一度ジャンプできるようにする、Platform behavior のほう）を <code>Player</code> に</li>
+        <li><code>simulate jump</code> と検索して、「<strong>Simulate jump key press</strong>」（ジャンプキーを押したふり、Platform behavior のほう）を <code>Player</code> に</li>
       </ul>
       <p>2つ目のアクションがないと、空中ではジャンプできないので跳ねてくれません。</p>
     </div>
@@ -359,11 +388,10 @@
           <div class="ev-act">Change the scene to <code>Stage1</code></div>
         </div>
       </div>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        踏んだら倒す（E）と当たったらやり直し（F）の2つのイベントが上下に並んだイベントシート
-        <div class="fname">ch4-12_stomp-events-done.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch4-12_stomp-events-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-12_stomp-events-done.jpg" alt="踏んだら倒す（E）と当たったらやり直し（F）が上下に並んだところ" loading="lazy"></a>
+        <figcaption>踏んだら倒す（E）と当たったらやり直し（F）が上下に並んだところ</figcaption>
+      </figure>
     </div>
 
     <div class="trouble">
@@ -388,11 +416,10 @@
         横からぶつかるとスタートに戻る。<br>
         両方できれば大成功！<br>
         <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        Previewのゲーム画面。Playerが敵を踏んで跳ね上がった瞬間
-        <div class="fname">ch4-13_preview-enemy.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch4-13_preview-enemy.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-13_preview-enemy.jpg" alt="Previewで敵を上から踏んだところ。敵が消えて、Playerは無事" loading="lazy"></a>
+        <figcaption>Previewで敵を上から踏んだところ。敵が消えて、Playerは無事</figcaption>
+      </figure>
     </div>
 
     <h2>4-8. 💪 やってみよう</h2>
@@ -441,8 +468,8 @@
 
     <div class="trouble">
       <h4>自分が矢印キーを押すと、敵まで一緒に動く</h4>
-      <p><strong>原因:</strong> Enemy の Platformer character で「Default controls」のチェックが入ったまま。</p>
-      <p><strong>直し方:</strong> Enemy のビヘイビア設定で、Default controls のチェックを外して「Apply」。</p>
+      <p><strong>原因:</strong> Enemy の Platformer character で「Disable default keyboard controls」がOFFのまま。</p>
+      <p><strong>直し方:</strong> Enemy のビヘイビア設定で、Disable default keyboard controls をONにしよう。</p>
     </div>
 
     <div class="trouble">
@@ -515,7 +542,7 @@
     <h2>4-11. ✅ チェックリスト</h2>
     <div class="checklist">
       <label><input type="checkbox"> 穴に落ちると、Stage1の最初からやり直しになった</label>
-      <label><input type="checkbox"> Enemy の Default controls を外して、オブジェクト変数 GoingRight を作った</label>
+      <label><input type="checkbox"> Enemy の Disable default keyboard controls をONにして、オブジェクト変数 GoingRight を作った</label>
       <label><input type="checkbox"> 敵が TurnLeft と TurnRight のあいだを往復するようになった</label>
       <label><input type="checkbox"> 上から踏むと敵が消えて、Playerが跳ねた</label>
       <label><input type="checkbox"> 横からぶつかると、やり直しになった</label>

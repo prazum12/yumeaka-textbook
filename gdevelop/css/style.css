@@ -582,3 +582,7 @@ th { color: #fff; background: var(--blue); }
   .event-sheet .ev-row { grid-template-columns: 1fr; }
   .event-sheet .ev-cond { border-right: none; border-bottom: 1px dashed #cbd5e1; }
 }
+
+/* スクリーンショット: クリックで原寸表示 */
+.figure a { display: inline-block; cursor: zoom-in; }
+.figure a img { border: 1px solid rgba(0,0,0,.12); }

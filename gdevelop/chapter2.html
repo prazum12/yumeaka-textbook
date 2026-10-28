@@ -46,17 +46,18 @@
     <div class="step">
       <span class="step-num">1</span><span class="step-title">my-action-game を開く</span>
       <p><code>https://editor.gdevelop.io</code> を開き、ログインしていることを確認します。<br>
-        ホーム画面の「<strong>Create</strong>」にある、自分のプロジェクトの一覧（My projects や Recent など）から <code>my-action-game</code> を選んで開こう。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        ホーム画面の自分のプロジェクト一覧からmy-action-gameを開くところ（赤枠）
-        <div class="fname">ch2-01_open-project.png</div>
-      </div>
+        ホーム画面の左の「<strong>Create</strong>」を選ぶと、下のほうの「<strong>Games</strong>」に自分のプロジェクトが並んでいます。<br>
+        <code>my-action-game</code> の右下にある「<strong>Open</strong>」を押して開こう。</p>
+      <figure class="figure">
+        <a href="img/ch2-01_open-project.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-01_open-project.jpg" alt="ホーム画面のCreateを選び、Gamesの一覧にあるmy-action-gameを開く" loading="lazy"></a>
+        <figcaption>ホーム画面のCreateを選び、Gamesの一覧にあるmy-action-gameを開く</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">Stage1 を開いて、Previewで前回の状態を確認する</span>
-      <p>プロジェクトマネージャーから <code>Stage1</code> をクリックしてシーンを開きます。<br>
+      <p>ふつうは <code>Stage1</code> のシーンがそのまま開きます。<br>
+        開いていなければ、左上の「≡」でプロジェクトマネージャーを開き、<code>Stage1</code> をクリックします。<br>
         Previewを押して、前回と同じように走ってジャンプできるか確かめよう。</p>
     </div>
 
@@ -99,46 +100,52 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">ブロックの素材を追加する</span>
-      <p>オブジェクトパネルの「Add a new object」から、アセットストアで <code>block</code> や <code>brick</code> や <code>box</code> と検索します。<br>
-        足場にしたい素材を選んで追加し、名前を <code>Block</code> にしよう。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        アセットストアでblockと検索し、ブロックの素材を選んでいるところ
-        <div class="fname">ch2-02_asset-store-block.png</div>
-      </div>
+      <p>オブジェクトパネルの「＋」から、アセットストアで <code>block</code> と検索します（Viewpointの「Side view」にチェックを入れると探しやすい）。<br>
+        足場にしたい素材を選んで追加し、名前を <code>Block</code> にしよう。<br>
+        この教科書では「Wood Block 1」を使い、置いたあとにプロパティの W と H を <code>64</code> にしています。</p>
+      <figure class="figure">
+        <a href="img/ch2-02_asset-store-block.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-02_asset-store-block.jpg" alt="blockと検索し、Side viewにチェック。Wood Block 1を選んでいるところ" loading="lazy"></a>
+        <figcaption>blockと検索し、Side viewにチェック。Wood Block 1を選んでいるところ</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">Block に Platform ビヘイビアをつける</span>
       <p><code>Block</code> をダブルクリック →「Behaviors」→「Add a behavior」→「<strong>Platform</strong>」→「Apply」。<br>
+        「Ledges can be grabbed」のチェックは外しておこう。<br>
         第1章の Ground と同じ手順だよ。<br>
         これを忘れると、Playerがブロックをすり抜けます。</p>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">グリッド（方眼）を表示する</span>
-      <p>シーンエディタの上のツールバーにある<strong>グリッド（方眼）</strong>のボタンを押すと、シーンに方眼が表示されます。<br>
+      <p>画面の右上のボタンの列にある「<strong>#</strong>」のボタンを押して、出てきたメニューの「<strong>Show grid</strong>」（グリッドを表示）を選ぶと、シーンに方眼が表示されます。<br>
         グリッドがあると、ブロックがマス目にピタッとそろって置けるようになるよ。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        シーンエディタ上部のグリッド表示ボタン（赤枠）と、グリッドが表示されたシーン
-        <div class="fname">ch2-03_grid-button.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch2-03_grid-button.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-03_grid-button.jpg" alt="右上の「#」ボタンのメニューから「Show grid」を選ぶ" loading="lazy"></a>
+        <figcaption>右上の「#」ボタンのメニューから「Show grid」を選ぶ</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch2-03b_grid-shown.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-03b_grid-shown.jpg" alt="グリッド（方眼）が表示されたシーン" loading="lazy"></a>
+        <figcaption>グリッド（方眼）が表示されたシーン</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">ブロックをたくさん並べる</span>
       <p>オブジェクトパネルから <code>Block</code> をシーンにドラッグして置きます。<br>
-        同じものをたくさん置くときは、置いたブロックを選んで
-        <span class="os-win"><code>Ctrl + C</code>（コピー）→ <code>Ctrl + V</code>（貼り付け）</span><span class="os-mac"><code>⌘ + C</code>（コピー）→ <code>⌘ + V</code>（貼り付け）</span>
-        をくり返すと速いよ。<br>
+        同じものをたくさん置くときは、置いたブロックを<strong>右クリック →「Duplicate」</strong>（複製）すると、すぐ横にもう1つできるよ。<br>
+        <span class="os-win"><code>Ctrl + D</code></span><span class="os-mac"><code>⌘ + D</code></span> でも複製できます。<br>
         2-2で描いた設計図を見ながら、ステージを組み立てよう。</p>
-      <p>🎬 操作動画: ブロックをコピー＆貼り付けして、段差や足場を並べていく様子（ch2-mov01）</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        ブロックを何個も並べて、段差と空中の足場を作ったシーン
-        <div class="fname">ch2-04_blocks-placed.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch2-04b_duplicate-menu.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04b_duplicate-menu.jpg" alt="置いたものを右クリックして「Duplicate」を選ぶと、同じものがもう1つできる" loading="lazy"></a>
+        <figcaption>置いたものを右クリックして「Duplicate」を選ぶと、同じものがもう1つできる</figcaption>
+      </figure>
+      <p>🎬 操作動画: ブロックを複製（Duplicate）して、段差や足場を並べていく様子（ch2-mov01）</p>
+      <figure class="figure">
+        <a href="img/ch2-04_blocks-placed.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04_blocks-placed.jpg" alt="地面に穴をあけ、ブロックの段差と空中の足場（Floating）を置いたステージ" loading="lazy"></a>
+        <figcaption>地面に穴をあけ、ブロックの段差と空中の足場（Floating）を置いたステージ</figcaption>
+      </figure>
     </div>
 
     <div class="trouble">
@@ -156,25 +163,26 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">通り抜け床用のオブジェクトを追加する</span>
-      <p>アセットストアから、薄い板や橋のような素材を追加して、名前を <code>Floating</code> にします。<br>
+      <p>アセットストアから、薄い板や橋のような素材を追加して、名前を <code>Floating</code> にします（<code>bridge</code> や <code>platform</code> で検索すると見つかるよ）。<br>
         <code>Floating</code> にも Platform ビヘイビアをつけよう。</p>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">Platform type を Jumpthru にする</span>
-      <p><code>Floating</code> の「Behaviors」で、Platform の設定にある「<strong>Platform type</strong>」（足場の種類）を「<strong>Jumpthru platform</strong>」に変えて「Apply」。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        FloatingのPlatformビヘイビア設定。Platform typeをJumpthru platformに変えたところ
-        <div class="fname">ch2-05_jumpthru-setting.png</div>
-      </div>
+      <p>オブジェクトパネルで <code>Floating</code> を選ぶと、左のプロパティに「Behaviors」が出ます。<br>
+        Platform の設定にある「<strong>Type</strong>」（足場の種類）を「<strong>Jumpthru platform</strong>」に変えよう。<br>
+        ダブルクリックで開く「Edit Floating」の「Behaviors」タブで変えて「Apply」を押してもOKです。</p>
+      <figure class="figure">
+        <a href="img/ch2-05_jumpthru-setting.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-05_jumpthru-setting.jpg" alt="Floatingを選び、左のBehaviorsにあるPlatformのTypeを「Jumpthru platform」にしたところ" loading="lazy"></a>
+        <figcaption>Floatingを選び、左のBehaviorsにあるPlatformのTypeを「Jumpthru platform」にしたところ</figcaption>
+      </figure>
       <p>Previewで、下からジャンプしてすり抜けられるか、上に乗れるか確かめよう。<br>
         乗っているときに <code>↓</code> キーを押すと、下に降りられるよ。</p>
     </div>
 
     <table>
-      <tr><th>Platform type</th><th>どうなる？</th></tr>
-      <tr><td><strong>Platform</strong>（ふつうの足場）</td><td>ぶつかる。上に乗れる。下からはすり抜けない</td></tr>
+      <tr><th>Type</th><th>どうなる？</th></tr>
+      <tr><td><strong>NormalPlatform</strong>（ふつうの足場）</td><td>ぶつかる。上に乗れる。下からはすり抜けない</td></tr>
       <tr><td><strong>Jumpthru platform</strong>（通り抜け床）</td><td>下からはすり抜ける。上には乗れる</td></tr>
       <tr><td><strong>Ladder</strong>（はしご）</td><td>ぶつからない。重なっているあいだ ↑↓ キーで登り降りできる</td></tr>
     </table>
@@ -216,25 +224,24 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">イベントシートを開く</span>
-      <p>シーンエディタの上のタブに、「<strong>Stage1 (Events)</strong>」のような<strong>イベント</strong>のタブがあります。<br>
-        これをクリックすると、ルールを書く画面（イベントシート）に切り替わります。<br>
-        見つからないときは、プロジェクトマネージャーで <code>Stage1</code> の右のメニューから「Edit events」を選んでもOK。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        シーンエディタ上部のStage1 (Events)タブ（赤枠）と、空のイベントシート
-        <div class="fname">ch2-06_events-tab.png</div>
-      </div>
+      <p>画面のいちばん上のタブに、「<strong>Stage1</strong>」と「<strong>Stage1 (Events)</strong>」の2つが並んでいます。<br>
+        「Stage1 (Events)」をクリックすると、ルールを書く画面（イベントシート）に切り替わります。<br>
+        見つからないときは、プロジェクトマネージャー（≡）で <code>Stage1</code> を右クリック →「<strong>Open events sheet</strong>」を選んでもOK。</p>
+      <figure class="figure">
+        <a href="img/ch2-06_events-tab.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-06_events-tab.jpg" alt="いちばん上の「Stage1 (Events)」タブを開いたところ。左上に「＋ Add a new event」" loading="lazy"></a>
+        <figcaption>いちばん上の「Stage1 (Events)」タブを開いたところ。左上に「＋ Add a new event」</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">新しいイベントを追加する</span>
-      <p>イベントシートの上のほうにある「<strong>Add a new event</strong>」（新しいイベントを追加）を押します。<br>
+      <p>イベントシートの左上にある「<strong>＋ Add a new event</strong>」（新しいイベントを追加）を押します。<br>
+        イベントが1つもないときは、真ん中の「Add an event」ボタンでもOK。<br>
         左に「Add condition」（条件を追加）、右に「Add action」（アクションを追加）と書かれた空のイベントが1つできます。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        Add a new eventで追加された空のイベント（左にAdd condition、右にAdd action）
-        <div class="fname">ch2-07_add-new-event.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch2-07_add-new-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-07_add-new-event.jpg" alt="追加された空のイベント。左に「Add condition」、右に「Add action」" loading="lazy"></a>
+        <figcaption>追加された空のイベント。左に「Add condition」、右に「Add action」</figcaption>
+      </figure>
     </div>
 
     <div class="step">
@@ -242,17 +249,20 @@
       <p>今回は条件は空のまま。<br>
         右側の「<strong>Add action</strong>」を押して、検索欄に <code>center camera</code> と入力します。<br>
         「<strong>Center the camera on an object</strong>」（カメラをオブジェクトの中心に合わせる）を選ぼう。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        アクション選択画面でcenter cameraと検索し、Center the camera on an objectを選んでいるところ
-        <div class="fname">ch2-08_center-camera-action.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch2-08_center-camera-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08_center-camera-action.jpg" alt="center cameraと検索し、「Center the camera on an object」を選ぶ" loading="lazy"></a>
+        <figcaption>center cameraと検索し、「Center the camera on an object」を選ぶ</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch2-08b_choose-player.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08b_choose-player.jpg" alt="ObjectにPlayerを選び、右下の「Ok」を押す" loading="lazy"></a>
+        <figcaption>ObjectにPlayerを選び、右下の「Ok」を押す</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">対象のオブジェクトに Player を選ぶ</span>
-      <p>設定欄の「Object」（オブジェクト）に <code>Player</code> を選んで「<strong>OK</strong>」を押します。<br>
-        ほかの欄は、最初の値のままでOK。<br>
+      <p>右側の設定欄の「Object」（オブジェクト）を押して、一覧から <code>Player</code> を選び、右下の「<strong>Ok</strong>」を押します。<br>
+        ほかの欄（Anticipate the movement、Layer の Base layer など）は、最初の値のままでOK。<br>
         イベントシートが次のようになっていれば完成です。</p>
       <div class="event-sheet">
         <div class="ev-label">Stage1 のイベント（第2章時点）</div>
@@ -261,11 +271,10 @@
           <div class="ev-act"><span class="ev-head">アクション</span>Center the camera on <code>Player</code></div>
         </div>
       </div>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        カメラ追従のイベントが完成したイベントシート
-        <div class="fname">ch2-09_camera-event-done.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch2-09_camera-event-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-09_camera-event-done.jpg" alt="カメラがPlayerについて来るイベントができたところ" loading="lazy"></a>
+        <figcaption>カメラがPlayerについて来るイベントができたところ</figcaption>
+      </figure>
     </div>
 
     <div class="step">
@@ -273,6 +282,10 @@
       <p>Previewを押して右へ走ってみよう。<br>
         カメラがPlayerを追いかけて、ステージの奥まで見えるようになったら成功！<br>
         <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存も忘れずに。</p>
+          <figure class="figure">
+            <a href="img/ch2-12_preview-camera.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-12_preview-camera.jpg" alt="Previewで右へ走ると、カメラがPlayerについて来る" loading="lazy"></a>
+            <figcaption>Previewで右へ走ると、カメラがPlayerについて来る</figcaption>
+          </figure>
     </div>
 
     <details class="hint">
@@ -295,23 +308,23 @@
     <div class="step">
       <span class="step-num">1</span><span class="step-title">シーンのプロパティを開く</span>
       <p>シーンエディタのタブに戻ります。<br>
-        シーンの<strong>何も置いていない場所を右クリック</strong>して、「<strong>Scene properties</strong>」（シーンのプロパティ）を選びます。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        シーンの空いている場所を右クリックしたメニューのScene properties（赤枠）
-        <div class="fname">ch2-10_scene-properties.png</div>
-      </div>
+        シーンの<strong>何も置いていない場所を右クリック</strong>して、メニューのいちばん下の「<strong>Open scene properties</strong>」（シーンのプロパティを開く）を選びます。</p>
+      <figure class="figure">
+        <a href="img/ch2-10_scene-properties.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-10_scene-properties.jpg" alt="何もない場所を右クリックしたメニューのいちばん下「Open scene properties」" loading="lazy"></a>
+        <figcaption>何もない場所を右クリックしたメニューのいちばん下「Open scene properties」</figcaption>
+      </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">背景色を選ぶ</span>
-      <p>「<strong>Scene background color</strong>」（シーンの背景色）の色をクリックして、好きな色を選ぼう。<br>
+      <p>「Stage1 properties」の画面が開きます。<br>
+        「<strong>Scene background color</strong>」（シーンの背景色）の右はしの色の四角をクリックして、好きな色を選び、「Ok」を押そう。<br>
+        欄には色が「赤;緑;青」の3つの数字で出ます（この教科書の水色は <code>135;206;235</code>）。<br>
         昼の空なら水色、夜のステージなら紺色、どうくつなら茶色……と、ステージのテーマに合わせるのがコツ。</p>
-      <div class="screenshot">
-        <span class="cam">📷</span>
-        Scene propertiesのScene background colorで色を選んでいるところ
-        <div class="fname">ch2-11_background-color.png</div>
-      </div>
+      <figure class="figure">
+        <a href="img/ch2-11_background-color.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-11_background-color.jpg" alt="Stage1 propertiesの画面。Scene background colorで背景色を選ぶ" loading="lazy"></a>
+        <figcaption>Stage1 propertiesの画面。Scene background colorで背景色を選ぶ</figcaption>
+      </figure>
     </div>
 
     <h2>2-7. 💪 やってみよう</h2>
@@ -382,7 +395,7 @@
 
     <div class="trouble">
       <h4>イベントのタブが見つからない</h4>
-      <p><strong>直し方:</strong> プロジェクトマネージャーで <code>Stage1</code> の右にあるメニュー（⋮ など）から「Edit events」を選ぶと、イベントシートが開きます。</p>
+      <p><strong>直し方:</strong> 左上の「≡」でプロジェクトマネージャーを開き、<code>Stage1</code> を右クリック →「Open events sheet」を選ぶと、イベントシートが開きます。</p>
     </div>
 
     <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
