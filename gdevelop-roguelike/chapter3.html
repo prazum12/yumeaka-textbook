@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第3章 ステージを作ろう | 夢アカGDevelop教科書（ローグライク編）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（ローグライク編）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第3章</span>
+      <h1>ステージを作ろう</h1>
+      <div class="date">📅 第3回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>タイルマップで、床をぬってステージの形を変えられる</li>
+        <li>壁（障害物）を置いて、通れない場所を作れる</li>
+        <li>Separate objects で、敵も壁にぶつかるようにできる</li>
+      </ul>
+    </div>
+
+    <h2>3-1. タイルマップってなに？</h2>
+    <p>
+      スターターの床（<code>Ground_Tilemap</code>）は「<strong>タイルマップ</strong>」でできています。<br>
+      タイルマップは、小さな四角い絵（タイル）を、ます目にならべて作る地面です。<br>
+      お絵かきのように、ブラシでタイルをぬって、ステージの形を変えられます。
+    </p>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">タイルマップを選ぶ</span>
+      <p>「Game Scene」のタブを開きます。<br>
+        ステージの灰色の床をクリックすると、左に「<strong>Tilemap painter</strong>」（タイルマップのお絵かき道具）が出てきます。<br>
+        左の Properties を下にスクロールすると、ぬれるタイルの一覧が見えます。</p>
+      <figure class="figure">
+        <a href="img/ch3-01_tilemap-select.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-01_tilemap-select.jpg" alt="床をクリックすると左にTilemap painterとタイルの一覧が出る（赤枠）" loading="lazy"></a>
+        <figcaption>「Tilemap painter」とタイルの一覧（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">Tilemap painter の道具</span> … 左から順に、ブラシ（1マスずつぬる）、四角（四角くまとめてぬる）、バケツ（同じ色のところをぬりつぶす）、スポイト（シーンのタイルを拾う）、消しゴム（タイルを消す）です。
+    </div>
+
+    <h2>3-2. 床を広げよう</h2>
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">四角の道具とタイルを選ぶ</span>
+      <p>道具の2番目の「<strong>四角</strong>」を選びます。<br>
+        タイルの一覧から、灰色の床のタイル（下の段のまん中）をクリックします。<br>
+        選んだタイルにオレンジの枠がつきます。</p>
+      <figure class="figure">
+        <a href="img/ch3-02_rect-tool.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-02_rect-tool.jpg" alt="四角の道具（赤枠）と灰色のタイル（赤枠）を選んだところ" loading="lazy"></a>
+        <figcaption>四角の道具と、灰色のタイル（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">四角くドラッグして床をぬる</span>
+      <p>ステージのまん中の白い部分を、左上から右下へドラッグします。<br>
+        ドラッグしたところが灰色の床になり、大きな部屋ができます。<br>
+        まちがえたら <code>Ctrl + Z</code>（Macは <code>Cmd + Z</code>）でもどせます。</p>
+      <figure class="figure">
+        <a href="img/ch3-03_floor-painted.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-03_floor-painted.jpg" alt="まん中の白い部分を灰色にぬって、大きな部屋にしたところ（赤枠）" loading="lazy"></a>
+        <figcaption>まん中をぬって、大きな部屋に（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">ブラシで飾りを描く</span>
+      <p>道具の1番目の「<strong>ブラシ</strong>」を選び、草の絵のタイルをクリックします。<br>
+        床のあちこちをクリックすると、1マスずつ草のタイルが置けます。<br>
+        自分の好きな模様にしてみよう。</p>
+      <figure class="figure">
+        <a href="img/ch3-04_brush-grass.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-04_brush-grass.jpg" alt="ブラシ（赤枠）で草のタイル（赤枠）を床に置いたところ（赤枠）" loading="lazy"></a>
+        <figcaption>ブラシで草のタイルを置く（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>3-3. 壁を置こう</h2>
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">Wall_Obstacle を部屋に置く</span>
+      <p>一覧の <code>Wall_Obstacle</code>（石のかべ）を、ステージの部屋の中にドラッグして置きます。<br>
+        3つくらい、柱のように置いてみよう。<br>
+        スターターのイベントで、プレイヤーはもう Wall_Obstacle を通りぬけられないようになっています。</p>
+      <figure class="figure">
+        <a href="img/ch3-05_walls.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-05_walls.jpg" alt="部屋の中にWall_Obstacleを3つ置いたところ（赤枠）" loading="lazy"></a>
+        <figcaption>部屋の中に壁を3つ置く（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <p>ドラッグしても置けないときは、一覧の「⋮」から「<strong>Add instance to the scene</strong>」を選ぶと、画面のまん中に置かれます。<br>
+      そのあと、置いたものをドラッグして動かそう。</p>
+
+    <h2>3-4. ゴブリンとナイフも壁にぶつかるようにしよう</h2>
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">ゴブリンを壁から押しもどす</span>
+      <p>イベントシートを開き、Enemy グループの1つ目のイベント（条件のないもの）に、アクションを2つ足します。</p>
+      <ul>
+        <li><code>separate</code> で検索 →「<strong>Separate objects</strong>」、Object は <code>Goblin</code>、Objects (won't move) は <code>Wall_Obstacle</code></li>
+        <li>もう1つ「Separate objects」で、<code>Goblin</code> と <code>Plant_Obstacle</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch3-06_goblin-separate.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-06_goblin-separate.jpg" alt="Separate objects。GoblinとWall_Obstacle（赤枠）" loading="lazy"></a>
+        <figcaption>Goblin を Wall_Obstacle から押しもどす（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">Separate objects</span> … 2つのオブジェクトが重なっていたら、1つ目を押しもどして重ならないようにするアクション。<br>
+      「won't move」（動かない）のほうの壁は動きません。<br>
+      スターターでも、プレイヤーをかべから押しもどすのに使われています。
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span><span class="step-title">壁に当たったナイフを消す</span>
+      <p>グループの外（いちばん下）に新しいイベントを作ります。<br>
+        条件は「Collision」で <code>Knife</code> と <code>Wall_Obstacle</code>。<br>
+        アクションは「Delete the object」で <code>Knife</code>。</p>
+      <figure class="figure">
+        <a href="img/ch3-07_stage-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-07_stage-events.jpg" alt="Separate objectsのアクション2つ（赤枠）と、ナイフが壁に当たったら消すイベント（赤枠）" loading="lazy"></a>
+        <figcaption>足したアクションと、ナイフを消すイベント（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span><span class="step-title">保存して Preview</span>
+      <p>保存してから Preview します。<br>
+        広くなった部屋で、騎士もゴブリンも壁を通りぬけられません。<br>
+        壁に向かってナイフを投げると、壁に当たって消えます。<br>
+        壁のかげにかくれながら戦ってみよう。</p>
+      <figure class="figure">
+        <a href="img/ch3-08_preview.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-08_preview.jpg" alt="Previewで、広い部屋に壁が3つあり、ナイフ（赤枠）が飛んでいる" loading="lazy"></a>
+        <figcaption>広い部屋と壁。ナイフ（赤枠）は壁に当たると消える</figcaption>
+      </figure>
+    </div>
+
+    <div class="challenge">
+      <h3>💪 やってみよう</h3>
+      <p>タイルマップと壁を使って、自分だけのダンジョンを作ろう。<br>
+        通路でつながった部屋を2つ作るのもおもしろいよ。</p>
+      <details class="hint">
+        <summary>ヒント</summary>
+        <p>部屋を広げたら、ゴブリンが出てくる場所（第2章の RandomInRange の数字）も、部屋の中になるように変えよう。<br>
+          消しゴムでタイルを消すと、そこは何もない場所になります。</p>
+      </details>
+    </div>
+
+    <h2>3-5. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>タイルがぬれない</h4>
+      <p><strong>原因:</strong> タイルマップではなく、ほかのオブジェクトを選んでいる。</p>
+      <p><strong>直し方:</strong> ステージの床をクリックして、左に「Tilemap painter」が出ているか確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ゴブリンが壁をすりぬける</h4>
+      <p><strong>原因:</strong> Separate objects の Object と Objects (won't move) が反対になっている。</p>
+      <p><strong>直し方:</strong> Object（動くほう）が <code>Goblin</code>、won't move のほうが <code>Wall_Obstacle</code> になっているか確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ドラッグしたら壁ではなく床がぬれた</h4>
+      <p><strong>原因:</strong> タイルマップのお絵かきモードのまま、ステージをドラッグした。</p>
+      <p><strong>直し方:</strong> ステージの外の何もないところをクリックしてから、もう一度ドラッグしよう。</p>
+    </div>
+
+    <h2>3-6. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Tilemap painter で床を広げた</label>
+      <label><input type="checkbox"> ブラシでタイルを置いた</label>
+      <label><input type="checkbox"> 部屋に壁を置いた</label>
+      <label><input type="checkbox"> ゴブリンが壁を通りぬけない</label>
+      <label><input type="checkbox"> ナイフが壁に当たると消える</label>
+    </div>
+    <p>全部チェックできたら第3章クリア！<br>
+      🎉 次回は、体力バーと倒した数を画面に出すよ。</p>
+
+    <nav class="chapter-nav">
+      <a href="chapter2.html">← 第2章 敵がおそってくる</a>
+      <a href="chapter4.html">第4章 画面に情報を出そう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（ローグライク編）
+  </footer>
+  <script src="js/os.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第5章 ウェーブとショップ | 夢アカGDevelop教科書（ローグライク編）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（ローグライク編）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第5章</span>
+      <h1>ウェーブとショップ</h1>
+      <div class="date">📅 第5回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>タイマーと変数で、時間がたつほどむずかしくなるしくみを作れる</li>
+        <li>式の中で変数を使って、数をかえられる</li>
+        <li>キーを押したときの条件で、ショップ（買い物）を作れる</li>
+      </ul>
+    </div>
+
+    <h2>5-1. この章で作るしくみ</h2>
+    <p>
+      ローグライクのゲームでは、時間がたつほど敵が強く（多く）なっていきます。<br>
+      このまとまりを「<strong>ウェーブ</strong>」（波）とよびます。<br>
+      かわりに、倒した敵のドクロを使って回復できる「<strong>ショップ</strong>」を作ります。
+    </p>
+
+    <div class="event-sheet">
+      <div class="ev-label">この章で作るルール（まとめ）</div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>シーンが始まったとき</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ウェーブのタイマーをスタート</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ウェーブのタイマーが15秒をこえた</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ウェーブを1ふやす<br>タイマーをリセット</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゴブリンのタイマーが「2 ÷ ウェーブ」秒をこえた（第2章を変える）</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゴブリンを作る</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>H キーをはなした<br>ドクロが5こ以上</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ドクロを5へらす<br>体力を100にもどす</div>
+      </div>
+    </div>
+
+    <h2>5-2. 変数と文字を用意しよう</h2>
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">シーン変数 Wave を作る</span>
+      <p>第4章と同じように Scene Variables を開き、<code>Wave</code>（今のウェーブ）を作ります。<br>
+        型は Number、値は <code>1</code>。</p>
+      <figure class="figure">
+        <a href="img/ch5-01_wave-var.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-01_wave-var.jpg" alt="Game Scene variablesにWave 1を足したところ（赤枠）" loading="lazy"></a>
+        <figcaption><code>Wave</code> = <code>1</code>（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">WaveText と ShopText を作る</span>
+      <p>一覧の <code>KillText</code> の「⋮」から「<strong>Duplicate</strong>」（コピーを作る）を選び、名前を <code>WaveText</code> にします。<br>
+        もう1回 Duplicate して、<code>ShopText</code> も作ります。<br>
+        ShopText をクリックして、左の Text を <code>[H] Heal = 5 skulls</code>（Hキーで回復、ドクロ5こ）、Font size を <code>28</code> にします。</p>
+      <figure class="figure">
+        <a href="img/ch5-02_shoptext.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-02_shoptext.jpg" alt="ShopTextのTextとFont size（赤枠）、一覧のWaveTextとShopText（赤枠）" loading="lazy"></a>
+        <figcaption>ShopText の文字と大きさ（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">画面に置く</span>
+      <p>Layers で <code>UI</code> の丸いボタンを選んでから、「⋮」→「<strong>Add instance to the scene</strong>」で2つを置きます。<br>
+        <code>WaveText</code> は X <code>20</code>、Y <code>100</code>。<br>
+        <code>ShopText</code> は X <code>1010</code>、Y <code>20</code>（右上）。<br>
+        置き終わったら Base layer の丸いボタンにもどそう。</p>
+      <figure class="figure">
+        <a href="img/ch5-03_ui-texts.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-03_ui-texts.jpg" alt="左上にWave 1、右上に[H] Heal = 5 skulls（赤枠）" loading="lazy"></a>
+        <figcaption>WaveText と ShopText（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>5-3. ウェーブを作ろう</h2>
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">15秒ごとにウェーブをふやす</span>
+      <p>イベントシートのいちばん下に、「At the beginning of the scene」のイベントを作り、「Start (or reset) a scene timer」で <code>"WaveTimer"</code> をスタートします。</p>
+      <p>次のイベントの条件は「Value of a scene timer」で <code>"WaveTimer"</code>、Sign は「≥」、Time は <code>15</code>。<br>
+        アクションは2つです。</p>
+      <ul>
+        <li>「Change variable value」で <code>Wave</code> を「+ (add)」で <code>1</code></li>
+        <li>「Start (or reset) a scene timer」で <code>"WaveTimer"</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch5-04_wave-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-04_wave-timer.jpg" alt="Value of a scene timer。"WaveTimer"、≥、15（赤枠）" loading="lazy"></a>
+        <figcaption>WaveTimer が 15 秒以上（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">ウェーブが進むと、ゴブリンが早く出てくる</span>
+      <p>Enemy グループを開き、「The timer "EnemyTimer" ≥ 2 seconds」の条件をダブルクリックします。<br>
+        Time の <code>2</code> のうしろに <code> / Wave</code> を足して、<code>2 / Wave</code> にします。<br>
+        ウェーブ1は2秒ごと、ウェーブ2は1秒ごと、ウェーブ4は0.5秒ごとにゴブリンが出てきます。</p>
+      <figure class="figure">
+        <a href="img/ch5-06_spawn-faster.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-06_spawn-faster.jpg" alt="EnemyTimerの条件のTimeを2 / Waveにしたところ（赤枠）" loading="lazy"></a>
+        <figcaption>Time を <code>2 / Wave</code> に（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">ウェーブの文字を出す</span>
+      <p>第4章で作った「条件のないイベント」（体力バーと KillText を変えるもの）に、アクションを足します。<br>
+        左の一覧で <code>WaveText</code> を選び、「Text」で下の式を入れます。</p>
+      <div class="code-block"><span class="code-label">WaveText に入れる式</span><button class="copy-btn" type="button">コピー</button><pre><code>"Wave " + ToString(Wave)</code></pre></div>
+      <figure class="figure">
+        <a href="img/ch5-07_wave-text.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-07_wave-text.jpg" alt="WaveTextのTextアクションに式を入れたところ（赤枠）" loading="lazy"></a>
+        <figcaption>WaveText → Text → 式（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">"Wave " + ToString(Wave)</span> … 「Wave 」という文字と、Wave の数を、＋でつなげた式。<br>
+      Wave が 3 なら「Wave 3」と表示されます。<br>
+      "Wave " のうしろのスペースを忘れると「Wave3」になります。
+    </div>
+
+    <h2>5-4. ショップを作ろう</h2>
+    <div class="step">
+      <span class="step-num">7</span><span class="step-title">H キーで回復する</span>
+      <p>新しいイベントを作り、条件を2つ入れます。</p>
+      <ul>
+        <li><code>key released</code> で検索 →「<strong>Key released</strong>」、Key は一覧から <code>h</code></li>
+        <li>「Variable value」で <code>Kills</code> が「≥」<code>5</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch5-05_key-h.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-05_key-h.jpg" alt="Key releasedの条件で、キーにhを選んだところ（赤枠）" loading="lazy"></a>
+        <figcaption>「Key released」で <code>h</code>（赤枠）</figcaption>
+      </figure>
+      <p>アクションは2つです。</p>
+      <ul>
+        <li>「Change variable value」で <code>Kills</code> を「- (subtract)」で <code>5</code></li>
+        <li>「Change variable value」で <code>PlayerHealth</code> を「= (set to)」で <code>100</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch5-08_wave-shop-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-08_wave-shop-events.jpg" alt="ウェーブとショップのイベント（赤枠）" loading="lazy"></a>
+        <figcaption>ウェーブとショップのイベント（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">Key released と Key pressed</span> … 「Key pressed」は、キーを押している間ずっと動きます。<br>
+      ショップでそれを使うと、1回押しただけでドクロが何回も使われてしまいます。<br>
+      「Key released」は、キーをはなした1回だけ動くので、買い物にぴったりです。
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span><span class="step-title">保存して Preview</span>
+      <p>15秒ごとに左上の「Wave」がふえて、ゴブリンがどんどん早く出てきます。<br>
+        ドクロが5こ以上たまったら、<code>H</code> キーを押してみよう。<br>
+        ドクロが5へって、体力バーがいっぱいにもどります。</p>
+      <figure class="figure">
+        <a href="img/ch5-09_preview.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-09_preview.jpg" alt="PreviewでWave 2、ドクロ7、右上にショップの文字（赤枠）" loading="lazy"></a>
+        <figcaption>ウェーブとショップ（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="challenge">
+      <h3>💪 やってみよう</h3>
+      <p>ショップの商品をふやしてみよう。<br>
+        たとえば「<code>J</code> キー：ドクロ3こで、ナイフが速くなる」など。</p>
+      <details class="hint">
+        <summary>ヒント</summary>
+        <p>シーン変数 <code>KnifeSpeed</code>（値は 600）を作り、第1章のナイフの Speed を <code>KnifeSpeed</code> にします。<br>
+          J キーのイベントで、Kills を 3 へらして、KnifeSpeed に 200 足せばOK。<br>
+          ShopText にも、新しい商品の説明を書き足そう。</p>
+      </details>
+    </div>
+
+    <h2>5-5. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>Wave がふえない</h4>
+      <p><strong>原因:</strong> "WaveTimer" をスタートするイベントがない、または名前がちがう。</p>
+      <p><strong>直し方:</strong> 「At the beginning of the scene」で <code>"WaveTimer"</code> をスタートしているか確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>H キーを押しても何も起きない</h4>
+      <p><strong>原因:</strong> ドクロが5こたまっていない、または先にゲーム画面をクリックしていない。</p>
+      <p><strong>直し方:</strong> ゲームの画面を1回クリックしてから、ドクロが5こ以上のときに押そう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ゴブリンが出すぎてすぐ負ける</h4>
+      <p><strong>原因:</strong> ウェーブがどんどん進んで、0.2秒ごとなどになっている。</p>
+      <p><strong>直し方:</strong> ウェーブの間かく（15秒）を長くするか、<code>2 / Wave</code> を <code>3 / Wave</code> にしてみよう。</p>
+    </div>
+
+    <h2>5-6. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Wave のシーン変数を作った</label>
+      <label><input type="checkbox"> 15秒ごとに Wave がふえる</label>
+      <label><input type="checkbox"> ウェーブが進むとゴブリンが早く出てくる</label>
+      <label><input type="checkbox"> WaveText に今のウェーブが出る</label>
+      <label><input type="checkbox"> H キーでドクロ5こと引きかえに回復できる</label>
+    </div>
+    <p>全部チェックできたら第5章クリア！<br>
+      🎉 次回は最終回！ 音や色で仕上げて、みんなに発表しよう。</p>
+
+    <nav class="chapter-nav">
+      <a href="chapter4.html">← 第4章 画面に情報を出そう</a>
+      <a href="chapter6.html">第6章 仕上げて発表しよう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（ローグライク編）
+  </footer>
+  <script src="js/os.js"></script>
+</body>
+</html>
