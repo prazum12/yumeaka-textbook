@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>第6章 仕上げて発表しよう 〜自分だけの作品に〜 | 夢アカGDevelop教科書</title>
+  <title>第6章 仕上げて発表しよう 〜自分だけの作品に〜（日本語UI版） | 夢アカGDevelop教科書</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,6 +18,7 @@
       <span class="chapter-num">第6章</span>
       <h1>仕上げて発表しよう 〜自分だけの作品に〜</h1>
       <div class="date">📅 第6回の講習で使います（日付が決まったらここに記載）</div>
+      <div class="date">日本語UI版（GDevelopの画面を日本語にして使う人向け）</div>
     </div>
 
     <div class="os-toggle">
@@ -124,13 +125,13 @@
     <h3>ワザ1: シーンをコピーしてステージ2を作る</h3>
     <div class="step">
       <span class="step-num">1</span><span class="step-title">Stage1 を複製する</span>
-      <p>左上の「≡」でプロジェクトマネージャーを開き、<code>Stage1</code> を右クリック →「<strong>Duplicate</strong>」（複製）を選ぶと、オブジェクトもイベントも丸ごとコピーされたシーンができます。<br>
-        名前を <code>Stage2</code> に変えて、ステージの形を作りかえよう。</p>
+      <p>左上の「≡」でプロジェクトマネージャーを開き、<code>Stage1</code> を右クリック →「<strong>複製</strong>」を選ぶと、オブジェクトもイベントも丸ごとコピーされたシーンができます。<br>
+        右クリック →「名前の変更」で名前を <code>Stage2</code> に変えて、ステージの形を作りかえよう。</p>
       <figure class="figure">
-        <a href="img/ch6-01_duplicate-scene.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-01_duplicate-scene.jpg" alt="プロジェクトマネージャーでStage1を右クリックし、いちばん下の「Duplicate」" loading="lazy"></a>
-        <figcaption>プロジェクトマネージャーでStage1を右クリックし、いちばん下の「Duplicate」</figcaption>
+        <a href="img/ch6-01_duplicate-scene.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-01_duplicate-scene.jpg" alt="プロジェクトマネージャーでStage1を右クリックし、いちばん下の「複製」" loading="lazy"></a>
+        <figcaption>プロジェクトマネージャーでStage1を右クリックし、いちばん下の「複製」</figcaption>
       </figure>
-      <p>⚠️ 複製したシーンのイベントには、「Change the scene to <code>Stage1</code>」がそのまま残っています。<br>
+      <p>⚠️ 複製したシーンのイベントには、「シーン <code>"Stage1"</code> に変更する」がそのまま残っています。<br>
         Stage2 でやられたときは Stage2 からやり直すように、シーン名を書きかえよう。<br>
         Stage1 のゴールの行き先を <code>Stage2</code> に、Stage2 のゴールの行き先を <code>Clear</code> にすればつながるよ。</p>
     </div>
@@ -143,26 +144,29 @@
     <div class="event-sheet">
       <div class="ev-label">アニメーション切りかえの例（アニメーションの名前は自分のキャラに合わせる）</div>
       <div class="ev-row">
-        <div class="ev-cond"><span class="ev-head">条件</span><code>Player</code> is moving</div>
-        <div class="ev-act"><span class="ev-head">アクション</span>Animation (by name) of <code>Player</code>: <code>"Move"</code></div>
+        <div class="ev-cond"><span class="ev-head">条件</span><code>Player</code> は移動している</div>
+        <div class="ev-act"><span class="ev-head">アクション</span><code>Player</code> のアニメーションを変更する：<code>"Move"</code> を代入</div>
       </div>
       <div class="ev-row">
-        <div class="ev-cond"><code>Player</code> is jumping</div>
-        <div class="ev-act">Animation (by name) of <code>Player</code>: <code>"Kick"</code></div>
+        <div class="ev-cond"><code>Player</code> はジャンプ中である</div>
+        <div class="ev-act"><code>Player</code> のアニメーションを変更する：<code>"Kick"</code> を代入</div>
       </div>
     </div>
     <p>
       この教科書の Dino Doux には、Idle（立ち止まり）・Crouch・Hurt・Kick・Move（歩く）・Sneak の6つのアニメーションがあります（ジャンプ用はないので、上の例では Kick で代わりにしています）。<br>
-      「動いていない」ときの条件は、条件の設定画面にある「<strong>Invert condition</strong>」（条件を逆にする）のスイッチをONにすると作れます。<br>
-      アクションは <code>animation</code> と検索すると見つかる「<strong>Animation (by name)</strong>」（名前でアニメーションを変える）を使おう。<br>
+      条件は、第4章の「落下中である」と同じ「移動 › プラットフォームビヘイビア › プラットフォームの状態」の仲間から選びます（<code>移動して</code>（→「移動している」）・<code>ジャンプ中</code>（→「ジャンプ中である」）で検索）。<br>
+      「動いていない」ときの条件は、条件の設定画面にある「<strong>条件を反転</strong>」のスイッチをONにすると作れます。<br>
+      アクションは <code>アニメーション</code> と検索して、「<strong>アニメーション名</strong>」（全般 › アニメーションを持つオブジェクト › アニメーションと画像）を選ぼう。<br>
+      似た名前の候補がたくさん出るので、「アニメーション名」をよく見て選んでね。<br>
+      上に「Changing Animations」というチュートリアルの案内が出ることがあるけど、そのままでOK。<br>
       どのイベントを上に置くと自然に見えるか、順番もためしてみてね。
     </p>
     <figure class="figure">
-      <a href="img/ch6-02_change-animation-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-02_change-animation-action.jpg" alt="「Animation (by name)」を選び、ObjectにPlayer、Animation nameを選ぶ（Dino Douxなら Idle・Move など）" loading="lazy"></a>
-      <figcaption>「Animation (by name)」を選び、ObjectにPlayer、Animation nameを選ぶ（Dino Douxなら Idle・Move など）</figcaption>
+      <a href="img/ch6-02_change-animation-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-02_change-animation-action.jpg" alt="「アニメーション」と検索して「アニメーション名」を選び、オブジェクトにPlayer、演算子は＝（代入）、アニメーションの名前を選ぶ（Dino Douxなら Idle・Move など）" loading="lazy"></a>
+      <figcaption>「アニメーション」と検索して「アニメーション名」を選び、オブジェクトにPlayer、演算子は＝（代入）、アニメーションの名前を選ぶ（Dino Douxなら Idle・Move など）</figcaption>
     </figure>
     <p>
-      もっとかんたんにしたい人は、Player に「<strong>Platformer character animator</strong>」というビヘイビアを追加する方法もあります。<br>
+      もっとかんたんにしたい人は、Player に「<strong>プラットフォーマーキャラクターアニメーター</strong>」というビヘイビアを追加する方法もあります。<br>
       立ち止まり・走る・跳ぶなどのアニメーションを、自動で切りかえてくれます。<br>
       ただし、キャラのアニメーションの名前が決まった名前になっている必要があるので、うまくいかないときは上のイベントの方法を使おう。
     </p>
@@ -170,13 +174,13 @@
     <h3>ワザ3: イベントにメモ（コメント）を残す</h3>
     <p>
       イベントが増えてくると、「これ何のイベントだっけ？」となりがち。<br>
-      イベントを1つクリックして選んでから、イベントシートの右上にある吹き出しのボタン（Add a comment）を押すと、選んだイベントの上に黄色い<strong>コメント</strong>（メモ）が追加されます。<br>
+      イベントを1つクリックして選んでから、イベントシートの右上にある吹き出しのボタンを押すと、選んだイベントの上に黄色い<strong>コメント</strong>（メモ）が追加されます。<br>
       そのまま文字を打って、何もないところをクリックすれば完成。<br>
       「ここから敵のルール」のように書いておくと、発表のときに説明しやすくなるよ。
     </p>
     <figure class="figure">
-      <a href="img/ch6-03_add-comment.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-03_add-comment.jpg" alt="右上の吹き出しボタン（Add a comment）でコメントを追加したところ" loading="lazy"></a>
-      <figcaption>右上の吹き出しボタン（Add a comment）でコメントを追加したところ</figcaption>
+      <a href="img/ch6-03_add-comment.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-03_add-comment.jpg" alt="右上の吹き出しボタンで、黄色いコメント「ここから敵のルール」を追加したところ" loading="lazy"></a>
+      <figcaption>右上の吹き出しボタンで、黄色いコメント「ここから敵のルール」を追加したところ</figcaption>
     </figure>
 
     <h2>6-4. テストプレイしてもらおう</h2>
@@ -236,8 +240,8 @@
     <h2>6-6. 作品の公開について（任意）</h2>
     <p>
       GDevelopには、作ったゲームをインターネットで遊べるように公開する機能があります。<br>
-      画面の上の真ん中にある「<strong>Share</strong>」ボタンを押すと、公開のしかたを選ぶ画面が開きます。<br>
-      いちばん上の「<strong>gd.games</strong>」（Easiest＝いちばんかんたん）を使うと、遊べるURLが作れます。<br>
+      画面の上の真ん中にある「<strong>共有</strong>」ボタンを押すと、公開のしかたを選ぶ「共有」の画面が開きます。<br>
+      「公開」タブのいちばん上の「<strong>gd.games</strong>」（「とっても簡単」のマークつき）を使うと、遊べるURLが作れます。<br>
       公開すると、家族や友だちにURLを送って遊んでもらえます。<br>
       ただし、<strong>公開は講師の確認が終わってから</strong>にしてください。
     </p>
@@ -248,8 +252,9 @@
       <li>公開するかどうかは、保護者の方とも相談して決める</li>
     </ul>
     <figure class="figure">
-      <a href="img/ch6-04_share-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-04_share-dialog.jpg" alt="上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）" loading="lazy"></a>
-      <figcaption>上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）</figcaption>
+      <a href="img/ch6-04_share-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-04_share-dialog.jpg" alt="上の「共有」ボタンを押すと開く「共有」の画面。いちばん上のgd.gamesで公開できる（講師の確認が終わってから）" loading="lazy"></a>
+      <figcaption>上の「共有」ボタンを押すと開く「共有」の画面。<br>
+        いちばん上のgd.gamesで公開できる（講師の確認が終わってから）</figcaption>
     </figure>
 
     <h2>6-7. この先の3つの道</h2>
@@ -307,7 +312,7 @@
       <h4>いろいろ変えていたら、急にゲームがおかしくなった</h4>
       <p><strong>原因:</strong> 最後に変えたところが原因のことがほとんど。</p>
       <p><strong>直し方:</strong> まず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span> で1つずつ戻して、どこで直るか確かめよう。<br>
-        これからは「1つ変えたらPreviewで確認」をくせにしよう。</p>
+        これからは「1つ変えたらプレビューで確認」をくせにしよう。</p>
     </div>
 
     <div class="trouble">
@@ -319,7 +324,7 @@
 
     <div class="trouble">
       <h4>Stage2 でやられると Stage1 に戻ってしまう</h4>
-      <p><strong>原因:</strong> 複製したシーンのイベントで、Change the scene の行き先が <code>Stage1</code> のまま。</p>
+      <p><strong>原因:</strong> 複製したシーンのイベントで、「シーンを変更する」の行き先が <code>Stage1</code> のまま。</p>
       <p><strong>直し方:</strong> Stage2 のイベントシートで、やり直しのイベントの行き先を <code>Stage2</code> に書きかえよう（6-3のワザ1）。</p>
     </div>
 

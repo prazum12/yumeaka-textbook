@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>第3章 イベントでしかけを作ろう 〜コインとスコア〜 | 夢アカGDevelop教科書</title>
+  <title>第3章 イベントでしかけを作ろう 〜コインとスコア〜（日本語UI版） | 夢アカGDevelop教科書</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
 
   <main class="container">
     <div class="chapter-title">
-      <span class="chapter-num">第3章</span>
+      <span class="chapter-num">第3章（日本語UI版）</span>
       <h1>イベントでしかけを作ろう 〜コインとスコア〜</h1>
       <div class="date">📅 第3回の講習で使います（日付が決まったらここに記載）</div>
     </div>
@@ -83,52 +83,53 @@
     </p>
 
     <div class="step">
-      <span class="step-num">1</span><span class="step-title">条件「左キーが押されている」を作る</span>
-      <p><code>Stage1 (Events)</code> タブを開き、「Add a new event」で新しいイベントを追加します。<br>
-        今度は左側の「<strong>Add condition</strong>」を押して、検索欄に <code>key pressed</code> と入力。<br>
-        「<strong>Key pressed</strong>」（キーが押されている、Input ＞ Keyboard）を選びます。<br>
-        「Key to check」（調べるキー）の欄に <code>Left</code> と打つと候補が出るので、<code>Left</code>（左矢印）を選んで「Ok」。<br>
-        すぐ下の「Key just pressed」（押した瞬間だけ）とまちがえないように注意。</p>
+      <span class="step-num">1</span><span class="step-title">条件「左キーを押している」を作る</span>
+      <p><code>Stage1 (イベント)</code> タブを開き、「＋ 新しいイベントを追加」で新しいイベントを追加します。<br>
+        今度は左側の「<strong>＋ 条件を追加</strong>」を押して、検索欄に <code>キー</code> と入力。<br>
+        「<strong>キーを押している</strong>」（入力 › キーボード）を選びます。<br>
+        「チェックするキー」の欄に <code>Left</code> と打つと候補が出るので、<code>Left</code>（左矢印）を選んで「OK」。<br>
+        すぐ上の「キーが押された」（押した瞬間だけ）とまちがえないように注意。</p>
       <figure class="figure">
-        <a href="img/ch3-01_key-pressed-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-01_key-pressed-condition.jpg" alt="key pressedと検索して「Key pressed」を選び、Key to checkにLeftを選ぶ" loading="lazy"></a>
-        <figcaption>key pressedと検索して「Key pressed」を選び、Key to checkにLeftを選ぶ</figcaption>
+        <a href="img/ch3-01_key-pressed-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-01_key-pressed-condition.jpg" alt="「キー」と検索して「キーを押している」を選び、「チェックするキー」にLeftを選ぶ" loading="lazy"></a>
+        <figcaption>「キー」と検索して「キーを押している」を選び、「チェックするキー」にLeftを選ぶ</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">アクション「Playerを左右反転する」を作る</span>
-      <p>同じイベントの右側「<strong>Add action</strong>」を押して、<code>flip</code> と検索。<br>
-        「<strong>Flip the object horizontally</strong>」（左右に反転する）を選び、Object に <code>Player</code> を選びます。<br>
-        「Activate flipping」（反転する？）を <strong>Yes</strong> にして「Ok」。</p>
+      <p>同じイベントの右側「<strong>＋ アクションを追加</strong>」を押して、<code>反転</code> と検索。<br>
+        「<strong>オブジェクトを水平方向に反転させる</strong>」（全般 › フリップ可能なオブジェクト › エフェクト）を選び、「オブジェクト」に <code>Player</code> を選びます。<br>
+        すぐ下の「垂直方向」とまちがえないようにしよう。<br>
+        「反転を有効にする」を <strong>はい</strong> にして「OK」。</p>
       <figure class="figure">
-        <a href="img/ch3-02_flip-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-02_flip-action.jpg" alt="「Flip the object horizontally」を選び、ObjectにPlayer、Activate flippingをYesにする" loading="lazy"></a>
-        <figcaption>「Flip the object horizontally」を選び、ObjectにPlayer、Activate flippingをYesにする</figcaption>
+        <a href="img/ch3-02_flip-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-02_flip-action.jpg" alt="「オブジェクトを水平方向に反転させる」を選び、「オブジェクト」にPlayer、「反転を有効にする」を「はい」にする" loading="lazy"></a>
+        <figcaption>「オブジェクトを水平方向に反転させる」を選び、「オブジェクト」にPlayer、「反転を有効にする」を「はい」にする</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">右キー用のイベントも作る</span>
       <p>同じようにもう1つイベントを作ります。<br>
-        今度は条件を「Key pressed: <code>Right</code>」、アクションを「Flip the object horizontally: Player を <strong>No</strong>」にします。<br>
+        今度は条件を「キーを押している: <code>Right</code>」、アクションを「オブジェクトを水平方向に反転させる: Player を <strong>いいえ</strong>」にします。<br>
         2つのイベントが次のようになっていればOK。</p>
       <div class="event-sheet">
         <div class="ev-label">キャラの向き</div>
         <div class="ev-row">
-          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">1</span>Key pressed: <code>Left</code></div>
-          <div class="ev-act"><span class="ev-head">アクション</span>Flip <code>Player</code> horizontally: Yes</div>
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">1</span>"<code>Left</code>" キーを押している</div>
+          <div class="ev-act"><span class="ev-head">アクション</span><code>Player</code> を水平に反転する：はい</div>
         </div>
         <div class="ev-row">
-          <div class="ev-cond"><span class="ev-num">2</span>Key pressed: <code>Right</code></div>
-          <div class="ev-act">Flip <code>Player</code> horizontally: No</div>
+          <div class="ev-cond"><span class="ev-num">2</span>"<code>Right</code>" キーを押している</div>
+          <div class="ev-act"><code>Player</code> を水平に反転する：いいえ</div>
         </div>
       </div>
       <figure class="figure">
         <a href="img/ch3-03_flip-events-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-03_flip-events-done.jpg" alt="左キー・右キーでPlayerの向きを変える2つのイベント" loading="lazy"></a>
         <figcaption>左キー・右キーでPlayerの向きを変える2つのイベント</figcaption>
       </figure>
-      <p>Previewで、左右に走ると向きが変わるか確かめよう。<br>
+      <p>プレビューで、左右に走ると向きが変わるか確かめよう。<br>
         もし<strong>逆向き</strong>になったら、キャラの絵がもともと左を向いているということ。<br>
-        そのときは Yes と No を入れかえればOK。</p>
+        そのときは「はい」と「いいえ」を入れかえればOK。</p>
     </div>
 
     <h2>3-3. コイン（Coin）を置こう</h2>
@@ -146,7 +147,7 @@
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">ステージにコインを並べる</span>
-      <p>右クリック →「Duplicate」で、ステージのあちこちにコインを置こう。<br>
+      <p>右クリック →「複製」で、ステージのあちこちにコインを置こう。<br>
         <strong>Coin にはビヘイビアをつけません</strong>（足場ではないので、すり抜けてOK）。<br>
         取りやすい場所にたくさん、ジャンプが必要な場所に少し、と置き分けると楽しいよ。</p>
       <figure class="figure">
@@ -195,29 +196,29 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">シーン変数の画面を開く</span>
-      <p>シーンエディタで何も選んでいない状態にすると、左のプロパティに「<strong>Scene Variables</strong>」（シーン変数）が出ます。<br>
-        その右にある「↗」（別の画面で開く）のボタンを押すと、「<strong>Stage1 variables</strong>」の画面が開きます。<br>
-        シーンの何もない場所を右クリック →「Open scene properties」→「<strong>Edit scene variables</strong>」からでも開けます。</p>
+      <p>シーンエディタで何も選んでいない状態にすると、左のプロパティに「<strong>シーン変数</strong>」が出ます。<br>
+        その右にある「↗」（別の画面で開く）のボタンを押すと、「<strong>Stage1 変数</strong>」の画面が開きます。<br>
+        シーンの何もない場所を右クリック →「シーンプロパティを開く」→「<strong>シーン変数を編集</strong>」からでも開けます。</p>
       <figure class="figure">
-        <a href="img/ch3-05_scene-variables.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-05_scene-variables.jpg" alt="何も選んでいないとき、左のプロパティのScene Variablesの右にある「↗」ボタン" loading="lazy"></a>
-        <figcaption>何も選んでいないとき、左のプロパティのScene Variablesの右にある「↗」ボタン</figcaption>
+        <a href="img/ch3-05_scene-variables.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-05_scene-variables.jpg" alt="何も選んでいないとき、左のプロパティの「シーン変数」の右にある「↗」ボタン" loading="lazy"></a>
+        <figcaption>何も選んでいないとき、左のプロパティの「シーン変数」の右にある「↗」ボタン</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch3-05b_variables-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-05b_variables-dialog.jpg" alt="Stage1 variablesの画面。「Add a variable」で変数を追加する" loading="lazy"></a>
-        <figcaption>Stage1 variablesの画面。「Add a variable」で変数を追加する</figcaption>
+        <a href="img/ch3-05b_variables-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-05b_variables-dialog.jpg" alt="「Stage1 変数」の画面。「＋ 変数を追加」で変数を追加する" loading="lazy"></a>
+        <figcaption>「Stage1 変数」の画面。「＋ 変数を追加」で変数を追加する</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">変数 Score を追加する</span>
-      <p>「<strong>Add a variable</strong>」（変数を追加）を押すと、1行目に変数ができます。<br>
+      <p>「<strong>＋ 変数を追加</strong>」を押すと、1行目に変数ができます。<br>
         名前を <code>Score</code> に変えます。<br>
-        種類が <strong>Number</strong>（数）、値が <code>0</code> になっていることを確かめて、右下の「<strong>Apply</strong>」を押そう。<br>
+        種類が「<strong>数値</strong>」、値が <code>0</code> になっていることを確かめて、右下の「<strong>適用</strong>」を押そう。<br>
         <strong>名前は大文字・小文字も区別されます。</strong><br>
         <code>Score</code> と <code>score</code> は別の箱になってしまうので注意しよう。</p>
       <figure class="figure">
-        <a href="img/ch3-06_add-score-variable.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-06_add-score-variable.jpg" alt="変数の名前をScoreにしたところ（Number、値0）。右下の「Apply」で決定" loading="lazy"></a>
-        <figcaption>変数の名前をScoreにしたところ（Number、値0）。右下の「Apply」で決定</figcaption>
+        <a href="img/ch3-06_add-score-variable.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-06_add-score-variable.jpg" alt="変数の名前をScoreにしたところ（数値、値0）。右下の「適用」で決定" loading="lazy"></a>
+        <figcaption>変数の名前をScoreにしたところ（数値、値0）。右下の「適用」で決定</figcaption>
       </figure>
     </div>
 
@@ -225,40 +226,42 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">条件「PlayerがCoinにさわっている」を作る</span>
-      <p>イベントシートで「Add a new event」→「Add condition」を押して、<code>collision</code> と検索。<br>
-        「Collision」という名前がいくつも出てきます。<br>
-        下に「<strong>General ＞ Objects ＞ Collision</strong>」と書いてある「<strong>Collision</strong>」（さわっている・ぶつかっている）を選ぼう。<br>
-        1つ目の Object に <code>Player</code>、2つ目の Object に <code>Coin</code> を選んで「Ok」。<br>
-        「Physics Engine」と書いてあるものは、物理エンジン用の別の条件なので選ばないでね。</p>
+      <p>イベントシートで「＋ 新しいイベントを追加」→「＋ 条件を追加」を押して、<code>衝突</code> と検索。<br>
+        「衝突」という名前がいくつも出てきます。<br>
+        下に「<strong>全般 › オブジェクト › 衝突</strong>」と書いてある「<strong>衝突</strong>」（さわっている・ぶつかっている）を選ぼう（いちばん上にあるよ）。<br>
+        1つ目の「オブジェクト」に <code>Player</code>、2つ目の「オブジェクト」に <code>Coin</code> を選んで「OK」。<br>
+        「2D物理エンジン」「3D物理エンジン」と書いてあるものは、物理エンジン用の別の条件なので選ばないでね。</p>
       <figure class="figure">
-        <a href="img/ch3-07_collision-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-07_collision-condition.jpg" alt="collisionと検索し、General &gt; Objects &gt; Collisionの「Collision」を選ぶ。ObjectにPlayerとCoin" loading="lazy"></a>
-        <figcaption>collisionと検索し、General > Objects > Collisionの「Collision」を選ぶ。ObjectにPlayerとCoin</figcaption>
+        <a href="img/ch3-07_collision-condition.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-07_collision-condition.jpg" alt="「衝突」と検索し、全般 › オブジェクト › 衝突の「衝突」を選ぶ。「オブジェクト」にPlayerとCoin" loading="lazy"></a>
+        <figcaption>「衝突」と検索し、全般 › オブジェクト › 衝突の「衝突」を選ぶ。「オブジェクト」にPlayerとCoin</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">アクション「Coinを消す」を作る</span>
-      <p>右側の「Add action」→ <code>delete</code> と検索して「<strong>Delete the object</strong>」（オブジェクトを消す）を選び、Object に <code>Coin</code> を選んで「Ok」。</p>
+      <p>右側の「＋ アクションを追加」→ <code>オブジェクトを削除</code> と検索して「<strong>オブジェクトを削除する</strong>」を選び、「オブジェクト」に <code>Coin</code> を選んで「OK」。<br>
+        「削除」だけで検索すると候補が多すぎるので、「オブジェクトを削除」まで入れよう。</p>
       <figure class="figure">
-        <a href="img/ch3-08_delete-object-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-08_delete-object-action.jpg" alt="「Delete the object」を選び、ObjectにCoinを選ぶ" loading="lazy"></a>
-        <figcaption>「Delete the object」を選び、ObjectにCoinを選ぶ</figcaption>
+        <a href="img/ch3-08_delete-object-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-08_delete-object-action.jpg" alt="「オブジェクトを削除」と検索して「オブジェクトを削除する」を選び、「オブジェクト」にCoinを選ぶ" loading="lazy"></a>
+        <figcaption>「オブジェクトを削除」と検索して「オブジェクトを削除する」を選び、「オブジェクト」にCoinを選ぶ</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">アクション「Scoreを1ふやす」を足す</span>
-      <p>同じイベントの右側で、もう一度「Add action」を押します（アクションは1つのイベントにいくつでも足せる）。<br>
-        <code>variable</code> と検索して、「<strong>Change variable value</strong>」（変数の値を変える、General ＞ Variables）を選びます。<br>
-        「Variable」に <code>Score</code>、「Modification's sign」（計算のしかた）に「<strong>+ (add)</strong>」（足す）、「Value」に <code>1</code> を入れて「Ok」。</p>
+      <p>同じイベントの右側で、もう一度「＋ アクションを追加」を押します（アクションは1つのイベントにいくつでも足せる）。<br>
+        <code>変数の値</code> と検索して、「<strong>変数の値を変更</strong>」（全般 › 変数）を選びます。<br>
+        すぐ下の「オブジェクト変数の値を変更」とまちがえないようにしよう。<br>
+        「変数」に <code>Score</code>、「演算子」（計算のしかた）に「<strong>＋（足す）</strong>」、「値」に <code>1</code> を入れて「OK」。</p>
       <figure class="figure">
-        <a href="img/ch3-09_change-variable-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-09_change-variable-action.jpg" alt="「Change variable value」で、Score／+ (add)／1を指定する" loading="lazy"></a>
-        <figcaption>「Change variable value」で、Score／+ (add)／1を指定する</figcaption>
+        <a href="img/ch3-09_change-variable-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-09_change-variable-action.jpg" alt="「変数の値を変更」で、Score／＋（足す）／1を指定する" loading="lazy"></a>
+        <figcaption>「変数の値を変更」で、Score／＋（足す）／1を指定する</figcaption>
       </figure>
       <div class="event-sheet">
         <div class="ev-label">コインを取る</div>
         <div class="ev-row">
-          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">3</span><code>Player</code> is in collision with <code>Coin</code></div>
-          <div class="ev-act"><span class="ev-head">アクション</span>Delete <code>Coin</code><br>Change <code>Score</code>: + 1</div>
+          <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">3</span><code>Player</code> は <code>Coin</code> と衝突している</div>
+          <div class="ev-act"><span class="ev-head">アクション</span><code>Coin</code> を削除する<br>変数 <code>Score</code> を変更する：1 を加算</div>
         </div>
       </div>
       <figure class="figure">
@@ -276,19 +279,19 @@
     <h2>3-6. スコアを画面に表示しよう</h2>
 
     <div class="step">
-      <span class="step-num">1</span><span class="step-title">文字のオブジェクト（Text）を作る</span>
-      <p>オブジェクトパネルの「＋」を押して、上のタブを「<strong>New object from scratch</strong>」（一から作る）に切り替えます。<br>
-        検索欄に <code>text</code> と入れて、いちばん上の「<strong>Text</strong>」（Displays a text on the screen.）を選びます。<br>
-        「Edit」の画面が開いたら、「Object name」を <code>ScoreText</code> にします。<br>
-        「Size」（文字の大きさ）を <code>36</code> くらいにして「Bold」（太字）にチェックを入れると見やすいよ。<br>
-        「Apply」で閉じたら、シーンの左上あたりに置こう。</p>
+      <span class="step-num">1</span><span class="step-title">文字のオブジェクト（テキスト）を作る</span>
+      <p>オブジェクトパネルの「＋」を押して、上のタブを「<strong>オブジェクトの新規作成</strong>」（一から作る）に切り替えます。<br>
+        検索欄に <code>テキスト</code> と入れて、いちばん上の「<strong>テキスト</strong>」（テキストを画面に表示します。）を選びます。<br>
+        編集の画面が開いたら、「オブジェクト名」を <code>ScoreText</code> にします。<br>
+        「サイズ」（文字の大きさ）を <code>36</code> くらいにして「太字」にチェックを入れると見やすいよ。<br>
+        「適用」で閉じたら、シーンの左上あたりに置こう。</p>
       <figure class="figure">
-        <a href="img/ch3-11_add-text-object.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-11_add-text-object.jpg" alt="New object from scratchのタブでtextと検索し、「Text」を選ぶ" loading="lazy"></a>
-        <figcaption>New object from scratchのタブでtextと検索し、「Text」を選ぶ</figcaption>
+        <a href="img/ch3-11_add-text-object.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-11_add-text-object.jpg" alt="「オブジェクトの新規作成」のタブで「テキスト」と検索し、いちばん上の「テキスト」を選ぶ" loading="lazy"></a>
+        <figcaption>「オブジェクトの新規作成」のタブで「テキスト」と検索し、いちばん上の「テキスト」を選ぶ</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch3-11b_edit-scoretext.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-11b_edit-scoretext.jpg" alt="Edit ScoreTextの画面。Object nameをScoreText、Sizeを36、Boldにチェック" loading="lazy"></a>
-        <figcaption>Edit ScoreTextの画面。Object nameをScoreText、Sizeを36、Boldにチェック</figcaption>
+        <a href="img/ch3-11b_edit-scoretext.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-11b_edit-scoretext.jpg" alt="「ScoreText を編集」の画面。オブジェクト名をScoreText、サイズを36、太字にチェック" loading="lazy"></a>
+        <figcaption>「ScoreText を編集」の画面。オブジェクト名をScoreText、サイズを36、太字にチェック</figcaption>
       </figure>
     </div>
 
@@ -296,22 +299,23 @@
       <span class="step-num">2</span><span class="step-title">UI用のレイヤーを作る</span>
       <p>このままだと、カメラが動いたときに ScoreText は置き去りにされてしまいます。<br>
         そこで、<strong>カメラが動いても画面に貼りついたままの層</strong>、レイヤーを作ります。<br>
-        画面の右上のボタンの列にある、紙が重なったマークのボタンを押すと、右下に「<strong>Layers</strong>」（レイヤー）のパネルが開きます。<br>
-        パネルの右上の「＋」で新しいレイヤーを追加し、名前を <code>UI</code> にしよう。<br>
-        「UI」が「Base layer」（最初からあるレイヤー）より上に並んでいればOK。</p>
+        画面の右上のボタンの列にある、紙が重なったマークのボタン（レイヤーパネルを開く/閉じる）を押すと、右下に「<strong>レイヤー</strong>」のパネルが開きます。<br>
+        パネルの右上の「＋」で新しいレイヤーを追加します。<br>
+        「Layer」という名前でできるので、名前を <code>UI</code> に変えよう。<br>
+        「UI」が「ベースレイヤー」（最初からあるレイヤー）より上に並んでいればOK。</p>
       <figure class="figure">
-        <a href="img/ch3-12_layers-panel-ui.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-12_layers-panel-ui.jpg" alt="右上のレイヤーのボタンでLayersパネルを開き、「＋」でUIレイヤーを追加したところ" loading="lazy"></a>
-        <figcaption>右上のレイヤーのボタンでLayersパネルを開き、「＋」でUIレイヤーを追加したところ</figcaption>
+        <a href="img/ch3-12_layers-panel-ui.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-12_layers-panel-ui.jpg" alt="右上のレイヤーのボタンで「レイヤー」パネルを開き、「＋」でUIレイヤーを追加したところ" loading="lazy"></a>
+        <figcaption>右上のレイヤーのボタンで「レイヤー」パネルを開き、「＋」でUIレイヤーを追加したところ</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">ScoreText を UI レイヤーに移す</span>
-      <p>シーンに置いた <code>ScoreText</code> をクリックして、左のプロパティで「Base layer」と書いてある欄（レイヤー）を <code>UI</code> に変えます。<br>
+      <p>シーンに置いた <code>ScoreText</code> をクリックして、左のプロパティで「ベースレイヤー」と書いてある欄（紙が重なったマークの欄）を <code>UI</code> に変えます。<br>
         ついでに X を <code>24</code>、Y を <code>20</code> にすると、画面の左上にぴったり表示されます。</p>
       <figure class="figure">
-        <a href="img/ch3-13_text-layer-setting.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-13_text-layer-setting.jpg" alt="ScoreTextを選び、左のプロパティのレイヤーをUIにしたところ" loading="lazy"></a>
-        <figcaption>ScoreTextを選び、左のプロパティのレイヤーをUIにしたところ</figcaption>
+        <a href="img/ch3-13_text-layer-setting.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-13_text-layer-setting.jpg" alt="ScoreTextを選び、左のプロパティでX・Yを入れ、レイヤーの欄をUIにしたところ" loading="lazy"></a>
+        <figcaption>ScoreTextを選び、左のプロパティでX・Yを入れ、レイヤーの欄をUIにしたところ</figcaption>
       </figure>
     </div>
 
@@ -323,24 +327,25 @@
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">スコアの文字を毎フレーム書きかえるイベントを作る</span>
-      <p>イベントシートに戻って「Add a new event」。<br>
-        条件はなし（いつでも・ずっと）で、「Add action」を押します。<br>
-        検索するより、左の一覧（Scene objects）で <code>ScoreText</code> をクリックするほうが早いよ。<br>
-        ScoreText で使えるアクションが並ぶので、いちばん上の「<strong>Text</strong>」（文字を変える）を選びます。<br>
-        「Modification's sign」（変え方）が「<strong>= (set to)</strong>」（〜にする）になっていることを確かめます。<br>
-        「Text」の欄には、次の式をそのまま入力して「Ok」を押そう。</p>
+      <p>イベントシートに戻って「＋ 新しいイベントを追加」。<br>
+        条件はなし（いつでも・ずっと）で、「＋ アクションを追加」を押します。<br>
+        検索するより、左の一覧（シーンオブジェクト）で <code>ScoreText</code> をクリックするほうが早いよ。<br>
+        ScoreText で使えるアクションが並ぶので、「<strong>エフェクト</strong>」のグループの中にある「<strong>テキスト</strong>」（テキストを変更します。）を選びます。<br>
+        いちばん上ではないので、少し下まで見て探してね。<br>
+        「演算子」（変え方）が「<strong>＝（代入）</strong>」（〜にする）になっていることを確かめます。<br>
+        「テキスト」の欄には、次の式をそのまま入力して「OK」を押そう。</p>
       <div class="code-block">
         <span class="code-label">ScoreText に入れる式</span>
         <button class="copy-btn" type="button">コピー</button>
         <pre><code>"Score: " + ToString(Score)</code></pre>
       </div>
       <figure class="figure">
-        <a href="img/ch3-14_text-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-14_text-action.jpg" alt="Add actionの画面で左のScoreTextを選び、いちばん上の「Text」を選ぶ" loading="lazy"></a>
-        <figcaption>Add actionの画面で左のScoreTextを選び、いちばん上の「Text」を選ぶ</figcaption>
+        <a href="img/ch3-14_text-action.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-14_text-action.jpg" alt="アクションの画面で左のScoreTextを選び、「エフェクト」グループの中の「テキスト」を選ぶ" loading="lazy"></a>
+        <figcaption>アクションの画面で左のScoreTextを選び、「エフェクト」グループの中の「テキスト」を選ぶ</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch3-14b_text-expression.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-14b_text-expression.jpg" alt="Modification's signが= (set to)のまま、Textの欄に式を入力する" loading="lazy"></a>
-        <figcaption>Modification's signが= (set to)のまま、Textの欄に式を入力する</figcaption>
+        <a href="img/ch3-14b_text-expression.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-14b_text-expression.jpg" alt="「演算子」が「＝（代入）」のまま、「テキスト」の欄に式を入力する" loading="lazy"></a>
+        <figcaption>「演算子」が「＝（代入）」のまま、「テキスト」の欄に式を入力する</figcaption>
       </figure>
       <figure class="figure">
         <a href="img/ch3-15_score-event-done.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-15_score-event-done.jpg" alt="条件なしで、ScoreTextの文字を変えるイベントができたところ" loading="lazy"></a>
@@ -356,18 +361,18 @@
         <div class="ev-label">スコアの表示</div>
         <div class="ev-row">
           <div class="ev-cond"><span class="ev-head">条件</span><span class="ev-num">4</span>（なし＝いつでも・ずっと）</div>
-          <div class="ev-act"><span class="ev-head">アクション</span>Text of <code>ScoreText</code>: set to <code>"Score: " + ToString(Score)</code></div>
+          <div class="ev-act"><span class="ev-head">アクション</span><code>ScoreText</code> のテキストを変更する：<code>"Score: " + ToString(Score)</code> を代入</div>
         </div>
       </div>
     </div>
 
     <div class="step">
-      <span class="step-num">5</span><span class="step-title">Previewで確かめて保存する</span>
+      <span class="step-num">5</span><span class="step-title">プレビューで確かめて保存する</span>
       <p>コインを取るたびにコインが消えて、左上の数字が1ずつ増えれば大成功！<br>
         <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。</p>
       <figure class="figure">
-        <a href="img/ch3-16_preview-score.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-16_preview-score.jpg" alt="Previewのゲーム画面。コインを2枚取って、左上にScore: 2と表示されている" loading="lazy"></a>
-        <figcaption>Previewのゲーム画面。コインを2枚取って、左上にScore: 2と表示されている</figcaption>
+        <a href="img/ch3-16_preview-score.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-16_preview-score.jpg" alt="プレビューのゲーム画面。コインを2枚取って、左上にScore: 2と表示されている" loading="lazy"></a>
+        <figcaption>プレビューのゲーム画面。コインを2枚取って、左上にScore: 2と表示されている</figcaption>
       </figure>
     </div>
 
@@ -379,7 +384,7 @@
       背景の色に負けない、見やすい色にできたら合格。</p>
       <details class="hint">
         <summary>ヒントを見る</summary>
-        <p>ScoreText をダブルクリックすると、文字の大きさ（size）や色（color）を変える欄があるよ。<br>
+        <p>ScoreText をダブルクリックすると、文字の大きさ（サイズ）や色を変える欄があるよ。<br>
           暗い背景には明るい文字、明るい背景には暗い文字が見やすい。</p>
       </details>
     </div>
@@ -401,7 +406,7 @@
       <p>ステージのコインを全部取ったら、ScoreText の文字が「ALL COINS!」に変わるようにしてみよう。</p>
       <details class="hint">
         <summary>ヒントを見る</summary>
-        <p>条件の検索で <code>number</code> と入れると、「シーンにあるオブジェクトの数」を調べる条件が見つかるよ。<br>
+        <p>条件の検索で <code>オブジェクトの数</code> と入れると出てくる「<strong>現在選択されているオブジェクトの数</strong>」を使ってみよう。<br>
           Coin の数が 0 になったら……という条件にしてみよう。<br>
           イベントは上から順に実行されるので、スコア表示のイベントより<strong>下</strong>に置かないと、すぐ上書きされてしまうよ。</p>
       </details>
@@ -413,7 +418,7 @@
       <h4>コインにさわってもスコアがものすごい勢いで増える</h4>
       <p><strong>原因:</strong> 「Coinを消す」アクションがない。<br>
       コインが消えないので、さわっているあいだ毎フレーム（1秒に何十回も）+1されている。</p>
-      <p><strong>直し方:</strong> 同じイベントに「Delete the object: Coin」が入っているか確認しよう。</p>
+      <p><strong>直し方:</strong> 同じイベントに「Coin を削除する」が入っているか確認しよう。</p>
     </div>
 
     <div class="trouble">
@@ -428,13 +433,13 @@
     <div class="trouble">
       <h4>スコアの文字が、走るとどこかへ行ってしまう</h4>
       <p><strong>原因:</strong> <code>ScoreText</code> が UI レイヤーに入っていない。</p>
-      <p><strong>直し方:</strong> シーンに置いた ScoreText を選んで、プロパティの Layer が <code>UI</code> になっているか確認しよう。</p>
+      <p><strong>直し方:</strong> シーンに置いた ScoreText を選んで、プロパティのレイヤーの欄が <code>UI</code> になっているか確認しよう。</p>
     </div>
 
     <div class="trouble">
       <h4>キャラの向きが逆になる</h4>
       <p><strong>原因:</strong> キャラの絵が、もともと左を向いている。</p>
-      <p><strong>直し方:</strong> 3-2の2つのイベントで、Yes と No を入れかえよう。</p>
+      <p><strong>直し方:</strong> 3-2の2つのイベントで、「はい」と「いいえ」を入れかえよう。</p>
     </div>
 
     <div class="trouble">
@@ -442,7 +447,7 @@
       <p><strong>原因:</strong> 条件で選んだオブジェクトがちがう（Coin ではなく別のものになっている）。<br>
       または、イベントを左右逆（条件とアクションを入れちがえ）に作っている。</p>
       <p><strong>直し方:</strong> イベントの文をダブルクリックして、中身を確認しよう。<br>
-        左が「Player is in collision with Coin」、右が「Delete Coin」になっていればOK。</p>
+        左が「Player は Coin と衝突している」、右が「Coin を削除する」になっていればOK。</p>
     </div>
 
     <p>💡 15分たっても直らないときは、次の「AIを味方につけよう」の方法で相談してみよう。</p>
@@ -462,9 +467,9 @@
       </ul>
       <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
       <div class="prompt-example">
-        ブラウザ版のGDevelopでアクションゲームを作っている中学生です。<br>
+        ブラウザ版のGDevelop（画面は日本語表示）でアクションゲームを作っている中学生です。<br>
         イベントは次のとおりです。<br>
-        イベント1: 条件「Player is in collision with Coin」／アクション「Change Score: + 1」<br>
+        イベント1: 条件「Player は Coin と衝突している」／アクション「変数 Score を変更する：1 を加算」<br>
         コインにさわるとスコアがすごい勢いで増えてしまいます。<br>
         答えをそのまま言わずに、原因に気づけるヒントをください。
       </div>
@@ -475,7 +480,7 @@
       <p><span class="ai-ng">🚫 やめておこう</span></p>
       <ul>
         <li>課題のイベントをAIに全部作らせて、そのまま写す（自分で組み立てる練習がこの章のゴール！）</li>
-        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの書き方を答えることがある。<br>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの書き方や、英語の画面の名前で答えることがある。<br>
           アクションの名前や式は、必ず自分の画面で確認）</li>
       </ul>
     </div>

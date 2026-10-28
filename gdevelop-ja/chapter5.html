@@ -111,7 +111,7 @@
         <a href="img/ch5-02a_edit-cleartext.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-02a_edit-cleartext.jpg" alt="「ClearText を編集」の画面。オブジェクト名、サイズ（72）、太字、最初に表示するテキストを設定する" loading="lazy"></a>
         <figcaption>「ClearText を編集」の画面。オブジェクト名、サイズ（72）、太字、最初に表示するテキストを設定する</figcaption>
       </figure>
-      <p>同じようにもう1つ テキスト を作って名前を <code>GuideText</code> にし、文字を <code>Press ENTER</code> にします。<br>
+      <p>同じようにもう1つテキストのオブジェクトを作って名前を <code>GuideText</code> にし、文字を <code>Press ENTER</code> にします。<br>
         2つの文字を画面の真ん中あたりに置こう（「⋮」→「シーンにインスタンスを追加」で置いて、X・Y で位置を直すとかんたん）。<br>
         背景色（何もない場所を右クリック →「シーンプロパティを開く」の「シーンの背景色」）も変えるとそれっぽくなるよ。</p>
       <figure class="figure">
@@ -319,27 +319,27 @@
       <div class="event-sheet">
         <div class="ev-label">音を足したイベント（例）</div>
         <div class="ev-row">
-          <div class="ev-cond"><span class="ev-head">条件</span>At the beginning of the scene</div>
-          <div class="ev-act"><span class="ev-head">アクション</span>Hide <code>TurnLeft</code><br>Hide <code>TurnRight</code><br>Play a music file（くり返し: Yes）</div>
+          <div class="ev-cond"><span class="ev-head">条件</span>シーンが始まった</div>
+          <div class="ev-act"><span class="ev-head">アクション</span><code>TurnLeft</code> を非表示にする<br><code>TurnRight</code> を非表示にする<br>Bit Bit Loop.aac の音楽を再生する、音量: 100, ループ: はい</div>
         </div>
         <div class="ev-row">
-          <div class="ev-cond"><code>Player</code> is in collision with <code>Coin</code></div>
-          <div class="ev-act">Delete <code>Coin</code><br>Change <code>Score</code>: + 1<br>Play a sound（チャリン）</div>
+          <div class="ev-cond"><code>Player</code> は <code>Coin</code> と衝突している</div>
+          <div class="ev-act"><code>Coin</code> を削除する<br>変数 <code>Score</code> を変更する：1 を加算<br>Coins 1.aac のサウンドを再生する、音量: 100, ループ: いいえ</div>
         </div>
       </div>
       <figure class="figure">
-        <a href="img/ch5-10_music-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-10_music-event.jpg" alt="コインの効果音と、シーンの始まりのBGMを足したイベント" loading="lazy"></a>
-        <figcaption>コインの効果音と、シーンの始まりのBGMを足したイベント</figcaption>
+        <a href="img/ch5-10_music-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-10_music-event.jpg" alt="コインのイベントに「Coins 1.aac のサウンドを再生する」、シーンが始まったのイベントに「Bit Bit Loop.aac の音楽を再生する」を足したところ" loading="lazy"></a>
+        <figcaption>コインのイベントに「Coins 1.aac のサウンドを再生する」、「シーンが始まった」のイベントに「Bit Bit Loop.aac の音楽を再生する」を足したところ</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">通しでテストプレイして保存する</span>
-      <p>Title シーンを開いてPreview。<br>
+      <p>Title シーンを開いて「プレビュー」。<br>
         音が鳴るか、一周できるかを確かめて、<span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。</p>
       <figure class="figure">
-        <a href="img/ch5-11_preview-title.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-11_preview-title.jpg" alt="Titleシーンを開いてPreviewすると、タイトル画面から始まる" loading="lazy"></a>
-        <figcaption>Titleシーンを開いてPreviewすると、タイトル画面から始まる</figcaption>
+        <a href="img/ch5-11_preview-title.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-11_preview-title.jpg" alt="Titleシーンを開いてプレビューすると、タイトル画面から始まる" loading="lazy"></a>
+        <figcaption>Titleシーンを開いてプレビューすると、タイトル画面から始まる</figcaption>
       </figure>
     </div>
 
@@ -350,9 +350,9 @@
       <p>敵を踏んだとき（第4章のイベントE）と、ゴールにさわったときにも、それぞれ別の効果音を鳴らそう。</p>
       <details class="hint">
         <summary>ヒントを見る</summary>
-        <p>どちらも、すでにあるイベントの右側に「Play a sound」を足すだけ。<br>
+        <p>どちらも、すでにあるイベントの右側に「サウンドを再生する」を足すだけ。<br>
           ゴールの音は、シーンが切り替わると途中で止まることがあります。<br>
-          クリア画面の「At the beginning of the scene」で鳴らす方法もためしてみよう。</p>
+          クリア画面の「シーンが始まった」で鳴らす方法もためしてみよう。</p>
       </details>
     </div>
 
@@ -362,7 +362,7 @@
       「このゲーム、遊んでみたい！」と思ってもらえたら合格。</p>
       <details class="hint">
         <summary>ヒントを見る</summary>
-        <p>Title シーンでも「Add a new object」からアセットストアの絵が使えるよ。<br>
+        <p>Title シーンでも「＋ オブジェクトを追加」からアセットストアの絵が使えるよ。<br>
           Stage1で使ったのと同じキャラの素材を、もう一度追加してもOK。</p>
       </details>
     </div>
@@ -374,7 +374,7 @@
         <summary>ヒントを見る</summary>
         <p>シーン変数はシーンが変わると消えてしまいます。<br>
           シーンをまたいで使いたい数は「<strong>グローバル変数</strong>」（ゲーム全体の箱）に入れよう。<br>
-          プロジェクトマネージャーの「Global variables」から作れます。<br>
+          プロジェクトマネージャーの「グローバル変数」から作れます。<br>
           Stage1 のコインのイベントでグローバル変数を増やし、Clear シーンでその数を表示すればOK。<br>
           Title で Space を押したときにグローバル変数を 0 に戻すのも忘れずに。</p>
       </details>
@@ -383,15 +383,15 @@
     <h2>5-7. 🚨 つまずきポイント集</h2>
 
     <div class="trouble">
-      <h4>Previewすると、タイトルではなくStage1から始まる</h4>
-      <p><strong>原因:</strong> Previewは「今開いているシーン」から始まる。</p>
-      <p><strong>直し方:</strong> Title シーンのタブを開いてからPreviewしよう。<br>
-        Set as start scene が正しく設定されているかも確認してね。</p>
+      <h4>プレビューすると、タイトルではなくStage1から始まる</h4>
+      <p><strong>原因:</strong> プレビューは「今開いているシーン」から始まる。</p>
+      <p><strong>直し方:</strong> Title シーンのタブを開いてからプレビューしよう。<br>
+        「スタートシーンとして設定」が正しくできているか（Title に旗のマークがついているか）も確認してね。</p>
     </div>
 
     <div class="trouble">
       <h4>ゴールにさわってもクリア画面にならない</h4>
-      <p><strong>原因:</strong> Change the scene のシーン名がまちがっている（<code>clear</code> と小文字にしている、スペースが入っている など）。</p>
+      <p><strong>原因:</strong> 「シーンを変更する」のシーン名がまちがっている（<code>clear</code> と小文字にしている、スペースが入っている など）。</p>
       <p><strong>直し方:</strong> プロジェクトマネージャーのシーン名と、イベントのシーン名が<strong>1文字残らず同じ</strong>か確認しよう。</p>
     </div>
 
@@ -433,9 +433,9 @@
       </ul>
       <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
       <div class="prompt-example">
-        ブラウザ版のGDevelopでアクションゲームを作っている中学生です。<br>
+        ブラウザ版のGDevelop（画面は日本語表示）でアクションゲームを作っている中学生です。<br>
         シーンは Title、Stage1、Clear の3つです。<br>
-        Stage1 のイベントに「Player is in collision with Goal → Change the scene to Clear」を作りましたが、ゴールにさわってもクリア画面になりません。<br>
+        Stage1 のイベントに「条件: Player は Goal と衝突している → アクション: シーン "Clear" に変更する」を作りましたが、ゴールにさわってもクリア画面になりません。<br>
         確認するべきことを順番に教えてください。
       </div>
       <div class="prompt-example">
@@ -456,7 +456,7 @@
     <div class="checklist">
       <label><input type="checkbox"> Clear シーンを作って、Enterでタイトルへもどれるようにした</label>
       <label><input type="checkbox"> Title シーンを作って、Spaceでステージが始まるようにした</label>
-      <label><input type="checkbox"> Title を Set as start scene にした</label>
+      <label><input type="checkbox"> Title を「スタートシーンとして設定」した</label>
       <label><input type="checkbox"> ゴールにさわるとクリア画面になった</label>
       <label><input type="checkbox"> 効果音とBGMが鳴るようになった</label>
       <label><input type="checkbox"> Title から通しでテストプレイして、一周できた</label>
@@ -468,7 +468,7 @@
 
     <h2>5-10. 📚 もっと知りたい人へ</h2>
     <ul>
-      <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki</a> — 「Scenes」「Audio」のページで、シーンと音の公式説明が読める</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki（英語）</a> — 「Scenes」「Audio」のページで、シーンと音の公式説明が読める</li>
       <li><a href="https://wiki.gdevelop.io/gdevelop5/all-features/variables/scene-variables/" target="_blank">変数の解説（公式Wiki）</a> — 課題3のグローバル変数を使うときの参考に</li>
     </ul>
 

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>第1章 キャラを置いて動かそう 〜はじめてのGDevelop〜 | 夢アカGDevelop教科書</title>
+  <title>第1章 キャラを置いて動かそう 〜はじめてのGDevelop〜 | 夢アカGDevelop教科書（日本語UI版）</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="academy">横須賀プログラミング"夢"アカデミー</div>
     <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
-    <h1><a href="index.html">GDevelopコース教科書</a></h1>
+    <h1><a href="index.html">GDevelopコース教科書（日本語UI版）</a></h1>
   </header>
 
   <main class="container">
@@ -143,59 +143,60 @@
       <span class="step-num">1</span><span class="step-title">GDevelopを開いてログインを確認する</span>
       <p>ブックマークから <code>https://editor.gdevelop.io</code> を開きます。<br>
         右上に自分のユーザー名やアイコンが出ていればログインOK。<br>
-        出ていなければ「Log in」からログインしよう。</p>
+        出ていなければ<strong>ログイン</strong>のボタンからログインしよう。</p>
+      <!-- TODO-JA: 実機で表記確認（ログインボタンの日本語表記） -->
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">新しいプロジェクトを作る画面を開く</span>
-      <p>ホーム画面の左側のメニューから「<strong>Create</strong>」（作る）を選び、右のほうにある「<strong>＋ Create new game</strong>」（新しいゲームを作る）のボタンを押します。<br>
-        「Create a new game」の画面が開いて、いろいろなテンプレート（ひな形）が並びます。<br>
-        「Continue with Human Intelligence」の列のいちばん左にある「<strong>Empty project</strong>」（空っぽのプロジェクト）を選ぼう。<br>
+      <p>ホーム画面の左側のメニューから「<strong>作成</strong>」を選び、右のほうにある「<strong>＋ 新しいゲームを作成</strong>」のボタンを押します。<br>
+        「新しいゲームを作成」の画面が開いて、いろいろなテンプレート（ひな形）が並びます。<br>
+        「<strong>自分で作る</strong>」の列のいちばん左にある「<strong>空のプロジェクト</strong>」（空っぽのプロジェクト）を選ぼう。<br>
         今回はゼロから作るので、Platformerなどの完成済みのテンプレートは選びません。<br>
-        上の「What would you like to create?」はAIにゲームを作らせる欄なので、ここでは使いません。</p>
+        上の「何を作成したいですか？」はAIにゲームを作らせる欄なので、ここでは使いません。</p>
       <figure class="figure">
-        <a href="img/ch1-01_home-create-project.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-01_home-create-project.jpg" alt="ホーム画面の左のCreateを選び、右の「＋ Create new game」を押す" loading="lazy"></a>
-        <figcaption>ホーム画面の左のCreateを選び、右の「＋ Create new game」を押す</figcaption>
+        <a href="img/ch1-01_home-create-project.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-01_home-create-project.jpg" alt="ホーム画面の左の「作成」を選び、右の「＋ 新しいゲームを作成」を押す（赤枠）" loading="lazy"></a>
+        <figcaption>ホーム画面の左の「作成」を選び、右の「＋ 新しいゲームを作成」を押す</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch1-01b_empty-project.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-01b_empty-project.jpg" alt="Create a new gameの画面。いちばん左の「Empty project」を選ぶ" loading="lazy"></a>
-        <figcaption>Create a new gameの画面。いちばん左の「Empty project」を選ぶ</figcaption>
+        <a href="img/ch1-01b_empty-project.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-01b_empty-project.jpg" alt="「新しいゲームを作成」の画面。「自分で作る」のいちばん左の「空のプロジェクト」を選ぶ（赤枠）" loading="lazy"></a>
+        <figcaption>「新しいゲームを作成」の画面。「自分で作る」のいちばん左の「空のプロジェクト」を選ぶ</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">プロジェクト名を付けて作成する</span>
-      <p>画面の大きさは、最初に選ばれている「<strong>Desktop &amp; Mobile landscape</strong>」（1280x720）のままでOK。<br>
-        「<strong>Project name</strong>」（プロジェクト名）の欄に <code>my-action-game</code> と入力します。<br>
+      <p>画面の大きさは、最初に選ばれている「<strong>デスクトップとランドスケープ（横向き）のモバイル</strong>」（1280x720）のままでOK。<br>
+        「<strong>プロジェクト名</strong>」の欄に <code>my-action-game</code> と入力します。<br>
         名前は<strong>半角英数字</strong>にしておこう。<br>
-        「<strong>Where to store this project</strong>」（どこに保存するか）が「<strong>GDevelop Cloud</strong>」（アカウントへの保存）になっていることを確かめます。<br>
-        最後に右下の「<strong>Create new game</strong>」を押します。</p>
+        「<strong>このプロジェクトを保存する場所</strong>」が「<strong>GDevelop クラウド</strong>」（アカウントへの保存）になっていることを確かめます。<br>
+        最後に右下の「<strong>新しいゲームを作成</strong>」を押します。</p>
       <figure class="figure">
-        <a href="img/ch1-02_new-project-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-02_new-project-dialog.jpg" alt="Project nameに my-action-game、Where to store this projectがGDevelop Cloudになっているのを確かめて「Create new game」" loading="lazy"></a>
-        <figcaption>Project nameに my-action-game、Where to store this projectがGDevelop Cloudになっているのを確かめて「Create new game」</figcaption>
+        <a href="img/ch1-02_new-project-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-02_new-project-dialog.jpg" alt="プロジェクト名に my-action-game、このプロジェクトを保存する場所がGDevelop クラウドになっているのを確かめて「新しいゲームを作成」（赤枠）" loading="lazy"></a>
+        <figcaption>「プロジェクト名」に my-action-game、「このプロジェクトを保存する場所」が「GDevelop クラウド」になっているのを確かめて「新しいゲームを作成」</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">シーンの名前を Stage1 にする</span>
-      <p>プロジェクトができると、最初のシーン（ゲームの場面）が「Untitled scene」という名前で用意されています。<br>
+      <p>プロジェクトができると、最初のシーン（ゲームの場面）が「無名のシーン」という名前で用意されています。<br>
         画面の左上の「<strong>≡</strong>」（3本線のボタン）を押すと、プロジェクトマネージャー（シーンの一覧が出る場所）が開きます。<br>
-        「Scenes」の下にある「Untitled scene」を右クリック（または右はしの「⋮」）→「<strong>Rename</strong>」（名前を変える）を選び、<code>Stage1</code> にしよう。<br>
+        「シーン」の下にある「無名のシーン」を右クリック（または右はしの「⋮」）→「<strong>名前の変更</strong>」を選び、<code>Stage1</code> にしよう。<br>
         名前を入れたら <code>Enter</code> で決定し、右上の「×」でプロジェクトマネージャーを閉じます。</p>
       <figure class="figure">
-        <a href="img/ch1-03_rename-scene.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-03_rename-scene.jpg" alt="左上の「≡」でプロジェクトマネージャーを開き、Untitled sceneの右クリックメニューから「Rename」" loading="lazy"></a>
-        <figcaption>左上の「≡」でプロジェクトマネージャーを開き、Untitled sceneの右クリックメニューから「Rename」</figcaption>
+        <a href="img/ch1-03_rename-scene.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-03_rename-scene.jpg" alt="左上の「≡」でプロジェクトマネージャーを開き、「無名のシーン」の右クリックメニューから「名前の変更」（赤枠）" loading="lazy"></a>
+        <figcaption>左上の「≡」でプロジェクトマネージャーを開き、「無名のシーン」の右クリックメニューから「名前の変更」</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">5</span><span class="step-title">さっそく保存する</span>
       <p><span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> を押すか、左上の保存ボタン（フロッピーディスクのマーク）を押して保存します。<br>
-        画面の下に「<strong>Project properly saved</strong>」（ちゃんと保存できた）と出れば成功です。<br>
+        画面の下に「<strong>プロジェクトは正しく保存されました</strong>」と出れば成功です。<br>
         保存していない変更があると、保存ボタンに小さな点がつき、ブラウザのタブの名前に「*」がつきます。</p>
       <figure class="figure">
-        <a href="img/ch1-04_save-cloud.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-04_save-cloud.jpg" alt="左上の保存ボタンで保存。下に「Project properly saved」と出れば成功" loading="lazy"></a>
-        <figcaption>左上の保存ボタンで保存。下に「Project properly saved」と出れば成功</figcaption>
+        <a href="img/ch1-04_save-cloud.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-04_save-cloud.jpg" alt="左上の保存ボタン（赤枠）で保存。下に「プロジェクトは正しく保存されました」と出れば成功" loading="lazy"></a>
+        <figcaption>左上の保存ボタンで保存。下に「プロジェクトは正しく保存されました」と出れば成功</figcaption>
       </figure>
     </div>
 
@@ -224,25 +225,25 @@
         <text x="52" y="35" font-size="12" font-weight="bold" fill="#fde68a">≡ プロジェクトマネージャー（本だな）</text>
         <rect x="300" y="17" width="96" height="26" rx="5" fill="#16a34a"/>
         <polygon points="312,23 312,37 324,30" fill="#fff"/>
-        <text x="362" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">Preview</text>
+        <text x="362" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#fff">プレビュー</text>
         <text x="406" y="35" font-size="11" fill="#bbf7d0">← 再生ボタン</text>
         <rect x="18" y="58" width="150" height="354" rx="6" fill="#64748b"/>
         <text x="93" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">プロパティ</text>
-        <text x="93" y="106" text-anchor="middle" font-size="11" fill="#e2e8f0">Properties</text>
+        <text x="93" y="106" text-anchor="middle" font-size="11" fill="#e2e8f0">（左側）</text>
         <text x="93" y="140" text-anchor="middle" font-size="12" fill="#f1f5f9">選んだモノの</text>
         <text x="93" y="158" text-anchor="middle" font-size="12" fill="#f1f5f9">「プロフィール帳」</text>
         <text x="93" y="176" text-anchor="middle" font-size="12" fill="#f1f5f9">（位置・大きさ・</text>
         <text x="93" y="194" text-anchor="middle" font-size="12" fill="#f1f5f9">ビヘイビアなど）</text>
         <rect x="176" y="58" width="330" height="354" rx="6" fill="#0ea5e9" opacity="0.85"/>
         <text x="341" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">シーンエディタ</text>
-        <text x="341" y="106" text-anchor="middle" font-size="11" fill="#e0f2fe">Scene editor</text>
+        <text x="341" y="106" text-anchor="middle" font-size="11" fill="#e0f2fe">（真ん中）</text>
         <text x="341" y="138" text-anchor="middle" font-size="12" fill="#fff">ゲームの世界を組み立てる</text>
         <text x="341" y="156" text-anchor="middle" font-size="12" fill="#fff">「作業机」</text>
-        <text x="341" y="192" text-anchor="middle" font-size="11" fill="#e0f2fe">※いちばん上のタブで「Stage1 (Events)」に</text>
+        <text x="341" y="192" text-anchor="middle" font-size="11" fill="#e0f2fe">※いちばん上のタブで「Stage1 (イベント)」に</text>
         <text x="341" y="208" text-anchor="middle" font-size="11" fill="#e0f2fe">切り替え＝ルールを書く画面</text>
         <rect x="514" y="58" width="168" height="354" rx="6" fill="#475569"/>
         <text x="598" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">オブジェクト</text>
-        <text x="598" y="106" text-anchor="middle" font-size="11" fill="#cbd5e1">Objects</text>
+        <text x="598" y="106" text-anchor="middle" font-size="11" fill="#cbd5e1">（右側）</text>
         <text x="598" y="140" text-anchor="middle" font-size="12" fill="#e2e8f0">登場するモノの</text>
         <text x="598" y="158" text-anchor="middle" font-size="12" fill="#e2e8f0">「倉庫」</text>
         <text x="598" y="192" text-anchor="middle" font-size="11" fill="#cbd5e1">「＋」でモノを追加</text>
@@ -252,17 +253,17 @@
     </div>
 
     <figure class="figure">
-      <a href="img/ch1-05_editor-overview.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-05_editor-overview.jpg" alt="エディタの5つのエリア。①シーンエディタ ②オブジェクト ③プロパティ ④プロジェクトマネージャー（≡） ⑤Preview" loading="lazy"></a>
-      <figcaption>エディタの5つのエリア。①シーンエディタ ②オブジェクト ③プロパティ ④プロジェクトマネージャー（≡） ⑤Preview</figcaption>
+      <a href="img/ch1-05_editor-overview.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-05_editor-overview.jpg" alt="エディタの5つのエリア。①シーンエディタ ②オブジェクト ③プロパティ ④プロジェクトマネージャー（≡） ⑤プレビュー" loading="lazy"></a>
+      <figcaption>エディタの5つのエリア。①シーンエディタ ②オブジェクト ③プロパティ ④プロジェクトマネージャー（≡） ⑤プレビュー</figcaption>
     </figure>
 
     <table>
       <tr><th>エリア</th><th>たとえ</th><th>役割</th></tr>
-      <tr><td>①<strong>シーンエディタ</strong>（Scene editor）</td><td>作業机</td><td>真ん中。ゲームの世界を目で見て組み立てる場所</td></tr>
-      <tr><td>②<strong>オブジェクト</strong>（Objects）</td><td>倉庫</td><td>右側。このシーンに登場するモノ（キャラ・地面など）の一覧</td></tr>
-      <tr><td>③<strong>プロパティ</strong>（Properties）</td><td>プロフィール帳</td><td>左側。選んだモノの位置・大きさ・ビヘイビアなどの設定</td></tr>
-      <tr><td>④<strong>プロジェクトマネージャー</strong>（Project manager）</td><td>本だな</td><td>左上の「≡」で開く。シーンやゲーム全体の設定がならぶ場所</td></tr>
-      <tr><td>⑤<strong>Preview</strong>（プレビュー）</td><td>再生ボタン</td><td>上の真ん中。作りかけのゲームをその場で動かして試す</td></tr>
+      <tr><td>①<strong>シーンエディタ</strong></td><td>作業机</td><td>真ん中。ゲームの世界を目で見て組み立てる場所</td></tr>
+      <tr><td>②<strong>オブジェクト</strong></td><td>倉庫</td><td>右側。このシーンに登場するモノ（キャラ・地面など）の一覧</td></tr>
+      <tr><td>③<strong>プロパティ</strong></td><td>プロフィール帳</td><td>左側。選んだモノの位置・大きさ・ビヘイビアなどの設定</td></tr>
+      <tr><td>④<strong>プロジェクトマネージャー</strong></td><td>本だな</td><td>左上の「≡」で開く。シーンやゲーム全体の設定がならぶ場所</td></tr>
+      <tr><td>⑤<strong>プレビュー</strong></td><td>再生ボタン</td><td>上の真ん中。作りかけのゲームをその場で動かして試す</td></tr>
     </table>
 
     <div class="trouble">
@@ -286,36 +287,37 @@
     </div>
 
     <div class="step">
-      <span class="step-num">1</span><span class="step-title">「Add object」を押す</span>
-      <p>右側のオブジェクトパネル（倉庫）の「Scene Objects」の右にある「<strong>＋ Add object</strong>」（オブジェクトを追加）ボタンを押します。<br>
+      <span class="step-num">1</span><span class="step-title">「オブジェクトを追加」を押す</span>
+      <p>右側のオブジェクトパネル（倉庫）の「シーンオブジェクト」の右にある「<strong>＋ オブジェクトを追加</strong>」ボタンを押します。<br>
         オブジェクトが1つ以上あるときは、このボタンは紫色の「<strong>＋</strong>」だけになります。</p>
       <figure class="figure">
-        <a href="img/ch1-06_add-object-button.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-06_add-object-button.jpg" alt="オブジェクトパネルの「＋ Add object」ボタン" loading="lazy"></a>
-        <figcaption>オブジェクトパネルの「＋ Add object」ボタン</figcaption>
+        <a href="img/ch1-06_add-object-button.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-06_add-object-button.jpg" alt="オブジェクトパネルの「シーンオブジェクト」の右にある「＋ オブジェクトを追加」ボタン（赤枠）" loading="lazy"></a>
+        <figcaption>オブジェクトパネルの「＋ オブジェクトを追加」ボタン</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch1-06b_asset-store.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-06b_asset-store.jpg" alt="New objectの画面。Asset Storeのタブで素材を検索できる" loading="lazy"></a>
-        <figcaption>New objectの画面。Asset Storeのタブで素材を検索できる</figcaption>
+        <a href="img/ch1-06b_asset-store.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-06b_asset-store.jpg" alt="「新しいオブジェクト」の画面。「アセットストア」のタブの「アセットを検索」の欄で素材を検索できる（赤枠）" loading="lazy"></a>
+        <figcaption>「新しいオブジェクト」の画面。「アセットストア」のタブで素材を検索できる</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">アセットストアでキャラを探す</span>
-      <p>「<strong>New object</strong>」の画面が開いたら、「<strong>Asset Store</strong>」（アセットストア）のタブのまま、検索欄に <code>character</code> と入力して <code>Enter</code> を押します。<br>
-        右側の「OBJECT FILTERS」（しぼりこみ）で、「Viewpoint」の「<strong>Side view</strong>」（横から見た絵）と、「Pack type」の「<strong>Free</strong>」（無料）にチェックを入れると、横スクロール向きの無料キャラだけになります。<br>
+      <p>「<strong>新しいオブジェクト</strong>」の画面が開いたら、「<strong>アセットストア</strong>」のタブのまま、「アセットを検索」の欄に <code>character</code> と入力して <code>Enter</code> を押します。<br>
+        素材の名前は英語なので、検索も英語の言葉のほうがたくさん見つかります。<br>
+        右側の「<strong>オブジェクトフィルター</strong>」（しぼりこみ）で、「ビューポイント」の「<strong>サイドビュー</strong>」（横から見た絵）と、「パックの種類」の「<strong>無料</strong>」にチェックを入れると、横スクロール向きの無料キャラだけになります。<br>
         気に入ったキャラを押すと、くわしい画面が開きます。<br>
-        右下の「<strong>Add to the scene</strong>」を押すと、オブジェクトパネルにキャラが追加されます。<br>
+        右下の「<strong>シーンに追加</strong>」を押すと、オブジェクトパネルにキャラが追加されます。<br>
         この教科書では「<strong>Dino Doux</strong>」（青い恐竜）を使っています。</p>
       <figure class="figure">
-        <a href="img/ch1-07_asset-store-character.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-07_asset-store-character.jpg" alt="characterと検索し、Viewpointの「Side view」にチェック。Dino Douxを選んでいるところ" loading="lazy"></a>
-        <figcaption>characterと検索し、Viewpointの「Side view」にチェック。Dino Douxを選んでいるところ</figcaption>
+        <a href="img/ch1-07_asset-store-character.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-07_asset-store-character.jpg" alt="characterと検索し、ビューポイントの「サイドビュー」にチェック。Dino Douxを選んでいるところ（赤枠）" loading="lazy"></a>
+        <figcaption>characterと検索し、「ビューポイント」の「サイドビュー」にチェック。Dino Douxを選んでいるところ</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch1-07b_asset-detail.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-07b_asset-detail.jpg" alt="素材のくわしい画面。上にライセンス、右下に「Add to the scene」" loading="lazy"></a>
-        <figcaption>素材のくわしい画面。上にライセンス、右下に「Add to the scene」</figcaption>
+        <a href="img/ch1-07b_asset-detail.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-07b_asset-detail.jpg" alt="素材のくわしい画面。上に「ライセンスの種類」、右下に「シーンに追加」（赤枠）" loading="lazy"></a>
+        <figcaption>素材のくわしい画面。上に「ライセンスの種類」、右下に「シーンに追加」</figcaption>
       </figure>
       <div class="term">
-        <span class="word">ライセンス（Type of License）</span> … その素材を使うときのルール。<br>
+        <span class="word">ライセンス（ライセンスの種類）</span> … その素材を使うときのルール。<br>
         「<strong>CC0</strong>」は自由に使ってOK。<br>
         「<strong>CC-BY</strong>」は自由に使ってOKだけど、作った人の名前（クレジット）をゲームのどこかに書くのがルールです。<br>
         Dino Doux は CC-BY なので、第6章でクレジットを書こう。
@@ -328,26 +330,26 @@
     <div class="step">
       <span class="step-num">3</span><span class="step-title">オブジェクトの名前を Player にする</span>
       <p>オブジェクトパネルに、追加したキャラが並びます。<br>
-        キャラを右クリック →「<strong>Rename</strong>」で、名前を <code>Player</code> に変えよう。<br>
+        キャラを右クリック（または右はしの「⋮」）→「<strong>名前の変更</strong>」で、名前を <code>Player</code> に変えよう。<br>
         名前は<strong>半角英数字</strong>で、最初の文字は大文字にしておきます（この教科書の名前とそろえるため）。</p>
       <figure class="figure">
-        <a href="img/ch1-08_rename-player.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-08_rename-player.jpg" alt="オブジェクトパネルでキャラを右クリック →「Rename」で Player にする" loading="lazy"></a>
-        <figcaption>オブジェクトパネルでキャラを右クリック →「Rename」で Player にする</figcaption>
+        <a href="img/ch1-08_rename-player.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-08_rename-player.jpg" alt="オブジェクトパネルでキャラ（Dino_Doux）のメニューを開き、「名前の変更」で Player にする（赤枠）" loading="lazy"></a>
+        <figcaption>オブジェクトパネルでキャラを右クリック →「名前の変更」で Player にする</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">Player をシーンに置く</span>
-      <p>「Add to the scene」を押しても、オブジェクトパネルに追加されるだけで、まだシーンには置かれていません。<br>
+      <p>「シーンに追加」を押しても、オブジェクトパネルに追加されるだけで、まだシーンには置かれていません。<br>
         オブジェクトパネルの <code>Player</code> を、シーンエディタ（作業机）の左のほうへ<strong>ドラッグ＆ドロップ</strong>します。<br>
-        ドラッグがうまくいかないときは、<code>Player</code> の右はしの「⋮」→「<strong>Add instance to the scene</strong>」（シーンに置く）でもOK。<br>
+        ドラッグがうまくいかないときは、<code>Player</code> の右はしの「⋮」→「<strong>シーンにインスタンスを追加</strong>」（シーンに置く）でもOK。<br>
         画面の真ん中に置かれるので、あとでプロパティの X と Y で位置を直そう。</p>
       <p>素材によっては、キャラがとても小さいことがあります（Dino Doux は 24x24）。<br>
         置いたPlayerをクリックして、左のプロパティの <strong>W</strong>（幅）と <strong>H</strong>（高さ）を <code>72</code> くらいにすると見やすくなります。<br>
         W と H の右にあるくさりのマークがONだと、W を変えたとき H も同じ割合で変わります。</p>
       <p>🎬 操作動画: オブジェクトパネルからシーンへPlayerをドラッグして置く様子（ch1-mov01）</p>
       <figure class="figure">
-        <a href="img/ch1-09_player-on-scene.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-09_player-on-scene.jpg" alt="シーンにPlayerを置いたところ。左のプロパティでWとHを72にして大きくした" loading="lazy"></a>
+        <a href="img/ch1-09_player-on-scene.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-09_player-on-scene.jpg" alt="シーンにPlayerを置いたところ。左のプロパティ（インスタンス - Player）でWとHを72にして大きくした（赤枠）" loading="lazy"></a>
         <figcaption>シーンにPlayerを置いたところ。左のプロパティでWとHを72にして大きくした</figcaption>
       </figure>
     </div>
@@ -364,7 +366,7 @@
       <span class="step-num">1</span><span class="step-title">地面の素材を探して追加する</span>
       <p>もう一度オブジェクトパネルの「＋」を押して、検索欄に <code>grass</code> や <code>ground</code> と入力します。<br>
         素材の名前の下に「<strong>tiled sprite</strong>」と書いてあるものを選ぼう（この教科書では「Grass」）。<br>
-        「Add to the scene」で追加したら、名前を <code>Ground</code> に変えます。</p>
+        「シーンに追加」で追加したら、名前を <code>Ground</code> に変えます。</p>
       <figure class="figure">
         <a href="img/ch1-10_asset-store-ground.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-10_asset-store-ground.jpg" alt="grassと検索し、「tiled sprite」と書かれたGrassを選んでいるところ" loading="lazy"></a>
         <figcaption>grassと検索し、「tiled sprite」と書かれたGrassを選んでいるところ</figcaption>
@@ -376,24 +378,26 @@
       <p><code>Ground</code> をシーンの下のほう、Player の真下あたりにドラッグして置きます。<br>
         地面を選ぶと四すみに小さな四角（ハンドル）が出るので、<strong>右側のハンドルを右へドラッグして横長に伸ばそう</strong>。<br>
         ドラッグがむずかしければ、左のプロパティに数字を入れても同じです。<br>
+        数字で入れるときは、先に W と H の右にある<strong>くさりのマークを押してOFFにしてから</strong>入れよう（ONのままだと W を変えたとき H まで大きくなってしまいます）。<br>
         この教科書では <strong>X</strong> を <code>0</code>、<strong>Y</strong> を <code>620</code>、<strong>W</strong> を <code>1360</code> くらい、<strong>H</strong> を <code>70</code> にしています。<br>
-        伸ばすと絵がくり返し並ぶタイプ（Tiled Sprite）なら、きれいな地面になります。<br>
+        伸ばすと絵がくり返し並ぶタイプ（タイルスプライト）なら、きれいな地面になります。<br>
         絵が引きのばされてしまうタイプなら、伸ばさずに <code>Ground</code> をいくつも横に並べればOK。</p>
       <figure class="figure">
-        <a href="img/ch1-11_ground-stretch.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-11_ground-stretch.jpg" alt="Groundをシーンの下に置き、W（幅）を大きくして横長にしたところ" loading="lazy"></a>
+        <a href="img/ch1-11_ground-stretch.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-11_ground-stretch.jpg" alt="Groundをシーンの下に置き、W（幅）を大きくして横長にしたところ。WとHの右にくさりのマークがある（赤枠）" loading="lazy"></a>
         <figcaption>Groundをシーンの下に置き、W（幅）を大きくして横長にしたところ</figcaption>
       </figure>
     </div>
 
     <div class="term">
-      <span class="word">Tiled Sprite（タイルド スプライト）</span> … 同じ絵をタイルのようにくり返し並べて表示するオブジェクト。<br>
+      <span class="word">タイルスプライト</span> … 同じ絵をタイルのようにくり返し並べて表示するオブジェクト。<br>
       地面や壁など、長いものを作るときに便利。<br>
-      ふつうの絵のオブジェクトは「Sprite（スプライト）」と呼ぶよ。
+      ふつうの絵のオブジェクトは「スプライト」と呼ぶよ。<br>
+      Ground を選ぶと、左のプロパティのいちばん上に「タイルスプライト」と出ます。
     </div>
 
     <h2>1-7. ビヘイビアで「走る・跳ぶ・乗れる」をつけよう</h2>
     <p>
-      今のままPreviewしても、Playerは動きません。<br>
+      今のままプレビューしても、Playerは動きません。<br>
       置いただけの絵には、まだ「動き方」が決まっていないからです。<br>
       そこで使うのが<strong>ビヘイビア（Behavior）</strong>。<br>
       オブジェクトに「性格」や「能力」をつけるしくみで、ボタンを押すだけで<strong>走る・跳ぶ・重力で落ちる</strong>といった動きがまとめて手に入ります。
@@ -404,66 +408,69 @@
         <rect x="20" y="30" width="300" height="160" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
         <text x="170" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#b45309">Player</text>
         <rect x="45" y="80" width="250" height="40" rx="8" fill="#fff" stroke="#f59e0b"/>
-        <text x="170" y="106" text-anchor="middle" font-size="13" fill="#78350f">Platformer character</text>
+        <text x="170" y="106" text-anchor="middle" font-size="13" fill="#78350f">プラットフォームキャラクター</text>
         <text x="170" y="145" text-anchor="middle" font-size="13" fill="#78350f">→ 矢印キーで走る・ジャンプする</text>
         <text x="170" y="167" text-anchor="middle" font-size="13" fill="#78350f">→ 重力で下に落ちる</text>
         <rect x="380" y="30" width="300" height="160" rx="14" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
         <text x="530" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#15803d">Ground</text>
         <rect x="405" y="80" width="250" height="40" rx="8" fill="#fff" stroke="#16a34a"/>
-        <text x="530" y="106" text-anchor="middle" font-size="13" fill="#166534">Platform</text>
+        <text x="530" y="106" text-anchor="middle" font-size="13" fill="#166534">プラットフォーム</text>
         <text x="530" y="145" text-anchor="middle" font-size="13" fill="#166534">→ 上に乗れる「床」になる</text>
         <text x="530" y="167" text-anchor="middle" font-size="13" fill="#166534">（ないとすり抜けて落ちる）</text>
       </svg>
       <figcaption>図1-4: ビヘイビアは、オブジェクトにつける「能力シール」。<br>
-        主人公には Platformer character、地面には Platform をつける</figcaption>
+        主人公には「プラットフォームキャラクター」、地面には「プラットフォーム」をつける</figcaption>
     </div>
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">Player の設定画面を開く</span>
-      <p>オブジェクトパネルの <code>Player</code> を<strong>ダブルクリック</strong>（または右クリック →「<strong>Edit object</strong>」）します。<br>
-        「Edit Player」の画面が開いたら、上のタブから「<strong>Behaviors</strong>」（ビヘイビア）を選ぼう。</p>
+      <p>オブジェクトパネルの <code>Player</code> を<strong>ダブルクリック</strong>（または右クリック →「<strong>オブジェクトを編集</strong>」）します。<br>
+        「Player を編集」の画面が開いたら、上のタブから「<strong>ビヘイビア</strong>」を選ぼう。</p>
       <figure class="figure">
-        <a href="img/ch1-12_behaviors-tab.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-12_behaviors-tab.jpg" alt="PlayerをダブルクリックしたEdit Playerの画面。上の「Behaviors」タブ" loading="lazy"></a>
-        <figcaption>PlayerをダブルクリックしたEdit Playerの画面。上の「Behaviors」タブ</figcaption>
+        <a href="img/ch1-12_behaviors-tab.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-12_behaviors-tab.jpg" alt="Playerをダブルクリックした「Player を編集」の画面。上の「ビヘイビア」タブと「＋ ビヘイビアを追加」（赤枠）" loading="lazy"></a>
+        <figcaption>Playerをダブルクリックした「Player を編集」の画面。上の「ビヘイビア」タブ</figcaption>
       </figure>
     </div>
 
     <div class="step">
-      <span class="step-num">2</span><span class="step-title">Platformer character を追加する</span>
-      <p>右下の「<strong>＋ Add a behavior</strong>」（ビヘイビアを追加）を押します。<br>
-        「Add a new behavior to the object」の画面が開いたら、検索欄に <code>platformer</code> と入れて、いちばん上の「<strong>Platformer character</strong>」（プラットフォーマーのキャラ）を選びます。<br>
-        似た名前（Platformer character animator など）がたくさんあるので、まちがえないでね。<br>
-        追加できたら、右下の「<strong>Apply</strong>」（適用）を押して設定画面を閉じます。</p>
-      <p>💡 シーンでPlayerを選んだとき、左のプロパティの「Behaviors」の右の「＋」からも同じ画面を開けます。</p>
+      <span class="step-num">2</span><span class="step-title">プラットフォームキャラクター を追加する</span>
+      <p>「<strong>＋ ビヘイビアを追加</strong>」を押します（ビヘイビアがまだ1つもないときは画面の真ん中、あるときは右下にあります）。<br>
+        「オブジェクトに新しいビヘイビアを追加」の画面が開いたら、検索欄に <code>プラットフォーム</code> と入れて、「<strong>プラットフォームキャラクター</strong>」（プラットフォームの上を走ったりジャンプしたりできるようにします。）を選びます。<br>
+        英語の <code>platformer</code> で検索しても出てこないので、日本語で入れてね。<br>
+        似た名前（「プラットフォームキャラクターの設定スタック」「プラットフォーム」など）が並ぶので、まちがえないでね。<br>
+        追加できたら、右下の「<strong>適用</strong>」を押して設定画面を閉じます。</p>
+      <p>💡 シーンでPlayerを選んだとき、左のプロパティの「ビヘイビア」の右の「＋」からも同じ画面を開けます。</p>
       <figure class="figure">
-        <a href="img/ch1-13_add-platformer-character.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-13_add-platformer-character.jpg" alt="platformerと検索し、いちばん上の「Platformer character」を選ぶ" loading="lazy"></a>
-        <figcaption>platformerと検索し、いちばん上の「Platformer character」を選ぶ</figcaption>
+        <a href="img/ch1-13_add-platformer-character.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-13_add-platformer-character.jpg" alt="「プラットフォーム」と検索し、「プラットフォームキャラクター」を選ぶ（赤枠）" loading="lazy"></a>
+        <figcaption>「プラットフォーム」と検索し、3つ目の「プラットフォームキャラクター」を選ぶ</figcaption>
       </figure>
     </div>
 
     <div class="step">
-      <span class="step-num">3</span><span class="step-title">Ground に Platform を追加する</span>
-      <p>同じように <code>Ground</code> をダブルクリック →「Behaviors」→「Add a behavior」で、今度は <code>platform</code> と検索して「<strong>Platform</strong>」（足場）を選んで追加。<br>
-        「Type」は「<strong>NormalPlatform</strong>」（ふつうの床）のままでOK。<br>
-        「<strong>Ledges can be grabbed</strong>」（はしにつかまれる）のチェックは外しておきます。<br>
-        「Apply」で閉じます。</p>
+      <span class="step-num">3</span><span class="step-title">Ground に プラットフォーム を追加する</span>
+      <p>同じように <code>Ground</code> をダブルクリック →「ビヘイビア」→「ビヘイビアを追加」で、今度は「<strong>プラットフォーム</strong>」（オブジェクトをキャラクターが乗れるプラットフォームにします。）を選んで追加。<br>
+        検索欄に前回の文字が残っていることがあるので、一度消してから <code>プラットフォーム</code> と入れよう。<br>
+        追加すると、一覧には「Platform」という名前で表示されます。<br>
+        「タイプ」は「<strong>NormalPlatform — プラットフォーム</strong>」（ふつうの床）のままでOK。<br>
+        「<strong>つかめる端っこ</strong>」（はしにつかまれる）のチェックは外しておきます。<br>
+        「適用」で閉じます。</p>
       <figure class="figure">
-        <a href="img/ch1-14_add-platform-behavior.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-14_add-platform-behavior.jpg" alt="GroundにPlatformを追加したところ。Ledges can be grabbedのチェックを外して「Apply」" loading="lazy"></a>
-        <figcaption>GroundにPlatformを追加したところ。Ledges can be grabbedのチェックを外して「Apply」</figcaption>
+        <a href="img/ch1-14_add-platform-behavior.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-14_add-platform-behavior.jpg" alt="「Ground を編集」の画面。プラットフォーム（Platform）を追加し、タイプはNormalPlatform — プラットフォーム、「つかめる端っこ」のチェックを外して「適用」（赤枠）" loading="lazy"></a>
+        <figcaption>Groundにプラットフォームを追加したところ。「つかめる端っこ」のチェックを外して「適用」</figcaption>
       </figure>
     </div>
 
-    <h2>1-8. Previewで遊んでみよう！</h2>
+    <h2>1-8. プレビューで遊んでみよう！</h2>
 
     <div class="step">
-      <span class="step-num">1</span><span class="step-title">Preview ボタンを押す</span>
-      <p>画面の上の真ん中にある「<strong>▷ Preview</strong>」ボタンを押します。<br>
+      <span class="step-num">1</span><span class="step-title">プレビュー ボタンを押す</span>
+      <p>画面の上の真ん中にある「<strong>▷ プレビュー</strong>」ボタンを押します。<br>
         新しいウィンドウが開いて、ゲームが始まります。<br>
-        2回目からは、ボタンの名前が「<strong>Update</strong>」に変わることがあります。<br>
+        プレビュー中は、ボタンの名前が「<strong>アップデート</strong>」に変わります。<br>
         そのときは、開いているゲームのウィンドウを閉じてからもう一度押すと、最初から始まります。</p>
       <figure class="figure">
-        <a href="img/ch1-15_preview-button.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-15_preview-button.jpg" alt="上の真ん中の「Preview」ボタン" loading="lazy"></a>
-        <figcaption>上の真ん中の「Preview」ボタン</figcaption>
+        <a href="img/ch1-15_preview-button.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-15_preview-button.jpg" alt="上の真ん中の「プレビュー」ボタン（赤枠）" loading="lazy"></a>
+        <figcaption>上の真ん中の「プレビュー」ボタン</figcaption>
       </figure>
     </div>
 
@@ -477,41 +484,41 @@
       <p>Playerが地面の上に乗って、走ったりジャンプしたりできれば大成功！<br>
         キーを押しても動かないときは、まず<strong>ゲームの画面を1回クリック</strong>してから操作してみよう。</p>
       <figure class="figure">
-        <a href="img/ch1-16_preview-window.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-16_preview-window.jpg" alt="Previewのゲーム画面。Playerが地面の上に立っている" loading="lazy"></a>
-        <figcaption>Previewのゲーム画面。Playerが地面の上に立っている</figcaption>
+        <a href="img/ch1-16_preview-window.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-16_preview-window.jpg" alt="プレビューのゲーム画面。Playerが地面の上に立っている" loading="lazy"></a>
+        <figcaption>プレビューのゲーム画面。Playerが地面の上に立っている</figcaption>
       </figure>
     </div>
 
     <div class="step">
-      <span class="step-num">3</span><span class="step-title">Previewを閉じて保存する</span>
-      <p>遊び終わったら、Previewのタブ（ウィンドウ）を閉じてエディタに戻ります。<br>
+      <span class="step-num">3</span><span class="step-title">プレビューを閉じて保存する</span>
+      <p>遊び終わったら、プレビューのタブ（ウィンドウ）を閉じてエディタに戻ります。<br>
         <span class="os-win"><code>Ctrl + S</code></span><span class="os-mac"><code>⌘ + S</code></span> で保存しよう。<br>
         <strong>作業の区切りごとに保存するクセ</strong>をつけておくと、トラブルのときに助かります。</p>
     </div>
 
     <div class="term">
       <span class="word">テストプレイ</span> … 作ったゲームを開発者が自分で遊んで、ちゃんと動くか確かめること。<br>
-      ゲーム作りでは「少し作る → Previewで試す」を何十回もくり返すよ。
+      ゲーム作りでは「少し作る → プレビューで試す」を何十回もくり返すよ。
     </div>
 
     <h2>1-9. 💪 やってみよう</h2>
 
     <div class="challenge">
       <h3>課題1: 走る速さとジャンプ力を変えてみよう</h3>
-      <p><code>Player</code> の設定画面 →「Behaviors」を開くと、Platformer character の細かい設定が並んでいます。<br>
-      その中の <strong>Max. speed</strong>（最高速度、最初は 250）と <strong>Jump speed</strong>（ジャンプの勢い、最初は 600）の数字を変えて、Previewで違いを確かめよう。<br>
+      <p><code>Player</code> の設定画面 →「ビヘイビア」を開くと、プラットフォームキャラクターの細かい設定が並んでいます。<br>
+      その中の <strong>最高速度</strong>（最初は 250）と <strong>ジャンプ速度</strong>（ジャンプの勢い、最初は 600）の数字を変えて、プレビューで違いを確かめよう。<br>
       「自分が気持ちいい」と思う数字を見つけたら合格。</p>
       <figure class="figure">
-        <a href="img/ch1-17_platformer-settings.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-17_platformer-settings.jpg" alt="Edit PlayerのBehaviorsタブ。Jump speed（ジャンプの勢い）とMax. speed（最高速度）を変えられる" loading="lazy"></a>
-        <figcaption>Edit PlayerのBehaviorsタブ。Jump speed（ジャンプの勢い）とMax. speed（最高速度）を変えられる</figcaption>
+        <a href="img/ch1-17_platformer-settings.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch1-17_platformer-settings.jpg" alt="「Player を編集」のビヘイビアタブ。ジャンプ速度と最高速度（赤枠）を変えられる" loading="lazy"></a>
+        <figcaption>「Player を編集」の「ビヘイビア」タブ。「ジャンプ速度」（ジャンプの勢い）と「最高速度」を変えられる</figcaption>
       </figure>
       <details class="hint">
         <summary>ヒントを見る</summary>
         <p>まずは今の数字をメモしてから、1.5倍や半分にしてみると違いがわかりやすいよ。<br>
-          <strong>Gravity</strong>（重力、最初は 1000）の数字も変えると、ふわふわ跳ぶゲームや、ずっしり重いゲームになります。<br>
+          <strong>重力</strong>（最初は 1000）の数字も変えると、ふわふわ跳ぶゲームや、ずっしり重いゲームになります。<br>
           変えすぎて困ったら、メモした数字に戻せばOK。</p>
-        <p>迷ったら、公式コース「Make a Platformer Game」で使われている数字を試してみよう。<br>
-          Jump speed（ジャンプの勢い）は 717、Jump sustain time（ジャンプボタンを押し続けたときに高く跳べる時間）は 0.3、Max. falling speed（最大落下速度）は 800、Acceleration（加速）は 1000、Max. speed（最高速度）は 400 です。<br>
+        <p>迷ったら、公式コース「Make a Platformer Game」（日本語の画面では「プラットフォーマーゲームを作る」）で使われている数字を試してみよう。<br>
+          ジャンプ速度（ジャンプの勢い）は 717、ジャンプ持続時間（ジャンプボタンを押し続けたときに高く跳べる時間）は 0.3、最高落下速度は 800、加速度は 1000、最高速度は 400 です。<br>
           ここからスタートして、自分好みに少しずつ変えていくのもアリ。</p>
       </details>
     </div>
@@ -519,7 +526,7 @@
     <div class="challenge">
       <h3>課題2: 段差を作って登ろう</h3>
       <p>シーンにもう1つ <code>Ground</code> を置いて、少し高い位置に段差を作ろう。<br>
-      Previewで、その段差にジャンプで飛び乗れるか確かめます。</p>
+      プレビューで、その段差にジャンプで飛び乗れるか確かめます。</p>
       <details class="hint">
         <summary>ヒントを見る</summary>
         <p>オブジェクトパネルから <code>Ground</code> をもう一度ドラッグすれば、2つ目が置けるよ（設計図からもう1個実物を作るイメージ）。<br>
@@ -541,30 +548,30 @@
     <h2>1-10. 🚨 つまずきポイント集</h2>
 
     <div class="trouble">
-      <h4>Previewを押すと、Playerが地面をすり抜けて落ちていく</h4>
-      <p><strong>原因:</strong> <code>Ground</code> に Platform ビヘイビアがついていない。</p>
-      <p><strong>直し方:</strong> <code>Ground</code> をダブルクリック →「Behaviors」に Platform があるか確認しよう。<br>
-        なければ「Add a behavior」で追加して「Apply」。</p>
+      <h4>プレビューを押すと、Playerが地面をすり抜けて落ちていく</h4>
+      <p><strong>原因:</strong> <code>Ground</code> に プラットフォーム ビヘイビアがついていない。</p>
+      <p><strong>直し方:</strong> <code>Ground</code> をダブルクリック →「ビヘイビア」に Platform（プラットフォーム）があるか確認しよう。<br>
+        なければ「ビヘイビアを追加」で追加して「適用」。</p>
     </div>
 
     <div class="trouble">
       <h4>Playerがまったく動かない・落ちもしない</h4>
-      <p><strong>原因:</strong> <code>Player</code> に Platformer character ビヘイビアがついていない。<br>
+      <p><strong>原因:</strong> <code>Player</code> に プラットフォームキャラクター ビヘイビアがついていない。<br>
         または、ゲーム画面が選ばれていない。</p>
-      <p><strong>直し方:</strong> <code>Player</code> の「Behaviors」を確認しよう。<br>
-        ついているのに動かないときは、Previewのゲーム画面を1回クリックしてからキーを押してみよう。<br>
+      <p><strong>直し方:</strong> <code>Player</code> の「ビヘイビア」を確認しよう。<br>
+        ついているのに動かないときは、プレビューのゲーム画面を1回クリックしてからキーを押してみよう。<br>
         日本語入力がオンだとキーが効かないこともあるので、<span class="os-win">「半角/全角」キーで</span><span class="os-mac">「英数」キーで</span>英字入力にしよう。</p>
     </div>
 
     <div class="trouble">
-      <h4>Previewを押しても、新しいタブやウィンドウが開かない</h4>
+      <h4>プレビューを押しても、新しいタブやウィンドウが開かない</h4>
       <p><strong>原因:</strong> ブラウザが「ポップアップ（勝手に開く画面）」をブロックしている。</p>
       <p><strong>直し方:</strong> アドレスバーの右はしに、ブロックされたことを知らせるアイコンが出ていないか見てみよう。<br>
         そこから「editor.gdevelop.io のポップアップを常に許可」を選ぶと開くようになります。</p>
     </div>
 
     <div class="trouble">
-      <h4>「Maximum of 3 cloud projects reached」と出て、プロジェクトを作れない</h4>
+      <h4>「最大3のクラウドプロジェクトに達しました。」と出て、プロジェクトを作れない</h4>
       <p><strong>原因:</strong> 無料プランで保存できるプロジェクトの数（3つ）を使い切っている。</p>
       <p><strong>直し方:</strong> 自分で消さずに、講師を呼んでね。<br>
         いらない練習用のプロジェクトがあれば、講師と一緒に整理します。</p>
@@ -578,7 +585,7 @@
 
     <div class="trouble">
       <h4>シーンエディタで迷子になった（何も見えなくなった）</h4>
-      <p><strong>直し方:</strong> シーンの何もないところを右クリック →「<strong>Zoom to fit content</strong>」（置いたもの全部が見える大きさにする）を選ぼう。<br>
+      <p><strong>直し方:</strong> シーンの何もないところを右クリック →「<strong>コンテンツに合うようにズーム</strong>」（置いたもの全部が見える大きさにする）を選ぼう。<br>
         マウスホイールでズームを戻すこともできます。<br>
         シーンの中をスペースキーを押しながらドラッグすると、画面を動かせます。<br>
         それでもわからなければ、オブジェクトの一覧やインスタンスの一覧から Player を探すと、その場所に移動できることがあります。</p>
@@ -601,8 +608,8 @@
       </ul>
       <p>そのままコピペで使えるプロンプト（AIへの指示文）の例:</p>
       <div class="prompt-example">
-        ブラウザ版のGDevelopで、初めてゲームを作っている中学生です。<br>
-        PlayerにPlatformer characterビヘイビアを、GroundにPlatformビヘイビアをつけましたが、Previewすると地面をすり抜けて落ちてしまいます。<br>
+        ブラウザ版のGDevelop（日本語の表示）で、初めてゲームを作っている中学生です。<br>
+        Playerに「プラットフォームキャラクター」ビヘイビアを、Groundに「プラットフォーム」ビヘイビアをつけましたが、プレビューすると地面をすり抜けて落ちてしまいます。<br>
         原因として考えられることを、確認する順番に教えてください。
       </div>
       <div class="prompt-example">
@@ -612,7 +619,7 @@
       <p><span class="ai-ng">🚫 やめておこう</span></p>
       <ul>
         <li>「自分のゲームにどんなキャラを使うか」をAIに決めてもらう（自分で選ぶから自分のゲームになる！）</li>
-        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの画面の話をすることもある。<br>
+        <li>AIの答えを<strong>試して確かめずに</strong>信じる（AIは古いGDevelopの画面や、英語の表示のボタン名で答えることもある。<br>
           ボタンの名前や場所は、必ず自分の画面で確認）</li>
       </ul>
     </div>
@@ -620,11 +627,11 @@
     <h2>1-12. ✅ チェックリスト</h2>
     <div class="checklist">
       <label><input type="checkbox"> ゲームエンジンが何をしてくれるか、ひとことで説明できる</label>
-      <label><input type="checkbox"> <code>my-action-game</code> というプロジェクトを作って、GDevelop Cloudに保存できた</label>
+      <label><input type="checkbox"> <code>my-action-game</code> というプロジェクトを作って、GDevelop クラウドに保存できた</label>
       <label><input type="checkbox"> シーンの名前を <code>Stage1</code> にした</label>
-      <label><input type="checkbox"> 5つのエリア（シーンエディタ・オブジェクト・プロパティ・プロジェクトマネージャー・Preview）の役割が言える</label>
-      <label><input type="checkbox"> <code>Player</code> に Platformer character、<code>Ground</code> に Platform をつけた</label>
-      <label><input type="checkbox"> Previewで、地面の上を走ってジャンプできた</label>
+      <label><input type="checkbox"> 5つのエリア（シーンエディタ・オブジェクト・プロパティ・プロジェクトマネージャー・プレビュー）の役割が言える</label>
+      <label><input type="checkbox"> <code>Player</code> に プラットフォームキャラクター、<code>Ground</code> に プラットフォーム をつけた</label>
+      <label><input type="checkbox"> プレビューで、地面の上を走ってジャンプできた</label>
     </div>
     <p>全部チェックできたら第1章クリア！<br>
       🎉 次回は、足場をたくさん置いてステージらしくして、カメラが主人公について来るようにするよ。<br>
@@ -634,8 +641,9 @@
     <ul>
       <li><a href="https://wiki.gdevelop.io/gdevelop5/tutorials/platformer" target="_blank">公式プラットフォーマーチュートリアル Part 1・Part 2（英語）</a> — この章と同じ「プロジェクト作成〜主人公づくり」を公式の手順で復習できる</li>
       <li><a href="https://wiki.gdevelop.io/gdevelop5/" target="_blank">GDevelop公式Wiki</a> — GDevelopの公式説明書（英語）。<br>
-        ブラウザの翻訳機能を使うと日本語で読めるよ</li>
-      <li><a href="https://wiki.gdevelop.io/gdevelop5/behaviors/platformer/" target="_blank">Platformer character の解説（公式Wiki）</a> — 課題1の設定項目の意味がくわしく書いてある</li>
+        ブラウザの翻訳機能を使うと日本語で読めるよ。<br>
+        ボタン名は英語で書かれているので、日本語の画面と見比べながら読もう</li>
+      <li><a href="https://wiki.gdevelop.io/gdevelop5/behaviors/platformer/" target="_blank">プラットフォームキャラクター（Platformer character）の解説（公式Wiki・英語）</a> — 課題1の設定項目の意味がくわしく書いてある</li>
     </ul>
 
     <nav class="chapter-nav">
@@ -645,7 +653,7 @@
   </main>
 
   <footer class="site-footer">
-    横須賀プログラミング"夢"アカデミー GDevelopコース教材
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（日本語UI版）
   </footer>
 
   <script src="js/os.js"></script>
