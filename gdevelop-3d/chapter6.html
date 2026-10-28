@@ -124,7 +124,7 @@
     <h3>ワザ1: 建物にぶつかるようにする</h3>
     <div class="step">
       <span class="step-num">1</span><span class="step-title">建物に「3D physics engine」をつける</span>
-      <p>今のままだと、主人公もゾンビも建物をすりぬけてしまいます。<br>
+      <p>今のままだと、主人公もトラックも建物をすりぬけてしまいます。<br>
         シーンエディターで一覧の <code>Large_Building_B</code> をクリックし、左の「Behaviors」の「＋」を押します。<br>
         <code>physics</code> で検索して「<strong>3D physics engine</strong>」を選びます。<br>
         つけたら、Physics3D の「<strong>Type</strong>」を「Dynamic」から「<strong>Static</strong>」（動かない）に変えます。<br>
@@ -133,7 +133,8 @@
         <a href="img/ch6-01_building-static.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-01_building-static.jpg" alt="Large_Building_BのBehaviorsにPhysics3Dをつけ、TypeをStaticにしたところ（赤枠）" loading="lazy"></a>
         <figcaption>Physics3D をつけて、Type を Static に（赤枠）</figcaption>
       </figure>
-      <p>Preview で建物に向かって歩くと、かべの前で止まります。</p>
+      <p>Preview で建物に向かって歩くと、かべの前で止まります。<br>
+        ゾンビは力（フォース）で動いているので、建物をすりぬけたままです（ゾンビらしい、ということにしておこう）。</p>
       <figure class="figure">
         <a href="img/ch6-05_preview-wall.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-05_preview-wall.jpg" alt="Previewで、主人公が建物のかべの前で止まっている（赤枠）" loading="lazy"></a>
         <figcaption>建物のかべで止まるようになった（赤枠）</figcaption>
@@ -184,7 +185,7 @@
     <h3>ワザ3: 街を広げる・ゾンビの種類をふやす</h3>
     <div class="step">
       <span class="step-num">3</span><span class="step-title">これまでのやり方を組み合わせる</span>
-      <p>道路や建物は、第1章と同じやり方で「Zombie Apocalypse」のパックから追加して、コピー＆貼りつけでふやせます。<br>
+      <p>道路は「Zombie Apocalypse」、建物は「City Kit (Commercial)」のパックから、第1章と同じやり方で追加して、コピー＆貼りつけでふやせます。<br>
         建物をふやしたら、ワザ1の Physics3D も忘れずに。<br>
         ほかのゾンビにしたいときは、一覧の Zombie を右クリック →「<strong>Swap assets</strong>」で見た目だけ入れかえられます。<br>
         イベントはそのまま使えるので、こわれません。</p>
@@ -255,7 +256,7 @@
     <ul>
       <li>ゲームの中やタイトル・説明文に、<strong>本名・学校名・住所など</strong>を書かない</li>
       <li>アセットストアの無料素材や自分で作った素材だけを使っているか、もう一度確認する</li>
-      <li>この教科書で使った「Zombie Apocalypse」（Quaternius）や効果音は CC0 なので、クレジットは書かなくてもOK。<br>
+      <li>この教科書で使った「Zombie Apocalypse」（Quaternius）、「City Kit」（Kenney）、効果音は CC0 なので、クレジットは書かなくてもOK。<br>
         自分で CC-BY の素材を追加したときは、作った人の名前（クレジット）をゲームの中や説明文に書く</li>
       <li>公開するかどうかは、保護者の方とも相談して決める</li>
     </ul>
@@ -391,7 +392,7 @@
       <label><input type="checkbox"> この先の3つの道のどれに進みたいか考えた</label>
     </div>
     <p>全部チェックできたら、3Dアクション編 完全クリア！<br>
-      🎉 空っぽのプロジェクトから、自分の力でゲームを1本作り上げました。<br>
+      🎉 スターターから、自分の力でゲームを1本に仕上げました。<br>
       ここで身につけた力を持って、次の道へ進もう。</p>
 
     <h2>6-11. 📚 もっと知りたい人へ</h2>
@@ -403,7 +404,7 @@
     </ul>
 
     <nav class="chapter-nav">
-      <a href="chapter5.html">← 第5章 ゾンビを倒そう</a>
+      <a href="chapter5.html">← 第5章 ゾンビをたおそう</a>
       <a href="index.html">目次へもどる →</a>
     </nav>
   </main>

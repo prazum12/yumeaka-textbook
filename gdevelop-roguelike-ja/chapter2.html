@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第2章 敵がおそってくる | 夢アカGDevelop教科書（ローグライク編 日本語UI版）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（ローグライク編 日本語UI版）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第2章</span>
+      <h1>敵がおそってくる</h1>
+      <div class="date">📅 第2回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>敵をプレイヤーのほうへ動かせる</li>
+        <li>オブジェクト変数で、敵1体ずつに体力を持たせられる</li>
+        <li>ぶつかったこと（衝突）を条件にできる</li>
+        <li>タイマーとランダムで、敵をどんどん出せる</li>
+      </ul>
+    </div>
+
+    <h2>2-1. この章で作るしくみ</h2>
+    <div class="event-sheet">
+      <div class="ev-label">この章で作るルール（まとめ）</div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>（いつも）</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゴブリンをプレイヤーのほうへ動かす<br>走るアニメーションにする</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゴブリンがプレイヤーより右にいる</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゴブリンを左向きにする</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゴブリンがプレイヤーより左にいる</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゴブリンを右向きにする</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ナイフがゴブリンに当たった</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ナイフを消す<br>ゴブリンの体力を1へらす</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゴブリンの体力が0以下</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゴブリンを消す</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>タイマーが2秒をこえた</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>タイマーをリセット<br>ランダムな場所にゴブリンを作る</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>シーンが始まったとき</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>タイマーをスタート</div>
+      </div>
+    </div>
+
+    <h2>2-2. ゴブリンを用意しよう</h2>
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ゴブリンを追加する</span>
+      <p>「オブジェクト」の「＋」から Dungeon のパックを開き、Character の中の「<strong>Goblin</strong>」を選んでプロジェクトに追加します。<br>
+        アニメーションは「Idle」と「Run」の2つです。<br>
+        ゴブリンはイベントで作り出すので、シーンには置かなくてOK。<br>
+        もし置いてしまったら、シーンのゴブリンをクリックして <code>Delete</code> キーで消しておこう。</p>
+      <figure class="figure">
+        <a href="img/ch2-01_goblin.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-01_goblin.jpg" alt="アセットストアのGoblin。作者0x72、ライセンスCC0" loading="lazy"></a>
+        <figcaption>Dungeon パックの「Goblin」</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">ゴブリンに体力（オブジェクト変数）を持たせる</span>
+      <p>一覧の Goblin の「⋮」から「<strong>オブジェクトを編集</strong>」を選んで、「Goblin を編集」の画面を開きます。<br>
+        上の「<strong>変数</strong>」のタブを開き、「<strong>変数を追加</strong>」を押します。<br>
+        名前を <code>Health</code>、型は「数値」、値を <code>2</code> にして「適用」。<br>
+        ナイフ2回で倒れるゴブリンになります。</p>
+      <figure class="figure">
+        <a href="img/ch2-02_goblin-health.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-02_goblin-health.jpg" alt="Goblinのオブジェクト変数にHealth = 2（赤枠）" loading="lazy"></a>
+        <figcaption>Goblin に <code>Health</code> = <code>2</code>（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">オブジェクト変数</span> … オブジェクト1つ1つが、べつべつに持っている変数。<br>
+      ゴブリンが10体いたら、10体それぞれが自分の Health を持っています。<br>
+      だから、ナイフが当たったゴブリンだけ体力がへります。
+    </div>
+
+    <h2>2-3. ゴブリンが追いかけてくる</h2>
+    <p>イベントシートで新しいグループ <code>Enemy</code> を作ります。</p>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">プレイヤーのほうへ動かす</span>
+      <p>条件のないイベントを作ります（条件は空のままでOK）。<br>
+        アクションは2つです。</p>
+      <ul>
+        <li><code>オブジェクトに向かって移動</code> で検索 →「<strong>オブジェクトに向かって移動するフォースを追加する</strong>」、オブジェクト は <code>Goblin</code>、目標オブジェクト は <code>Player</code>、速度 は <code>100</code>、下は「<strong>瞬間的</strong>」のまま</li>
+        <li>「アニメーション名」で <code>Goblin</code> を「<strong>Run</strong>」</li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch2-03_goblin-chase.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-03_goblin-chase.jpg" alt="オブジェクトに向かって移動するフォースを追加する。Goblin、Player、100（赤枠）" loading="lazy"></a>
+        <figcaption>Goblin を Player のほうへ 100 の速さで（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">条件のないイベント</span> … 条件を入れないと、「いつも」（1秒に60回くらい）アクションが動きます。<br>
+      瞬間的 の力を毎回かけるので、ゴブリンはずっとプレイヤーを追いかけ続けます。
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">ゴブリンの向きを変える</span>
+      <p>新しいイベントの条件に、<code>X 座標</code> で検索 →「<strong>X 座標</strong>」を入れます。<br>
+        オブジェクト は <code>Goblin</code>、テスト記号 は「<strong>&gt;（より大きい）</strong>」、値は <code>Player.X()</code>。<br>
+        アクションは「オブジェクトを水平方向に反転させる」で <code>Goblin</code> を「はい」。</p>
+      <p>もう1つイベントを作り、テスト記号 を「<strong>≦（以下）</strong>」、反転 を「<strong>いいえ</strong>」にします。<br>
+        ゴブリンがいつもプレイヤーのほうを向くようになります。</p>
+      <figure class="figure">
+        <a href="img/ch2-04_goblin-xpos.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04_goblin-xpos.jpg" alt="X 座標の条件。Goblin、&gt;、Player.X()（赤枠）" loading="lazy"></a>
+        <figcaption>Goblin の X が Player.X() より大きい（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-4. ナイフで倒そう</h2>
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">ナイフが当たったら体力をへらす</span>
+      <p>新しいイベントの条件に、<code>衝突</code> で検索 →「<strong>衝突</strong>」（全般 › オブジェクト › 衝突 のもの）を入れます。<br>
+        1つ目の オブジェクト は <code>Knife</code>、2つ目は <code>Goblin</code>。</p>
+      <figure class="figure">
+        <a href="img/ch2-05_knife-hit.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-05_knife-hit.jpg" alt="衝突の条件。KnifeとGoblin（赤枠）" loading="lazy"></a>
+        <figcaption>Knife と Goblin がぶつかった（赤枠）</figcaption>
+      </figure>
+      <p>アクションは2つです。</p>
+      <ul>
+        <li>「オブジェクトを削除する」で <code>Knife</code></li>
+        <li><code>オブジェクト変数の値を変更</code> で検索 →「<strong>オブジェクト変数の値を変更</strong>」、オブジェクト は <code>Goblin</code>、変数 は <code>Health</code>、演算子 は「<strong>ー（引く）</strong>」、値 は <code>1</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch2-06_goblin-damage.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-06_goblin-damage.jpg" alt="オブジェクト変数の値を変更。GoblinのHealthから1を引く（赤枠）" loading="lazy"></a>
+        <figcaption>当たったゴブリンの Health から 1 を引く（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">体力が0になったら消す</span>
+      <p>新しいイベントの条件に、<code>オブジェクト変数の値</code> で検索 →「<strong>オブジェクト変数の値</strong>」。<br>
+        オブジェクト は <code>Goblin</code>、変数 は <code>Health</code>、テスト記号 は「<strong>≦（以下）</strong>」、値は <code>0</code>。<br>
+        アクションは「オブジェクトを削除する」で <code>Goblin</code>。</p>
+      <figure class="figure">
+        <a href="img/ch2-07_health-zero.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-07_health-zero.jpg" alt="オブジェクト変数の値の条件。GoblinのHealthが0以下（赤枠）" loading="lazy"></a>
+        <figcaption>Goblin の Health が 0 以下（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>2-5. ゴブリンをどんどん出そう</h2>
+    <div class="step">
+      <span class="step-num">7</span><span class="step-title">2秒ごとにゴブリンを作る</span>
+      <p>新しいイベントの条件に、<code>シーンタイマーの値</code> で検索 →「<strong>シーンタイマーの値</strong>」。<br>
+        タイマーの名称 は <code>"EnemyTimer"</code>（ダブルクォーテーションごと入れる）、テスト記号 は「<strong>≧（以上）</strong>」、時間（秒） は <code>2</code>。</p>
+      <figure class="figure">
+        <a href="img/ch2-08_enemy-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08_enemy-timer.jpg" alt="シーンタイマーの値。&quot;EnemyTimer&quot;、≥、2（赤枠）" loading="lazy"></a>
+        <figcaption>タイマー "EnemyTimer" が 2 秒以上（赤枠）</figcaption>
+      </figure>
+      <p>アクションは3つです。</p>
+      <ul>
+        <li><code>シーンタイマーをスタート</code> で検索 →「<strong>シーンタイマーをスタート（またはリセット）する</strong>」、<code>"EnemyTimer"</code>（0にもどす）</li>
+        <li>「オブジェクトを生成する」で <code>Goblin</code> を、下の式の場所に作る</li>
+        <li>「スケール」で <code>Goblin</code> を <code>3</code></li>
+      </ul>
+      <div class="code-block"><span class="code-label">X 座標</span><button class="copy-btn" type="button">コピー</button><pre><code>RandomInRange(200, 1100)</code></pre></div>
+      <div class="code-block"><span class="code-label">Y 座標</span><button class="copy-btn" type="button">コピー</button><pre><code>RandomInRange(150, 600)</code></pre></div>
+      <figure class="figure">
+        <a href="img/ch2-09_spawn-goblin.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-09_spawn-goblin.jpg" alt="オブジェクトを生成するでGoblinをRandomInRangeの場所に作る（赤枠）" loading="lazy"></a>
+        <figcaption>ランダムな場所にゴブリンを作る（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">RandomInRange(200, 1100)</span> … 200 から 1100 までの中から、ランダムに（でたらめに）1つ数を選ぶ式。<br>
+      毎回ちがう場所にゴブリンが出てきます。
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span><span class="step-title">シーンが始まったらタイマーをスタート</span>
+      <p>最後に、条件 <code>シーンが始まった</code> →「<strong>シーンが始まった</strong>」のイベントを作ります。<br>
+        アクションは「シーンタイマーをスタート（またはリセット）する」で <code>"EnemyTimer"</code>。<br>
+        これがないとタイマーが動かず、ゴブリンが1体も出てきません。</p>
+      <figure class="figure">
+        <a href="img/ch2-10_enemy-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-10_enemy-events.jpg" alt="Enemyグループのイベント全部（赤枠）" loading="lazy"></a>
+        <figcaption>Enemy グループのイベント（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">9</span><span class="step-title">保存して プレビュー</span>
+      <p>保存してから プレビュー します。<br>
+        2秒ごとにゴブリンが出てきて、騎士を追いかけてきます。<br>
+        ナイフを2回当てると、ゴブリンが消えます。<br>
+        まだゴブリンにさわってもダメージはありません（第4章で作ります）。</p>
+      <figure class="figure">
+        <a href="img/ch2-11_preview.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-11_preview.jpg" alt="プレビューで、騎士のまわりにゴブリンが集まってくる（赤枠）" loading="lazy"></a>
+        <figcaption>ゴブリンが追いかけてくる（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="challenge">
+      <h3>💪 やってみよう</h3>
+      <p>ゴブリンの速さ（100）、体力（2）、出てくる間かく（2秒）を変えて、むずかしさを調整してみよう。</p>
+      <details class="hint">
+        <summary>ヒント</summary>
+        <p>速さは「オブジェクトに向かって移動するフォースを追加する」、体力は Goblin の オブジェクト変数、間かくはタイマーの条件の数字です。</p>
+      </details>
+    </div>
+
+    <h2>2-6. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>ゴブリンが1体も出てこない</h4>
+      <p><strong>原因:</strong> 「シーンが始まった」でタイマーをスタートしていない、またはタイマーの名前がちがう。</p>
+      <p><strong>直し方:</strong> 2か所とも <code>"EnemyTimer"</code> になっているか、大文字・小文字まで確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ゴブリンがとても小さい</h4>
+      <p><strong>原因:</strong> 作ったあとの「スケール」を入れていない。</p>
+      <p><strong>直し方:</strong> オブジェクトを生成する のすぐ下に「スケール」で 3 を入れよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ナイフが当たっても倒れない</h4>
+      <p><strong>原因:</strong> Health をシーン変数に作ってしまった、または「オブジェクト変数の値」ではなく「変数の値」を使った。</p>
+      <p><strong>直し方:</strong> 一覧の Goblin をクリックして、左の オブジェクト変数 に Health（2）があるか確かめよう。</p>
+    </div>
+
+    <h2>2-7. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Goblin に Health（2）のオブジェクト変数を作った</label>
+      <label><input type="checkbox"> ゴブリンが騎士を追いかけてくる</label>
+      <label><input type="checkbox"> ゴブリンが騎士のほうを向く</label>
+      <label><input type="checkbox"> ナイフ2回でゴブリンが消える</label>
+      <label><input type="checkbox"> 2秒ごとにゴブリンが出てくる</label>
+    </div>
+    <p>全部チェックできたら第2章クリア！<br>
+      🎉 次回は、タイルマップでステージを作るよ。</p>
+
+    <nav class="chapter-nav">
+      <a href="chapter1.html">← 第1章 プレイヤーを動かそう</a>
+      <a href="chapter3.html">第3章 ステージを作ろう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（ローグライク編 日本語UI版）
+  </footer>
+  <script src="js/os.js"></script>
+</body>
+</html>

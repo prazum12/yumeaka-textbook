@@ -80,7 +80,7 @@
       <span class="step-num">1</span><span class="step-title">ゾンビに体力（オブジェクト変数）を持たせる</span>
       <p>シーンエディターで、一覧の Zombie をクリックします。<br>
         左の「<strong>Object Variables</strong>」の右の、四角から矢印が出たマークを押します。<br>
-        「Add a variable」を押して、名前を <code>Health</code>、型は「Number」のまま、値を <code>3</code> にして「Apply」。</p>
+        「Add variable」を押して、名前を <code>Health</code>、型は「Number」のまま、値を <code>3</code> にして「Apply」。</p>
       <figure class="figure">
         <a href="img/ch5-01_zombie-health.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-01_zombie-health.jpg" alt="Edit ZombieのVariablesタブ。Health、Number、3（赤枠）" loading="lazy"></a>
         <figcaption>Zombie の Variables に <code>Health</code> = <code>3</code>（赤枠）</figcaption>
@@ -96,7 +96,8 @@
     <div class="step">
       <span class="step-num">2</span><span class="step-title">シーン変数を2つふやす</span>
       <p>シーンの何もないところをクリックして、「Scene Variables」の編集画面を開きます（第4章と同じ）。<br>
-        「Add variable」で次の2つを作ります。どちらも型は Number、値は <code>0</code> のままでOK。</p>
+        「Add variable」で次の2つを作ります。<br>
+        どちらも型は Number、値は <code>0</code> のままでOK。</p>
       <ul>
         <li><code>Kills</code> … たおしたゾンビの数</li>
         <li><code>SpawnAngle</code> … 新しいゾンビをわかせる向き</li>
@@ -153,7 +154,7 @@
     </div>
 
     <div class="term">
-      <span class="word">Collision in 3D</span> … スターターに最初から入っている「3D collision」の拡張機能で使える条件。<br>
+      <span class="word">Collision in 3D</span> … スターターに最初から入っている「3D collision」の拡張機能（あとから足せる追加の機能）で使える条件。<br>
       高さ（Z）もふくめて、本当にぶつかっているかを調べてくれます。<br>
       ふつうの「Collision」は上から見た形だけで調べるので、3Dのゲームではこちらを使います。
     </div>
@@ -206,7 +207,7 @@
     <div class="step">
       <span class="step-num">7</span><span class="step-title">3秒ごとに動くイベントを作る</span>
       <p><code>Shift + A</code> で新しいイベントを作ります。<br>
-        条件は <code>timer</code> で検索 →「<strong>Value of a scene timer</strong>」（シーンのタイマーの値）。<br>
+        条件は <code>value of a scene timer</code> で検索 →「<strong>Value of a scene timer</strong>」（シーンのタイマーの値）。<br>
         Timer's name は <code>"SpawnTimer"</code>（ダブルクォーテーションもつける）、Sign of the test は「≥ (greater or equal to)」（〜以上）、Time in seconds は <code>3</code>。</p>
       <figure class="figure">
         <a href="img/ch5-10_spawn-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-10_spawn-timer.jpg" alt="Value of a scene timerの条件。SpawnTimerが3秒以上（赤枠）" loading="lazy"></a>
@@ -329,7 +330,7 @@
     </div>
 
     <div class="trouble">
-      <h4>Kills の文字が出ない</h4>
+      <h4>Kills の文字がカメラといっしょに動く・見えなくなる</h4>
       <p><strong>原因:</strong> KillText を置いたとき、●が Base layer のままだった。</p>
       <p><strong>直し方:</strong> 置いた KillText をクリックして、左のレイヤーの欄を「UI」に変えよう。</p>
     </div>
@@ -344,7 +345,8 @@
       <label><input type="checkbox"> HP が 0 になると最初からになる</label>
     </div>
     <p>全部チェックできたら第5章クリア！<br>
-      🎉 次回は最終回。音や見た目を仕上げて、みんなに遊んでもらおう。</p>
+      🎉 次回は最終回！<br>
+      音や見た目を仕上げて、みんなに遊んでもらおう。</p>
 
     <nav class="chapter-nav">
       <a href="chapter4.html">← 第4章 ゾンビがやってきた</a>

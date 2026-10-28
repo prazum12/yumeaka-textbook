@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第4章 画面に情報を出そう | 夢アカGDevelop教科書（ローグライク編 日本語UI版）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（ローグライク編 日本語UI版）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第4章</span>
+      <h1>画面に情報を出そう</h1>
+      <div class="date">📅 第4回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>UI レイヤーで、画面に情報を出しつづけられる</li>
+        <li>シーン変数で、体力や倒した数を数えられる</li>
+        <li>変数の値に合わせて、バーの長さや文字を変えられる</li>
+        <li>ゲームオーバーで最初からやりなおせる</li>
+      </ul>
+    </div>
+
+    <h2>4-1. この章で作るしくみ</h2>
+    <div class="event-sheet">
+      <div class="ev-label">この章で作るルール（まとめ）</div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゴブリンの体力が0以下（第2章のイベント）</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゴブリンを消す<br><strong>倒した数を1ふやす</strong>（追加）</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゴブリンがプレイヤーにさわっている</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>プレイヤーの体力をへらす</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>（いつも）</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>体力バーの長さを体力に合わせる<br>倒した数の文字を変える</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>プレイヤーの体力が0以下</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>シーンを最初からやりなおす（ゲームオーバー）</div>
+      </div>
+    </div>
+
+    <h2>4-2. 変数とUIレイヤーを用意しよう</h2>
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">シーン変数を2つ作る</span>
+      <p>「Game Scene」のタブで、ステージの外の何もないところをクリックします。<br>
+        左の「<strong>シーン変数</strong>」の右の、四角から矢印が出たマークを押します。<br>
+        「変数を追加」で次の2つを作り、「適用」を押します。</p>
+      <ul>
+        <li><code>PlayerHealth</code>（プレイヤーの体力）… 数値、値は <code>100</code></li>
+        <li><code>Kills</code>（倒した数）… 数値、値は <code>0</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch4-01_scene-vars.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-01_scene-vars.jpg" alt="Game Scene 変数にPlayerHealth 100とKills 0（赤枠）" loading="lazy"></a>
+        <figcaption>PlayerHealth = 100、Kills = 0（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">シーン変数</span> … ゲーム全体で1つだけの変数。<br>
+      第2章のゴブリンの Health（オブジェクト変数）は1体ずつ別々でしたが、プレイヤーの体力や倒した数は1つあればいいのでシーン変数にします。
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">UIレイヤーを作る</span>
+      <p>右上のレイヤーのマーク（紙が重なったマーク）を押すと、右下に「レイヤー」が出ます。<br>
+        「＋」を押して新しいレイヤーを作り、名前を <code>UI</code> にして <code>Enter</code>。<br>
+        <code>UI</code> の右の丸いボタンを押して、これから置くものが UI レイヤーに入るようにします。</p>
+      <figure class="figure">
+        <a href="img/ch4-02_ui-layer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-02_ui-layer.jpg" alt="レイヤーにUIレイヤーを作り、丸いボタンを選んだところ（赤枠）" loading="lazy"></a>
+        <figcaption>UI レイヤーを作って選ぶ（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">レイヤー</span> … 透明なシートを重ねるように、絵を重ねるしくみ。<br>
+      UI レイヤーはカメラが動いても画面の同じ場所にとどまるので、体力バーや点数を出すのにぴったりです。
+    </div>
+
+    <h2>4-3. 体力バーとドクロを置こう</h2>
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">体力バーを追加する</span>
+      <p>「＋」からアセットストアを開き、<code>health bar</code> で検索します。<br>
+        「<strong>Health Bar Fill</strong>」（作者: Pixel-boy、CC0）を選んで「シーンに追加」。<br>
+        これは「タイルスプライト」（タイル状にくり返す画像）なので、横の長さを自由に変えられます。</p>
+      <figure class="figure">
+        <a href="img/ch4-03_healthbar-asset.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-03_healthbar-asset.jpg" alt="アセットストアのHealth Bar Fill（赤枠）とシーンに追加（赤枠）" loading="lazy"></a>
+        <figcaption>「Health Bar Fill」を追加（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">ドクロを追加する</span>
+      <p>次に <code>skull</code> で検索して、「<strong>Skull</strong>」（作者: Alex's Assets、CC0）を追加します。<br>
+        倒した数のマークに使います。</p>
+      <figure class="figure">
+        <a href="img/ch4-04_skull-asset.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-04_skull-asset.jpg" alt="アセットストアのSkull（赤枠）" loading="lazy"></a>
+        <figcaption>「Skull」を追加（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">倒した数の文字を作る</span>
+      <p>「＋」→「<strong>オブジェクトの新規作成</strong>」→ <code>テキスト</code> で検索 →「<strong>テキスト</strong>」を選びます。<br>
+        オブジェクト名 を <code>KillText</code>、サイズ を <code>36</code>、「太字」にチェック。<br>
+        最初に表示するテキスト（最初の文字）は <code>0</code>。<br>
+        「輪郭」の 有効 にチェックして、太さ（ふちの太さ）を <code>4</code> にして「適用」。</p>
+      <figure class="figure">
+        <a href="img/ch4-05_killtext.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-05_killtext.jpg" alt="KillText を編集の画面。名前、大きさ、太字、文字、ふち（赤枠）" loading="lazy"></a>
+        <figcaption>KillText の設定（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">画面の左上にならべる</span>
+      <p>3つを画面に置いて、左の数字で位置と大きさを決めます。<br>
+        置いたものをクリックすると、左に X・Y・W（幅）・H（高さ）が出ます。</p>
+      <ul>
+        <li><code>Health_Bar_Fill</code> … X <code>20</code>、Y <code>20</code>、W <code>200</code>、H <code>24</code>（W と H の右の鎖のマークを押して、たて横の比率を自由にしてから入れる）</li>
+        <li><code>Skull</code> … X <code>20</code>、Y <code>56</code>、W <code>40</code></li>
+        <li><code>KillText</code> … X <code>70</code>、Y <code>52</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch4-06_healthbar-place.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-06_healthbar-place.jpg" alt="Health_Bar_FillのX 20、Y 20、W 200、H 24（赤枠）" loading="lazy"></a>
+        <figcaption>体力バーの位置と大きさ（赤枠）</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-07_ui-placed.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-07_ui-placed.jpg" alt="画面の左上に体力バー、ドクロ、0の文字がならんだところ（赤枠）" loading="lazy"></a>
+        <figcaption>左上にならんだ（赤枠）</figcaption>
+      </figure>
+      <p>置き終わったら、レイヤー の「<strong>ベースレイヤー</strong>」の丸いボタンを押して、もとにもどしておこう。<br>
+        もどさないと、このあと置く壁やゴブリンも UI レイヤーに入ってしまいます。</p>
+    </div>
+
+    <h2>4-4. ダメージとゲームオーバーを作ろう</h2>
+    <div class="step">
+      <span class="step-num">7</span><span class="step-title">倒した数をふやす</span>
+      <p>イベントシートの Enemy グループで、「Goblin の 変数 Health ≤ 0」のイベントにアクションを足します。<br>
+        <code>変数の値を変更</code> で検索 →「<strong>変数の値を変更</strong>」、変数 は <code>Kills</code>、演算子 は「<strong>＋（足す）</strong>」、値 は <code>1</code>。</p>
+      <figure class="figure">
+        <a href="img/ch4-08_kills-add.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-08_kills-add.jpg" alt="変数の値を変更。Killsに1を足す（赤枠）" loading="lazy"></a>
+        <figcaption>Kills に 1 を足す（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span><span class="step-title">ゴブリンにさわると体力がへる</span>
+      <p>いちばん下に新しいイベントを作ります。<br>
+        条件は「衝突」で <code>Goblin</code> と <code>Player</code>。<br>
+        アクションは「変数の値を変更」で <code>PlayerHealth</code> を「<strong>ー（引く）</strong>」、値 は下の式。</p>
+      <div class="code-block"><span class="code-label">値</span><button class="copy-btn" type="button">コピー</button><pre><code>20 * TimeDelta()</code></pre></div>
+      <figure class="figure">
+        <a href="img/ch4-09_damage.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-09_damage.jpg" alt="変数の値を変更。PlayerHealthから20 * TimeDelta()を引く（赤枠）" loading="lazy"></a>
+        <figcaption>1秒に20ずつへる（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">TimeDelta()</span> … 前の画面から今の画面まで、何秒たったかを教えてくれる式（だいたい 0.016 秒）。<br>
+      20 × TimeDelta() を毎回引くと、ちょうど「1秒で20へる」になります。<br>
+      PCの速さがちがっても、へる速さは同じになります。
+    </div>
+
+    <div class="step">
+      <span class="step-num">9</span><span class="step-title">体力バーと文字を変える</span>
+      <p>条件のないイベントを作り、アクションを2つ入れます。</p>
+      <ul>
+        <li><code>幅</code> で検索 →「<strong>幅</strong>」、<code>Health_Bar_Fill</code> を <code>PlayerHealth * 2</code>（体力100なら幅200）</li>
+        <li>左の一覧で <code>KillText</code> を選び、いちばん上の「<strong>テキスト</strong>」で <code>ToString(Kills)</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch4-10_bar-width.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-10_bar-width.jpg" alt="幅のアクションでHealth_Bar_FillをPlayerHealth * 2（赤枠）" loading="lazy"></a>
+        <figcaption>体力バーの幅 = 体力 × 2（赤枠）</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch4-11_kill-text.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-11_kill-text.jpg" alt="KillTextのテキストアクションにToString(Kills)（赤枠）" loading="lazy"></a>
+        <figcaption>KillText → テキスト → <code>ToString(Kills)</code>（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">ToString()</span> … 数を文字に変える式。<br>
+      Kills は数なので、文字のオブジェクトに出すときは ToString で文字にします。
+    </div>
+
+    <div class="step">
+      <span class="step-num">10</span><span class="step-title">体力が0でゲームオーバー</span>
+      <p>新しいイベントの条件に「<strong>変数の値</strong>」で <code>PlayerHealth</code>、テスト記号 は「≦（以下）」、値は <code>0</code>。<br>
+        アクションは <code>シーンを変更</code> で検索 →「<strong>シーンを変更する</strong>」、一覧から「<strong>Game Scene</strong>」。<br>
+        同じシーンに変えると、最初からやりなおしになります。</p>
+      <figure class="figure">
+        <a href="img/ch4-12_ui-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-12_ui-events.jpg" alt="足した3つのイベント（赤枠）" loading="lazy"></a>
+        <figcaption>ダメージ・表示・ゲームオーバーのイベント（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">11</span><span class="step-title">保存して プレビュー</span>
+      <p>ゴブリンにさわられると、左上の赤いバーがどんどん短くなります。<br>
+        ゴブリンを倒すと、ドクロの横の数字がふえます。<br>
+        バーがなくなると、ゲームが最初から始まります。</p>
+      <figure class="figure">
+        <a href="img/ch4-13_preview.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch4-13_preview.jpg" alt="プレビューで、左上に短くなった体力バーとドクロ1（赤枠）" loading="lazy"></a>
+        <figcaption>体力バーと倒した数（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="challenge">
+      <h3>💪 やってみよう</h3>
+      <p>ダメージの強さ（20）を変えてみよう。<br>
+        体力バーの下に、黒い「わく」の画像を置くと、もっとそれっぽくなるよ。</p>
+      <details class="hint">
+        <summary>ヒント</summary>
+        <p>わくは、アセットストアで <code>health bar</code> と検索すると見つかります。<br>
+          わくを UI レイヤーに置いて、Health_Bar_Fill より下（Z order を小さく）にしよう。</p>
+      </details>
+    </div>
+
+    <h2>4-5. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>体力バーや数字がプレイヤーといっしょに動いてしまう</h4>
+      <p><strong>原因:</strong> UI レイヤーではなく ベースレイヤー に置いた。</p>
+      <p><strong>直し方:</strong> 置いたものをクリックして、左の レイヤー が「UI」になっているか確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>すぐにゲームオーバーになる</h4>
+      <p><strong>原因:</strong> 値 を <code>20</code> だけにして、TimeDelta() をかけていない。</p>
+      <p><strong>直し方:</strong> <code>20 * TimeDelta()</code> になっているか確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>体力バーが長くならない・短くならない</h4>
+      <p><strong>原因:</strong> 幅 のアクションを KillText など、別のオブジェクトに入れた。</p>
+      <p><strong>直し方:</strong> オブジェクト が <code>Health_Bar_Fill</code> になっているか確かめよう。</p>
+    </div>
+
+    <h2>4-6. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> PlayerHealth と Kills のシーン変数を作った</label>
+      <label><input type="checkbox"> UI レイヤーに体力バー・ドクロ・数字を置いた</label>
+      <label><input type="checkbox"> ゴブリンにさわると体力バーが短くなる</label>
+      <label><input type="checkbox"> 倒すと数字がふえる</label>
+      <label><input type="checkbox"> 体力が0になると最初からになる</label>
+    </div>
+    <p>全部チェックできたら第4章クリア！<br>
+      🎉 次回は、だんだん強くなるウェーブと、回復できるショップを作るよ。</p>
+
+    <nav class="chapter-nav">
+      <a href="chapter3.html">← 第3章 ステージを作ろう</a>
+      <a href="chapter5.html">第5章 ウェーブとショップ →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（ローグライク編 日本語UI版）
+  </footer>
+  <script src="js/os.js"></script>
+</body>
+</html>

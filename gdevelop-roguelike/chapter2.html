@@ -74,7 +74,8 @@
       <span class="step-num">1</span><span class="step-title">ゴブリンを追加する</span>
       <p>「Objects」の「＋」から Dungeon のパックを開き、Character の中の「<strong>Goblin</strong>」を選んでプロジェクトに追加します。<br>
         アニメーションは「Idle」と「Run」の2つです。<br>
-        ゴブリンはイベントで作り出すので、シーンには置かなくてOK。</p>
+        ゴブリンはイベントで作り出すので、シーンには置かなくてOK。<br>
+        もし置いてしまったら、シーンのゴブリンをクリックして <code>Delete</code> キーで消しておこう。</p>
       <figure class="figure">
         <a href="img/ch2-01_goblin.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-01_goblin.jpg" alt="アセットストアのGoblin。作者0x72、ライセンスCC0" loading="lazy"></a>
         <figcaption>Dungeon パックの「Goblin」</figcaption>
@@ -83,8 +84,9 @@
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">ゴブリンに体力（オブジェクト変数）を持たせる</span>
-      <p>一覧の Goblin をクリックします。<br>
-        左の「<strong>Object Variables</strong>」の「＋」で変数を作り、名前を <code>Health</code>、型は「Number」、値を <code>2</code> にします。<br>
+      <p>一覧の Goblin の「⋮」から「<strong>Edit object</strong>」を選んで、「Edit Goblin」の画面を開きます。<br>
+        上の「<strong>Variables</strong>」のタブを開き、「<strong>Add variable</strong>」を押します。<br>
+        名前を <code>Health</code>、型は「Number」、値を <code>2</code> にして「Apply」。<br>
         ナイフ2回で倒れるゴブリンになります。</p>
       <figure class="figure">
         <a href="img/ch2-02_goblin-health.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-02_goblin-health.jpg" alt="GoblinのObject VariablesにHealth = 2（赤枠）" loading="lazy"></a>
@@ -128,7 +130,7 @@
       <p>もう1つイベントを作り、Sign を「<strong>≤ (less or equal to)</strong>」、Flip を「<strong>No</strong>」にします。<br>
         ゴブリンがいつもプレイヤーのほうを向くようになります。</p>
       <figure class="figure">
-        <a href="img/ch2-04_goblin-xpos.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04_goblin-xpos.jpg" alt="X positionの条件。Goblin、>、Player.X()（赤枠）" loading="lazy"></a>
+        <a href="img/ch2-04_goblin-xpos.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04_goblin-xpos.jpg" alt="X positionの条件。Goblin、&gt;、Player.X()（赤枠）" loading="lazy"></a>
         <figcaption>Goblin の X が Player.X() より大きい（赤枠）</figcaption>
       </figure>
     </div>
@@ -170,7 +172,7 @@
       <p>新しいイベントの条件に、<code>scene timer</code> で検索 →「<strong>Value of a scene timer</strong>」。<br>
         Timer's name は <code>"EnemyTimer"</code>（ダブルクォーテーションごと入れる）、Sign は「<strong>≥ (greater or equal to)</strong>」、Time は <code>2</code>。</p>
       <figure class="figure">
-        <a href="img/ch2-08_enemy-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08_enemy-timer.jpg" alt="Value of a scene timer。"EnemyTimer"、≥、2（赤枠）" loading="lazy"></a>
+        <a href="img/ch2-08_enemy-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08_enemy-timer.jpg" alt="Value of a scene timer。&quot;EnemyTimer&quot;、≥、2（赤枠）" loading="lazy"></a>
         <figcaption>タイマー "EnemyTimer" が 2 秒以上（赤枠）</figcaption>
       </figure>
       <p>アクションは3つです。</p>

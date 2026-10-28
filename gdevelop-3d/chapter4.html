@@ -172,7 +172,7 @@
     <div class="step">
       <span class="step-num">8</span><span class="step-title">ゾンビを主人公のほうへ向ける</span>
       <p>条件はなし。<br>
-        アクションに <code>rotate toward</code> で検索して「<strong>Rotate toward another object</strong>」（ほかのオブジェクトのほうを向く）を選びます。<br>
+        アクションに <code>rotate toward position</code> で検索して「<strong>Rotate toward another object</strong>」（ほかのオブジェクトのほうを向く）を選びます。<br>
         Object は <code>Zombie</code>、Target object は <code>Player</code>、Angular speed（回る速さ）は <code>0</code>。<br>
         0 にすると、すぐにそっちを向きます。</p>
       <figure class="figure">
@@ -188,7 +188,7 @@
         「<strong>Invert condition</strong>」を ON にして、「50 より遠い」にします（第3章の弾と同じ）。</p>
       <p>アクションは2つです。</p>
       <ul>
-        <li><code>move toward</code> で検索 →「<strong>Add a force to move toward an object</strong>」、Object は <code>Zombie</code>、Target は <code>Player</code>、Speed は <code>80</code>、下は「<strong>Instant</strong>」のまま</li>
+        <li><code>force to move toward</code> で検索 →「<strong>Add a force to move toward an object</strong>」、Object は <code>Zombie</code>、Target は <code>Player</code>、Speed は <code>80</code>、下は「<strong>Instant</strong>」のまま</li>
         <li><code>animation by name</code> で検索 →「<strong>Animation (by name)</strong>」、Object は <code>Zombie</code>、Animation name は一覧から「<strong>Walk</strong>」</li>
       </ul>
       <figure class="figure">
