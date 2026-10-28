@@ -117,12 +117,12 @@
     <div class="step">
       <span class="step-num">3</span><span class="step-title">Enterでタイトルへもどるイベントを作る</span>
       <p><code>Clear</code> シーンのイベントシート（Clear (Events)）を開きます。<br>
-        条件「Key pressed: <code>Return</code>」（Enterキーは Return という名前で出てくることが多い）、アクション「Change the scene: <code>Title</code>」のイベントを作ろう。<br>
+        条件「<strong>Key just pressed</strong>」（キーが押された瞬間）で <code>Return</code> を選び（Enterキーは Return という名前で出てくることが多い）、アクション「Change the scene: <code>Title</code>」のイベントを作ろう。<br>
         Title シーンはまだないので、シーン名は手で <code>Title</code> と入力しておきます（次の5-3で作る）。</p>
       <div class="event-sheet">
         <div class="ev-label">Clear のイベント</div>
         <div class="ev-row">
-          <div class="ev-cond"><span class="ev-head">条件</span>Key pressed: <code>Return</code></div>
+          <div class="ev-cond"><span class="ev-head">条件</span>Key just pressed: <code>Return</code></div>
           <div class="ev-act"><span class="ev-head">アクション</span>Change the scene to <code>Title</code></div>
         </div>
       </div>
@@ -149,11 +149,11 @@
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">Spaceでゲームを始めるイベントを作る</span>
-      <p><code>Title</code> のイベントシートで、条件「Key pressed: <code>Space</code>」、アクション「Change the scene: <code>Stage1</code>」を作ります。</p>
+      <p><code>Title</code> のイベントシートで、条件「Key just pressed: <code>Space</code>」、アクション「Change the scene: <code>Stage1</code>」を作ります。</p>
       <div class="event-sheet">
         <div class="ev-label">Title のイベント</div>
         <div class="ev-row">
-          <div class="ev-cond"><span class="ev-head">条件</span>Key pressed: <code>Space</code></div>
+          <div class="ev-cond"><span class="ev-head">条件</span>Key just pressed: <code>Space</code></div>
           <div class="ev-act"><span class="ev-head">アクション</span>Change the scene to <code>Stage1</code></div>
         </div>
       </div>
@@ -162,7 +162,8 @@
     <div class="trouble">
       <h4>🚨 なぜタイトルはSpace、クリアはEnterなの？</h4>
       <p>もし両方ともSpaceにすると、クリア画面でSpaceを押した瞬間にタイトルへ行き、<strong>まだSpaceが押されたまま</strong>なので、タイトルもすぐ飛ばされてStage1が始まってしまいます。<br>
-        キーを分けておけば、この「連続で飛ばされる」問題が起きません。</p>
+        キーを分けておけば、この「連続で飛ばされる」問題が起きません。<br>
+        条件に「Key pressed」（押されている間ずっと）ではなく「<strong>Key just pressed</strong>」（押された瞬間だけ）を使っているのも、同じ問題を防ぐためです。</p>
     </div>
 
     <div class="step">
@@ -257,13 +258,13 @@
     <div class="step">
       <span class="step-num">3</span><span class="step-title">BGMを流す</span>
       <p><code>Stage1</code> のイベントシートで、「At the beginning of the scene」のイベント（第4章で目印をかくしたイベント）の右側に「Add action」。<br>
-        <code>music</code> と検索して、音楽を流すアクション（「<strong>Play the music on a channel</strong>」など）を選びます。<br>
+        <code>music</code> と検索して、音楽を流すアクション「<strong>Play a music file</strong>」（音楽ファイルを流す）を選びます。<br>
         BGMにしたい音を選び、<strong>くり返し（Repeat / Loop）を Yes</strong> にして「OK」。</p>
       <div class="event-sheet">
         <div class="ev-label">音を足したイベント（例）</div>
         <div class="ev-row">
           <div class="ev-cond"><span class="ev-head">条件</span>At the beginning of the scene</div>
-          <div class="ev-act"><span class="ev-head">アクション</span>Hide <code>TurnLeft</code><br>Hide <code>TurnRight</code><br>Play the music（くり返し: Yes）</div>
+          <div class="ev-act"><span class="ev-head">アクション</span>Hide <code>TurnLeft</code><br>Hide <code>TurnRight</code><br>Play a music file（くり返し: Yes）</div>
         </div>
         <div class="ev-row">
           <div class="ev-cond"><code>Player</code> is in collision with <code>Coin</code></div>

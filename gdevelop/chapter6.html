@@ -145,16 +145,16 @@
       <div class="ev-label">アニメーション切りかえの例（アニメーションの名前は自分のキャラに合わせる）</div>
       <div class="ev-row">
         <div class="ev-cond"><span class="ev-head">条件</span><code>Player</code> is moving</div>
-        <div class="ev-act"><span class="ev-head">アクション</span>Change the animation of <code>Player</code> to <code>"Run"</code></div>
+        <div class="ev-act"><span class="ev-head">アクション</span>Animation (by name) of <code>Player</code>: <code>"Run"</code></div>
       </div>
       <div class="ev-row">
         <div class="ev-cond"><code>Player</code> is jumping</div>
-        <div class="ev-act">Change the animation of <code>Player</code> to <code>"Jump"</code></div>
+        <div class="ev-act">Animation (by name) of <code>Player</code>: <code>"Jump"</code></div>
       </div>
     </div>
     <p>
       「動いていない」ときの条件は、条件を右クリックすると出てくる「Invert condition」（条件を逆にする）で作れます。<br>
-      アクションは <code>animation</code> と検索すると見つかるよ（名前で指定するタイプを選ぼう）。<br>
+      アクションは <code>animation</code> と検索すると見つかる「<strong>Animation (by name)</strong>」（名前でアニメーションを変える）を使おう。<br>
       どのイベントを上に置くと自然に見えるか、順番もためしてみてね。
     </p>
     <div class="screenshot">
@@ -162,6 +162,11 @@
       アクション選択画面で、アニメーションを名前で切りかえるアクションを選んでいるところ
       <div class="fname">ch6-02_change-animation-action.png</div>
     </div>
+    <p>
+      もっとかんたんにしたい人は、Player に「<strong>Platformer character animator</strong>」というビヘイビアを追加する方法もあります。<br>
+      立ち止まり・走る・跳ぶなどのアニメーションを、自動で切りかえてくれます。<br>
+      ただし、キャラのアニメーションの名前が決まった名前になっている必要があるので、うまくいかないときは上のイベントの方法を使おう。
+    </p>
 
     <h3>ワザ3: イベントにメモ（コメント）を残す</h3>
     <p>

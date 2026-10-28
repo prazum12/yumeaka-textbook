@@ -337,7 +337,7 @@
       <span class="step-num">2</span><span class="step-title">「敵を消して、跳ねる」アクションを入れる</span>
       <p>アクションは3つです。</p>
       <ul>
-        <li>「Delete an object」で <code>Enemy</code> を消す</li>
+        <li>「Delete the object」で <code>Enemy</code> を消す</li>
         <li><code>allow</code> と検索して、Platformer character の「<strong>Allow jumping again</strong>」（もう一度ジャンプできるようにする）を <code>Player</code> に</li>
         <li><code>simulate</code> と検索して、「<strong>Simulate jump key press</strong>」（ジャンプキーを押したふり）を <code>Player</code> に</li>
       </ul>
@@ -373,6 +373,13 @@
         だから、やり直しにならずにすむんだ。<br>
         もしEとFの順番が逆だと、踏んだ瞬間にFが先に実行されて、やり直しになってしまいます。<br>
         イベントはドラッグで上下に並べかえられるよ。</p>
+    </div>
+
+    <div class="term">
+      <span class="word">公式チュートリアルとのちがい</span> … 公式Wikiのチュートリアル（Part 6・Part 7）では、敵を「Add a force（力を加える）」で動かし、「当たった」の判定に「Player is on floor（地面に立っている）」という条件を足しています。<br>
+      この教科書では、敵にも Platformer character をつけて重力で地面を歩かせ、「イベントの順番」で踏んだのか当たったのかを見分けています。<br>
+      「踏んだら跳ねる（Is falling ＋ Allow jumping again ＋ Simulate jump key press）」の部分は公式と同じです。<br>
+      どちらのやり方でも動くので、余裕がある人は公式の方法もためしてくらべてみよう。
     </div>
 
     <div class="step">
@@ -412,6 +419,9 @@
         <summary>ヒントを見る</summary>
         <p>イベントFとほとんど同じイベントで作れるよ。<br>
           さわる相手を Enemy から Spike に変えるだけ。</p>
+        <p>トゲやノコギリなど「さわったらアウト」のものが増えてきたら、<strong>オブジェクトグループ</strong>が便利です。<br>
+          公式コースでは、SawとSpikesを <code>Hazards</code>（危険なもの）というグループにまとめて、「Player is in collision with Hazards」の1つのイベントでまとめて判定しています。<br>
+          グループは、エディタの右上にあるオブジェクトグループのパネルから作れるよ。</p>
       </details>
     </div>
 
