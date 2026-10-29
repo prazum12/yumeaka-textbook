@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第5章 ゾンビをたおそう | 夢アカGDevelop教科書（3Dアクション編 日本語UI版）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="academy">横須賀プログラミング"夢"アカデミー</div>
+    <a class="portal-link" href="../index.html">🏠 教材ポータルへ</a>
+    <h1><a href="index.html">GDevelopコース教科書（3Dアクション編 日本語UI版）</a></h1>
+  </header>
+
+  <main class="container">
+    <div class="chapter-title">
+      <span class="chapter-num">第5章</span>
+      <h1>ゾンビをたおそう</h1>
+      <div class="date">📅 第5回の講習で使います（日付が決まったらここに記載）</div>
+    </div>
+
+    <div class="os-toggle">
+      <span class="os-label">💻 使っているPC:</span>
+      <button data-os="win" type="button">Windows</button>
+      <button data-os="mac" type="button">Mac</button>
+    </div>
+
+    <div class="goal-box">
+      <h2>🎯 この章でできるようになること</h2>
+      <ul>
+        <li>オブジェクト変数で、ゾンビ1体ずつに体力を持たせられる</li>
+        <li>3Dの当たり判定（Collision in 3D）を使える</li>
+        <li>タイマーで、何秒かごとにゾンビをわかせられる</li>
+        <li>HP が 0 になったら、ゲームをやり直しにできる</li>
+      </ul>
+    </div>
+
+    <h2>5-1. この章で作るしくみ</h2>
+    <p>
+      ゾンビは弾を3発当てるとたおれます。<br>
+      トラックでひいても、たおせます。<br>
+      たおした数を「Kills」として画面に出し、3秒ごとに新しいゾンビがわいてくるようにします。
+    </p>
+    <div class="event-sheet">
+      <div class="ev-label">この章で作るルール（まとめ）</div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>弾がゾンビに当たった</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>弾を消す<br>そのゾンビの体力を1へらす</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゾンビの体力が0以下</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゾンビを消す<br>Kills を1ふやす</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>乗っている<br>ゾンビがトラックに近い</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>ゾンビを消す<br>Kills を1ふやす</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>タイマーが3秒をこえた</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>タイマーを0にもどす<br>ランダムな向きを決めて、そこにゾンビを作る</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>ゲームが始まった</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>タイマーをスタート</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>（なし＝いつでも）</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>画面の文字を「Kills: 〇」にする</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-cond"><span class="ev-head">条件</span>HP が0以下</div>
+        <div class="ev-act"><span class="ev-head">アクション</span>シーンを最初からやり直す</div>
+      </div>
+    </div>
+
+    <h2>5-2. 変数と文字を用意しよう</h2>
+
+    <div class="step">
+      <span class="step-num">1</span><span class="step-title">ゾンビに体力（オブジェクト変数）を持たせる</span>
+      <p>シーンエディターで、一覧の Zombie をクリックします。<br>
+        左の「<strong>Object Variables</strong>」の右の、四角から矢印が出たマークを押します。<br>
+        「Add variable」を押して、名前を <code>Health</code>、型は「Number」のまま、値を <code>3</code> にして「Apply」。</p>
+      <figure class="figure">
+        <a href="img/ch5-01_zombie-health.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-01_zombie-health.jpg" alt="Edit ZombieのVariablesタブ。Health、Number、3（赤枠）" loading="lazy"></a>
+        <figcaption>Zombie の Variables に <code>Health</code> = <code>3</code>（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">オブジェクト変数</span> … オブジェクト1つ1つが、べつべつに持っている変数。<br>
+      第4章の PlayerHealth は「シーン変数」で、ゲーム全体に1つだけです。<br>
+      Health はゾンビ1体ずつが持っているので、1体目は残り1、2体目は残り3、のように別々に数えられます。
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><span class="step-title">シーン変数を2つふやす</span>
+      <p>シーンの何もないところをクリックして、「Scene Variables」の編集画面を開きます（第4章と同じ）。<br>
+        「Add variable」で次の2つを作ります。<br>
+        どちらも型は Number、値は <code>0</code> のままでOK。</p>
+      <ul>
+        <li><code>Kills</code> … たおしたゾンビの数</li>
+        <li><code>SpawnAngle</code> … 新しいゾンビをわかせる向き</li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch5-02_scene-vars.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-02_scene-vars.jpg" alt="Game Scene variablesにKillsとSpawnAngleを追加したところ（赤枠）" loading="lazy"></a>
+        <figcaption><code>Kills</code> と <code>SpawnAngle</code> を追加（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><span class="step-title">Kills の文字を作る</span>
+      <p>一覧の HealthText の「⋮」から「<strong>Duplicate</strong>」（コピーを作る）を選びます。<br>
+        「HealthText2」ができて名前を入力できる状態になるので、<code>KillText</code> と入力して <code>Enter</code>。<br>
+        左の「Text」の欄を <code>Kills: 0</code> に書きかえます。</p>
+      <p>次に、Layers パネルで UI の「○」を●にしてから、KillText の「⋮」→「<strong>Add instance to the scene</strong>」でシーンに置きます。<br>
+        置いた文字をクリックして、X を <code>20</code>、Y を <code>160</code> にします（HP の下）。<br>
+        最後に、●を Base layer にもどしておこう。</p>
+      <figure class="figure">
+        <a href="img/ch5-03_kill-text.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-03_kill-text.jpg" alt="KillTextの位置X20、Y160とレイヤーUI（赤枠）。一覧にKillText（赤枠）" loading="lazy"></a>
+        <figcaption>KillText を X 20・Y 160 に、レイヤーは UI（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>ドラッグしても置けないとき</h4>
+      <p>一覧からシーンへのドラッグがうまくいかないことがあります。<br>
+        そのときは「⋮」→「Add instance to the scene」を使うと、画面のまん中に置かれます。</p>
+    </div>
+
+    <h2>5-3. 弾でたおそう</h2>
+    <p>
+      イベントシートで、新しいグループ <code>Battle</code>（たたかい）を作り、<code>Shift + D</code> で中にイベントを作ります。
+    </p>
+
+    <div class="step">
+      <span class="step-num">4</span><span class="step-title">弾が当たったら体力をへらす</span>
+      <p>条件は <code>collision</code> で検索して「<strong>Collision in 3D</strong>」（3Dでぶつかった）を選びます。<br>
+        Object は <code>Bullet</code>、Other object は <code>Zombie</code>。<br>
+        「3D capability」の欄は自動で「Object3D」になるので、さわらなくてOK。</p>
+      <figure class="figure">
+        <a href="img/ch5-04_collision3d.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-04_collision3d.jpg" alt="Collision in 3Dの条件。BulletとZombie（赤枠）" loading="lazy"></a>
+        <figcaption>「Collision in 3D」で Bullet と Zombie（赤枠）</figcaption>
+      </figure>
+      <p>アクションは2つ。</p>
+      <ul>
+        <li>「Delete the object」で <code>Bullet</code></li>
+        <li><code>change object variable value</code> で検索 →「<strong>Change object variable value</strong>」、Object は <code>Zombie</code>、Variable は <code>Health</code>、Modification's sign は「- (subtract)」、Value は <code>1</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch5-05_zombie-damage.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-05_zombie-damage.jpg" alt="Change object variable valueのアクション。ZombieのHealthから1を引く（赤枠）" loading="lazy"></a>
+        <figcaption>当たった Zombie の Health から 1 を引く（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">Collision in 3D</span> … スターターに最初から入っている「3D collision」の拡張機能（あとから足せる追加の機能）で使える条件。<br>
+      高さ（Z）もふくめて、本当にぶつかっているかを調べてくれます。<br>
+      ふつうの「Collision」は上から見た形だけで調べるので、3Dのゲームではこちらを使います。
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><span class="step-title">体力が 0 になったらたおす</span>
+      <p><code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件は <code>object variable value</code> で検索 →「<strong>Object variable value</strong>」。<br>
+        Object は <code>Zombie</code>、Variable は <code>Health</code>、Sign of the test は「<strong>≤ (less or equal to)</strong>」（〜以下）、値は <code>0</code>。</p>
+      <figure class="figure">
+        <a href="img/ch5-06_health-zero.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-06_health-zero.jpg" alt="Object variable valueの条件。ZombieのHealthが0以下（赤枠）" loading="lazy"></a>
+        <figcaption>Zombie の Health が 0 以下（赤枠）</figcaption>
+      </figure>
+      <p>アクションは2つ。</p>
+      <ul>
+        <li>「Delete the object」で <code>Zombie</code></li>
+        <li>「Change variable value」で <code>Kills</code> を「+ (add)」（足す）で <code>1</code></li>
+      </ul>
+      <figure class="figure">
+        <a href="img/ch5-07_kills-add.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-07_kills-add.jpg" alt="Change variable valueのアクション。Killsに1を足す（赤枠）" loading="lazy"></a>
+        <figcaption>Kills に 1 を足す（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>5-4. トラックでたおそう</h2>
+
+    <div class="step">
+      <span class="step-num">6</span><span class="step-title">トラックに近づいたゾンビを消す</span>
+      <p><code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件は2つ。</p>
+      <ul>
+        <li>「Variable value」で <code>InCar</code> が <strong>True</strong>（乗っている）</li>
+        <li>「Distance between two objects」で <code>Zombie</code> と <code>Truck</code>、距離 <code>80</code></li>
+      </ul>
+      <p>アクションは、ステップ5と同じ2つ（Zombie を消す、Kills に1を足す）です。</p>
+      <figure class="figure">
+        <a href="img/ch5-08_truck-distance.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-08_truck-distance.jpg" alt="Distance between two objectsの条件。ZombieとTruck、80（赤枠）" loading="lazy"></a>
+        <figcaption>Zombie と Truck の距離が 80 より近い（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="trouble">
+      <h4>同じアクションを何回も作るのがめんどう</h4>
+      <p>ステップ5のアクション2つを、<code>Shift</code> を押しながらクリックして両方選び、<code>Ctrl + C</code>（Mac は <code>⌘ + C</code>）でコピーできます。<br>
+        ステップ6のイベントのアクション側をクリックして <code>Ctrl + V</code>（Mac は <code>⌘ + V</code>）で貼りつけよう。</p>
+    </div>
+
+    <h2>5-5. ゾンビをわかせよう</h2>
+
+    <div class="step">
+      <span class="step-num">7</span><span class="step-title">3秒ごとに動くイベントを作る</span>
+      <p><code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件は <code>value of a scene timer</code> で検索 →「<strong>Value of a scene timer</strong>」（シーンのタイマーの値）。<br>
+        Timer's name は <code>"SpawnTimer"</code>（ダブルクォーテーションもつける）、Sign of the test は「≥ (greater or equal to)」（〜以上）、Time in seconds は <code>3</code>。</p>
+      <figure class="figure">
+        <a href="img/ch5-10_spawn-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-10_spawn-timer.jpg" alt="Value of a scene timerの条件。SpawnTimerが3秒以上（赤枠）" loading="lazy"></a>
+        <figcaption>タイマー <code>"SpawnTimer"</code> が 3 秒以上（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span><span class="step-title">ランダムな場所にゾンビを作る</span>
+      <p>アクションは3つです。</p>
+      <ul>
+        <li><code>start (or reset) a scene timer</code> で検索 →「<strong>Start (or reset) a scene timer</strong>」、名前は <code>"SpawnTimer"</code>（0にもどして、また数えはじめる）</li>
+        <li>「Change variable value」で <code>SpawnAngle</code> を「= (set to)」で下の式</li>
+        <li>「Create an object」で <code>Zombie</code>、X と Y は下の式</li>
+      </ul>
+      <div class="code-block"><span class="code-label">SpawnAngle（ランダムな向き）</span><button class="copy-btn" type="button">コピー</button><pre><code>RandomInRange(0, 359)</code></pre></div>
+      <div class="code-block"><span class="code-label">X position</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.X() + XFromAngleAndDistance(SpawnAngle, 700)</code></pre></div>
+      <div class="code-block"><span class="code-label">Y position</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.Y() + YFromAngleAndDistance(SpawnAngle, 700)</code></pre></div>
+      <figure class="figure">
+        <a href="img/ch5-11_spawn-angle.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-11_spawn-angle.jpg" alt="SpawnAngleをRandomInRange(0, 359)にするアクション（赤枠）" loading="lazy"></a>
+        <figcaption>SpawnAngle を 0〜359 のどれかにする（赤枠）</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch5-12_spawn-zombie.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-12_spawn-zombie.jpg" alt="Create an objectでZombieを主人公から700はなれた場所に作る（赤枠）" loading="lazy"></a>
+        <figcaption>主人公から 700 はなれた場所にゾンビを作る（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="term">
+      <span class="word">RandomInRange(0, 359)</span> … 0 から 359 までの数を、ランダム（でたらめ）に1つ選ぶ式。<br>
+      第3章で使った XFromAngleAndDistance と組み合わせると、「主人公を中心にした円の上の、どこか1か所」になります。<br>
+      だから、ゾンビはいつも主人公から同じくらいはなれた、いろいろな方向からやってきます。
+    </div>
+
+    <div class="step">
+      <span class="step-num">9</span><span class="step-title">ゲームの最初にタイマーをスタートする</span>
+      <p>タイマーは、スタートさせないと数えはじめません。<br>
+        <code>Shift + A</code> で新しいイベントを作り、条件は <code>at the beginning</code> で検索 →「<strong>At the beginning of the scene</strong>」。<br>
+        アクションは「Start (or reset) a scene timer」で <code>"SpawnTimer"</code>。</p>
+    </div>
+
+    <h2>5-6. Kills とゲームオーバー</h2>
+
+    <div class="step">
+      <span class="step-num">10</span><span class="step-title">Kills を画面に出す</span>
+      <p><code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件はなし。<br>
+        アクションの画面で、左の一覧から <code>KillText</code> を選び、「Text」を選びます。<br>
+        Text の欄に次の式を入れます（第4章の HP と同じやり方）。</p>
+      <div class="code-block"><span class="code-label">KillText に入れる式</span><button class="copy-btn" type="button">コピー</button><pre><code>"Kills: " + ToString(Kills)</code></pre></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">11</span><span class="step-title">HP が 0 になったら最初から</span>
+      <p><code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件は「Variable value」で <code>PlayerHealth</code>、Sign of the test は「≤ (less or equal to)」、値は <code>0</code>。<br>
+        アクションは <code>change the scene</code> で検索 →「<strong>Change the scene</strong>」、Name of the new scene は一覧から「<strong>Game Scene</strong>」。<br>
+        今のシーンをもう一度始めるので、最初からやり直しになります。</p>
+      <figure class="figure">
+        <a href="img/ch5-13_restart.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-13_restart.jpg" alt="Change the sceneのアクション。Game Sceneを選ぶ（赤枠）" loading="lazy"></a>
+        <figcaption>「Change the scene」で Game Scene を選ぶ（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">12</span><span class="step-title">できあがったイベントを確かめる</span>
+      <p>Battle グループの中が、下の写真と同じ7つのイベントになっていればOK。</p>
+      <figure class="figure">
+        <a href="img/ch5-14_battle-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-14_battle-events.jpg" alt="Battleグループの7つのイベント（赤枠）" loading="lazy"></a>
+        <figcaption>Battle グループの7つのイベント（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <h2>5-7. たたかってみよう</h2>
+    <div class="step">
+      <span class="step-num">13</span><span class="step-title">保存して Preview</span>
+      <p>保存してから Preview します。<br>
+        ゾンビに弾を3発当てるとたおれて、左上の Kills がふえます。<br>
+        トラックに乗って、ゾンビをひいてみよう。<br>
+        3秒ごとにゾンビがふえていくので、どこまでたおせるかチャレンジ！</p>
+      <figure class="figure">
+        <a href="img/ch5-15_preview-kills.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-15_preview-kills.jpg" alt="Previewで、Kills: 3（赤枠）。奥のゾンビに弾が飛んでいる（赤枠）" loading="lazy"></a>
+        <figcaption>弾を当ててたおすと Kills がふえる（赤枠）</figcaption>
+      </figure>
+      <figure class="figure">
+        <a href="img/ch5-16_preview-truck.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-16_preview-truck.jpg" alt="Previewで、トラック（赤枠）にゾンビ（赤枠）が向かってくる。Kills: 6（赤枠）" loading="lazy"></a>
+        <figcaption>トラックで走りまわると、追いかけてきたゾンビをたおせる（赤枠）</figcaption>
+      </figure>
+    </div>
+
+    <div class="challenge">
+      <h3>💪 やってみよう</h3>
+      <p>ゾンビの体力（3）、わく間かく（3秒）、わく距離（700）を変えてみよう。<br>
+        Kills が 10 をこえたら、わく間かくを短くして、だんだんむずかしくなるようにもできるよ。</p>
+      <details class="hint">
+        <summary>ヒント</summary>
+        <p>ステップ7の「3」のところに式を書くこともできます。<br>
+          たとえば <code>max(1, 3 - Kills * 0.1)</code> にすると、たおすほど間かくが短くなって、いちばん短くても1秒になります。</p>
+      </details>
+    </div>
+
+    <h2>5-8. 🚨 つまずきポイント集</h2>
+
+    <div class="trouble">
+      <h4>弾が当たってもゾンビがたおれない</h4>
+      <p><strong>原因:</strong> Health を Zombie の「オブジェクト変数」ではなく、シーン変数に作ってしまった。</p>
+      <p><strong>直し方:</strong> 一覧の Zombie をクリックして、左の Object Variables に Health（3）があるか確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>ゾンビがわいてこない</h4>
+      <p><strong>原因:</strong> タイマーをスタートするイベント（ステップ9）がない、またはタイマーの名前がちがう。</p>
+      <p><strong>直し方:</strong> 3か所の <code>"SpawnTimer"</code> が、大文字・小文字までまったく同じか確かめよう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>トラックでひいてもたおせない</h4>
+      <p><strong>原因:</strong> InCar の条件が False になっている。</p>
+      <p><strong>直し方:</strong> ステップ6の条件をダブルクリックして、True を選びなおそう。</p>
+    </div>
+
+    <div class="trouble">
+      <h4>Kills の文字がカメラといっしょに動く・見えなくなる</h4>
+      <p><strong>原因:</strong> KillText を置いたとき、●が Base layer のままだった。</p>
+      <p><strong>直し方:</strong> 置いた KillText をクリックして、左のレイヤーの欄を「UI」に変えよう。</p>
+    </div>
+
+    <h2>5-9. ✅ チェックリスト</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Zombie に Health（3）のオブジェクト変数を作った</label>
+      <label><input type="checkbox"> 弾を3発当てるとゾンビがたおれる</label>
+      <label><input type="checkbox"> トラックでゾンビをたおせる</label>
+      <label><input type="checkbox"> 3秒ごとにゾンビがわいてくる</label>
+      <label><input type="checkbox"> Kills が画面に出る</label>
+      <label><input type="checkbox"> HP が 0 になると最初からになる</label>
+    </div>
+    <p>全部チェックできたら第5章クリア！<br>
+      🎉 次回は最終回！<br>
+      音や見た目を仕上げて、みんなに遊んでもらおう。</p>
+
+    <nav class="chapter-nav">
+      <a href="chapter4.html">← 第4章 ゾンビがやってきた</a>
+      <a href="chapter6.html">第6章 仕上げて発表しよう →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    横須賀プログラミング"夢"アカデミー GDevelopコース教材（3Dアクション編 日本語UI版）
+  </footer>
+  <script src="js/os.js"></script>
+</body>
+</html>
