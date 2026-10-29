@@ -405,10 +405,9 @@
     </div>
 
     <div class="term">
-      <span class="word">公式チュートリアルとのちがい</span> … 公式Wikiのチュートリアル（Part 6・Part 7）では、敵を「Add a force（力を加える）」で動かし、「当たった」の判定に「Player is on floor（地面に立っている）」という条件を足しています。<br>
+      <span class="word">別のやり方</span> … 敵を「Add a force（力を加える）」で動かし、「当たった」の判定に「Player is on floor（地面に立っている）」という条件を足すやり方もあります。<br>
       この教科書では、敵にも Platformer character をつけて重力で地面を歩かせ、「イベントの順番」で踏んだのか当たったのかを見分けています。<br>
-      「踏んだら跳ねる（Is falling ＋ Allow jumping again ＋ Simulate jump key press）」の部分は公式と同じです。<br>
-      どちらのやり方でも動くので、余裕がある人は公式の方法もためしてくらべてみよう。
+      どちらのやり方でも動くので、余裕がある人はもう1つのやり方もためしてくらべてみよう。
     </div>
 
     <div class="step">
@@ -448,7 +447,7 @@
         <p>イベントFとほとんど同じイベントで作れるよ。<br>
           さわる相手を Enemy から Spike に変えるだけ。</p>
         <p>トゲやノコギリなど「さわったらアウト」のものが増えてきたら、<strong>オブジェクトグループ</strong>が便利です。<br>
-          公式コースでは、SawとSpikesを <code>Hazards</code>（危険なもの）というグループにまとめて、「Player is in collision with Hazards」の1つのイベントでまとめて判定しています。<br>
+          たとえば、SawとSpikesを <code>Hazards</code>（危険なもの）というグループにまとめると、「Player is in collision with Hazards」の1つのイベントでまとめて判定できます。<br>
           グループは、エディタの右上にあるオブジェクトグループのパネルから作れるよ。</p>
       </details>
     </div>
