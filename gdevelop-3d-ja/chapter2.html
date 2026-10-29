@@ -30,9 +30,9 @@
       <h2>🎯 この章でできるようになること</h2>
       <ul>
         <li>3Dの車のビヘイビアをつけて、トラックを走らせられる</li>
-        <li>「ビヘイビアを止める・動かす」アクションの使い方がわかる</li>
+        <li>「ビヘイビアを有効化/無効化する」アクションで、ビヘイビアを止めたり動かしたりできる</li>
         <li>変数を使って「乗っている／乗っていない」を覚えさせられる</li>
-        <li>「Else if」（そうでなければ、もし〜なら）を使える</li>
+        <li>「もしそれ以外の場合」（そうでなければ、もし〜なら）を使える</li>
       </ul>
     </div>
 
@@ -52,7 +52,7 @@
         <div class="ev-act"><span class="ev-head">アクション</span>乗っている、にする<br>主人公を見えなくして、歩く操作を止める<br>トラックの運転操作を動かす</div>
       </div>
       <div class="ev-row">
-        <div class="ev-cond"><span class="ev-head">条件（Else if）</span>E を押した<br>乗っている</div>
+        <div class="ev-cond"><span class="ev-head">条件（もしそれ以外の場合）</span>E を押した<br>乗っている</div>
         <div class="ev-act"><span class="ev-head">アクション</span>乗っていない、にする<br>主人公をトラックの横に出して、歩く操作を動かす<br>トラックの運転操作を止める</div>
       </div>
       <div class="ev-row">
@@ -65,62 +65,60 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">アセットストアでトラックを選ぶ</span>
-      <p>「Objects」の「<strong>＋</strong>」から、第1章と同じように「<strong>Zombie Apocalypse</strong>」のパックを開きます。<br>
+      <p>「シーンオブジェクト」の右の「<strong>＋</strong>」から、第1章と同じように「<strong>Zombie Apocalypse</strong>」のパックを開きます。<br>
         「<strong>Vehicle</strong>」のフォルダを開くと、車が6台並んでいます。<br>
-        「<strong>Vehicle Truck</strong>」を選んで、「<strong>Add to the scene</strong>」を押します。</p>
+        「<strong>Vehicle Truck</strong>」を選んで、右下の「<strong>シーンに追加</strong>」を押します。</p>
       <figure class="figure">
-        <a href="img/ch2-01_vehicle-folder.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-01_vehicle-folder.jpg" alt="Zombie ApocalypseのVehicleフォルダ。Vehicle Truck（赤枠）を選ぶ" loading="lazy"></a>
+        <a href="img/ch2-01_vehicle-folder.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-01_vehicle-folder.jpg" alt="Zombie Apocalypseのパックの「内容」でVehicleフォルダを開いたところ（赤枠）。Vehicle Truck（赤枠）を選ぶ" loading="lazy"></a>
         <figcaption>Vehicle フォルダの「Vehicle Truck」（赤枠）</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch2-02_vehicle-truck.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-02_vehicle-truck.jpg" alt="Vehicle Truckの説明画面。右下のAdd to the scene（赤枠）を押す" loading="lazy"></a>
-        <figcaption>「Add to the scene」（右下の赤枠）で追加する</figcaption>
+        <a href="img/ch2-02_vehicle-truck.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-02_vehicle-truck.jpg" alt="Vehicle Truckの説明画面（作成者：Quaternius）。右下の「シーンに追加」（赤枠）を押す" loading="lazy"></a>
+        <figcaption>「シーンに追加」（右下の赤枠）で追加する</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">名前を Truck にして、シーンに置く</span>
-      <p>一覧に増えた「<strong>Vehicle_Truck</strong>」を右クリックして「<strong>Rename</strong>」を選び、名前を <code>Truck</code> にします。<br>
-        Truck をクリックして、左の「<strong>Default size</strong>」の <strong>Width</strong> を <code>160</code> にします（少し大きくする）。<br>
+      <p>一覧に増えた「<strong>Vehicle_Truck</strong>」を右クリックして「<strong>名前の変更</strong>」を選び、名前を <code>Truck</code> にします。<br>
+        Truck をクリックして、左の「<strong>デフォルトのサイズ</strong>」の <strong>幅</strong> を <code>160</code> にします（少し大きくする）。<br>
         右上の「<strong>2D</strong>」の画面で、Truck を道路の上にドラッグして置きます。<br>
         置いたトラックをクリックして、<strong>X</strong> を <code>680</code>、<strong>Y</strong> を <code>450</code>、<strong>Z</strong> を <code>10</code> にします。<br>
-        Rotation のいちばん右を <code>-90</code> にして、トラックの頭を奥に向けます。</p>
+        「回転」のいちばん右を <code>-90</code> にして、トラックの頭を奥に向けます。</p>
     </div>
 
     <h2>2-3. トラックを走れるようにしよう</h2>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">車のビヘイビアをつける</span>
-      <p>右の一覧で Truck をクリックし、左の「<strong>Behaviors</strong>」の右の「<strong>＋</strong>」を押します。<br>
-        検索の欄に <code>car</code> と入力します。<br>
-        「<strong>3D physics car</strong>」（3Dの物理で動く車）を選びます。<br>
-        もう一度「＋」を押して、「<strong>3D car keyboard mapper</strong>」（キーボードで車を動かす）もつけます。<br>
+      <p>右の一覧で Truck をクリックし、左の「<strong>ビヘイビア</strong>」の右の「<strong>＋</strong>」を押します。<br>
+        「オブジェクトに新しいビヘイビアを追加」の画面が開くので、「ビヘイビアを検索」の欄に <code>car</code> と入力します。<br>
+        「<strong>3D物理カー</strong>」（3Dの物理で動く車）を選びます。<br>
+        もう一度「＋」を押して、「<strong>3Dカーのキーボードマッパー</strong>」（キーボードで車を動かす）もつけます。<br>
+        「3Dカーのゲームパッドマッパー」や、2Dの「物理カー」とまちがえないように注意してね。<br>
         検索の欄には前の文字が残っていることがあるので、消してから入力しよう。</p>
       <figure class="figure">
-        <a href="img/ch2-03_add-car-behavior.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-03_add-car-behavior.jpg" alt="ビヘイビアの追加画面でcarと検索。3D physics carと3D car keyboard mapper（赤枠）" loading="lazy"></a>
-        <figcaption>「3D physics car」と「3D car keyboard mapper」（赤枠）をつける</figcaption>
+        <a href="img/ch2-03_add-car-behavior.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-03_add-car-behavior.jpg" alt="「オブジェクトに新しいビヘイビアを追加」の画面でcarと検索（赤枠）。3Dカーのキーボードマッパーと3D物理カー（赤枠）" loading="lazy"></a>
+        <figcaption>「3D物理カー」と「3Dカーのキーボードマッパー」（赤枠）をつける。写真は完成後のプロジェクトで撮ったので「すでに追加済み」と出ている</figcaption>
       </figure>
-      <p>「Extension update」（拡張機能を新しくしますか？）という画面が出たら、「<strong>Skip the update</strong>」を押します。<br>
+      <p>拡張機能の更新をたずねる画面が出たら、更新をスキップするボタンを押します。<br>
         教科書と同じ状態で進めるためです。</p>
-      <figure class="figure">
-        <a href="img/ch2-04_extension-update.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-04_extension-update.jpg" alt="Extension updateの画面。Skip the update（赤枠）を押す" loading="lazy"></a>
-        <figcaption>「Skip the update」（赤枠）を押す</figcaption>
-      </figure>
+      <!-- TODO-JA: 拡張機能の更新画面の日本語表記と写真を実機で確認 -->
     </div>
 
     <div class="term">
       <span class="word">物理エンジン</span> … 重さ・重力・ぶつかったときの動きなどを、本物っぽく計算してくれるしくみ。<br>
-      「3D physics car」をつけると、「Physics3D」（3Dの物理）も自動でつきます。<br>
+      「3D物理カー」をつけると、「3D物理エンジン」も自動でつきます（ビヘイビアの欄では「Physics3D」という名前で出ます）。<br>
       タイヤが回って進む、曲がる、ブレーキをかける、といった動きを全部計算してくれます。
     </div>
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">トラックを軽くする</span>
       <p>そのままだとトラックが重すぎて、なかなか進みません。<br>
-        Behaviors の「<strong>Physics3D</strong>」の「<strong>Mass override</strong>」（重さを決める）に <code>300</code> と入力します。</p>
+        左の「ビヘイビア」の「<strong>Physics3D</strong>」の「<strong>質量上書き</strong>」（重さを決める）に <code>300</code> と入力します。</p>
       <figure class="figure">
-        <a href="img/ch2-05_truck-mass.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-05_truck-mass.jpg" alt="TruckのBehaviors。Physics3DのMass overrideに300（赤枠）。下にPhysicsCar3D" loading="lazy"></a>
-        <figcaption>Physics3D の Mass override を <code>300</code>（赤枠）にする</figcaption>
+        <a href="img/ch2-05_truck-mass.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-05_truck-mass.jpg" alt="「Truck を編集」の画面の「ビヘイビア」タブ（赤枠）。Physics3Dの質量上書きに300（赤枠）" loading="lazy"></a>
+        <figcaption>Physics3D の「質量上書き」を <code>300</code>（赤枠）にする。写真は「Truck を編集」の「ビヘイビア」タブで、左のビヘイビアの欄と同じ設定ができる</figcaption>
       </figure>
     </div>
 
@@ -146,44 +144,45 @@
 
     <div class="step">
       <span class="step-num">6</span><span class="step-title">真偽値の変数 InCar を作る</span>
-      <p>シーンの何もないところをクリックしてから、左の「<strong>Scene Variables</strong>」の右にある、四角から矢印が出ているボタンを押します。<br>
-        「<strong>Add variable</strong>」を押して、名前を <code>InCar</code> にします。<br>
-        種類（Number と書いてある所）を「<strong>Boolean</strong>」に変えます。<br>
-        最後に「<strong>Apply</strong>」を押します。</p>
+      <p>シーンの何もないところをクリックしてから、左の「<strong>シーン変数</strong>」の右にある、四角から矢印が出ているボタンを押します。<br>
+        「Game Scene 変数」の画面が開くので、右上の「<strong>変数を追加</strong>」を押して、名前を <code>InCar</code> にします。<br>
+        種類（「数値」と書いてある所）を「<strong>真偽値</strong>」に変えます。<br>
+        最後に「<strong>適用</strong>」を押します。</p>
       <figure class="figure">
-        <a href="img/ch2-08_incar-variable.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08_incar-variable.jpg" alt="Game Scene variablesの画面。Add variableでInCarを作り、種類をBooleanにする" loading="lazy"></a>
-        <figcaption>「Add variable」（右上）で <code>InCar</code> を作り、種類を Boolean にする（まん中の赤枠）</figcaption>
+        <a href="img/ch2-08_incar-variable.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-08_incar-variable.jpg" alt="「Game Scene 変数」の画面。右上の「変数を追加」（赤枠）でInCarを作り、種類を真偽値、値を偽にする（赤枠）" loading="lazy"></a>
+        <figcaption>「変数を追加」（右上の赤枠）で <code>InCar</code> を作り、種類を「真偽値」にする（まん中の赤枠）。写真は完成後のプロジェクトで撮ったので、ほかの変数も並んでいる</figcaption>
       </figure>
     </div>
 
     <div class="term">
-      <span class="word">真偽値（Boolean）</span> … 「True（はい）」か「False（いいえ）」の2つしか入らない変数。<br>
+      <span class="word">真偽値</span> … 「真（はい）」か「偽（いいえ）」の2つしか入らない変数。<br>
       「乗っている？」の答えを入れておくのにぴったり。<br>
-      最初は False（乗っていない）から始まります。
+      最初は「偽」（乗っていない）から始まります。
     </div>
 
     <h2>2-5. 乗る・降りるのイベントを作ろう</h2>
     <p>
-      上のタブで「<strong>Game Scene (Events)</strong>」を開きます。<br>
-      いちばん下の「<strong>+ Add...</strong>」から「<strong>Event group</strong>」を選び、グループの名前を <code>Truck</code> にします。<br>
-      グループを右クリックして「Add」→「<strong>Sub Event</strong>」を選ぶと、グループの中にイベントを作れます。
+      上のタブで「<strong>Game Scene (イベント)</strong>」を開きます。<br>
+      いちばん下の「<strong>+ 追加...</strong>」→「<strong>イベントグループ</strong>」を選び、グループの名前を <code>Truck</code> にします。<br>
+      グループを右クリックして「<strong>追加</strong>」→「<strong>サブイベント</strong>」を選ぶと、グループの中にイベントを作れます。
     </p>
 
     <div class="step">
       <span class="step-num">7</span><span class="step-title">はじめは運転操作を止めておく</span>
-      <p>条件に「<strong>At the beginning of the scene</strong>」（シーンが始まったとき）を入れます。<br>
-        アクションの検索で <code>activate behavior</code> と入力し、「<strong>De/activate a behavior</strong>」を選びます。<br>
-        Object は <code>Truck</code>、Behavior は <code>PhysicsCar3DKeyboardMapper</code>、「Activate?」は「<strong>No</strong>」にします。<br>
+      <p>条件に「<strong>シーンが始まった</strong>」を入れます。<br>
+        アクションの検索で <code>ビヘイビアを有効化</code> と入力し、「<strong>ビヘイビアを有効化/無効化する</strong>」を選びます。<br>
+        オブジェクトは <code>Truck</code>、「ビヘイビア」の欄は <code>PhysicsCar3DKeyboardMapper</code>、「有効化する？」は「<strong>いいえ</strong>」にして、「OK」を押します。<br>
+        イベントシートには「Truck の PhysicsCar3DKeyboardMapper ビヘイビアを有効化する：いいえ」と出ます。<br>
         これで、乗っていないのにトラックが動いてしまうのを防げます。</p>
       <figure class="figure">
-        <a href="img/ch2-07_deactivate-mapper.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-07_deactivate-mapper.jpg" alt="De/activate a behaviorのアクション。ObjectはTruck、BehaviorはPhysicsCar3DKeyboardMapper、Activate?はNo" loading="lazy"></a>
-        <figcaption>「De/activate a behavior」で、Truck の運転操作を No（止める）にする</figcaption>
+        <a href="img/ch2-07_deactivate-mapper.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-07_deactivate-mapper.jpg" alt="アクションの画面。左でTruck、まん中で「ビヘイビアを有効化/無効化する」、右でビヘイビアにPhysicsCar3DKeyboardMapper、有効化する？はいいえ（それぞれ赤枠）" loading="lazy"></a>
+        <figcaption>「ビヘイビアを有効化/無効化する」で、Truck の運転操作を「いいえ」（止める）にする</figcaption>
       </figure>
     </div>
 
     <div class="term">
-      <span class="word">ビヘイビアを止める・動かす</span> … 「De/activate a behavior」を使うと、つけたビヘイビアを一時的に止めたり、また動かしたりできます。<br>
-      ビヘイビアを消すわけではないので、あとで「Yes」にすればすぐ元にもどります。
+      <span class="word">ビヘイビアを止める・動かす</span> … 「ビヘイビアを有効化/無効化する」を使うと、つけたビヘイビアを一時的に止めたり、また動かしたりできます。<br>
+      ビヘイビアを消すわけではないので、あとで「はい」にすればすぐ元にもどります。
     </div>
 
     <div class="step">
@@ -191,21 +190,22 @@
       <p>1つ目のイベントをクリックして、<code>Shift + A</code> を押すと、下に新しいイベントができます。<br>
         条件を3つ入れます。</p>
       <ul>
-        <li><code>key just pressed</code> で検索 →「<strong>Key just pressed</strong>」、キーは <code>e</code></li>
-        <li><code>variable value</code> で検索 →「<strong>Variable value</strong>」、変数は <code>InCar</code>、「<strong>False</strong>」</li>
-        <li><code>distance</code> で検索 →「<strong>Distance between two objects</strong>」、<code>Player</code> と <code>Truck</code>、距離は <code>200</code></li>
+        <li><code>キーが押された</code> で検索 →「<strong>キーが押された</strong>」（入力 › キーボード）、「チェックするキー」は <code>e</code></li>
+        <li><code>変数の値</code> で検索 →「<strong>変数の値</strong>」（全般 › 変数）、「変数」は <code>InCar</code>、「比較する値」は「<strong>偽</strong>」</li>
+        <li><code>距離</code> で検索 →「<strong>2つのオブジェクト間の距離</strong>」、オブジェクトは <code>Player</code>、「オブジェクト2」は <code>Truck</code>、「距離」は <code>200</code></li>
       </ul>
+      <p>「2つのオブジェクト間の距離」のすぐ下にある「Distance between two objects in 3D」ではないので注意してね。</p>
       <figure class="figure">
-        <a href="img/ch2-09_key-e.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-09_key-e.jpg" alt="Key just pressedの条件。Key to checkにe" loading="lazy"></a>
-        <figcaption>「Key just pressed」でキーは <code>e</code></figcaption>
+        <a href="img/ch2-09_key-e.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-09_key-e.jpg" alt="条件の画面。「その他の条件」の入力 › キーボードにある「キーが押された」（赤枠）。チェックするキーにe（赤枠）" loading="lazy"></a>
+        <figcaption>「キーが押された」で、チェックするキーは <code>e</code></figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch2-10_incar-false.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-10_incar-false.jpg" alt="Variable valueの条件。VariableはInCar、Check if the value isはFalse" loading="lazy"></a>
-        <figcaption>「Variable value」で <code>InCar</code> が False（乗っていない）</figcaption>
+        <a href="img/ch2-10_incar-false.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-10_incar-false.jpg" alt="条件の画面。全般 › 変数の「変数の値」（赤枠）。変数はInCar、比較する値は偽（赤枠）" loading="lazy"></a>
+        <figcaption>「変数の値」で <code>InCar</code> が「偽」（乗っていない）</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch2-11_distance.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-11_distance.jpg" alt="Distance between two objectsの条件。PlayerとTruck、Distanceは200" loading="lazy"></a>
-        <figcaption>「Distance between two objects」で、Player と Truck の距離が 200 以下</figcaption>
+        <a href="img/ch2-11_distance.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-11_distance.jpg" alt="条件の画面。Playerの条件の「2つのオブジェクト間の距離」（赤枠）。オブジェクト2はTruck、距離は200（赤枠）" loading="lazy"></a>
+        <figcaption>「2つのオブジェクト間の距離」で、Player と Truck の距離が 200 未満</figcaption>
       </figure>
     </div>
 
@@ -213,94 +213,95 @@
       <span class="step-num">9</span><span class="step-title">乗りこむイベントのアクションを作る</span>
       <p>アクションを6つ入れます。</p>
       <ul>
-        <li><code>change variable value</code> で検索 →「<strong>Change variable value</strong>」、<code>InCar</code> を「<strong>set to true</strong>」</li>
-        <li><code>hide</code> で検索 →「<strong>Hide</strong>」、<code>Player</code>（主人公を見えなくする）</li>
-        <li>「De/activate a behavior」で、<code>Player</code> の <code>Platformer3DKeyboardMapper</code> を No（歩く操作を止める）</li>
-        <li>「De/activate a behavior」で、<code>Player</code> の <code>PhysicsCharacter3D</code> を No</li>
-        <li>「De/activate a behavior」で、<code>Player</code> の <code>Physics3D</code> を No（トラックとぶつからないようにする）</li>
-        <li>「De/activate a behavior」で、<code>Truck</code> の <code>PhysicsCar3DKeyboardMapper</code> を <strong>Yes</strong>（運転できるようにする）</li>
+        <li><code>変数の値を変更</code> で検索 →「<strong>変数の値を変更</strong>」、<code>InCar</code> の「値」を「<strong>真に設定</strong>」</li>
+        <li><code>非表示</code> で検索 →「<strong>非表示</strong>」、<code>Player</code>（主人公を見えなくする）</li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Player</code> の <code>Platformer3DKeyboardMapper</code> を「いいえ」（歩く操作を止める）</li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Player</code> の <code>PhysicsCharacter3D</code> を「いいえ」</li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Player</code> の <code>Physics3D</code> を「いいえ」（トラックとぶつからないようにする）</li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Truck</code> の <code>PhysicsCar3DKeyboardMapper</code> を「<strong>はい</strong>」（運転できるようにする）</li>
       </ul>
       <figure class="figure">
-        <a href="img/ch2-12_set-incar-true.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-12_set-incar-true.jpg" alt="Change variable valueのアクション。InCarをset to true" loading="lazy"></a>
-        <figcaption>「Change variable value」で <code>InCar</code> を set to true</figcaption>
+        <a href="img/ch2-12_set-incar-true.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-12_set-incar-true.jpg" alt="アクションの画面。全般 › 変数の「変数の値を変更」（赤枠）。変数はInCar、値は真に設定（赤枠）" loading="lazy"></a>
+        <figcaption>「変数の値を変更」で <code>InCar</code> を「真に設定」</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch2-13_get-in-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-13_get-in-event.jpg" alt="できあがった乗りこむイベント。条件3つとアクション6つ（赤枠）" loading="lazy"></a>
+        <a href="img/ch2-13_get-in-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-13_get-in-event.jpg" alt="できあがった乗りこむイベント（赤枠）。条件は「"e" キーが押された」「変数 InCar は 偽 である」「Player から Truck までの距離は 200 ピクセル未満である」、アクションは6つ" loading="lazy"></a>
         <figcaption>乗りこむイベントの完成形（赤枠）</figcaption>
       </figure>
     </div>
 
     <div class="step">
-      <span class="step-num">10</span><span class="step-title">降りるイベントを「Else」で作る</span>
-      <p>乗りこむイベントの何もないところを右クリックして、「Add」→「<strong>Else</strong>」を選びます。<br>
-        「Else」は、「上のイベントが動かなかったときだけ、こっちを調べる」という特別なイベントです。<br>
-        条件を入れると、表示が「<strong>Else if</strong>」に変わります。<br>
+      <span class="step-num">10</span><span class="step-title">降りるイベントを「それ以外の場合」で作る</span>
+      <p>乗りこむイベントの何もないところを右クリックして、「<strong>追加</strong>」の中から「<strong>それ以外の場合</strong>」（イベント）を選びます。<br>
+        「それ以外の場合」は、「上のイベントが動かなかったときだけ、こっちを調べる」という特別なイベントです。<br>
+        条件を入れると、表示が「<strong>もしそれ以外の場合</strong>」に変わります。<br>
         条件は2つ。</p>
       <ul>
-        <li>「Key just pressed」でキーは <code>e</code></li>
-        <li>「Variable value」で <code>InCar</code> が <strong>True</strong></li>
+        <li>「キーが押された」でキーは <code>e</code></li>
+        <li>「変数の値」で <code>InCar</code> が「<strong>真</strong>」</li>
       </ul>
       <p>アクションは7つ。</p>
       <ul>
-        <li>「Change variable value」で <code>InCar</code> を <strong>set to false</strong></li>
-        <li><code>position</code> で検索 →「<strong>Position</strong>」、<code>Player</code> の X を <code>Truck.X() + 100</code>、Y を <code>Truck.Y()</code>（トラックの横に出す）</li>
-        <li><code>show</code> で検索 →「<strong>Show</strong>」、<code>Player</code></li>
-        <li>「De/activate a behavior」で、<code>Player</code> の <code>Physics3D</code> を Yes</li>
-        <li>「De/activate a behavior」で、<code>Player</code> の <code>PhysicsCharacter3D</code> を Yes</li>
-        <li>「De/activate a behavior」で、<code>Player</code> の <code>Platformer3DKeyboardMapper</code> を Yes</li>
-        <li>「De/activate a behavior」で、<code>Truck</code> の <code>PhysicsCar3DKeyboardMapper</code> を No</li>
+        <li>「変数の値を変更」で <code>InCar</code> を「<strong>偽に設定</strong>」</li>
+        <li><code>位置</code> で検索 →「<strong>位置</strong>」、<code>Player</code> の「X 座標」を <code>Truck.X() + 100</code>、「Y 座標」を <code>Truck.Y()</code>（演算子はどちらも「＝（代入）」。トラックの横に出す）</li>
+        <li><code>表示</code> で検索 →「<strong>表示</strong>」、<code>Player</code></li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Player</code> の <code>Physics3D</code> を「はい」</li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Player</code> の <code>PhysicsCharacter3D</code> を「はい」</li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Player</code> の <code>Platformer3DKeyboardMapper</code> を「はい」</li>
+        <li>「ビヘイビアを有効化/無効化する」で、<code>Truck</code> の <code>PhysicsCar3DKeyboardMapper</code> を「いいえ」</li>
       </ul>
       <figure class="figure">
-        <a href="img/ch2-14_get-out-position.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-14_get-out-position.jpg" alt="Positionのアクション。PlayerのXをTruck.X() + 100、YをTruck.Y()" loading="lazy"></a>
-        <figcaption>「Position」で、主人公をトラックの横（X が +100）に出す</figcaption>
+        <a href="img/ch2-14_get-out-position.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-14_get-out-position.jpg" alt="アクションの画面。Playerのアクションの「位置」（赤枠）。演算子は＝（代入）、X 座標はTruck.X() + 100、Y 座標はTruck.Y()（赤枠）" loading="lazy"></a>
+        <figcaption>「位置」で、主人公をトラックの横（X が +100）に出す</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch2-15_get-out-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-15_get-out-event.jpg" alt="Else ifの降りるイベント。条件2つとアクション7つ（赤枠）" loading="lazy"></a>
-        <figcaption>降りるイベント（Else if）の完成形（赤枠）</figcaption>
+        <a href="img/ch2-15_get-out-event.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-15_get-out-event.jpg" alt="「もしそれ以外の場合」の降りるイベント（赤枠）。条件2つとアクション7つ" loading="lazy"></a>
+        <figcaption>降りるイベント（もしそれ以外の場合）の完成形（赤枠）</figcaption>
       </figure>
     </div>
 
     <div class="trouble">
-      <h4>なぜ「Else」を使うの？</h4>
+      <h4>なぜ「それ以外の場合」を使うの？</h4>
       <p>ふつうのイベントを2つ並べると、乗りこんだ直後に、同じ E キーで「降りる」イベントまで動いてしまいます。<br>
         1回押しただけで、乗ってすぐ降りてしまうのです。<br>
-        「Else」にしておけば、乗りこむイベントが動いたときは、降りるイベントは調べられません。</p>
+        「それ以外の場合」にしておけば、乗りこむイベントが動いたときは、降りるイベントは調べられません。</p>
     </div>
 
     <div class="step">
       <span class="step-num">11</span><span class="step-title">乗っている間、カメラをトラックについて来させる</span>
       <p>カメラは主人公（<code>Player</code>）を追いかけています。<br>
         そこで、乗っている間は、見えない主人公をトラックの位置に動かし続けます。<br>
-        Else if のイベントをクリックして <code>Shift + A</code> で新しいイベントを作ります。<br>
-        条件は「Variable value」で <code>InCar</code> が True。<br>
-        アクションは「Position」で、<code>Player</code> の X を <code>Truck.X()</code>、Y を <code>Truck.Y()</code>。</p>
+        「もしそれ以外の場合」のイベントをクリックして <code>Shift + A</code> で新しいイベントを作ります。<br>
+        条件は「変数の値」で <code>InCar</code> が「真」。<br>
+        アクションは「位置」で、<code>Player</code> の X 座標を <code>Truck.X()</code>、Y 座標を <code>Truck.Y()</code>。</p>
       <figure class="figure">
-        <a href="img/ch2-16_all-truck-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-16_all-truck-events.jpg" alt="Truckグループの全部のイベント。いちばん下に、InCarがtrueのときPlayerをトラックの位置に動かすイベント（赤枠）" loading="lazy"></a>
+        <a href="img/ch2-16_all-truck-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-16_all-truck-events.jpg" alt="Truckグループの全部のイベント。いちばん下に「変数 InCar は 真 である」のとき「Player の座標を変更する：X 座標に Truck.X() を代入、Y 座標に Truck.Y() を代入」のイベント（赤枠）" loading="lazy"></a>
         <figcaption>Truck グループの完成形。いちばん下（赤枠）がカメラのためのイベント</figcaption>
       </figure>
     </div>
 
     <h2>2-6. 運転してみよう</h2>
     <div class="step">
-      <span class="step-num">12</span><span class="step-title">保存して Preview</span>
-      <p>保存してから「Preview」を押します。<br>
+      <span class="step-num">12</span><span class="step-title">保存してプレビュー</span>
+      <p>保存してから「プレビュー」を押します。<br>
         <code>W</code> でトラックの近くまで歩いて、<code>E</code> を押します。<br>
         主人公が消えて、<code>W</code>・<code>A</code>・<code>S</code>・<code>D</code> でトラックが走れば成功！<br>
         もう一度 <code>E</code> を押すと、トラックの横に主人公が出てきます。</p>
       <figure class="figure">
-        <a href="img/ch2-17_preview-driving.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-17_preview-driving.jpg" alt="Previewでトラックを運転しているところ。カメラがトラックのうしろからついてくる" loading="lazy"></a>
+        <a href="img/ch2-17_preview-driving.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch2-17_preview-driving.jpg" alt="プレビューでトラックを運転しているところ。カメラがトラックのうしろからついてくる" loading="lazy"></a>
         <figcaption>トラックを運転中。カメラがついてくる</figcaption>
       </figure>
     </div>
 
     <div class="challenge">
       <h3>💪 やってみよう</h3>
-      <p>Behaviors の「PhysicsCar3D」には、スピードや曲がりやすさの数字があります。<br>
-        「Max engine speed」や「Max steer angle」を変えて、自分好みのトラックにしてみよう。</p>
+      <p>ビヘイビアの「PhysicsCar3D」には、スピードやパワーの数字があります。<br>
+        「最大エンジン速度」や「最大エンジントルク」を変えて、自分好みのトラックにしてみよう。<br>
+        「高度なプロパティ」を開くと、曲がりやすさなどの数字もあります。</p>
       <details class="hint">
         <summary>ヒント</summary>
         <p>数字を大きくしすぎると、トラックがひっくり返ることがあります。<br>
-          少しずつ変えて、そのたびに Preview で確かめよう。</p>
+          少しずつ変えて、そのたびにプレビューで確かめよう。</p>
       </details>
     </div>
 
@@ -316,28 +317,28 @@
     <div class="trouble">
       <h4>乗っていないのにトラックが動く／主人公とトラックがいっしょに動く</h4>
       <p><strong>原因:</strong> 手順7の「はじめは運転操作を止めておく」イベントがない。</p>
-      <p><strong>直し方:</strong> At the beginning of the scene で、Truck の PhysicsCar3DKeyboardMapper を No にしよう。</p>
+      <p><strong>直し方:</strong> 「シーンが始まった」で、Truck の PhysicsCar3DKeyboardMapper を「いいえ」にしよう。</p>
     </div>
 
     <div class="trouble">
       <h4>トラックがほとんど進まない</h4>
       <p><strong>原因:</strong> トラックが重すぎる。</p>
-      <p><strong>直し方:</strong> 手順4の Mass override が <code>300</code> になっているか確かめよう。</p>
+      <p><strong>直し方:</strong> 手順4の「質量上書き」が <code>300</code> になっているか確かめよう。</p>
     </div>
 
     <div class="trouble">
       <h4>1回押しただけで、乗ってすぐ降りてしまう</h4>
-      <p><strong>原因:</strong> 降りるイベントが「Else」になっていない。</p>
-      <p><strong>直し方:</strong> 降りるイベントを消して、手順10のとおり「Add」→「Else」で作りなおそう。</p>
+      <p><strong>原因:</strong> 降りるイベントが「もしそれ以外の場合」になっていない。</p>
+      <p><strong>直し方:</strong> 降りるイベントを消して、手順10のとおり右クリック →「追加」→「それ以外の場合」で作りなおそう。</p>
     </div>
 
     <h2>2-8. ✅ チェックリスト</h2>
     <div class="checklist">
-      <label><input type="checkbox"> トラックに「3D physics car」と「3D car keyboard mapper」をつけた</label>
+      <label><input type="checkbox"> トラックに「3D物理カー」と「3Dカーのキーボードマッパー」をつけた</label>
       <label><input type="checkbox"> 真偽値の変数 <code>InCar</code> を作った</label>
-      <label><input type="checkbox"> 「De/activate a behavior」でビヘイビアを止めたり動かしたりできた</label>
-      <label><input type="checkbox"> 「Else」を使って、乗る・降りるを1つのキーで切りかえられた</label>
-      <label><input type="checkbox"> Previewで、トラックに乗って運転し、降りることができた</label>
+      <label><input type="checkbox"> 「ビヘイビアを有効化/無効化する」でビヘイビアを止めたり動かしたりできた</label>
+      <label><input type="checkbox"> 「それ以外の場合」を使って、乗る・降りるを1つのキーで切りかえられた</label>
+      <label><input type="checkbox"> プレビューで、トラックに乗って運転し、降りることができた</label>
     </div>
     <p>全部チェックできたら第2章クリア！<br>
       🎉 次回は、主人公に銃を持たせて、撃てるようにするよ。</p>

@@ -30,7 +30,7 @@
       <h2>🎯 この章でできるようになること</h2>
       <ul>
         <li>ものを毎回、主人公の位置に動かして「持たせる」ことができる</li>
-        <li>イベントでオブジェクトを新しく作り出せる（Create an object）</li>
+        <li>イベントでオブジェクトを新しく作り出せる（オブジェクトを生成する）</li>
         <li>力（フォース）をかけて、ものを飛ばせる</li>
         <li>いらなくなったものを消して、ゲームを軽くできる</li>
       </ul>
@@ -44,7 +44,7 @@
         <div class="ev-act"><span class="ev-head">アクション</span>ピストルを主人公の前に動かし、同じ向きにして、見えるようにする</div>
       </div>
       <div class="ev-row">
-        <div class="ev-cond"><span class="ev-head">条件（Else）</span>（上以外のとき＝乗っているとき）</div>
+        <div class="ev-cond"><span class="ev-head">条件（それ以外の場合）</span>（上以外のとき＝乗っているとき）</div>
         <div class="ev-act"><span class="ev-head">アクション</span>ピストルを見えなくする</div>
       </div>
       <div class="ev-row">
@@ -61,12 +61,12 @@
 
     <div class="step">
       <span class="step-num">1</span><span class="step-title">ピストルを追加する</span>
-      <p>「Objects」の「<strong>＋</strong>」から「<strong>Zombie Apocalypse</strong>」のパックを開き、「<strong>Weapon</strong>」のフォルダを開きます。<br>
-        「<strong>Pistol</strong>」を選んで「<strong>Add to the scene</strong>」を押します。<br>
-        一覧の Pistol をクリックして、「Default size」の <strong>Width</strong> を <code>30</code> にします。<br>
+      <p>「オブジェクト」の「<strong>＋</strong>」から「<strong>Zombie Apocalypse</strong>」のパックを開き、「<strong>Weapon</strong>」のフォルダを開きます。<br>
+        「<strong>Pistol</strong>」を選んで「<strong>シーンに追加</strong>」を押します。<br>
+        一覧の Pistol をクリックして、「デフォルトのサイズ」の <strong>幅</strong> を <code>30</code> にします。<br>
         最後に、Pistol をシーンの好きな場所にドラッグして、1つ置いておきます。</p>
       <figure class="figure">
-        <a href="img/ch3-01_weapon-pistol.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-01_weapon-pistol.jpg" alt="Zombie ApocalypseのWeaponフォルダ。Pistol（赤枠）を選ぶ" loading="lazy"></a>
+        <a href="img/ch3-01_weapon-pistol.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-01_weapon-pistol.jpg" alt="新しいオブジェクトの画面で、Zombie Apocalypseの「内容」のWeaponフォルダ（赤枠）。Pistol（赤枠）を選ぶ" loading="lazy"></a>
         <figcaption>Weapon フォルダの「Pistol」（赤枠）</figcaption>
       </figure>
     </div>
@@ -74,15 +74,15 @@
     <div class="step">
       <span class="step-num">2</span><span class="step-title">弾をゼロから作る</span>
       <p>弾はアセットストアではなく、自分で作ります。<br>
-        「＋」を押して、上の「<strong>New object from scratch</strong>」（ゼロから作る）を選びます。<br>
-        「<strong>3D Box</strong>」（3Dの箱）を選ぶと、色や模様のついた箱が並びます。<br>
+        「＋」を押して、上の「<strong>オブジェクトの新規作成</strong>」を選びます。<br>
+        「<strong>3D ボックス</strong>」（3Dの箱）を選ぶと、色や模様のついた箱が並びます。<br>
         黄色い「<strong>YellowBlock</strong>」を選ぼう。</p>
       <figure class="figure">
-        <a href="img/ch3-02_new-3d-box.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-02_new-3d-box.jpg" alt="New object from scratchのタブで、3D Box（赤枠）を選ぶ" loading="lazy"></a>
-        <figcaption>「New object from scratch」→「3D Box」（赤枠）</figcaption>
+        <a href="img/ch3-02_new-3d-box.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-02_new-3d-box.jpg" alt="「オブジェクトの新規作成」のタブ（赤枠）で、「3D ボックス」（赤枠）を選ぶ" loading="lazy"></a>
+        <figcaption>「オブジェクトの新規作成」→「3D ボックス」（赤枠）</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch3-03_yellow-block.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-03_yellow-block.jpg" alt="3D Boxの見た目の一覧。YellowBlock（赤枠）を選ぶ" loading="lazy"></a>
+        <a href="img/ch3-03_yellow-block.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-03_yellow-block.jpg" alt="3D ボックスの見た目の一覧。YellowBlock（赤枠）を選ぶ" loading="lazy"></a>
         <figcaption>黄色い「YellowBlock」（赤枠）を選ぶ</figcaption>
       </figure>
     </div>
@@ -91,43 +91,43 @@
       <span class="step-num">3</span><span class="step-title">名前を Bullet にして、小さくする</span>
       <p>一覧の YellowBlock をクリックしてから <code>F2</code> キーを押すと、名前を変えられます。<br>
         名前を <code>Bullet</code>（弾）にして <code>Enter</code>。<br>
-        左の「Default size」の Width・Height・Depth を、全部 <code>8</code> にします。<br>
+        左の「デフォルトのサイズ」の 幅・高さ・奥行き を、全部 <code>8</code> にします。<br>
         弾はイベントで作り出すので、シーンには置かなくてOK。</p>
       <figure class="figure">
-        <a href="img/ch3-04_bullet-size.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-04_bullet-size.jpg" alt="Bulletの大きさを8、8、8にしたところ（赤枠）。一覧にBullet（赤枠）" loading="lazy"></a>
+        <a href="img/ch3-04_bullet-size.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-04_bullet-size.jpg" alt="プロパティの「デフォルトのサイズ」で幅・高さ・奥行きを8にしたところ（赤枠）。シーンオブジェクトの一覧にBullet（赤枠）" loading="lazy"></a>
         <figcaption>名前を Bullet にして、大きさを 8 に（赤枠）</figcaption>
       </figure>
     </div>
 
     <div class="trouble">
       <h4>名前を変えるときの注意</h4>
-      <p>右クリックのメニューで「Rename」のすぐ近くに「Delete」（消す）があります。<br>
+      <p>右クリックのメニューで「名前の変更」のすぐ近くに「削除」があります。<br>
         押しまちがえて、確認の画面で Enter を押すと、オブジェクトが消えてしまいます。<br>
         名前を変えるときは、オブジェクトをクリックしてから <code>F2</code> を使うのが安全です。</p>
     </div>
 
     <h2>3-3. ピストルを主人公に持たせよう</h2>
     <p>
-      イベントシートで「+ Add...」→「Event group」を選び、新しいグループ <code>Gun</code> を作ります。<br>
+      イベントシートで「+ 追加...」→「イベントグループ」を選び、新しいグループ <code>Gun</code> を作ります。<br>
       グループをクリックしてから <code>Shift + D</code> を押すと、グループの中にイベントができます。
     </p>
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">ピストルを主人公の前に動かし続ける</span>
-      <p>条件は「Variable value」で <code>InCar</code> が <strong>False</strong>（乗っていない）。<br>
+      <p>条件は「変数の値」で <code>InCar</code> が <strong>偽</strong>（乗っていない）。<br>
         アクションは4つです。</p>
       <ul>
-        <li>「Position」で <code>Pistol</code> の位置を変える（下の式）</li>
-        <li><code>Z position</code> で検索 →「<strong>Z (elevation)</strong>」、<code>Pistol</code> を <code>30</code>（腰の高さ）</li>
-        <li><code>angle</code> で検索 →「<strong>Angle</strong>」、<code>Pistol</code> を <code>Player.Angle()</code>（主人公と同じ向き）</li>
-        <li>「Show」で <code>Pistol</code></li>
+        <li>「位置」で <code>Pistol</code> の位置を変える（下の式）</li>
+        <li><code>位置の高さ</code> で検索 →「<strong>Z（位置の高さ）</strong>」、<code>Pistol</code> を <code>30</code>（腰の高さ）</li>
+        <li><code>角度</code> で検索 →「<strong>角度</strong>」、<code>Pistol</code> を <code>Player.Angle()</code>（主人公と同じ向き）</li>
+        <li>「表示」で <code>Pistol</code></li>
       </ul>
-      <p>Position の X と Y には、次の式を入れます。</p>
-      <div class="code-block"><span class="code-label">X position</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.X() + XFromAngleAndDistance(Player.Angle(), 25)</code></pre></div>
-      <div class="code-block"><span class="code-label">Y position</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.Y() + YFromAngleAndDistance(Player.Angle(), 25)</code></pre></div>
+      <p>「位置」の X 座標と Y 座標には、次の式を入れます。</p>
+      <div class="code-block"><span class="code-label">X 座標</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.X() + XFromAngleAndDistance(Player.Angle(), 25)</code></pre></div>
+      <div class="code-block"><span class="code-label">Y 座標</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.Y() + YFromAngleAndDistance(Player.Angle(), 25)</code></pre></div>
       <figure class="figure">
-        <a href="img/ch3-04b_pistol-position.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-04b_pistol-position.jpg" alt="PistolのPositionアクション。XとYに式を入れたところ（赤枠）" loading="lazy"></a>
-        <figcaption>X と Y に式を入れる（赤枠）</figcaption>
+        <a href="img/ch3-04b_pistol-position.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-04b_pistol-position.jpg" alt="Pistolの「位置」のアクション。X 座標とY 座標に式を入れたところ（赤枠）" loading="lazy"></a>
+        <figcaption>X 座標と Y 座標に式を入れる（赤枠）</figcaption>
       </figure>
     </div>
 
@@ -140,14 +140,15 @@
 
     <div class="step">
       <span class="step-num">5</span><span class="step-title">乗っている間はピストルを消す</span>
-      <p>今作ったイベントを右クリックして、「Add」→「<strong>Else</strong>」を選びます。<br>
-        （「Add」の右の「›」にマウスをのせると、次のメニューが開きます。）<br>
-        Else のアクションに「Hide」で <code>Pistol</code> を入れます。<br>
+      <p>今作ったイベントを右クリックして、「追加」→「<strong>それ以外の場合</strong>」を選びます。<br>
+        （「追加」の右の「›」にマウスをのせると、次のメニューが開きます。）<br>
+        イベントシートには「<strong>それ以外の場合</strong>」と表示されます。<br>
+        そのアクションに「非表示」で <code>Pistol</code> を入れます。<br>
         条件は入れなくてOK。<br>
         上のイベントが動かないとき（＝トラックに乗っているとき）に、ピストルが見えなくなります。</p>
       <figure class="figure">
-        <a href="img/ch3-05_pistol-follow.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-05_pistol-follow.jpg" alt="Gunグループの、ピストルを持たせるイベントとElseのイベント（赤枠）" loading="lazy"></a>
-        <figcaption>ピストルを持たせるイベントと、Else のイベント（赤枠）</figcaption>
+        <a href="img/ch3-05_pistol-follow.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-05_pistol-follow.jpg" alt="Gunグループの、ピストルを持たせるイベントと「それ以外の場合」のイベント（赤枠）" loading="lazy"></a>
+        <figcaption>ピストルを持たせるイベントと、「それ以外の場合」のイベント（赤枠）</figcaption>
       </figure>
     </div>
 
@@ -155,15 +156,15 @@
 
     <div class="step">
       <span class="step-num">6</span><span class="step-title">撃つ条件を作る</span>
-      <p>Else のイベントの下に、新しいイベントを作ります（Else をクリックして <code>Shift + A</code>）。<br>
+      <p>「それ以外の場合」のイベントの下に、新しいイベントを作ります（「それ以外の場合」をクリックして <code>Shift + A</code>）。<br>
         条件は2つ。</p>
       <ul>
-        <li><code>mouse button released</code> で検索 →「<strong>Mouse button released</strong>」、ボタンは「<strong>Left (primary)</strong>」（左クリック）</li>
-        <li>「Variable value」で <code>InCar</code> が False</li>
+        <li><code>マウスボタン</code> で検索 →「<strong>マウスボタンを放した直後</strong>」、チェックするボタンは「<strong>左クリック（メイン）</strong>」</li>
+        <li>「変数の値」で <code>InCar</code> が 偽</li>
       </ul>
       <figure class="figure">
-        <a href="img/ch3-06_mouse-released.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-06_mouse-released.jpg" alt="Mouse button releasedの条件。Button to checkはLeft (primary)" loading="lazy"></a>
-        <figcaption>「Mouse button released」で Left (primary)</figcaption>
+        <a href="img/ch3-06_mouse-released.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-06_mouse-released.jpg" alt="「マウスボタンを放した直後」の条件（赤枠）。チェックするボタンは左クリック（メイン）（赤枠）" loading="lazy"></a>
+        <figcaption>「マウスボタンを放した直後」で 左クリック（メイン）</figcaption>
       </figure>
     </div>
 
@@ -171,36 +172,38 @@
       <span class="step-num">7</span><span class="step-title">弾を作って飛ばす</span>
       <p>アクションは3つです。</p>
       <ul>
-        <li><code>create an object</code> で検索 →「<strong>Create an object</strong>」、作るのは <code>Bullet</code>、X は <code>Pistol.X()</code>、Y は <code>Pistol.Y()</code></li>
-        <li>「Z (elevation)」で <code>Bullet</code> を <code>30</code></li>
-        <li><code>force</code> で検索 →「<strong>Add a force (angle)</strong>」、<code>Bullet</code>、Angle は <code>Pistol.Angle()</code>、Speed は <code>1500</code>、下のボタンは「<strong>Permanent</strong>」</li>
+        <li><code>生成</code> で検索 →「<strong>オブジェクトを生成する</strong>」、作るのは <code>Bullet</code>、X 座標は <code>Pistol.X()</code>、Y 座標は <code>Pistol.Y()</code></li>
+        <li>「Z（位置の高さ）」で <code>Bullet</code> を <code>30</code></li>
+        <li><code>フォースを追加</code> で検索 →「<strong>フォースを追加する（角度）</strong>」、<code>Bullet</code>、角度は <code>Pistol.Angle()</code>、速度は <code>1500</code>、下のボタンは「<strong>永続的</strong>」</li>
       </ul>
       <figure class="figure">
-        <a href="img/ch3-07_create-bullet.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-07_create-bullet.jpg" alt="Create an objectのアクション。BulletをPistol.X()、Pistol.Y()に作る" loading="lazy"></a>
-        <figcaption>「Create an object」で、ピストルの位置に弾を作る</figcaption>
+        <a href="img/ch3-07_create-bullet.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-07_create-bullet.jpg" alt="「オブジェクトを生成する」のアクション（赤枠）。Bullet（赤枠）をX 座標Pistol.X()、Y 座標Pistol.Y()、レイヤーはベースレイヤーで作る（赤枠）" loading="lazy"></a>
+        <figcaption>「オブジェクトを生成する」で、ピストルの位置に弾を作る</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch3-08_bullet-force.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-08_bullet-force.jpg" alt="Add a force (angle)のアクション。AngleはPistol.Angle()、Speedは1500、Permanentを選ぶ" loading="lazy"></a>
-        <figcaption>「Add a force (angle)」で、ピストルの向きに 1500 の速さ。Permanent（ずっと）を選ぶ</figcaption>
+        <a href="img/ch3-08_bullet-force.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-08_bullet-force.jpg" alt="「フォースを追加する（角度）」のアクション（赤枠）。角度はPistol.Angle()、速度は1500（赤枠）、「永続的」を選ぶ（赤枠）" loading="lazy"></a>
+        <figcaption>「フォースを追加する（角度）」で、ピストルの向きに 1500 の速さ。「永続的」（ずっと）を選ぶ</figcaption>
       </figure>
     </div>
 
     <div class="term">
       <span class="word">フォース（力）</span> … オブジェクトを押して動かすしくみ。<br>
-      「Instant」は1回だけ押す、「Permanent」は止めるまでずっと押し続けます。<br>
-      弾はずっと飛んでいってほしいので Permanent にします。
+      「瞬間的」は1回だけ押す、「永続的」は止めるまでずっと押し続けます。<br>
+      弾はずっと飛んでいってほしいので「永続的」にします。<br>
+      イベントシートでは「ずっと移動する」と表示されます。
     </div>
 
     <div class="step">
       <span class="step-num">8</span><span class="step-title">遠くまで飛んだ弾を消す</span>
       <p>弾を消さないと、撃つたびに弾がどんどん増えて、ゲームが重くなります。<br>
-        新しいイベントを作り、条件に「Distance between two objects」で <code>Bullet</code> と <code>Player</code>、距離 <code>1500</code> を入れます。<br>
-        下の「<strong>Invert condition</strong>」（条件を反対にする）をONにします。<br>
-        「1500 以下」が反対になって、「1500 より遠い」という意味になります。<br>
-        アクションは <code>delete an object</code> で検索 →「<strong>Delete the object</strong>」で <code>Bullet</code>。</p>
+        新しいイベントを作り、条件に「<strong>2つのオブジェクト間の距離</strong>」で <code>Bullet</code> と <code>Player</code>（オブジェクト2）、距離 <code>1500</code> を入れます。<br>
+        （すぐ下の「Distance between two objects in 3D」ではありません。）<br>
+        下の「<strong>条件を反転</strong>」（条件を反対にする）をONにします。<br>
+        「1500 未満」が反対になって、「1500 以上はなれている」という意味になります。<br>
+        アクションは <code>削除</code> で検索 →「<strong>オブジェクトを削除する</strong>」で <code>Bullet</code>。</p>
       <figure class="figure">
-        <a href="img/ch3-09_far-bullet.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-09_far-bullet.jpg" alt="Distance between two objectsでBulletとPlayer、1500。Invert conditionをONにしたところ（赤枠）" loading="lazy"></a>
-        <figcaption>Invert condition を ON（赤枠）にすると「遠い」になる</figcaption>
+        <a href="img/ch3-09_far-bullet.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-09_far-bullet.jpg" alt="「2つのオブジェクト間の距離」の条件で、オブジェクト2はPlayer、距離は1500（赤枠）。「条件を反転」をONにしたところ（赤枠）" loading="lazy"></a>
+        <figcaption>「条件を反転」を ON（赤枠）にすると「遠い」になる</figcaption>
       </figure>
       <figure class="figure">
         <a href="img/ch3-10_gun-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-10_gun-events.jpg" alt="Gunグループの撃つイベントと弾を消すイベント（赤枠）" loading="lazy"></a>
@@ -210,13 +213,13 @@
 
     <h2>3-5. 撃ってみよう</h2>
     <div class="step">
-      <span class="step-num">9</span><span class="step-title">保存して Preview</span>
-      <p>保存してから Preview します。<br>
+      <span class="step-num">9</span><span class="step-title">保存してプレビュー</span>
+      <p>保存してから「プレビュー」を押します。<br>
         主人公の前にピストルが見えていればOK。<br>
         画面を左クリックすると、主人公の向いている方向に黄色い弾が飛んでいきます。<br>
         <code>A</code>・<code>D</code> で向きを変えながら撃ってみよう。</p>
       <figure class="figure">
-        <a href="img/ch3-11_preview-shoot.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-11_preview-shoot.jpg" alt="Previewで、主人公の横にピストル（赤枠）があり、右に黄色い弾（赤枠）が飛んでいる" loading="lazy"></a>
+        <a href="img/ch3-11_preview-shoot.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch3-11_preview-shoot.jpg" alt="プレビューで、主人公の横にピストル（赤枠）があり、右に黄色い弾（赤枠）が飛んでいる" loading="lazy"></a>
         <figcaption>ピストル（左の赤枠）から弾（右の赤枠）が飛んでいく</figcaption>
       </figure>
     </div>
@@ -228,7 +231,7 @@
       <details class="hint">
         <summary>ヒント</summary>
         <p>ほかの銃にするときは、Pistol のかわりに新しい銃を追加して、イベントの「Pistol」を全部その名前に変えます。<br>
-          オブジェクトを右クリックして「Swap assets」を使うと、名前はそのままで見た目だけ入れかえられます。</p>
+          オブジェクトを右クリックして「アセットの交換」を使うと、名前はそのままで見た目だけ入れかえられます。</p>
       </details>
     </div>
 
@@ -238,28 +241,28 @@
       <h4>弾が出ない</h4>
       <p><strong>原因:</strong> 1回目のクリックは、マウスを画面に固定するのに使われる。</p>
       <p><strong>直し方:</strong> もう一度クリックしてみよう。<br>
-        それでも出ないときは、Create an object で作るのが <code>Bullet</code> になっているか確かめよう。</p>
+        それでも出ないときは、「オブジェクトを生成する」で作るのが <code>Bullet</code> になっているか確かめよう。</p>
     </div>
 
     <div class="trouble">
       <h4>弾が出るけど、その場から動かない</h4>
-      <p><strong>原因:</strong> フォースが「Instant」になっている。</p>
-      <p><strong>直し方:</strong> Add a force (angle) を開いて、「Permanent」を選びなおそう。</p>
+      <p><strong>原因:</strong> フォースが「瞬間的」になっている。</p>
+      <p><strong>直し方:</strong> 「フォースを追加する（角度）」を開いて、「永続的」を選びなおそう。</p>
     </div>
 
     <div class="trouble">
       <h4>ピストルが見えない</h4>
       <p><strong>原因:</strong> シーンに Pistol を置いていない、または主人公の体の中にうまっている。</p>
       <p><strong>直し方:</strong> Pistol をシーンに1つ置こう。<br>
-        Position の式に <code>XFromAngleAndDistance</code> と <code>YFromAngleAndDistance</code> が入っているかも確かめよう。</p>
+        「位置」の式に <code>XFromAngleAndDistance</code> と <code>YFromAngleAndDistance</code> が入っているかも確かめよう。</p>
     </div>
 
     <h2>3-7. ✅ チェックリスト</h2>
     <div class="checklist">
       <label><input type="checkbox"> ピストルが主人公の前について来る</label>
       <label><input type="checkbox"> トラックに乗るとピストルが消える</label>
-      <label><input type="checkbox"> 「Create an object」で弾を作れた</label>
-      <label><input type="checkbox"> 「Add a force (angle)」で弾を飛ばせた</label>
+      <label><input type="checkbox"> 「オブジェクトを生成する」で弾を作れた</label>
+      <label><input type="checkbox"> 「フォースを追加する（角度）」で弾を飛ばせた</label>
       <label><input type="checkbox"> 遠くへ行った弾を消すイベントを作った</label>
     </div>
     <p>全部チェックできたら第3章クリア！<br>

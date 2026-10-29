@@ -79,11 +79,12 @@
     <div class="step">
       <span class="step-num">1</span><span class="step-title">ゾンビに体力（オブジェクト変数）を持たせる</span>
       <p>シーンエディターで、一覧の Zombie をクリックします。<br>
-        左の「<strong>Object Variables</strong>」の右の、四角から矢印が出たマークを押します。<br>
-        「Add variable」を押して、名前を <code>Health</code>、型は「Number」のまま、値を <code>3</code> にして「Apply」。</p>
+        左の「<strong>オブジェクト変数</strong>」の右の、四角から矢印が出たマークを押します。<br>
+        「Zombie を編集」の画面の「変数」タブが開きます。<br>
+        「変数を追加」を押して、名前を <code>Health</code>、型は「数値」のまま、値を <code>3</code> にして「適用」。</p>
       <figure class="figure">
-        <a href="img/ch5-01_zombie-health.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-01_zombie-health.jpg" alt="Edit ZombieのVariablesタブ。Health、Number、3（赤枠）" loading="lazy"></a>
-        <figcaption>Zombie の Variables に <code>Health</code> = <code>3</code>（赤枠）</figcaption>
+        <a href="img/ch5-01_zombie-health.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-01_zombie-health.jpg" alt="「Zombie を編集」の「変数」タブ（赤枠）。Health、数値、3（赤枠）" loading="lazy"></a>
+        <figcaption>「変数」タブで <code>Health</code> = <code>3</code>（型は数値）（赤枠）</figcaption>
       </figure>
     </div>
 
@@ -95,29 +96,29 @@
 
     <div class="step">
       <span class="step-num">2</span><span class="step-title">シーン変数を2つふやす</span>
-      <p>シーンの何もないところをクリックして、「Scene Variables」の編集画面を開きます（第4章と同じ）。<br>
-        「Add variable」で次の2つを作ります。<br>
-        どちらも型は Number、値は <code>0</code> のままでOK。</p>
+      <p>シーンの何もないところをクリックして、「シーン変数」の編集画面（「Game Scene 変数」）を開きます（第4章と同じ）。<br>
+        「変数を追加」で次の2つを作ります。<br>
+        どちらも型は「数値」、値は <code>0</code> のままでOK。</p>
       <ul>
         <li><code>Kills</code> … たおしたゾンビの数</li>
         <li><code>SpawnAngle</code> … 新しいゾンビをわかせる向き</li>
       </ul>
       <figure class="figure">
-        <a href="img/ch5-02_scene-vars.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-02_scene-vars.jpg" alt="Game Scene variablesにKillsとSpawnAngleを追加したところ（赤枠）" loading="lazy"></a>
-        <figcaption><code>Kills</code> と <code>SpawnAngle</code> を追加（赤枠）</figcaption>
+        <a href="img/ch5-02_scene-vars.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-02_scene-vars.jpg" alt="「Game Scene 変数」の画面で、「変数を追加」（赤枠）からKillsとSpawnAngle（数値、0）を追加したところ（赤枠）" loading="lazy"></a>
+        <figcaption>「変数を追加」で <code>Kills</code> と <code>SpawnAngle</code> を追加（赤枠）</figcaption>
       </figure>
     </div>
 
     <div class="step">
       <span class="step-num">3</span><span class="step-title">Kills の文字を作る</span>
-      <p>一覧の HealthText の「⋮」から「<strong>Duplicate</strong>」（コピーを作る）を選びます。<br>
+      <p>一覧の HealthText の「⋮」から「<strong>複製</strong>」（コピーを作る）を選びます。<br>
         「HealthText2」ができて名前を入力できる状態になるので、<code>KillText</code> と入力して <code>Enter</code>。<br>
-        左の「Text」の欄を <code>Kills: 0</code> に書きかえます。</p>
-      <p>次に、Layers パネルで UI の「○」を●にしてから、KillText の「⋮」→「<strong>Add instance to the scene</strong>」でシーンに置きます。<br>
+        左のプロパティの「テキスト」の欄を <code>Kills: 0</code> に書きかえます。</p>
+      <p>次に、「レイヤー」パネルで UI の「○」を●にしてから、KillText の「⋮」→「<strong>シーンにインスタンスを追加</strong>」でシーンに置きます。<br>
         置いた文字をクリックして、X を <code>20</code>、Y を <code>160</code> にします（HP の下）。<br>
-        最後に、●を Base layer にもどしておこう。</p>
+        最後に、●を「ベースレイヤー」にもどしておこう。</p>
       <figure class="figure">
-        <a href="img/ch5-03_kill-text.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-03_kill-text.jpg" alt="KillTextの位置X20、Y160とレイヤーUI（赤枠）。一覧にKillText（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-03_kill-text.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-03_kill-text.jpg" alt="左のプロパティ「インスタンス - KillText」で、X 20、Y 160とレイヤーUI（赤枠）。右のシーンオブジェクトにKillText（赤枠）" loading="lazy"></a>
         <figcaption>KillText を X 20・Y 160 に、レイヤーは UI（赤枠）</figcaption>
       </figure>
     </div>
@@ -125,7 +126,7 @@
     <div class="trouble">
       <h4>ドラッグしても置けないとき</h4>
       <p>一覧からシーンへのドラッグがうまくいかないことがあります。<br>
-        そのときは「⋮」→「Add instance to the scene」を使うと、画面のまん中に置かれます。</p>
+        そのときは「⋮」→「シーンにインスタンスを追加」を使うと、画面のまん中に置かれます。</p>
     </div>
 
     <h2>5-3. 弾でたおそう</h2>
@@ -135,46 +136,50 @@
 
     <div class="step">
       <span class="step-num">4</span><span class="step-title">弾が当たったら体力をへらす</span>
-      <p>条件は <code>collision</code> で検索して「<strong>Collision in 3D</strong>」（3Dでぶつかった）を選びます。<br>
-        Object は <code>Bullet</code>、Other object は <code>Zombie</code>。<br>
-        「3D capability」の欄は自動で「Object3D」になるので、さわらなくてOK。</p>
+      <p>「条件を追加」を押し、左の一覧から <code>Bullet</code> を選びます。<br>
+        まん中の「衝突」の中にある「<strong>Collision in 3D</strong>」（3Dでぶつかった）を選びます（英語のまま表示されます）。<br>
+        すぐ下の「衝突」は2D用なので、まちがえないようにしよう。<br>
+        右の「Other object」は <code>Zombie</code>。<br>
+        「3D機能」の欄は自動で「Object3D」になるので、さわらなくてOK。</p>
       <figure class="figure">
-        <a href="img/ch5-04_collision3d.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-04_collision3d.jpg" alt="Collision in 3Dの条件。BulletとZombie（赤枠）" loading="lazy"></a>
-        <figcaption>「Collision in 3D」で Bullet と Zombie（赤枠）</figcaption>
+        <a href="img/ch5-04_collision3d.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-04_collision3d.jpg" alt="条件の画面。左の一覧でBullet、まん中の衝突の中のCollision in 3D、右のOther objectにZombie（赤枠）" loading="lazy"></a>
+        <figcaption>Bullet →「Collision in 3D」→ Other object に Zombie（赤枠）</figcaption>
       </figure>
       <p>アクションは2つ。</p>
       <ul>
-        <li>「Delete the object」で <code>Bullet</code></li>
-        <li><code>change object variable value</code> で検索 →「<strong>Change object variable value</strong>」、Object は <code>Zombie</code>、Variable は <code>Health</code>、Modification's sign は「- (subtract)」、Value は <code>1</code></li>
+        <li>「オブジェクトを削除する」で <code>Bullet</code></li>
+        <li>左の一覧から <code>Zombie</code> を選び、まん中の「変数」の中の「<strong>オブジェクト変数の値を変更</strong>」。<br>
+          変数は <code>Health</code>、演算子は「－（引く）」、値は <code>1</code></li>
       </ul>
       <figure class="figure">
-        <a href="img/ch5-05_zombie-damage.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-05_zombie-damage.jpg" alt="Change object variable valueのアクション。ZombieのHealthから1を引く（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-05_zombie-damage.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-05_zombie-damage.jpg" alt="アクションの画面。左の一覧でZombie、まん中の「オブジェクト変数の値を変更」、右で変数Health、演算子－（引く）、値1（赤枠）" loading="lazy"></a>
         <figcaption>当たった Zombie の Health から 1 を引く（赤枠）</figcaption>
       </figure>
     </div>
 
     <div class="term">
       <span class="word">Collision in 3D</span> … スターターに最初から入っている「3D collision」の拡張機能（あとから足せる追加の機能）で使える条件。<br>
+      拡張機能の条件なので、日本語の画面でも名前は英語のままです。<br>
       高さ（Z）もふくめて、本当にぶつかっているかを調べてくれます。<br>
-      ふつうの「Collision」は上から見た形だけで調べるので、3Dのゲームではこちらを使います。
+      ふつうの「衝突」は上から見た形だけで調べるので、3Dのゲームではこちらを使います。
     </div>
 
     <div class="step">
       <span class="step-num">5</span><span class="step-title">体力が 0 になったらたおす</span>
       <p><code>Shift + A</code> で新しいイベントを作ります。<br>
-        条件は <code>object variable value</code> で検索 →「<strong>Object variable value</strong>」。<br>
-        Object は <code>Zombie</code>、Variable は <code>Health</code>、Sign of the test は「<strong>≤ (less or equal to)</strong>」（〜以下）、値は <code>0</code>。</p>
+        条件は、左の一覧から <code>Zombie</code> を選び、まん中の「変数」の中の「<strong>オブジェクト変数の値</strong>」。<br>
+        変数は <code>Health</code>、テスト記号は「<strong>≦（以下）</strong>」、比較する値は <code>0</code>。</p>
       <figure class="figure">
-        <a href="img/ch5-06_health-zero.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-06_health-zero.jpg" alt="Object variable valueの条件。ZombieのHealthが0以下（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-06_health-zero.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-06_health-zero.jpg" alt="条件の画面。左の一覧でZombie、まん中の「オブジェクト変数の値」、右で変数Health、テスト記号≦（以下）、比較する値0（赤枠）" loading="lazy"></a>
         <figcaption>Zombie の Health が 0 以下（赤枠）</figcaption>
       </figure>
       <p>アクションは2つ。</p>
       <ul>
-        <li>「Delete the object」で <code>Zombie</code></li>
-        <li>「Change variable value」で <code>Kills</code> を「+ (add)」（足す）で <code>1</code></li>
+        <li>「オブジェクトを削除する」で <code>Zombie</code></li>
+        <li>「その他のアクション」タブの「変数の値を変更」で、変数 <code>Kills</code>、演算子「＋（足す）」、値 <code>1</code></li>
       </ul>
       <figure class="figure">
-        <a href="img/ch5-07_kills-add.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-07_kills-add.jpg" alt="Change variable valueのアクション。Killsに1を足す（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-07_kills-add.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-07_kills-add.jpg" alt="「その他のアクション」タブ（赤枠）で変数の値を変更。変数Kills、演算子＋（足す）、値1（赤枠）" loading="lazy"></a>
         <figcaption>Kills に 1 を足す（赤枠）</figcaption>
       </figure>
     </div>
@@ -186,12 +191,13 @@
       <p><code>Shift + A</code> で新しいイベントを作ります。<br>
         条件は2つ。</p>
       <ul>
-        <li>「Variable value」で <code>InCar</code> が <strong>True</strong>（乗っている）</li>
-        <li>「Distance between two objects」で <code>Zombie</code> と <code>Truck</code>、距離 <code>80</code></li>
+        <li>「変数の値」で <code>InCar</code> が <strong>真</strong>（乗っている）</li>
+        <li>左の一覧で <code>Zombie</code> を選び、まん中のいちばん上の「<strong>2つのオブジェクト間の距離</strong>」。<br>
+          オブジェクト2 は <code>Truck</code>、距離は <code>80</code></li>
       </ul>
       <p>アクションは、ステップ5と同じ2つ（Zombie を消す、Kills に1を足す）です。</p>
       <figure class="figure">
-        <a href="img/ch5-08_truck-distance.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-08_truck-distance.jpg" alt="Distance between two objectsの条件。ZombieとTruck、80（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-08_truck-distance.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-08_truck-distance.jpg" alt="条件の画面。左の一覧でZombie、まん中の「2つのオブジェクト間の距離」、右でオブジェクト2にTruck、距離80（赤枠）" loading="lazy"></a>
         <figcaption>Zombie と Truck の距離が 80 より近い（赤枠）</figcaption>
       </figure>
     </div>
@@ -207,10 +213,10 @@
     <div class="step">
       <span class="step-num">7</span><span class="step-title">3秒ごとに動くイベントを作る</span>
       <p><code>Shift + A</code> で新しいイベントを作ります。<br>
-        条件は <code>value of a scene timer</code> で検索 →「<strong>Value of a scene timer</strong>」（シーンのタイマーの値）。<br>
-        Timer's name は <code>"SpawnTimer"</code>（ダブルクォーテーションもつける）、Sign of the test は「≥ (greater or equal to)」（〜以上）、Time in seconds は <code>3</code>。</p>
+        条件は <code>タイマー</code> で検索して、シーンタイマーの経過時間を比べる条件「<strong>シーンタイマーの値</strong>」（その他の条件 › タイマーと時間）を選びます。<br>
+        タイマーの名称は <code>"SpawnTimer"</code>（ダブルクォーテーションもつける）、テスト記号は「≧（以上）」、時間（秒）は <code>3</code>。</p>
       <figure class="figure">
-        <a href="img/ch5-10_spawn-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-10_spawn-timer.jpg" alt="Value of a scene timerの条件。SpawnTimerが3秒以上（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-10_spawn-timer.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-10_spawn-timer.jpg" alt="シーンタイマーの条件。タイマーの名称&quot;SpawnTimer&quot;、テスト記号≧（以上）、時間（秒）3（赤枠）" loading="lazy"></a>
         <figcaption>タイマー <code>"SpawnTimer"</code> が 3 秒以上（赤枠）</figcaption>
       </figure>
     </div>
@@ -219,19 +225,20 @@
       <span class="step-num">8</span><span class="step-title">ランダムな場所にゾンビを作る</span>
       <p>アクションは3つです。</p>
       <ul>
-        <li><code>start (or reset) a scene timer</code> で検索 →「<strong>Start (or reset) a scene timer</strong>」、名前は <code>"SpawnTimer"</code>（0にもどして、また数えはじめる）</li>
-        <li>「Change variable value」で <code>SpawnAngle</code> を「= (set to)」で下の式</li>
-        <li>「Create an object」で <code>Zombie</code>、X と Y は下の式</li>
+        <li><code>タイマー</code> で検索 →「<strong>シーンタイマーをスタート（またはリセット）する</strong>」、名前は <code>"SpawnTimer"</code>（0にもどして、また数えはじめる）</li>
+        <li>「変数の値を変更」で、変数 <code>SpawnAngle</code>、演算子「＝（代入）」、値は下の式</li>
+        <li>左の一覧で <code>Zombie</code> を選び、まん中のいちばん上の「オブジェクトを生成する」（<code>生成</code> で検索してもOK）。<br>
+          X 座標と Y 座標は下の式、レイヤーは「ベースレイヤー」のまま</li>
       </ul>
       <div class="code-block"><span class="code-label">SpawnAngle（ランダムな向き）</span><button class="copy-btn" type="button">コピー</button><pre><code>RandomInRange(0, 359)</code></pre></div>
-      <div class="code-block"><span class="code-label">X position</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.X() + XFromAngleAndDistance(SpawnAngle, 700)</code></pre></div>
-      <div class="code-block"><span class="code-label">Y position</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.Y() + YFromAngleAndDistance(SpawnAngle, 700)</code></pre></div>
+      <div class="code-block"><span class="code-label">X 座標</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.X() + XFromAngleAndDistance(SpawnAngle, 700)</code></pre></div>
+      <div class="code-block"><span class="code-label">Y 座標</span><button class="copy-btn" type="button">コピー</button><pre><code>Player.Y() + YFromAngleAndDistance(SpawnAngle, 700)</code></pre></div>
       <figure class="figure">
-        <a href="img/ch5-11_spawn-angle.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-11_spawn-angle.jpg" alt="SpawnAngleをRandomInRange(0, 359)にするアクション（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-11_spawn-angle.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-11_spawn-angle.jpg" alt="変数の値を変更のアクション。変数SpawnAngle、演算子＝（代入）、値RandomInRange(0, 359)（赤枠）" loading="lazy"></a>
         <figcaption>SpawnAngle を 0〜359 のどれかにする（赤枠）</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch5-12_spawn-zombie.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-12_spawn-zombie.jpg" alt="Create an objectでZombieを主人公から700はなれた場所に作る（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-12_spawn-zombie.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-12_spawn-zombie.jpg" alt="左の一覧でZombie、まん中の「オブジェクトを生成する」、右のX座標・Y座標の式とレイヤー（ベースレイヤー）（赤枠）" loading="lazy"></a>
         <figcaption>主人公から 700 はなれた場所にゾンビを作る（赤枠）</figcaption>
       </figure>
     </div>
@@ -245,8 +252,8 @@
     <div class="step">
       <span class="step-num">9</span><span class="step-title">ゲームの最初にタイマーをスタートする</span>
       <p>タイマーは、スタートさせないと数えはじめません。<br>
-        <code>Shift + A</code> で新しいイベントを作り、条件は <code>at the beginning</code> で検索 →「<strong>At the beginning of the scene</strong>」。<br>
-        アクションは「Start (or reset) a scene timer」で <code>"SpawnTimer"</code>。</p>
+        <code>Shift + A</code> で新しいイベントを作り、条件は <code>シーンが始まった</code> で検索 →「<strong>シーンが始まった</strong>」。<br>
+        アクションは「シーンタイマーをスタート（またはリセット）する」で <code>"SpawnTimer"</code>。</p>
     </div>
 
     <h2>5-6. Kills とゲームオーバー</h2>
@@ -255,20 +262,20 @@
       <span class="step-num">10</span><span class="step-title">Kills を画面に出す</span>
       <p><code>Shift + A</code> で新しいイベントを作ります。<br>
         条件はなし。<br>
-        アクションの画面で、左の一覧から <code>KillText</code> を選び、「Text」を選びます。<br>
-        Text の欄に次の式を入れます（第4章の HP と同じやり方）。</p>
+        アクションの画面で、左の一覧から <code>KillText</code> を選び、いちばん上の「テキスト」を選びます。<br>
+        演算子は「＝（代入）」のまま、テキストの欄に次の式を入れます（第4章の HP と同じやり方）。</p>
       <div class="code-block"><span class="code-label">KillText に入れる式</span><button class="copy-btn" type="button">コピー</button><pre><code>"Kills: " + ToString(Kills)</code></pre></div>
     </div>
 
     <div class="step">
       <span class="step-num">11</span><span class="step-title">HP が 0 になったら最初から</span>
       <p><code>Shift + A</code> で新しいイベントを作ります。<br>
-        条件は「Variable value」で <code>PlayerHealth</code>、Sign of the test は「≤ (less or equal to)」、値は <code>0</code>。<br>
-        アクションは <code>change the scene</code> で検索 →「<strong>Change the scene</strong>」、Name of the new scene は一覧から「<strong>Game Scene</strong>」。<br>
+        条件は「変数の値」で <code>PlayerHealth</code>、テスト記号は「≦（以下）」、比較する値は <code>0</code>。<br>
+        アクションは <code>シーンを変更</code> で検索 →「<strong>シーンを変更する</strong>」、新しいシーンの名前は一覧から「<strong>Game Scene</strong>」。<br>
         今のシーンをもう一度始めるので、最初からやり直しになります。</p>
       <figure class="figure">
-        <a href="img/ch5-13_restart.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-13_restart.jpg" alt="Change the sceneのアクション。Game Sceneを選ぶ（赤枠）" loading="lazy"></a>
-        <figcaption>「Change the scene」で Game Scene を選ぶ（赤枠）</figcaption>
+        <a href="img/ch5-13_restart.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-13_restart.jpg" alt="シーンを変更するのアクション。新しいシーンの名前でGame Sceneを選ぶ（赤枠）" loading="lazy"></a>
+        <figcaption>「シーンを変更する」で、新しいシーンの名前に Game Scene を選ぶ（赤枠）</figcaption>
       </figure>
     </div>
 
@@ -276,24 +283,24 @@
       <span class="step-num">12</span><span class="step-title">できあがったイベントを確かめる</span>
       <p>Battle グループの中が、下の写真と同じ7つのイベントになっていればOK。</p>
       <figure class="figure">
-        <a href="img/ch5-14_battle-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-14_battle-events.jpg" alt="Battleグループの7つのイベント（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-14_battle-events.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-14_battle-events.jpg" alt="Battleグループの7つのイベント（赤枠）。Bullet is in collision with Zombie、Zombie の 変数 Health ≤ 0、変数 InCar は 真 である、シーンタイマー &quot;SpawnTimer&quot; ≥ 3 秒、シーンが始まった、条件なしで KillText のテキストを変更する、変数 PlayerHealth ≤ 0" loading="lazy"></a>
         <figcaption>Battle グループの7つのイベント（赤枠）</figcaption>
       </figure>
     </div>
 
     <h2>5-7. たたかってみよう</h2>
     <div class="step">
-      <span class="step-num">13</span><span class="step-title">保存して Preview</span>
-      <p>保存してから Preview します。<br>
+      <span class="step-num">13</span><span class="step-title">保存してプレビュー</span>
+      <p>保存してから「プレビュー」を押します。<br>
         ゾンビに弾を3発当てるとたおれて、左上の Kills がふえます。<br>
         トラックに乗って、ゾンビをひいてみよう。<br>
         3秒ごとにゾンビがふえていくので、どこまでたおせるかチャレンジ！</p>
       <figure class="figure">
-        <a href="img/ch5-15_preview-kills.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-15_preview-kills.jpg" alt="Previewで、Kills: 3（赤枠）。奥のゾンビに弾が飛んでいる（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-15_preview-kills.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-15_preview-kills.jpg" alt="プレビューで、Kills: 3（赤枠）。奥のゾンビに弾が飛んでいる（赤枠）" loading="lazy"></a>
         <figcaption>弾を当ててたおすと Kills がふえる（赤枠）</figcaption>
       </figure>
       <figure class="figure">
-        <a href="img/ch5-16_preview-truck.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-16_preview-truck.jpg" alt="Previewで、トラック（赤枠）にゾンビ（赤枠）が向かってくる。Kills: 6（赤枠）" loading="lazy"></a>
+        <a href="img/ch5-16_preview-truck.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch5-16_preview-truck.jpg" alt="プレビューで、トラック（赤枠）にゾンビ（赤枠）が向かってくる。Kills: 6（赤枠）" loading="lazy"></a>
         <figcaption>トラックで走りまわると、追いかけてきたゾンビをたおせる（赤枠）</figcaption>
       </figure>
     </div>
@@ -314,7 +321,7 @@
     <div class="trouble">
       <h4>弾が当たってもゾンビがたおれない</h4>
       <p><strong>原因:</strong> Health を Zombie の「オブジェクト変数」ではなく、シーン変数に作ってしまった。</p>
-      <p><strong>直し方:</strong> 一覧の Zombie をクリックして、左の Object Variables に Health（3）があるか確かめよう。</p>
+      <p><strong>直し方:</strong> 一覧の Zombie をクリックして、左の「オブジェクト変数」に Health（3）があるか確かめよう。</p>
     </div>
 
     <div class="trouble">
@@ -325,13 +332,13 @@
 
     <div class="trouble">
       <h4>トラックでひいてもたおせない</h4>
-      <p><strong>原因:</strong> InCar の条件が False になっている。</p>
-      <p><strong>直し方:</strong> ステップ6の条件をダブルクリックして、True を選びなおそう。</p>
+      <p><strong>原因:</strong> InCar の条件が「偽」になっている。</p>
+      <p><strong>直し方:</strong> ステップ6の条件をダブルクリックして、「真」を選びなおそう。</p>
     </div>
 
     <div class="trouble">
       <h4>Kills の文字がカメラといっしょに動く・見えなくなる</h4>
-      <p><strong>原因:</strong> KillText を置いたとき、●が Base layer のままだった。</p>
+      <p><strong>原因:</strong> KillText を置いたとき、●が「ベースレイヤー」のままだった。</p>
       <p><strong>直し方:</strong> 置いた KillText をクリックして、左のレイヤーの欄を「UI」に変えよう。</p>
     </div>
 

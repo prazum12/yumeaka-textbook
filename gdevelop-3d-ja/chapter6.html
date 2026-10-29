@@ -93,7 +93,7 @@
       <tr><td>建物にぶつかるようにする（下のワザ1）</td><td>★</td><td>第2章（ビヘイビア）</td></tr>
       <tr><td>撃つときに音を鳴らす（下のワザ2）</td><td>★</td><td>第3章</td></tr>
       <tr><td>ゾンビの速さ・体力・わく間かくを調整する</td><td>★★</td><td>第4章・第5章</td></tr>
-      <tr><td>ほかの銃やゾンビに入れかえる（Swap assets）</td><td>★★</td><td>第3章・第4章の「やってみよう」</td></tr>
+      <tr><td>ほかの銃やゾンビに入れかえる（アセットの交換）</td><td>★★</td><td>第3章・第4章の「やってみよう」</td></tr>
       <tr><td>たおすほどゾンビがわきやすくなるようにする</td><td>★★★</td><td>第5章の「やってみよう」</td></tr>
     </table>
 
@@ -123,54 +123,56 @@
 
     <h3>ワザ1: 建物にぶつかるようにする</h3>
     <div class="step">
-      <span class="step-num">1</span><span class="step-title">建物に「3D physics engine」をつける</span>
+      <span class="step-num">1</span><span class="step-title">建物に「3D物理エンジン」をつける</span>
       <p>今のままだと、主人公もトラックも建物をすりぬけてしまいます。<br>
-        シーンエディターで一覧の <code>Large_Building_B</code> をクリックし、左の「Behaviors」の「＋」を押します。<br>
-        <code>physics</code> で検索して「<strong>3D physics engine</strong>」を選びます。<br>
-        つけたら、Physics3D の「<strong>Type</strong>」を「Dynamic」から「<strong>Static</strong>」（動かない）に変えます。<br>
+        シーンエディターで一覧の <code>Large_Building_B</code> をクリックし、左の「ビヘイビア」の「＋」を押します。<br>
+        <code>物理</code> で検索して「<strong>3D物理エンジン</strong>」を選びます。<br>
+        つけたら、ビヘイビアの欄に「Physics3D」という見出しで出てきます（ここは英語のまま）。<br>
+        Physics3D の「<strong>Type</strong>」を「ダイナミック」から「<strong>スタティック</strong>」（動かない）に変えます。<br>
         <code>Small_Building_B</code> にも同じようにつけよう。</p>
       <figure class="figure">
-        <a href="img/ch6-01_building-static.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-01_building-static.jpg" alt="Large_Building_BのBehaviorsにPhysics3Dをつけ、TypeをStaticにしたところ（赤枠）" loading="lazy"></a>
-        <figcaption>Physics3D をつけて、Type を Static に（赤枠）</figcaption>
+        <a href="img/ch6-01_building-static.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-01_building-static.jpg" alt="「Large_Building_B を編集」の「ビヘイビア」タブ（赤枠）で、Physics3DのTypeをスタティックにしたところ（赤枠）" loading="lazy"></a>
+        <figcaption>「ビヘイビア」タブの Physics3D で、Type を「スタティック」に（赤枠）</figcaption>
       </figure>
-      <p>Preview で建物に向かって歩くと、かべの前で止まります。<br>
+      <p>プレビューで建物に向かって歩くと、かべの前で止まります。<br>
         ゾンビは力（フォース）で動いているので、建物をすりぬけたままです（ゾンビらしい、ということにしておこう）。</p>
       <figure class="figure">
-        <a href="img/ch6-05_preview-wall.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-05_preview-wall.jpg" alt="Previewで、主人公が建物のかべの前で止まっている（赤枠）" loading="lazy"></a>
+        <a href="img/ch6-05_preview-wall.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-05_preview-wall.jpg" alt="プレビューで、主人公が建物のかべの前で止まっている（赤枠）" loading="lazy"></a>
         <figcaption>建物のかべで止まるようになった（赤枠）</figcaption>
       </figure>
     </div>
 
     <div class="term">
-      <span class="word">Dynamic と Static</span> … 「Dynamic」（ダイナミック）は、ぶつかると押されたり転がったりする物。<br>
-      「Static」（スタティック）は、ぜったいに動かない物。<br>
-      建物や地面は Static にします。<br>
-      Dynamic のままだと、トラックでぶつかったときに建物がふっとんでしまいます。
+      <span class="word">ダイナミックとスタティック</span> … 「ダイナミック」は、ぶつかると押されたり転がったりする物。<br>
+      「スタティック」は、ぜったいに動かない物。<br>
+      建物や地面はスタティックにします。<br>
+      ダイナミックのままだと、トラックでぶつかったときに建物がふっとんでしまいます。
     </div>
 
     <h3>ワザ2: 撃つときに音を鳴らす</h3>
     <div class="step">
-      <span class="step-num">2</span><span class="step-title">「Play a sound」で効果音をつける</span>
-      <p>イベントシートの Gun グループで、弾を撃つイベント（左クリックをはなした）の「Add action」を押します。<br>
-        <code>play a sound</code> で検索して「<strong>Play a sound</strong>」を選びます。<br>
-        「Choose the audio file to use」の欄をクリックすると、メニューが出ます。<br>
-        「<strong>Choose from asset store</strong>」（アセットストアから選ぶ）を押そう。</p>
+      <span class="step-num">2</span><span class="step-title">「サウンドを再生する」で効果音をつける</span>
+      <p>イベントシートの Gun グループで、弾を撃つイベント（左クリックをはなした）の「アクションを追加」を押します。<br>
+        <code>サウンド</code> で検索して、いちばん上の「<strong>サウンドを再生する</strong>」（オーディオ › サウンドと音楽）を選びます。<br>
+        「使用するオーディオファイルを選択してください」の欄をクリックすると、メニューが出ます。<br>
+        「<strong>アセットストアから選択</strong>」を押そう。</p>
       <figure class="figure">
-        <a href="img/ch6-02_play-sound.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-02_play-sound.jpg" alt="Play a soundのアクション。Choose from asset store（赤枠）" loading="lazy"></a>
-        <figcaption>「Play a sound」→「Choose from asset store」（赤枠）</figcaption>
+        <a href="img/ch6-02_play-sound.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-02_play-sound.jpg" alt="アクションの画面で「サウンド」と検索（赤枠）し、「サウンドを再生する」（赤枠）を選んで、メニューの「アセットストアから選択」（赤枠）" loading="lazy"></a>
+        <figcaption>「サウンド」で検索 →「サウンドを再生する」→「アセットストアから選択」（赤枠）</figcaption>
       </figure>
-      <p>検索欄に <code>laser</code> と入力すると、レーザー銃の音がたくさん出てきます。<br>
+      <p>「新しいリソース」の画面が開きます。<br>
+        検索欄に <code>laser</code> と入力すると、レーザー銃の音がたくさん出てきます（音の名前は英語なので、英語で検索します）。<br>
         左の ▷ を押すと、音をためしに聞けます。<br>
-        気に入った音（写真では「Laser-weapon 1」）を選んで「<strong>Add to project</strong>」を押します。</p>
+        気に入った音（写真では「Laser-weapon 1」）を選んで「<strong>プロジェクトに追加</strong>」を押します。</p>
       <figure class="figure">
-        <a href="img/ch6-03_laser-sound.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-03_laser-sound.jpg" alt="New resourceの画面でlaserと検索し、Laser-weapon 1を選んでAdd to project（赤枠）" loading="lazy"></a>
-        <figcaption><code>laser</code> で検索 → 音を選んで「Add to project」（赤枠）</figcaption>
+        <a href="img/ch6-03_laser-sound.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-03_laser-sound.jpg" alt="「新しいリソース」の画面でlaserと検索し（赤枠）、Laser-weapon 1.aacを選んで（赤枠）「プロジェクトに追加」（赤枠）" loading="lazy"></a>
+        <figcaption><code>laser</code> で検索 → 音を選んで「プロジェクトに追加」（赤枠）</figcaption>
       </figure>
-      <p>もとの画面にもどったら、Volume（音の大きさ）に <code>50</code> と入れて「Ok」。<br>
+      <p>もとの画面にもどったら、「音量」に <code>50</code> と入れて「OK」。<br>
         撃つたびに音が鳴るようになります。</p>
       <figure class="figure">
-        <a href="img/ch6-04_sound-volume.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-04_sound-volume.jpg" alt="選んだ音とVolume 50（赤枠）" loading="lazy"></a>
-        <figcaption>選んだ音と、Volume <code>50</code>（赤枠）</figcaption>
+        <a href="img/ch6-04_sound-volume.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-04_sound-volume.jpg" alt="使用するオーディオファイルにLaser-weapon 1.aac、音量50（赤枠）" loading="lazy"></a>
+        <figcaption>選んだ音と、音量 <code>50</code>（赤枠）</figcaption>
       </figure>
     </div>
 
@@ -187,7 +189,7 @@
       <span class="step-num">3</span><span class="step-title">これまでのやり方を組み合わせる</span>
       <p>道路は「Zombie Apocalypse」、建物は「City Kit (Commercial)」のパックから、第1章と同じやり方で追加して、コピー＆貼りつけでふやせます。<br>
         建物をふやしたら、ワザ1の Physics3D も忘れずに。<br>
-        ほかのゾンビにしたいときは、一覧の Zombie を右クリック →「<strong>Swap assets</strong>」で見た目だけ入れかえられます。<br>
+        ほかのゾンビにしたいときは、一覧の Zombie を右クリック →「<strong>アセットの交換</strong>」で見た目だけ入れかえられます。<br>
         イベントはそのまま使えるので、こわれません。</p>
     </div>
 
@@ -248,8 +250,8 @@
     <h2>6-6. 作品の公開について（任意）</h2>
     <p>
       GDevelopには、作ったゲームをインターネットで遊べるように公開する機能があります。<br>
-      画面の上の真ん中にある「<strong>Share</strong>」ボタンを押すと、公開のしかたを選ぶ画面が開きます。<br>
-      いちばん上の「<strong>gd.games</strong>」（Easiest＝いちばんかんたん）を使うと、遊べるURLが作れます。<br>
+      画面の上の真ん中にある「<strong>共有</strong>」ボタンを押すと、公開のしかたを選ぶ画面が開きます。<br>
+      いちばん上の「<strong>gd.games</strong>」（とっても簡単）を使うと、遊べるURLが作れます。<br>
       公開すると、家族や友だちにURLを送って遊んでもらえます。<br>
       ただし、<strong>公開は講師の確認が終わってから</strong>にしてください。
     </p>
@@ -261,8 +263,8 @@
       <li>公開するかどうかは、保護者の方とも相談して決める</li>
     </ul>
     <figure class="figure">
-      <a href="img/ch6-06_share-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-06_share-dialog.jpg" alt="上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）" loading="lazy"></a>
-      <figcaption>上の「Share」ボタンを押すと開くShareの画面。gd.gamesで公開できる（講師の確認が終わってから）</figcaption>
+      <a href="img/ch6-06_share-dialog.jpg" target="_blank" rel="noopener" title="クリックで大きく表示"><img src="img/ch6-06_share-dialog.jpg" alt="上の「共有」ボタン（赤枠）を押すと開く「共有」の画面。「ゲームをエクスポート」のいちばん上のgd.games（赤枠）で公開できる（講師の確認が終わってから）" loading="lazy"></a>
+      <figcaption>上の「共有」ボタンを押すと開く「共有」の画面。gd.gamesで公開できる（講師の確認が終わってから）</figcaption>
     </figure>
 
     <h2>6-7. この先の3つの道</h2>
@@ -320,7 +322,7 @@
       <h4>いろいろ変えていたら、急にゲームがおかしくなった</h4>
       <p><strong>原因:</strong> 最後に変えたところが原因のことがほとんど。</p>
       <p><strong>直し方:</strong> まず <span class="os-win"><code>Ctrl + Z</code></span><span class="os-mac"><code>⌘ + Z</code></span> で1つずつ戻して、どこで直るか確かめよう。<br>
-        これからは「1つ変えたらPreviewで確認」をくせにしよう。</p>
+        これからは「1つ変えたらプレビューで確認」をくせにしよう。</p>
     </div>
 
     <div class="trouble">
@@ -340,7 +342,7 @@
       <h4>音が鳴らない</h4>
       <p><strong>原因1:</strong> PC やブラウザの音量が0、またはミュートになっている。<br>
       → 右下の音量や、ブラウザのタブのスピーカーのマークを確かめよう。</p>
-      <p><strong>原因2:</strong> Play a sound を、撃つイベントではないイベントに入れてしまった。<br>
+      <p><strong>原因2:</strong> 「サウンドを再生する」を、撃つイベントではないイベントに入れてしまった。<br>
       → 「左クリックをはなした」の条件があるイベントに入っているか確かめよう。</p>
     </div>
 
